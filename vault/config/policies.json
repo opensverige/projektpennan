@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1.0",
+  "session_limits": {
+    "max_minutes_weekday": 45,
+    "max_minutes_weekend": 90,
+    "earliest_start": "07:00",
+    "latest_end": "20:00"
+  },
+  "safety": {
+    "max_response_length_chars": 500,
+    "blocked_topics": ["violence", "sexual", "drugs", "horror", "gambling"],
+    "require_output_safety_check": true,
+    "max_retries_on_unsafe_output": 2
+  },
+  "pedagogy": {
+    "socratic_mode": true,
+    "min_questions_before_answer": 2,
+    "max_questions_before_hint": 4
+  }
+}

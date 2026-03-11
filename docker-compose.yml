@@ -1,0 +1,17 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: skooli-backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./vault:/app/vault
+      - ./agents:/app/agents
+      - ./frontend:/app/frontend
+    environment:
+      - OLLAMA_URL=http://host.docker.internal:11434
+      - MODEL_NAME=hermes3:8b
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

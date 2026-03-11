@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+.vscode/
+.idea/
+
+vault/conversations/*
+!vault/conversations/.gitkeep
+vault/audit/*
+!vault/audit/.gitkeep
+vault/curriculum-vectors/*
+!vault/curriculum-vectors/.gitkeep
+vault/parent-reports/*
+!vault/parent-reports/.gitkeep
