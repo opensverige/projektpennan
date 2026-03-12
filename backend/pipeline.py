@@ -7,15 +7,20 @@ LLM:en undervisar. Koden validerar. Föräldern bestämmer.
 
 import json
 import hashlib
+import hmac
 import os
+import secrets
 import httpx
 from datetime import datetime, timezone
 from pathlib import Path
 from safety import check_input_safety, check_output_safety, load_policies
+from rag import search_curriculum
 
 VAULT_PATH = Path("/app/vault")
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://ollama:11434")
 MODEL_NAME = os.getenv("MODEL_NAME", "hermes3:8b")
+AUDIT_SECRET_FILE = VAULT_PATH / "config" / "audit-secret.txt"
+_AUDIT_SECRET: str | None = None
 
 
 def load_child_profile() -> dict:
@@ -78,6 +83,21 @@ def log_conversation_turn(session_id: str, role: str, content: str, metadata: di
         f.write(line)
 
 
+def get_audit_secret() -> str:
+    global _AUDIT_SECRET
+    if _AUDIT_SECRET:
+        return _AUDIT_SECRET
+    AUDIT_SECRET_FILE.parent.mkdir(parents=True, exist_ok=True)
+    if not AUDIT_SECRET_FILE.exists():
+        AUDIT_SECRET_FILE.write_text(secrets.token_hex(32), encoding="utf-8")
+    secret = AUDIT_SECRET_FILE.read_text(encoding="utf-8").strip()
+    if not secret:
+        secret = secrets.token_hex(32)
+        AUDIT_SECRET_FILE.write_text(secret, encoding="utf-8")
+    _AUDIT_SECRET = secret
+    return secret
+
+
 def log_audit(session_id: str, action: str, details: str):
     """
     Append-only audit log med hashkedja.
@@ -105,8 +125,11 @@ def log_audit(session_id: str, action: str, details: str):
         "prev_hash": prev_hash
     }
 
-    raw = json.dumps(entry, ensure_ascii=False, sort_keys=True)
-    entry["hash"] = hashlib.sha256(raw.encode()).hexdigest()
+    base_raw = json.dumps(entry, ensure_ascii=False, sort_keys=True)
+    entry["hash"] = hashlib.sha256(base_raw.encode()).hexdigest()
+    secret = get_audit_secret()
+    signed_raw = json.dumps(entry, ensure_ascii=False, sort_keys=True)
+    entry["signature"] = hmac.new(secret.encode("utf-8"), signed_raw.encode("utf-8"), hashlib.sha256).hexdigest()
 
     line = json.dumps(entry, ensure_ascii=False) + "\n"
 
@@ -173,13 +196,30 @@ async def run_pipeline(session_id: str, user_message: str, history: list[dict]) 
         chain["steps"].append({"step": "respond", "type": "blocked_input"})
         return {"status": "blocked_input", "response": safe_response, "processing_chain": chain}
 
-    # --- STEG 3: RAG (placeholder tills Chroma är uppsatt) ---
-    rag_context = ""  # TODO: Implementera RAG-sökning mot curriculum-vectors
-    chain["steps"].append({"step": "rag", "status": "skipped", "reason": "not_implemented"})
+    # --- STEG 3: RAG mot Lgr22 ---
+    child_info = profile.get("child", {})
+    rag_result = await search_curriculum(
+        query=user_message,
+        grade=child_info.get("grade"),
+        subject=None,
+        top_k=3,
+    )
+    rag_context = rag_result.get("context", "")
+    chain["steps"].append(
+        {
+            "step": "rag",
+            "status": rag_result.get("status", "unknown"),
+            "hits": rag_result.get("hits", 0),
+            "reason": rag_result.get("reason"),
+        }
+    )
 
     # --- STEG 4: LLM Inference ---
     system_prompt = build_system_prompt(profile, policies)
-    conversation = history + [{"role": "user", "content": user_message}]
+    conversation = history.copy()
+    if rag_context:
+        conversation.append({"role": "system", "content": f"[Kursplan]\n{rag_context}"})
+    conversation.append({"role": "user", "content": user_message})
 
     try:
         llm_response = await call_ollama(system_prompt, conversation)
@@ -225,7 +265,8 @@ async def run_pipeline(session_id: str, user_message: str, history: list[dict]) 
     log_conversation_turn(session_id, "user", user_message)
     log_conversation_turn(session_id, "assistant", final_response, {
         "model": MODEL_NAME,
-        "rag_used": bool(rag_context)
+        "rag_used": bool(rag_context),
+        "rag_hits": rag_result.get("hits", 0)
     })
     log_audit(session_id, "RESPONSE_SENT", f"Length: {len(final_response)} chars")
     chain["steps"].append({"step": "log", "status": "ok"})

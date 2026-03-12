@@ -18,17 +18,21 @@ Docker (uvicorn) ─┬─ FastAPI (`backend/main.py`)
 
 ### Backend
 - Python 3.11 + FastAPI 0.115, uvicorn worker.
-- `pipeline.py` orchestrerar, `safety.py` kör deterministiska filter, `rag.py` är scaffold för kommande Chroma.
-- Miljövariabler: `OLLAMA_URL` (default `http://ollama:11434`), `MODEL_NAME` (default `hermes3:8b`).
-- Alla loggar (conversations + audit hashkedja) hamnar i `vault/` och är append-only.
+- `pipeline.py` orchestrerar, `safety.py` kör deterministiska filter.
+- `session_store.py` + SQLite (`vault/session-store.db`) håller chatthistorik.
+- `rag.py` använder Chroma + Ollama-embeddings (`nomic-embed-text`) och läser data från `vault/curriculum-vectors/`.
+- `reports.py` exponerar `/api/reports` (guardian dashboard) baserat på `vault/parent-reports/*.json`.
+- Miljövariabler: `OLLAMA_URL` (default `http://ollama:11434`), `MODEL_NAME` (default `hermes3:8b`), `EMBED_MODEL` (default `nomic-embed-text`).
+- Auditlogg i `vault/audit/audit.log` är kedjad + HMAC-signad (hemlighet i `vault/config/audit-secret.txt`).
 
 ### Frontend
-- Enkel statisk chat i `frontend/index.html`; inbyggd CSS/JS. Pratar mot `/api/chat` och visar block/error-meddelanden.
+- `frontend/index.html` är elevchatten och länkar till `guardian.html` (föräldravyn med rapportlista).
 
 ### Vault
 - `vault/config/child-profile.json` + `policies.json` måste finnas innan start.
-- `vault/curriculum-vectors/` reserverad för RAG (fas 2).
-- `vault/conversations/` och `vault/audit/` växer utan rotation, planerat åtgärdas i fas 2.
+- `vault/curriculum-vectors/` innehåller JSON/JSONL med kursplansutdrag + `chroma/` för index.
+- `vault/parent-reports/` lagrar JSON-rapporter som frontenden visar.
+- `vault/conversations/` och `vault/audit/` växer utan rotation, planerat att adresseras i fas 2.
 
 ## Development Workflow
 1. Kör Ollama lokalt med modellen du vill testa (`ollama run hermes3:8b`).
@@ -47,7 +51,6 @@ Docker (uvicorn) ─┬─ FastAPI (`backend/main.py`)
 - Elevdata ska anonymiseras i `child-profile.json`. Testprofilen "Test-Elev" får ligga kvar i repo.
 
 ## Current Focus / Next Steps
-- Implementera riktig RAG mot Lgr22 (`rag.py`).
-- Flytta session store till SQLite (just nu ligger allt i RAM i `main.py`).
-- Lägg till guardian dashboard (föräldrarapporter finns som stubbar i `vault/parent-reports`).
-- Utöka auditkedjan med signatur när databas finns.
+- Fyll `vault/curriculum-vectors/` med Lgr22-data + CLI för uppdatering.
+- Utöka guardian dashboard med auth + export.
+- Rotera/logga `vault/conversations/` och `vault/audit/` (arkivering).
