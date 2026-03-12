@@ -1,0 +1,23 @@
+[
+  {
+    "id": "grund-01",
+    "area": "Kritiskt tänkande",
+    "content": "Förmåga att analysera och kritiskt värdera information. Att skilja på fakta och värderingar och att söka information från olika källor.",
+    "keywords": ["källkritik", "analys", "fakta", "information"],
+    "source": "Lgr22"
+  },
+  {
+    "id": "grund-02",
+    "area": "Kommunikation",
+    "content": "Förmåga att kommunicera i tal och skrift. Att lyssna aktivt, ställa frågor och presentera sina tankar på ett tydligt sätt.",
+    "keywords": ["kommunikation", "tal", "skrift", "lyssnande"],
+    "source": "Lgr22"
+  },
+  {
+    "id": "grund-03",
+    "area": "Problemlösning",
+    "content": "Förmåga att identifiera och formulera problem samt att välja och använda lämpliga strategier för att lösa dem. Att reflektera över och värdera valda strategier.",
+    "keywords": ["problemlösning", "strategi", "logik", "resonemang"],
+    "source": "Lgr22"
+  }
+]

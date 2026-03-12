@@ -1,0 +1,92 @@
+[
+  {
+    "id": "mat-ak4-01",
+    "subject": "matematik",
+    "grade": 4,
+    "area": "Taluppfattning och tals användning",
+    "content": "Naturliga tal och deras egenskaper samt hur talen kan delas upp och användas för att ange antal och ordning. Tal i bråkform och decimalform.",
+    "keywords": ["tal", "bråk", "decimaltal", "talvärde"],
+    "source": "Lgr22"
+  },
+  {
+    "id": "mat-ak4-02",
+    "subject": "matematik",
+    "grade": 4,
+    "area": "Räkning och algebra",
+    "content": "De fyra räknesätten och sambanden dem emellan samt användning av räknesätten i olika situationer. Centralt innehåll: multiplikationstabellen och strategier för att använda den.",
+    "keywords": ["addition", "subtraktion", "multiplikation", "division", "räknesätt"],
+    "source": "Lgr22"
+  },
+  {
+    "id": "mat-ak4-03",
+    "subject": "matematik",
+    "grade": 4,
+    "area": "Geometri",
+    "content": "Grundläggande geometriska objekt: punkt, linje, sträcka, rät vinkel, triangel, kvadrat, rektangel och cirkel. Konstruktion av geometriska objekt.",
+    "keywords": ["geometri", "form", "vinkel", "triangel", "cirkel"],
+    "source": "Lgr22"
+  },
+  {
+    "id": "mat-ak4-04",
+    "subject": "matematik",
+    "grade": 4,
+    "area": "Mätning",
+    "content": "Längd, massa, volym och tid samt enheter för dessa. Hur enheter kan omvandlas.",
+    "keywords": ["mätning", "längd", "massa", "volym", "tid", "enheter"],
+    "source": "Lgr22"
+  },
+  {
+    "id": "mat-ak4-05",
+    "subject": "matematik",
+    "grade": 4,
+    "area": "Statistik och sannolikhet",
+    "content": "Enkla tabeller och diagram och hur de kan användas för att sortera data och beskriva resultat.",
+    "keywords": ["statistik", "diagram", "tabell", "data"],
+    "source": "Lgr22"
+  },
+  {
+    "id": "sva-ak4-01",
+    "subject": "svenska",
+    "grade": 4,
+    "area": "Läsning och litteratur",
+    "content": "Skönlitteratur för barn och unga från skilda tider och skilda delar av världen. Berättande texters budskap, uppbyggnad och innehåll.",
+    "keywords": ["läsning", "skönlitteratur", "berättelse", "handling"],
+    "source": "Lgr22"
+  },
+  {
+    "id": "sva-ak4-02",
+    "subject": "svenska",
+    "grade": 4,
+    "area": "Skrivande",
+    "content": "Strategier för att skriva olika typer av texter med anpassning till deras typiska uppbyggnad och språkliga drag. Berättande texter och poetiska texter för barn och unga.",
+    "keywords": ["skrivande", "text", "meningsbyggnad", "stycken"],
+    "source": "Lgr22"
+  },
+  {
+    "id": "sva-ak4-03",
+    "subject": "svenska",
+    "grade": 4,
+    "area": "Språkbruk och grammatik",
+    "content": "Ordklasser och deras typiska användning. Skillnader i språkanvändning beroende på syfte, mottagare och sammanhang.",
+    "keywords": ["grammatik", "ordklasser", "substantiv", "verb", "adjektiv"],
+    "source": "Lgr22"
+  },
+  {
+    "id": "no-ak4-01",
+    "subject": "NO",
+    "grade": 4,
+    "area": "Kropp och hälsa",
+    "content": "Människans organs namn och funktion samt hur kroppens olika organsystem samverkar. Betydelsen av kost, sömn och rörelse för hälsan.",
+    "keywords": ["kropp", "organ", "hälsa", "kost", "biologi"],
+    "source": "Lgr22"
+  },
+  {
+    "id": "no-ak4-02",
+    "subject": "NO",
+    "grade": 4,
+    "area": "Natur och ekosystem",
+    "content": "Djurs och växters livscykler och hur de är anpassade till olika miljöer. Fotosyntes, förbränning och nedbrytning och balansen i naturen.",
+    "keywords": ["natur", "djur", "växter", "ekosystem", "fotosyntesen"],
+    "source": "Lgr22"
+  }
+]
