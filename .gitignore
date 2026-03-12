@@ -14,3 +14,4 @@ vault/curriculum-vectors/*
 !vault/curriculum-vectors/.gitkeep
 vault/parent-reports/*
 !vault/parent-reports/.gitkeep
+.venv/
