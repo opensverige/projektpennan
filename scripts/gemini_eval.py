@@ -38,9 +38,9 @@ TEST_CASES = [
 def run_eval() -> None:
     """Kör evaluering mot Gemini-modellen."""
     try:
-        import google.generativeai as genai
+        from google import genai
     except ImportError:
-        print("Fel: google-generativeai är inte installerat. Kör: pip install google-generativeai")
+        print("Fel: google-genai är inte installerat. Kör: pip install google-genai")
         sys.exit(1)
 
     api_key = os.getenv("GEMINI_API_KEY")
@@ -48,11 +48,11 @@ def run_eval() -> None:
         print("Fel: GEMINI_API_KEY saknas i .env")
         sys.exit(1)
 
-    genai.configure(api_key=api_key)
+    client = genai.Client(api_key=api_key)
 
     print("Tillgängliga Flash-modeller:")
-    for m in genai.list_models():
-        if "flash" in m.name.lower() and "generateContent" in m.supported_generation_methods:
+    for m in client.models.list():
+        if "flash" in m.name.lower():
             print(f"  {m.name}")
 
     print(f"\nKör {len(TEST_CASES)} testfall...\n")

@@ -4,23 +4,24 @@ Bygger systemprompt, hanterar konversationshistorik och anropar Gemini 2.5 Flash
 """
 import os
 import sys
-import json
 from typing import Any
 
-import google.generativeai as genai
-from google.generativeai.types import HarmCategory, HarmBlockThreshold
+from google import genai
+from google.genai import types
 from dotenv import load_dotenv
 
 from .profile import load_profile
 
 load_dotenv()
 
-# Konversationshistorik per chat_id: {chat_id: [{"role": ..., "parts": [...]}]}
-_histories: dict[int, list[dict[str, Any]]] = {}
+# Konversationshistorik per chat_id: {chat_id: list[types.Content]}
+_histories: dict[int, list[Any]] = {}
 _MAX_TURNS = 20
 
-# Gemini-modell och systemprompt initieras vid import
-_model: genai.GenerativeModel | None = None
+# Gemini-klient och config initieras vid första anrop
+_client: genai.Client | None = None
+_model_name = "gemini-2.5-flash-preview-05-20"
+_chat_config: types.GenerateContentConfig | None = None
 
 
 def _build_system_prompt(profile: dict) -> str:
@@ -28,7 +29,6 @@ def _build_system_prompt(profile: dict) -> str:
     child = profile["child"].get("child", profile["child"])
     policies = profile["policies"]
 
-    # Hämta child-data med fallbacks
     child_name = child.get("display_name", "Eleven")
     child_age = child.get("age", 10)
     child_grade = f"åk {child.get('grade', 4)}"
@@ -37,7 +37,6 @@ def _build_system_prompt(profile: dict) -> str:
     child_strengths = ", ".join(child.get("subjects", []))
     child_development_areas = "problemlösning och kritiskt tänkande"
 
-    # Bygg curriculumkontext
     curriculum_lines = []
     for entry in profile["curriculum"]:
         curriculum_lines.append(
@@ -46,7 +45,6 @@ def _build_system_prompt(profile: dict) -> str:
         )
     curriculum_context = "\n".join(curriculum_lines) if curriculum_lines else "Lgr22 allmän kursplan"
 
-    # Bygg policies-kontext
     pedagogy = policies.get("pedagogy", {})
     policies_context = (
         f"Sokratiskt läge: {'på' if pedagogy.get('socratic_mode', True) else 'av'}. "
@@ -88,31 +86,41 @@ Ditt flöde i varje konversation:
 {policies_context}"""
 
 
-def _get_model() -> genai.GenerativeModel:
-    """Returnerar (och initierar vid behov) Gemini-modellen."""
-    global _model
-    if _model is None:
+def _get_client_and_config() -> tuple[genai.Client, types.GenerateContentConfig]:
+    """Returnerar (och initierar vid behov) Gemini-klient och chat-config."""
+    global _client, _chat_config
+    if _client is None:
         api_key = os.getenv("GEMINI_API_KEY")
         if not api_key:
             raise ValueError("GEMINI_API_KEY saknas i miljövariablerna")
-        genai.configure(api_key=api_key)
+
+        _client = genai.Client(api_key=api_key)
 
         profile = load_profile()
         system_prompt = _build_system_prompt(profile)
 
-        safety_settings = {
-            HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-            HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-            HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-            HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-        }
-
-        _model = genai.GenerativeModel(
-            model_name="gemini-2.5-flash-preview-05-20",
+        _chat_config = types.GenerateContentConfig(
             system_instruction=system_prompt,
-            safety_settings=safety_settings,
+            safety_settings=[
+                types.SafetySetting(
+                    category="HARM_CATEGORY_HARASSMENT",
+                    threshold="BLOCK_ONLY_HIGH",
+                ),
+                types.SafetySetting(
+                    category="HARM_CATEGORY_HATE_SPEECH",
+                    threshold="BLOCK_ONLY_HIGH",
+                ),
+                types.SafetySetting(
+                    category="HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                    threshold="BLOCK_ONLY_HIGH",
+                ),
+                types.SafetySetting(
+                    category="HARM_CATEGORY_DANGEROUS_CONTENT",
+                    threshold="BLOCK_ONLY_HIGH",
+                ),
+            ],
         )
-    return _model
+    return _client, _chat_config
 
 
 def get_response(chat_id: int, user_message: str) -> str:
@@ -121,18 +129,22 @@ def get_response(chat_id: int, user_message: str) -> str:
     Hanterar konversationshistorik per chat_id.
     """
     try:
-        model = _get_model()
+        client, config = _get_client_and_config()
         history = _histories.get(chat_id, [])
-        chat = model.start_chat(history=history)
+
+        chat = client.chats.create(
+            model=_model_name,
+            config=config,
+            history=history,
+        )
         response = chat.send_message(user_message)
         bot_reply = response.text
 
-        # Uppdatera historik
-        updated_history = list(chat.history)
-        # Trimma till max _MAX_TURNS turer (1 tur = user + model)
-        if len(updated_history) > _MAX_TURNS * 2:
-            updated_history = updated_history[-(  _MAX_TURNS * 2):]
-        _histories[chat_id] = updated_history
+        # Spara uppdaterad historik, trimma till max _MAX_TURNS turer
+        updated = chat.get_history()
+        if len(updated) > _MAX_TURNS * 2:
+            updated = updated[-(_MAX_TURNS * 2):]
+        _histories[chat_id] = updated
 
         return bot_reply
 
