@@ -1,92 +1,66 @@
-# Installera — vad som finns, vad som är monumentet
+# Installera — räkmacka vs kvällens Open
 
 Arbetsnamn: Skooli Buddy. Kernel föräldern äger.
+**BankID är av i default.** Vi är OSS.
 
-Det finns **två installationer**. Blanda inte ihop dem.
-
-| | **Idag (byggt)** | **Hem (monumentet, ej byggt)** |
-|---|------------------|--------------------------------|
-| Vem | Tech-förälder, bidrag, vi som utvecklar | Vanlig familj, fem minuter |
-| Barn ser | Telegram-bot eller localhost:8080 | En tyst kontakt i WhatsApp |
-| Förälder gör | Klona, `.env`, `/consent [lösen]` | BankID på *sin* telefon, barnet inte i rummet |
-| Onboarding | Nej. Kommandon. | Ja — P-28. Inte byggt. |
+| | **Idag (byggt)** | **Räkmackan (monumentet, ej byggt)** |
+|---|------------------|--------------------------------------|
+| Vem | Vi, tech-förälder | Vanlig förälder, några tryck |
+| Barn ser | 1:1-bot eller localhost:8080 | En Telegram-grupp de redan kan |
+| Förälder gör | Klona, `.env`, `/consent [lösen]` | Agent → barn → kontext → bjud in |
+| Identitet | Lösenord i chatten | Telegram-kontot + checkbox |
+| Onboarding | Nej. Kommandon. | Ja — P-39. Inte byggt. |
 | Barn-onboarding | Avsiktligt ingen | Avsiktligt ingen |
+
+Detalj: [docs/RAKMACKA.md](RAKMACKA.md).
 
 ---
 
-## Scenariot vi håller uppe (Hem)
+## Scenariot vi håller uppe (räkmackan)
 
-Söndag kväll. Barnen är i sitt rum.
+Söndag. Barnen är i sitt rum. Föräldern öppnar
+`t.me/skoolibot?startapp` på *sin* telefon.
 
-1. Föräldern öppnar Hem på sin telefon. BankID. Inte barnets skärm.
-2. Kort samtycke. Inklusive: chatten kan gå via WhatsApp/Meta.
-3. Barnkort: tilltalsnamn, åk, stöd. Valfritt: världsbild, diagnos,
-   veckans skolteman. Aldrig krav.
-4. Tid: 45 min, stopp 19:30. Inget läxlarm.
-5. Samma gest som att lägga till mormor: en kontakt i barnets WhatsApp.
-6. PIN på föräldrapanelen. Pausa / radera där.
-7. Klart. Ingen demo med barnet i knät.
+1. **Agent** — Extra stöd / saga / tro / egen. Chips. En checkbox:
+   jag är vårdnadshavare.
+2. **Barn** — Tilltalsnamn + åk. Inte efternamn. Inte e-post.
+3. **Kontext** — “Den här veckan: bråk.” Eller hoppa över.
+4. **Invite** — Skapa grupp. Native share. Länken dör på 48 timmar.
 
-Barnet ser aldrig BankID, aldrig pris, aldrig loggen.
-Första gången de skriver i tråden är första gången produkten börjar.
-
-Det är `docs/UX-SCENARIOS.md` och `docs/PRODUCTIZATION.md`.
-Koden för det är backlog **P-28** (plus P-27, P-30, P-32).
-**Den onboarding-flödet är inte byggt.**
+Barnet får en grupp i listan, mellan Mamma och Omar.
+Ingen demo. Ingen QR. Första gången de skriver är första gången
+produkten börjar.
 
 ---
 
 ## Scenariot som går att köra i kväll (Open)
 
-### A. Lokal kernel — ingen moln-LLM
-
-Föräldern (eller du) har Docker och Ollama.
+### A. Lokal kernel
 
 ```bash
 git clone https://github.com/opensverige/projektpennan
 cd projektpennan
-# Ollama med t.ex. hermes3:8b på port 11434
-docker compose up --build
+docker compose up --build   # Ollama på 11434
+# http://localhost:8080
 ```
 
-Öppna http://localhost:8080 — det är HTML-chatten.
-`frontend/guardian.html` är en tunn föräldralogg, inte Hem-panelen.
-Ingen BankID. Ingen WhatsApp-kontakt. Ingen fem-minuters-guide.
-
-Vaulten ligger i `vault/`. Packs (världsbild, Lgr22, skolkontext,
-egen agent) är mallar i `vault/packs/`. Laddaren är P-33 — du
-redigerar filer för hand.
-
-### B. Telegram — det som testats mot ett barn
+### B. Telegram som den ser ut nu
 
 ```bash
 pip install -r requirements.txt
 cp .env.example .env
-# TELEGRAM_BOT_TOKEN, GEMINI_API_KEY, GUARDIAN_PASSPHRASE
 python -m skooli_buddy.bot
 ```
 
-Sedan, i Telegram:
-
-1. Föräldern skriver `/consent [lösenord]`
-2. Barnet (eller samma chatt) skriver `/start`
-3. Föräldrapanel: `streamlit run dashboard/app.py`
-
-Det är **inte** en onboarding. Det är kommandon. Boten har dessutom
-ett hårdkodat tillåtet chat-id (P-02) — den är inte redo att delas
-ut till andra familjer.
-
-`/pause` lovas i samtyckestexten men saknas (P-07).
+`/consent [lösenord]` → `/start`. Hårdkodat chat-id (P-02).
+Det är inte räkmackan.
 
 ---
 
-## Vad som medvetet inte finns
+## Vad som medvetet inte krävs
 
-- Ingen wizard. Ingen QR. Ingen “nu ska du prata med AI:n”.
-- Ingen barn-onboarding (avatar, “vad vill du lära dig”).
-- Ingen BankID, ingen start-länk, ingen WhatsApp-adapter.
-- Ingen pack-UI — vaulten är filer, som Obsidian.
-
-När Hem byggs ska den här filen fortfarande vara sann:
-Open = klona och kör. Hem = BankID och en tyst kontakt.
-Samma kernel. Samma safety. Olika hur den hamnar hos barnet.
+- BankID
+- Barnkonto
+- QR
+- Unikum
+- Att föräldern kan Docker (det är Open, inte räkmackan)

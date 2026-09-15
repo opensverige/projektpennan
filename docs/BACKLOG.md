@@ -52,8 +52,8 @@ P-03 och P-29.
 |----|-----|--------|----------|
 | P-25 | **Kernel-gräns i repo.** Hosted = tenant + identitet + faktura, inte en fork av pedagogiken. | Accounted-modellen. | `accounted-open-core` |
 | P-26 | **Provider-adapter.** Ollama / OpenAI-compat / Gemini bakom samma interface. BYO-nyckel. | Odysseus-läget. | `accounted-open-core` |
-| P-27 | **Förälder-PWA** (BankID, PIN, paus). Barn-PWA bara fallback. | Förälderns yta ≠ barnets yta. | `contact-not-destination` |
-| P-28 | **Hem-onboarding.** BankID, samtycke, barnkort, start-token. Fem minuter. | "Ge barnet detta" är jobbet. | `accounted-open-core` |
+| P-27 | **Förälderyta i Telegram Mini App** (paus, packs). Ingen PWA-först. Ingen BankID-default. | Vi är OSS. Telegram är redan identiteten. | `telegram-rakmacka-onboarding` |
+| P-28 | **Räkmacka.** Agent + barn + kontext + gruppinbjudan. Checkbox-samtycke. Inte BankID. | Några tryck. Se `docs/RAKMACKA.md`. | `telegram-rakmacka-onboarding` |
 | P-29 | **DPIA + underbiträden + ZDR** innan första betalande familj. | Hosted = vi är personuppgiftsansvariga. | `gdpr-hem` |
 | P-30 | **Telegram start-token + allowlist** (dödar hårdkodat id). | Open och Hem. | `channel-sweden` |
 | P-31 | **Publik prissida + DPA-text** (Open / Hem / egen drift). | Accounted-tabell. Aldrig paywalla safety. | `accounted-open-core` |
@@ -70,7 +70,8 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 | P-35 | **Pedagogikbibliotek i kod.** Sokrates, små steg, worked, CPA, saga, lek, retrieve, lässtöd. Byt metod när det kärvar. `nudge_homework=false`. | En metod räcker inte. Intresse utan gnäll. | `pedagogy-beyond-socratic` |
 | P-36 | **Förälder-skrivna anpassningar.** Valfritt fält för diagnos/preferenser. Tyst anpassning. Krypterat i Hem. Aldrig till skola. Tomt = extra-stöd-default. | Vi sätter inte diagnos. Vi lyssnar när hemmet berättar. Art. 9. | `parent-authored-accommodations` |
 | P-37 | **Skolkontext-pack.** Föräldern skriver veckans teman eller släpper in ICS/export. Minimering + TTL 7–14 dagar. Relevans i chatten, inget läxlarm. | Sidekicken ska veta vad som är uppe, utan att suga i sig Unikum. | `parent-owned-school-context` |
-| P-38 | **Förälder-hostad connector.** De kör den hemma med sitt BankID/lösen. Skriver minimerad `context.json` till vault. Hem får aldrig skol-credentials eller live-API. | Byggarföräldrar gör det redan. Vi standardiserar formatet, inte inloggningen. | `parent-owned-school-context` |
+| P-38 | **Förälder-hostad connector.** De kör den hemma med sitt eget lösen/BankID mot *skolan*. Skriver minimerad `context.json` till vault. Hem får aldrig skol-credentials. | Byggarföräldrar gör det redan. Vi standardiserar formatet. | `parent-owned-school-context` |
+| P-39 | **Mini App / knapp-wizard.** Fyra steg, chips, sen `createChatInviteLink` + native share. Fallback utan `requestChat` på iOS. | Det som gör räkmackan till kod. | `telegram-rakmacka-onboarding` |
 
 ## Medvetet inte i scopet
 - Skola som operatör: Unikum-SSO, klass-tenant, lärarvy, write-back.
@@ -85,8 +86,8 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 2. P-03 — safety i kod, BRIS utan LLM.
 3. P-01 + P-26 — en kärna, BYO-providers.
 4. P-32 — WhatsApp-kontakt som barnets yta (då först Hem-känsla).
-5. P-27 — förälder-PWA vid sidan av, inte som barnets destination.
-6. P-29 — DPIA innan någon faktura (Meta i underbiträdeslistan).
+5. **P-39 + P-28 + P-30** — räkmackan. Det är nästa monument-PR.
+6. P-29 — DPIA innan någon *betalande* familj. Inte innan räkmackan.
 7. P-33 + P-34 — pack-laddare och världsbild (då först kernel-känsla).
 8. P-35 + P-36 — metodbyte i kod + krypterade anpassningar.
 9. P-37 — veckans lapp (då först relevant utan läcka). P-38 sen.

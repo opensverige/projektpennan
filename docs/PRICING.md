@@ -10,10 +10,11 @@ råkar paywalla skydd.
 | Self-host (Docker) | ✓ | – | ✓ |
 | BYO-modell (Ollama / egen nyckel) | ✓ | tillval | ✓ |
 | EU-inference vi betalar, ZDR, ingen träning | – | ✓ | valfritt |
-| BankID förälder | – | ✓ | valfritt |
-| Förälder-PWA, PIN, paus | kod | driftad | driftad åt er |
-| WhatsApp-kontakt hos barnet | Open om du kopplar | **Hem-default** | ✓ |
-| Telegram-yta | ✓ du sätter upp | tillval | ✓ |
+| Identitet | Telegram + checkbox | samma | valfritt BankID |
+| Räkmacka (agent/barn/kontext/grupp) | kod | **default** | ✓ |
+| Förälder-Mini App, paus | kod | driftad | driftad åt er |
+| WhatsApp-kontakt | Open om du kopplar | senare | ✓ |
+| Telegram-grupp | ✓ | **räkmacka-default** | ✓ |
 | Barn-PWA | fallback | fallback | fallback |
 | Bild på läxa / röst | kod | inkluderat eller plus | ✓ |
 | Veckosammanfattning till förälder | lokal | mejl/app | ✓ |

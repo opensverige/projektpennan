@@ -80,9 +80,8 @@ default + egna agenter**. Inte en låst läroplansapp. Inte Khan Academy.
 (Open 0 kr / Auto ~199 / Custom) + Odysseus BYO-nyckel.
 
 - **Open:** hela motorn hemma, Docker, egen modell.
-- **Hem:** vi slår på den på fem minuter. BankID. Skooli som
-  tyst WhatsApp-kontakt hos barnet. Föräldrapanel på *er* telefon.
-  PWA bara som fallback. EU-inference.
+- **Hem:** räkmackan. Fyra tryck, Telegram-grupp. EU-inference.
+  Inte BankID. WhatsApp senare.
 - **Egen drift:** er server, vår hjälp.
 
 Pedagogik och safety är aldrig paywall. Detalj:
@@ -92,11 +91,12 @@ Pedagogik och safety är aldrig paywall. Detalj:
 ## Nordstjärna för v1.0
 En förälder i Sverige kan på fem minuter (Hem) eller en kväll (Open):
 
-1. BankID *eller* klona/köra image,
-2. ge samtycke, sätta tid, metoder, ev. världsbild och ev. anpassning,
-3. lägga sidekicken som en tyst kontakt i barnets WhatsApp
-   (PWA bara som fallback — inte en QR-ceremoni),
-4. se, pausa, exportera, byta pack eller radera.
+1. öppna botten *eller* klona/köra image,
+2. fyra tryck: agent, barn, kontext, bjud in till grupp
+   (räkmackan — [docs/RAKMACKA.md](RAKMACKA.md)),
+3. se, pausa, exportera, byta pack eller radera.
+
+Inget BankID. Ingen QR. Ingen barn-onboarding.
 
 Inget skolkonto hos oss. Ingen klass. Ingen molnplikt på Open.
 Lgr22 av om de vill. Egna agenter in om de vill.

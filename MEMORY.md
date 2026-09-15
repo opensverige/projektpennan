@@ -51,5 +51,11 @@
 
 ## 2026-09-15 — install vs monument
 - Hem-onboarding är ritad, inte kod. `docs/INSTALL.md` håller
-  isär Open-kväll (Docker / Telegram `/consent`) och Hem
-  (BankID + tyst kontakt, P-28). Ingen barn-onboarding, avsiktligt.
+  isär Open-kväll och räkmackan.
+
+## 2026-09-15 — räkmacka, BankID av
+- Föräldern ger bara: agent, barn, kontext, sen invite till
+  Telegram-grupp. Identitet = Telegram + checkbox. Inte BankID.
+- Docs: RAKMACKA.md. Mini App / knappar (P-39). Telegram 9.6
+  requestChat + createChatInviteLink. UX: ChatGPT-chips, Discord-expire.
+- Last-30d social scan tom (Reddit 403). Källor: Bot API + Mobbin.

@@ -102,8 +102,8 @@ python scripts/curriculum_cli.py validate
 ## Current Focus
 1. En kärna, BYO-providers (P-01, P-26).
 2. Safety i kod + allowlist/start-token (P-03, P-30).
-3. WhatsApp-kontakt hos barnet, förälder-PWA hos vuxen (P-32, P-27).
-   Inte sälj Hem innan DPIA (P-29). Inget QR-ceremoni.
+3. Räkmackan: Mini App, fyra tryck, Telegram-grupp (P-39, P-28, P-30).
+   Inget BankID. WhatsApp senare (P-32). Inget QR-ceremoni.
 4. Productisering: `docs/PRODUCTIZATION.md` är affärsmodellen.
    `docs/PLATFORM.md` är kernel/pack-gränsen. Arbetsnamn.
 5. Pack-laddare (P-33), världsbild (P-34), metoder i kod (P-35),

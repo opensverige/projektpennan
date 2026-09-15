@@ -147,6 +147,22 @@
       "cadence": "vid vägledning"
     },
     {
+      "id": "telegram-miniapps",
+      "org": "Telegram",
+      "title": "Telegram Mini Apps / WebApp",
+      "url": "https://core.telegram.org/bots/webapps",
+      "themes": ["product"],
+      "cadence": "vid Bot API-bump"
+    },
+    {
+      "id": "telegram-bot-api-changelog",
+      "org": "Telegram",
+      "title": "Bot API changelog",
+      "url": "https://core.telegram.org/bots/api-changelog",
+      "themes": ["product"],
+      "cadence": "vid release"
+    },
+    {
       "id": "uncrc-14",
       "org": "OHCHR / FN",
       "title": "Barnkonventionen artikel 14 — tanke, samvete, religion",

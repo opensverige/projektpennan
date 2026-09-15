@@ -66,13 +66,10 @@ Målet är **en kärna, två ytor**. Just nu är de parallella. Se P-01.
 
 ---
 
-## Quickstart
-
-**Hem-onboarding (BankID, tyst WhatsApp-kontakt) är inte byggt.**
-Det är monumentet — se [docs/INSTALL.md](docs/INSTALL.md).
-Det som går att köra i kväll är Open: Docker/Ollama eller Telegram.
-
 ## Quickstart (Open, idag)
+
+Räkmackan (agent / barn / kontext / Telegram-grupp) är **inte byggd**.
+Monumentet: [docs/RAKMACKA.md](docs/RAKMACKA.md). Inget BankID.
 
 ```bash
 # 1. Klona och installera

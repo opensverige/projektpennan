@@ -25,9 +25,9 @@ Det är Duolingo-stund. Det är inte en sidekick.
 ### 0. Föräldern sätter upp — barnet är inte i rummet
 
 Söndag kväll. Barnen sover eller sitter i sitt rum.
-Föräldern tar BankID på *sin* telefon, kryssar samtycke, sätter
-tid, stödläge och ev. världsbild. Sen gör de samma sak som när mormor skulle
-in i barnets WhatsApp: **lägger till en kontakt.**
+Föräldern öppnar botten på *sin* Telegram, fyra tryck:
+agent, barn, kontext, bjud in till grupp. Inget BankID.
+Se [docs/RAKMACKA.md](RAKMACKA.md).
 
 Skooli dyker upp i barnets chattlista. Inget tal. Ingen demo.
 Kanske en enda mening i familjechatten: "Skooli ligger i dina

@@ -19,9 +19,9 @@ inte som en stängd barn-app och inte som "klona och orka Docker".
 | [Lightdash-prissättning](https://mobbin.com/sites/sections/923ce9ff-1152-446a-8654-ce0b7ff3e537) | Tre kolumner: self-host / hosted / let's talk. | Enterprise-BI-språk. |
 
 **Vad föräldern köper när de betalar:** inte pedagogiken (den är
-öppen). De köper att *någon annan* håller boten vid liv, BankID,
-EU-inference, support och att barnet kan börja kvällen utan att
-pappa sätter upp Ollama.
+öppen). De köper att *någon annan* håller boten vid liv,
+EU-inference, support och räkmackan (fyra tryck → grupp).
+Inte BankID — vi är OSS, det är för tungt som default.
 
 **Vad som aldrig får bli betalt:** safety-kärnan, samtycke, revoke,
 BRIS, Sokratisk default, extra-stöd-lägen, export av egen data.
@@ -47,7 +47,7 @@ Det är inte volymvägen.
 | Motor | Hela kernel, AGPL | Samma motor, vi driftar | Samma motor, er server eller vår |
 | Barnchatt | Du sätter upp ytan | En länk. Klart. | Er domän |
 | Modell | BYO: Ollama / egen nyckel | Vi betalar EU-inference. BYO-nyckel som tillval (då går data till *er* leverantör) | Valfritt |
-| Identitet | Lösenord du väljer | BankID på föräldern | BankID / SSO åt vuxna, aldrig barn |
+| Identitet | Telegram + checkbox | samma | ev. BankID senare |
 | Support | GitHub / Discord | Människa, vardagkväll | Egen kontakt |
 | Extra | Du kopplar själv | Bild på läxa, veckomejl, andra ytor | White-label |
 
@@ -78,7 +78,7 @@ kernel/
 Se [docs/PLATFORM.md](PLATFORM.md). Vendor lock-in på agent eller
 livsåskådning är ett fel. Det vi säljer på Hem är drift.
 
-Hosted lägger *utanpå* kernel: tenant-isolering, BankID, faktura,
+Hosted lägger *utanpå* kernel: tenant-isolering, Telegram-identitet, faktura,
 vår modellnyckel, supportkö, uptime. Inte en fork.
 
 ### Vad Hem (Auto) tar betalt för
@@ -131,7 +131,7 @@ Alltså:
 | Yta | För vem | Friction | Säkerhet | När |
 |-----|---------|----------|----------|-----|
 | **WhatsApp-kontakt** | Barnet som redan har mobilen | Samma chattlista som kompisarna. Bild + röst de redan kan. | Meta ser meddelanden. Priset för att vara där de är. | **Hem-barn, default.** |
-| **Förälder-PWA** | Vårdnadshavaren | BankID, paus, PIN. Aldrig på barnets skärm. | Högst. Vi äger den ytan. | **Hem-förälder, default.** |
+| **Telegram Mini App** | Vårdnadshavaren | Agent/barn/kontext/invite. Aldrig på barnets skärm som wizard. | Medel (Telegram ser chatten). | **Räkmacka-default.** |
 | **Barn-PWA** | Ingen WhatsApp, gemensam iPad, vägrar Meta | Fallback. Inte en QR-ceremoni med barnet. | Högst. | Fallback, inte vardagsvägen. |
 | **Telegram** | Tech-förälder, self-host | Få barn har det. | Medel. Icke-EU. | Open. Inte Hem-berättelsen. |
 | Native app | Senare | Store-granskning, 13+ trassel | Bra om vi skippar trackers | Inte v1 |
@@ -143,7 +143,7 @@ ny flik, inte "nu ska du prata med AI:n". Se
 
 - **Hem-barn:** WhatsApp-kontakt (1:1). Föräldern lägger till den
   som mormor, tyst.
-- **Hem-förälder:** web/PWA på *förälderns* telefon (BankID, paus, PIN).
+- **Hem-förälder:** Mini App i *förälderns* Telegram. Inte BankID.
 - **PWA för barnet:** bara fallback (ingen WhatsApp, gemensam iPad,
   max integritet). Inte vardagsvägen.
 - **Telegram:** Open / nördförälder. Inte Hem-berättelsen.
@@ -171,19 +171,15 @@ hos Garmin är däremot rätt.
 ### Hem-onboarding (föräldern, barnet är inte med)
 
 ```
-1. Förälder   BankID på sin egen telefon. Barnen i sitt rum.
-2. Samtycke   kort. Inklusive: "chatten går via WhatsApp/Meta."
-3. Barnkort   tilltalsnamn, åk, stödpreferenser. Valfritt: det
-              föräldern vill berätta (diagnos, ork). Aldrig krav.
-4. Tid        45 min, 19:30 stopp. Inget läxalarm till barnet.
-5. Yta        Default: "Lägg Skooli som kontakt i barnets WhatsApp"
-              (samma gest som att lägga till mormor)
-              Fallback: PWA-länk om det inte finns WhatsApp
-6. PIN        på förälderns panel, inte i barnets chatt
-7. Klart      Kontakten ligger där. Ingen demo med barnet i knät.
+1. Förälder   öppnar Mini App / wizard på sin Telegram. Barnen i sitt rum.
+2. Agent      chips: extra stöd / saga / tro / egen.
+3. Barn       tilltalsnamn + åk. Checkbox: jag är vårdnadshavare.
+4. Kontext    valfri lapp, eller hoppa över.
+5. Invite     skapa grupp, native share, länk 48 h.
+6. Klart      Gruppen ligger i listan. Ingen demo med barnet i knät.
 ```
 
-Barnet ser aldrig BankID, aldrig pris, aldrig loggen.
+Barnet ser aldrig wizard, aldrig pris, aldrig loggen.
 Första gången de skriver är första gången produkten "börjar".
 
 ### Föräldrayta (inte Streamlit, inte skolrapport)
@@ -230,7 +226,7 @@ Då räcker inte "vi är open source". Innan Hem-lansering:
 | Hot | Öppen yta | Motmedel |
 |-----|-----------|----------|
 | Främmande barn hittar boten | Telegram/WhatsApp | Allowlist per familj. Default vägra. Inget publikt @skoolibot utan start-token. |
-| Syskon gissar lösen | Dashboard | BankID + PIN. Inte `GUARDIAN_PASSPHRASE` i chatten. |
+| Syskon gissar lösen | Dashboard | Mini App bara på förälderns Telegram. Inte lösen i barnets chatt. |
 | Jailbreak / facit | LLM | Safety i *kod* före och efter. P-03. |
 | Prompt injection via läxbild | Vision | Bild opt-in. Ansikten droppas. OCR-text genom samma filter. |
 | Läckt JSONL / support-titt | Hosted | Roller, audit, minst-behörighet. Support ser inte chatt utan ticket + tidsbegränsad nyckel. |
@@ -256,7 +252,7 @@ Det är Custom-känsla, men en toggle räcker för nördar.
 ### Telegram-specifikt (om ytan är på)
 - Ingen global bot som tar emot vem som helst
 - `t.me/skoolibot?start=<engångstoken>` bunden till familj, TTL 15 min
-- Bara allowlistad `chat_id` efter att föräldern bekräftat i BankID-ytan
+- Bara allowlistad `chat_id` efter räkmackan (start-token + grupp)
 - Ingen lagring av username, foto, telefon
 - Grupper: förälder spectator, bot svarar bara barnet — explicit läge
 
@@ -267,7 +263,7 @@ Det är Custom-känsla, men en toggle räcker för nördar.
 ```
                  Open     Docker / hem-NUC / Ollama
                     \
-  kernel (AGPL)  ----+---- Hem      vår drift, BankID, EU-LLM
+  kernel (AGPL)  ----+---- Hem      vår drift, räkmacka, EU-LLM
                     /
                  ytor     PWA | Telegram | WhatsApp-adapter
 ```
@@ -288,7 +284,7 @@ hosted/                 # tenant, bankid, billing — kan vara stängt
 
 `hosted/` *får* vara sluten operationskod (secrets, terraform)
 så länge kernel inte urholkas. Accounted håller motorn öppen och
-säljer kopplingar. Vi gör likadant: billing och BankID-adapter
+säljer kopplingar. Vi gör likadant: billing, inte BankID-default
 kan vara "Hem-repo", men safety får inte flytta dit.
 
 ---
@@ -302,14 +298,14 @@ som låser skydd.
 Kör hela motorn hemma. AGPL. BYO-modell. Community.
 
 **Hem — mest vald**
-Vi slår på den åt er. BankID. Barnlänk. EU-modell. Pausa-knapp.
+Vi slår på den åt er. Fyra tryck. Grupp. EU-modell. Pausa-knapp.
 30 dagar, sen en läxhjälpstimme i månaden.
 
 **Egen drift**
 Er server, vår hjälp. För den som inte vill att vi ser något.
 
 Jämförelsetabell som Accounted: kernel-rader alltid bockade.
-Hem-rader: BankID, vi-driftar, EU-inference, support, extra ytor.
+Hem-rader: räkmacka, vi-driftar, EU-inference, support. BankID tillval.
 
 ---
 
@@ -322,7 +318,7 @@ P0–P1 i `docs/BACKLOG.md` står kvar. Produktifiering lägger:
 | P-25 | **Kernel-gräns.** Dela kod så hosted bara är tenant+identitet+faktura. |
 | P-26 | **Provider-adapter.** Ollama / OpenAI-compat / Gemini bakom samma interface. BYO. |
 | P-27 | **Förälder-PWA.** PIN, paus. Inte barnets vardagsyta. |
-| P-28 | **Hem-onboarding.** BankID, samtycke, barnkort, allowlist, start-token. |
+| P-28 | **Räkmacka.** Agent, barn, kontext, gruppinbjudan. Inte BankID. |
 | P-29 | **DPIA + underbiträden + ZDR-policy** innan första betalande familj. |
 | P-30 | **Telegram start-token + allowlist** (ersätter hårdkodat id). Open *och* Hem. |
 | P-31 | **Prissida + DPA-text** i docs, Accounted-struktur. |
@@ -348,7 +344,7 @@ att produktifiera en labbuppställning.
    Telegram är Open. Barn-PWA är fallback, inte ceremoni.
    Inget läxpush. Inget "nu ska du prata med AI:n".
 3. **Barnet har inget konto.** Föräldern är admin till 13.
-4. **BankID på vuxen, PIN på panelen.** Inget barnlösen i chatten.
+4. **Telegram på vuxen, Mini App för packs.** Inget barnlösen i chatten.
 5. **Ingen skola i tenant-modellen.** En familj, en vault.
 6. **BYO alltid möjligt.** Hosted default är EU-ZDR som vi betalar.
 7. **Inte ta betalt förrän DPIA och safety-i-kod finns.**
