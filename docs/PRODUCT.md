@@ -68,8 +68,9 @@ som default**. Inte fler features än Khan Academy.
 (Open 0 kr / Auto ~199 / Custom) + Odysseus BYO-nyckel.
 
 - **Open:** hela motorn hemma, Docker, egen modell.
-- **Hem:** vi slår på den på fem minuter. BankID. Barn-PWA.
-  Telegram/WhatsApp som tillval. EU-inference.
+- **Hem:** vi slår på den på fem minuter. BankID. Skooli som
+  tyst WhatsApp-kontakt hos barnet. Föräldrapanel på *er* telefon.
+  PWA bara som fallback. EU-inference.
 - **Egen drift:** er server, vår hjälp.
 
 Pedagogik och safety är aldrig paywall. Detalj:
@@ -81,7 +82,8 @@ En förälder i Sverige kan på fem minuter (Hem) eller en kväll (Open):
 
 1. BankID *eller* klona/köra image,
 2. ge samtycke, sätta tid och stödläge,
-3. ge barnet en länk (PWA) — inte kräva Telegram,
+3. lägga Skooli som en tyst kontakt i barnets WhatsApp
+   (PWA bara som fallback — inte en QR-ceremoni),
 4. se, pausa, exportera eller radera.
 
 Inget skolkonto. Ingen klass. Ingen molnplikt på Open.

@@ -28,7 +28,7 @@ ska fungera.
 |-----|---------|
 | Identitet & pedagogik | `agents/tutor/SOUL.md` + `SKILL.md` + `RULES.md` |
 | Säkerhetsspec | `SKOOLI_BUDDY_SAFETY_SPEC.md` |
-| Produktvision | `docs/PRODUCT.md` + `docs/PRODUCTIZATION.md` |
+| Produktvision | `docs/PRODUCT.md` + `docs/PRODUCTIZATION.md` + `docs/UX-SCENARIOS.md` |
 | Vad som är byggt | `docs/INVENTORY.md` |
 | Vad som ska göras | `docs/BACKLOG.md` |
 | Research | `research/` + `scripts/research_pipeline.py` |
@@ -97,7 +97,7 @@ python scripts/curriculum_cli.py validate
 ## Current Focus
 1. En kärna, BYO-providers (P-01, P-26).
 2. Safety i kod + allowlist/start-token (P-03, P-30).
-3. Barn-PWA som Hem-default — Telegram är tillval (P-27).
-   Inte sälj Hem innan DPIA (P-29).
+3. WhatsApp-kontakt hos barnet, förälder-PWA hos vuxen (P-32, P-27).
+   Inte sälj Hem innan DPIA (P-29). Inget QR-ceremoni.
 4. Productisering: `docs/PRODUCTIZATION.md` är affärsmodellen.
 5. Lgr22 åk 4–6 + research-fynd som matar backlog.

@@ -52,12 +52,12 @@ P-03 och P-29.
 |----|-----|--------|----------|
 | P-25 | **Kernel-gräns i repo.** Hosted = tenant + identitet + faktura, inte en fork av pedagogiken. | Accounted-modellen. | `accounted-open-core` |
 | P-26 | **Provider-adapter.** Ollama / OpenAI-compat / Gemini bakom samma interface. BYO-nyckel. | Odysseus-läget. | `accounted-open-core` |
-| P-27 | **Barn-PWA + förälder-PWA.** Default-yta för Hem. PIN, paus, QR. | Telegram är inte där barnen är. | `channel-sweden` |
+| P-27 | **Förälder-PWA** (BankID, PIN, paus). Barn-PWA bara fallback. | Förälderns yta ≠ barnets yta. | `contact-not-destination` |
 | P-28 | **Hem-onboarding.** BankID, samtycke, barnkort, start-token. Fem minuter. | "Ge barnet detta" är jobbet. | `accounted-open-core` |
 | P-29 | **DPIA + underbiträden + ZDR** innan första betalande familj. | Hosted = vi är personuppgiftsansvariga. | `gdpr-hem` |
 | P-30 | **Telegram start-token + allowlist** (dödar hårdkodat id). | Open och Hem. | `channel-sweden` |
 | P-31 | **Publik prissida + DPA-text** (Open / Hem / egen drift). | Accounted-tabell. Aldrig paywalla safety. | `accounted-open-core` |
-| P-32 | **WhatsApp-yta som Hem-koppling**, inte som produktidentitet. | ~40 % av barn 8–19, men Meta-transfer. | `channel-sweden` |
+| P-32 | **WhatsApp som Hem-barn-default:** tyst kontakt, bild, röst. Inget läxpush. | Där de redan är. | `contact-not-destination` |
 
 ## Medvetet inte i scopet
 - Integration mot Unikum, InfoMentor, Google Classroom, Skolon.
@@ -70,5 +70,6 @@ P-03 och P-29.
 1. P-02 + P-30 + P-07 — allowlist, start-token, dashboard, `/pause`.
 2. P-03 — safety i kod, BRIS utan LLM.
 3. P-01 + P-26 — en kärna, BYO-providers.
-4. P-27 — barn- och förälder-PWA (då först Hem-känsla).
-5. P-29 — DPIA innan någon faktura.
+4. P-32 — WhatsApp-kontakt som barnets yta (då först Hem-känsla).
+5. P-27 — förälder-PWA vid sidan av, inte som barnets destination.
+6. P-29 — DPIA innan någon faktura (Meta i underbiträdeslistan).

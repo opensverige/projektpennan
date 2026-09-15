@@ -86,7 +86,7 @@ Vi tar betalt för analogerna:
 |----------------|------------|
 | PSD2-bank | Vi kör boten så den svarar kl 19 en tisdag |
 | AI-kontering i EU | Inference i EU, ZDR, ingen träning |
-| Kvitton via WhatsApp | Yta mot barnet (PWA först, sen WhatsApp) |
+| Kvitton via WhatsApp | Barnet skriver där de redan är (WhatsApp-kontakt) |
 | "Föreslår, du godkänner" | Veckosammanfattning föräldern läser — aldrig betyg |
 | Prioriterad support | Människa när något skaver |
 | Flera användare | Två vårdnadshavare + ett barn (syskon = extra) |
@@ -123,17 +123,26 @@ Alltså:
 
 | Yta | För vem | Friction | Säkerhet | När |
 |-----|---------|----------|----------|-----|
-| **Web-PWA** | Barn utan eget Telegram. Familje-iPad. | Föräldern öppnar en länk, ev. lägg på hemskärmen. Inget nytt socialt konto. | Högst. Vi äger transporten. Ingen Telegram/Meta som underbiträde. | **Hem v1. Default.** |
-| **Telegram** | Tech-förälder, self-host, spectator-grupp | Kräver att barnet *har* Telegram. Få har det. | Medel. Telegram ser meddelanden. Icke-EU. | Open från dag ett. Hem som tillval. |
-| **WhatsApp** | Vanlig svensk familj | Barnet har den redan. Business API är dyrt och Meta. | Sämre transfer (Meta). Samma "där barnet är"-vinst som Accounteds kvitto-WhatsApp. | Hem-plus, när kernel-ytan är ren. |
+| **WhatsApp-kontakt** | Barnet som redan har mobilen | Samma chattlista som kompisarna. Bild + röst de redan kan. | Meta ser meddelanden. Priset för att vara där de är. | **Hem-barn, default.** |
+| **Förälder-PWA** | Vårdnadshavaren | BankID, paus, PIN. Aldrig på barnets skärm. | Högst. Vi äger den ytan. | **Hem-förälder, default.** |
+| **Barn-PWA** | Ingen WhatsApp, gemensam iPad, vägrar Meta | Fallback. Inte en QR-ceremoni med barnet. | Högst. | Fallback, inte vardagsvägen. |
+| **Telegram** | Tech-förälder, self-host | Få barn har det. | Medel. Icke-EU. | Open. Inte Hem-berättelsen. |
 | Native app | Senare | Store-granskning, 13+ trassel | Bra om vi skippar trackers | Inte v1 |
 
-**Produktbeslut:** v1 Hem = förälder på webben (BankID) + barn på
-**PWA**. Telegram är kernel-yta och Open-default, inte hosted-default.
-WhatsApp kommer som Auto-koppling, inte som kärnidentitet.
+**Produktbeslut:** barnet möter oss som **en kontakt i den chatt
+de redan har** — i Sverige WhatsApp först. Inte en QR, inte en
+ny flik, inte "nu ska du prata med AI:n". Se
+[docs/UX-SCENARIOS.md](UX-SCENARIOS.md).
 
-Det här rättar README:t som sålde "bor i er Telegram-grupp" som om
-det vore hela produkten.
+- **Hem-barn:** WhatsApp-kontakt (1:1). Föräldern lägger till den
+  som mormor, tyst.
+- **Hem-förälder:** web/PWA på *förälderns* telefon (BankID, paus, PIN).
+- **PWA för barnet:** bara fallback (ingen WhatsApp, gemensam iPad,
+  max integritet). Inte vardagsvägen.
+- **Telegram:** Open / nördförälder. Inte Hem-berättelsen.
+
+Meta som underbiträde är priset för att vara där de är. Det står
+i samtycket. Open-core finns för den som vägrar.
 
 ### Anti-mönster (inte så här)
 
@@ -152,23 +161,22 @@ hos Garmin är däremot rätt.
 6. **Checklista "gör klart barnets setup"** — [Greenlight](https://mobbin.com/screens/7e97e03a-4c8e-47f3-8aab-2798ba5514ab) / [GoHenry](https://mobbin.com/screens/b40b68b8-c923-4155-8a8f-12983e659ad8)
 7. **Blockerad innehållslista synlig** — [Spotify Kids](https://mobbin.com/screens/92060d61-ac33-4284-bc66-e4500cc46390)
 
-### Hem-onboarding (fem minuter)
+### Hem-onboarding (föräldern, barnet är inte med)
 
 ```
-1. Förälder   accounted.se-känsla: BankID på skooli.se
-2. Samtycke   kort, läsbart, kryssrutor. Inte 12 sidor.
-3. Barnkort   tilltalsnamn, åk, ämnen, stödpreferenser
-              (korta steg / pauser / läs-stöd). Aldrig diagnos.
-4. Tid        45 min vardag, 19:30 stopp. Redigerbart.
-5. Yta        Default: "Öppna på barnets iPad" (PWA-länk + QR)
-              Tillval: "Koppla Telegram" / senare WhatsApp
-6. PIN        fyrasiffrigt på föräldravyn
-7. Klart      En grön checklista. Barnet säger hej.
+1. Förälder   BankID på sin egen telefon. Barnen i sitt rum.
+2. Samtycke   kort. Inklusive: "chatten går via WhatsApp/Meta."
+3. Barnkort   tilltalsnamn, åk, stödpreferenser. Aldrig diagnos.
+4. Tid        45 min, 19:30 stopp. Inget läxalarm till barnet.
+5. Yta        Default: "Lägg Skooli som kontakt i barnets WhatsApp"
+              (samma gest som att lägga till mormor)
+              Fallback: PWA-länk om det inte finns WhatsApp
+6. PIN        på förälderns panel, inte i barnets chatt
+7. Klart      Kontakten ligger där. Ingen demo med barnet i knät.
 ```
 
 Barnet ser aldrig BankID, aldrig pris, aldrig loggen.
-Föräldern ser en enda skärm: **igång / pausa / tid kvar / senast
-ämne / öppna logg (PIN)**.
+Första gången de skriver är första gången produkten "börjar".
 
 ### Föräldrayta (inte Streamlit, inte skolrapport)
 
@@ -302,7 +310,7 @@ P0–P1 i `docs/BACKLOG.md` står kvar. Produktifiering lägger:
 |----|-----|
 | P-25 | **Kernel-gräns.** Dela kod så hosted bara är tenant+identitet+faktura. |
 | P-26 | **Provider-adapter.** Ollama / OpenAI-compat / Gemini bakom samma interface. BYO. |
-| P-27 | **Barn-PWA + förälder-PWA.** Default-yta för Hem. PIN, paus, QR-länk. |
+| P-27 | **Förälder-PWA.** PIN, paus. Inte barnets vardagsyta. |
 | P-28 | **Hem-onboarding.** BankID, samtycke, barnkort, allowlist, start-token. |
 | P-29 | **DPIA + underbiträden + ZDR-policy** innan första betalande familj. |
 | P-30 | **Telegram start-token + allowlist** (ersätter hårdkodat id). Open *och* Hem. |
@@ -312,9 +320,9 @@ P0–P1 i `docs/BACKLOG.md` står kvar. Produktifiering lägger:
 Ordning som gör "ge barnet detta" sant:
 
 1. P-01 + P-03 + P-26 — en motor, safety i kod, BYO
-2. P-27 + P-30 — PWA + säker Telegram-koppling
-3. P-28 + P-29 — då först ta betalt
-4. P-32 när PWA sitter
+2. P-32 + P-30 — WhatsApp-kontakt (Hem-barn) + säker allowlist
+3. P-27 — förälder-PWA (paus, PIN), inte barnets destination
+4. P-28 + P-29 — då först ta betalt (Meta i DPIA)
 
 Att sälja Hem på dagens Telegram-bot med hårdkodat chat-id vore
 att produktifiera en labbuppställning.
@@ -325,8 +333,9 @@ att produktifiera en labbuppställning.
 
 1. **Open-core, inte open-core-teater.** Kernel = allt som skyddar
    och undervisar. Hem = drift + identitet + inference vi betalar.
-2. **PWA först för Hem.** Telegram är Open-yta och tillval.
-   WhatsApp är Auto-koppling senare.
+2. **Kontakt i WhatsApp först för barnet.** Föräldern har PWA.
+   Telegram är Open. Barn-PWA är fallback, inte ceremoni.
+   Inget läxpush. Inget "nu ska du prata med AI:n".
 3. **Barnet har inget konto.** Föräldern är admin till 13.
 4. **BankID på vuxen, PIN på panelen.** Inget barnlösen i chatten.
 5. **Ingen skola i tenant-modellen.** En familj, en vault.

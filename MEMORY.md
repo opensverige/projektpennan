@@ -26,6 +26,7 @@
 
 ## 2026-09-15 — produktifiering
 - Mall: Accounted Open/Auto/Custom + Odysseus BYO.
-- Hem-default är barn-PWA, inte Telegram (få svenska barn har det).
+- Hem-barn är en tyst WhatsApp-kontakt, inte QR/PWA-ceremoni.
+- Föräldern sätter upp utan barnet i rummet. Inget läxpush.
 - Hosted = vi blir personuppgiftsansvariga → DPIA innan sälj.
 - Docs: PRODUCTIZATION.md, PRICING.md. Backlog P-25–P-32.

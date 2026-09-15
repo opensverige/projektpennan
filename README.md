@@ -27,8 +27,8 @@ Läs [docs/PRODUCT.md](docs/PRODUCT.md) för visionen,
 [docs/INVENTORY.md](docs/INVENTORY.md) för vad som faktiskt är byggt
 och [docs/BACKLOG.md](docs/BACKLOG.md) för vad som återstår.
 
-Telegram är en yta, inte produkten. Hosted-default ska vara en
-barn-PWA — de flesta svenska 9–12-åringar har inte Telegram.
+Barnet möter oss som en kontakt i chatten de redan har (WhatsApp
+i Sverige), inte som en QR eller en ny app. Telegram är Open-yta.
 
 ---
 
@@ -156,7 +156,7 @@ Kort:
 - **P0** — en kärna, inget hårdkodat chat-id, safety i kod, CI, ärlig README, fungerande föräldrainlogg + `/pause`
 - **P1** — föräldern styr stödläge/tid/export, Lgr22 åk 4–6, läx-foto opt-in, lokal modell som default, minne hemma
 - **P2** — röst, fler årskurser, WhatsApp, veckosammanfattning utan betyg
-- **P3** — kernel/Hem/BYO, barn-PWA, BankID-onboarding, DPIA innan sälj
+- **P3** — kernel/Hem/BYO, WhatsApp-kontakt hos barnet, förälder-PWA, DPIA innan sälj
 
 Spectator-grupp, bildstöd och minne från den gamla v0.2–v0.4-listan
 ligger kvar som P-13, P-12, P-10. Produktmodellen:
