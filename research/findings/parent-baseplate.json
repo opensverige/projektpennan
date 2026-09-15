@@ -1,0 +1,30 @@
+{
+  "id": "parent-baseplate",
+  "date": "2026-09-15",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Vi ger basplattan (safety, vault, packs, ytor). Föräldern formar den och jackar in ChatGPT eller annan frontier-modell. Onboarding börjar på webben. Samma platta installeras som webb, Docker, Telegram eller senare WhatsApp/Hem.",
+  "evidence": [
+    {
+      "title": "Odysseus — self-host first, BYO OpenAI-compat",
+      "url": "https://github.com/odysseus-dev/odysseus",
+      "year": 2026,
+      "notes": "Runtime ni äger, nyckel ni tar med. Inte en låst modell. Det är plattans analog."
+    },
+    {
+      "title": "Homework Buddy — en app, deras pedagogik, Lgr22 inbakat",
+      "url": "https://homeworkbuddy.app/sv/",
+      "year": 2026,
+      "notes": "Närmaste svenska läx-AI. Föräldern kan inte byta hjärna eller äga kernel. Det vi inte ska vara."
+    },
+    {
+      "title": "Accounted priser — motorn fri, kopplingarna kostar",
+      "url": "https://www.accounted.se/priser",
+      "year": 2026,
+      "notes": "Samma split: platta öppen, drift och ev. vår inference betald. BYO alltid möjligt."
+    }
+  ],
+  "implication": "P-26 läser runtime.json. P-28 är webbstart, inte BankID-först. P-41 är start.html. INSTALL är en matris, inte en Docker-bibel. Se docs/BASEPLATE.md.",
+  "backlog_refs": ["P-26", "P-28", "P-41"],
+  "confidence": "high"
+}

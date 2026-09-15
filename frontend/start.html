@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sätt upp Gnista — basplattan</title>
+    <style>
+        :root {
+            --ink: #1c2430;
+            --muted: #5c6b7a;
+            --line: #d5dee6;
+            --bg: #f4f1ea;
+            --card: #fffdf8;
+            --accent: #2a6f5f;
+            --accent-2: #1e5348;
+            --warn: #8a4b12;
+            --warn-bg: #fff4e5;
+            --ok: #1b6b4a;
+            --ok-bg: #e6f6ee;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+        }
+        .top {
+            background: var(--accent-2);
+            color: #e8f4ef;
+            padding: 12px 20px;
+            font-size: 14px;
+            line-height: 1.45;
+        }
+        .top a { color: #c8ebd9; }
+        .wrap { max-width: 720px; margin: 0 auto; padding: 28px 20px 80px; }
+        h1 { font-size: 28px; line-height: 1.2; margin: 8px 0 8px; }
+        .lead { color: var(--muted); font-size: 16px; line-height: 1.5; margin-bottom: 20px; }
+        .dots { display: flex; gap: 6px; margin: 16px 0 24px; }
+        .dots span { flex: 1; height: 4px; background: #d8d2c6; border-radius: 99px; }
+        .dots span.on { background: var(--accent); }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(40, 30, 10, 0.04);
+        }
+        .card h2 { font-size: 20px; margin-bottom: 8px; }
+        .card p { color: var(--muted); font-size: 15px; line-height: 1.5; margin-bottom: 12px; }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+        .chip, .pick {
+            border: 1px solid var(--line);
+            background: #fff;
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .pick { border-radius: 12px; display: block; width: 100%; text-align: left; padding: 12px 14px; margin-bottom: 8px; }
+        .chip.sel, .pick.sel { border-color: var(--accent); background: #e7f4ef; font-weight: 600; }
+        .pick small { display: block; font-weight: 400; color: var(--muted); margin-top: 4px; }
+        label.field { display: block; font-size: 12px; font-weight: 700; margin: 12px 0 6px; }
+        input, textarea, select {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 11px 12px;
+            font: inherit;
+            font-size: 15px;
+        }
+        textarea { min-height: 84px; }
+        .check {
+            display: flex; gap: 10px; align-items: flex-start;
+            border: 1px solid var(--line); border-radius: 12px;
+            padding: 12px; margin-top: 12px; font-size: 14px; line-height: 1.4;
+        }
+        .note, .alert, .ok {
+            border-radius: 12px; padding: 10px 12px; font-size: 13px;
+            line-height: 1.45; margin: 10px 0;
+        }
+        .note { background: #eef6f3; color: #215046; }
+        .alert { background: var(--warn-bg); color: var(--warn); }
+        .ok { background: var(--ok-bg); color: var(--ok); }
+        .row { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
+        button.primary, button.secondary, button.back {
+            border: 0; border-radius: 12px; padding: 12px 16px;
+            font-size: 15px; font-weight: 650; cursor: pointer;
+        }
+        button.primary { background: var(--accent); color: #fff; }
+        button.primary:disabled { background: #b7cfc7; cursor: not-allowed; }
+        button.secondary { background: #ece7dc; color: var(--ink); }
+        button.back { background: transparent; color: var(--muted); }
+        pre {
+            background: #1c2430; color: #e8eef4; border-radius: 12px;
+            padding: 12px; font-size: 12px; overflow-x: auto;
+            white-space: pre-wrap; margin: 10px 0;
+        }
+        .badge {
+            display: inline-block; font-size: 11px; font-weight: 700;
+            padding: 2px 8px; border-radius: 99px; background: #ece7dc;
+            margin-left: 6px;
+        }
+        .badge.live { background: #d5efe4; color: var(--ok); }
+        .badge.soon { background: #ffe7c2; color: var(--warn); }
+        .links { margin-top: 20px; font-size: 14px; }
+        .links a { color: var(--accent-2); }
+    </style>
+</head>
+<body>
+<div class="top">
+    <strong>Förälderns yta.</strong> Vi ger basplattan. Ni formar den och jackar in den modell ni vill.
+    Nycklar stannar i er webbläsare — de skickas inte hit.
+    <a href="index.html">Barnchatt</a> · <a href="guardian.html">Logg</a>
+</div>
+<div class="wrap">
+    <p style="font-size:13px;color:var(--muted)">Projekt Pennan · Gnista</p>
+    <h1>Sätt upp plattan</h1>
+    <p class="lead">Börjar här på webben. Sen installerar ni den så det passar — Docker, den här chatten, Telegram. Barnet gör ingenting.</p>
+    <div class="dots" id="dots"></div>
+    <div class="card" id="card"></div>
+    <div class="links">
+        <a href="#" id="reset">Börja om</a>
+        · Monument: <code>docs/BASEPLATE.md</code>
+    </div>
+</div>
+<script>
+const STEPS = ["Vem", "Forma", "Barn", "Modell", "Yta", "Recept"];
+const defaultState = () => ({
+    step: 0,
+    consent: false,
+    byoAck: false,
+    shape: "extra",
+    overlay: "",
+    childName: "",
+    grade: "5",
+    provider: "ollama",
+    model: "hermes3:8b",
+    baseUrl: "http://127.0.0.1:11434",
+    key: "",
+    surface: "docker"
+});
+let state = { ...defaultState(), ...(JSON.parse(sessionStorage.getItem("gnista-start") || "{}")) };
+
+const PROVIDERS = {
+    ollama: { label: "Ollama — lokalt", live: true, key: false, models: ["hermes3:8b", "llama3.1:8b"], url: "http://127.0.0.1:11434", env: null },
+    openai: { label: "ChatGPT / OpenAI", live: false, key: true, models: ["gpt-4.1", "gpt-4o-mini"], url: "https://api.openai.com/v1", env: "OPENAI_API_KEY" },
+    anthropic: { label: "Claude", live: false, key: true, models: ["claude-sonnet-4-5", "claude-haiku-4-5"], url: "https://api.anthropic.com", env: "ANTHROPIC_API_KEY" },
+    gemini: { label: "Gemini", live: false, key: true, models: ["gemini-2.5-flash"], url: "https://generativelanguage.googleapis.com", env: "GEMINI_API_KEY" },
+    compat: { label: "Annan OpenAI-compat", live: false, key: true, models: ["local-model"], url: "http://127.0.0.1:1234/v1", env: "OPENAI_API_KEY" },
+    hem: { label: "Hem — ni driftar sen", live: false, key: false, models: [], url: "", env: null }
+};
+
+const SURFACES = {
+    docker: { label: "Docker på den här datorn", hint: "Samma platta, Ollama eller er nyckel. Kvällens Open.", live: true },
+    web: { label: "Barnchatten i webbläsaren", hint: "Kräver att A redan kör på :8080.", live: true },
+    telegram: { label: "Telegram-bot", hint: "Finns. /consent och hårdkodat id. Inte räkmackan.", live: true },
+    whatsapp: { label: "WhatsApp-kontakt", hint: "Där svenska barn är. Inte byggt (P-32).", live: false },
+    hem: { label: "Hem, fem minuter", hint: "Vi slår på den. Monument, inte kod.", live: false }
+};
+
+function save() { sessionStorage.setItem("gnista-start", JSON.stringify(state)); }
+
+function runtime() {
+    const p = PROVIDERS[state.provider] || PROVIDERS.ollama;
+    const provider = state.provider === "compat" ? "openai-compat" : state.provider;
+    return {
+        schema_version: "0.1.0",
+        provider,
+        base_url: state.baseUrl || p.url,
+        model: state.model || (p.models[0] || ""),
+        api_key_env: p.env,
+        shape: state.shape,
+        overlay: state.overlay,
+        child: { name: state.childName.trim().split(/\s+/)[0] || "", grade: state.grade }
+    };
+}
+
+function envFile() {
+    const p = PROVIDERS[state.provider] || PROVIDERS.ollama;
+    const lines = [
+        "# Genererad av frontend/start.html. Ligger hos er. Inte hos oss.",
+        p.env && state.key ? `${p.env}=${state.key}` : (p.env ? `${p.env}=` : "# ingen molnnyckel — Ollama"),
+        "OLLAMA_URL=http://127.0.0.1:11434",
+        `MODEL_NAME=${state.model || "hermes3:8b"}`,
+        "TELEGRAM_BOT_TOKEN=",
+        "GUARDIAN_PASSPHRASE="
+    ];
+    return lines.filter(Boolean).join("\n") + "\n";
+}
+
+function recipe() {
+    const r = runtime();
+    const liveModel = state.provider === "ollama";
+    const bits = [];
+    bits.push("# Recept från Gnista-starten\n");
+    bits.push(`Barn: ${r.child.name || "(tomt)"} åk ${r.child.grade}`);
+    bits.push(`Form: ${state.shape}`);
+    bits.push(`Modell: ${r.provider} / ${r.model}`);
+    bits.push(`Yta: ${state.surface}\n`);
+    if (state.surface === "docker" || state.surface === "web") {
+        bits.push("git clone https://github.com/opensverige/projektpennan");
+        bits.push("cd projektpennan");
+        bits.push("# lägg .env och vault/config/runtime.json från nedladdningen");
+        bits.push("docker compose up --build");
+        bits.push("öppna http://localhost:8080");
+    }
+    if (state.surface === "telegram") {
+        bits.push("pip install -r requirements.txt && python -m skooli_buddy.bot");
+        bits.push("# idag: /consent [lösen] — inte den här wizarden");
+    }
+    if (!liveModel && state.provider !== "hem") {
+        bits.push("\n# P-26: FastAPI läser inte den här nyckeln än. Receptet är sant.");
+    }
+    return bits.join("\n");
+}
+
+function download(name, text) {
+    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    a.click();
+    URL.revokeObjectURL(a.href);
+}
+
+function render() {
+    save();
+    document.getElementById("dots").innerHTML = STEPS.map((s, i) =>
+        `<span class="${i <= state.step ? "on" : ""}" title="${s}"></span>`
+    ).join("");
+    const el = document.getElementById("card");
+    const screens = [
+        () => `
+            <h2>Den här telefonen eller datorn är förälderns</h2>
+            <p>Vi ger golvet: safety, logg, pack-format. Ni jackar in ChatGPT eller kör lokalt. Barnet sätter inte upp det här.</p>
+            <label class="check"><input type="checkbox" id="consent" ${state.consent ? "checked" : ""}>
+            <span>Jag är vårdnadshavare. Inte skolan. Inte barnet.</span></label>
+            <div class="row">
+                <button class="primary" id="next" ${state.consent ? "" : "disabled"}>Fortsätt</button>
+            </div>
+        `,
+        () => `
+            <h2>Hur ska den kännas?</h2>
+            <p>Inte modellnamn. Det kommer sen. Det här blir ett pack ni äger.</p>
+            <div class="chips">
+                ${[["extra","Extra stöd"],["saga","Saga"],["tro","Tro"],["egen","Egen"]].map(([id,l]) =>
+                    `<button type="button" class="chip ${state.shape===id?"sel":""}" data-shape="${id}">${l}</button>`
+                ).join("")}
+            </div>
+            ${state.shape === "tro" ? `<div class="note">Följer <em>er</em> tro. Barnet kan inte byta.</div>` : ""}
+            ${state.shape === "egen" ? `<label class="field">Tre rader ovanpå plattan</label><textarea id="overlay" placeholder="T.ex. korta meningar, som en tränare.">${esc(state.overlay)}</textarea>` : ""}
+            <div class="row"><button class="back" id="back">Tillbaka</button><button class="primary" id="next">Fortsätt</button></div>
+        `,
+        () => `
+            <h2>Vem är barnet?</h2>
+            <p>Tilltalsnamn och årskurs. Inte e-post. Ett barn nu.</p>
+            <label class="field">Tilltalsnamn</label>
+            <input id="childName" value="${esc(state.childName)}" placeholder="Bara tilltalsnamn" autocomplete="off">
+            <label class="field">Årskurs</label>
+            <select id="grade">${["3","4","5","6","7"].map(g => `<option ${state.grade===g?"selected":""}>${g}</option>`).join("")}</select>
+            <div class="row"><button class="back" id="back">Tillbaka</button><button class="primary" id="next" ${state.childName.trim().length>=2?"":"disabled"}>Fortsätt</button></div>
+        `,
+        () => `
+            <h2>Jacka in en modell</h2>
+            <p>Plattan består när ni byter hjärna. En starkare modell får inte ge facit först.</p>
+            ${Object.entries(PROVIDERS).map(([id,p]) => `
+                <button type="button" class="pick ${state.provider===id?"sel":""}" data-prov="${id}">
+                    ${p.label}
+                    <span class="badge ${p.live?"live":"soon"}">${p.live?"kör i kväll":"recept · P-26"}</span>
+                    <small>${id==="hem"?"Vi betalar EU-inference sen. Samma platta.": id==="ollama"?"Data lämnar inte hemmet.":"Nyckeln stannar hos er. Läxtext går till leverantören."}</small>
+                </button>
+            `).join("")}
+            ${state.provider !== "hem" ? `
+                <label class="field">Modell</label>
+                <input id="model" value="${esc(state.model)}">
+                <label class="field">Bas-URL</label>
+                <input id="baseUrl" value="${esc(state.baseUrl)}">
+            ` : ""}
+            ${PROVIDERS[state.provider].key ? `
+                <label class="field">API-nyckel (bara den här webbläsaren)</label>
+                <input id="key" type="password" value="${esc(state.key)}" placeholder="klistra in, ladda sen ner .env">
+                <label class="check"><input type="checkbox" id="byoAck" ${state.byoAck?"checked":""}>
+                <span>Jag skickar läxtext till <em>min</em> leverantör. Inte till Projekt Pennan.</span></label>
+            ` : ""}
+            ${state.provider !== "ollama" && state.provider !== "hem" ? `<div class="alert">FastAPI-chatten läser inte den här nyckeln än. Ni får ett ärligt recept. Kopplingen är P-26.</div>` : ""}
+            <div class="row"><button class="back" id="back">Tillbaka</button><button class="primary" id="next" ${canModel() ? "" : "disabled"}>Fortsätt</button></div>
+        `,
+        () => `
+            <h2>Hur ska den leva?</h2>
+            <p>Samma platta. Flera dörrar. Ni kan byta sen.</p>
+            ${Object.entries(SURFACES).map(([id,s]) => `
+                <button type="button" class="pick ${state.surface===id?"sel":""}" data-surf="${id}">
+                    ${s.label}
+                    <span class="badge ${s.live?"live":"soon"}">${s.live?"finns":"senare"}</span>
+                    <small>${s.hint}</small>
+                </button>
+            `).join("")}
+            <div class="row"><button class="back" id="back">Tillbaka</button><button class="primary" id="next">Visa receptet</button></div>
+        `,
+        () => `
+            <h2>Det här är plattan. Ta den med er.</h2>
+            <p>Ladda ner filerna. Inget konto hos oss. Inget barn i knät.</p>
+            <div class="ok">Nycklar i .env lämnar inte den här sidan om ni inte själva lägger filen på en server.</div>
+            <label class="field">runtime.json</label>
+            <pre>${esc(JSON.stringify(runtime(), null, 2))}</pre>
+            <label class="field">.env</label>
+            <pre>${esc(envFile())}</pre>
+            <label class="field">Nästa kommando</label>
+            <pre>${esc(recipe())}</pre>
+            <div class="row">
+                <button class="primary" id="dlRuntime">Ladda runtime.json</button>
+                <button class="secondary" id="dlEnv">Ladda .env</button>
+                <button class="secondary" id="dlRecipe">Ladda recept.txt</button>
+            </div>
+            <div class="row">
+                <button class="back" id="back">Tillbaka</button>
+                ${state.surface === "web" ? `<a class="primary" href="index.html" style="text-decoration:none;display:inline-block">Öppna barnchatten</a>` : ""}
+            </div>
+        `
+    ];
+    el.innerHTML = screens[state.step]();
+    bind();
+}
+
+function canModel() {
+    const p = PROVIDERS[state.provider];
+    if (state.provider === "hem") return true;
+    if (p.key && !state.byoAck) return false;
+    return true;
+}
+
+function esc(s) {
+    return String(s || "").replace(/[&<>"]/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;" }[c]));
+}
+
+function bind() {
+    const $ = (id) => document.getElementById(id);
+    if ($("consent")) $("consent").onchange = (e) => { state.consent = e.target.checked; render(); };
+    if ($("byoAck")) $("byoAck").onchange = (e) => { state.byoAck = e.target.checked; render(); };
+    if ($("overlay")) $("overlay").oninput = (e) => { state.overlay = e.target.value; save(); };
+    if ($("childName")) $("childName").oninput = (e) => { state.childName = e.target.value; save(); $("next").disabled = e.target.value.trim().length < 2; };
+    if ($("grade")) $("grade").onchange = (e) => { state.grade = e.target.value; save(); };
+    if ($("model")) $("model").oninput = (e) => { state.model = e.target.value; save(); };
+    if ($("baseUrl")) $("baseUrl").oninput = (e) => { state.baseUrl = e.target.value; save(); };
+    if ($("key")) $("key").oninput = (e) => { state.key = e.target.value; save(); };
+    document.querySelectorAll("[data-shape]").forEach((b) => b.onclick = () => { state.shape = b.dataset.shape; render(); });
+    document.querySelectorAll("[data-prov]").forEach((b) => b.onclick = () => {
+        state.provider = b.dataset.prov;
+        const p = PROVIDERS[state.provider];
+        state.model = p.models[0] || "";
+        state.baseUrl = p.url;
+        state.byoAck = p.key ? state.byoAck : false;
+        render();
+    });
+    document.querySelectorAll("[data-surf]").forEach((b) => b.onclick = () => { state.surface = b.dataset.surf; render(); });
+    if ($("next")) $("next").onclick = () => { if (state.step === 0 && !state.consent) return; state.step = Math.min(5, state.step + 1); render(); };
+    if ($("back")) $("back").onclick = () => { state.step = Math.max(0, state.step - 1); render(); };
+    if ($("dlRuntime")) $("dlRuntime").onclick = () => download("runtime.json", JSON.stringify(runtime(), null, 2));
+    if ($("dlEnv")) $("dlEnv").onclick = () => download(".env", envFile());
+    if ($("dlRecipe")) $("dlRecipe").onclick = () => download("gnista-recept.txt", recipe());
+}
+
+document.getElementById("reset").onclick = (e) => {
+    e.preventDefault();
+    state = defaultState();
+    sessionStorage.removeItem("gnista-start");
+    render();
+};
+render();
+</script>
+</body>
+</html>

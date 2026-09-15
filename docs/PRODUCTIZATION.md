@@ -322,7 +322,7 @@ P0–P1 i `docs/BACKLOG.md` står kvar. Produktifiering lägger:
 | P-25 | **Kernel-gräns.** Dela kod så hosted bara är tenant+identitet+faktura. |
 | P-26 | **Provider-adapter.** Ollama / OpenAI-compat / Gemini bakom samma interface. BYO. |
 | P-27 | **Förälder-PWA.** PIN, paus. Inte barnets vardagsyta. |
-| P-28 | **Hem-onboarding.** BankID, samtycke, barnkort, allowlist, start-token. |
+| P-28 | **Webb-först onboarding.** Samtycke, form, modell, yta. BankID bara på Hem. |
 | P-29 | **DPIA + underbiträden + ZDR-policy** innan första betalande familj. |
 | P-30 | **Telegram start-token + allowlist** (ersätter hårdkodat id). Open *och* Hem. |
 | P-31 | **Prissida + DPA-text** i docs, Accounted-struktur. |

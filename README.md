@@ -27,8 +27,10 @@ Barn: "Vad är 7 gånger 8?"
 Skooli: "Vet du vad 7 gånger 7 är? Då kan vi räkna ett steg till! 🤔"
 ```
 
-Hur man installerar, och vad som *inte* är byggt:
-[docs/INSTALL.md](docs/INSTALL.md).
+Hur man sätter upp: öppna [frontend/start.html](frontend/start.html)
+i webbläsaren. Flera installvägar:
+[docs/INSTALL.md](docs/INSTALL.md). Plattan:
+[docs/BASEPLATE.md](docs/BASEPLATE.md).
 
 Läs [docs/PRODUCT.md](docs/PRODUCT.md) för visionen,
 [docs/PRODUCTIZATION.md](docs/PRODUCTIZATION.md) för open-core

@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.1.0",
+  "comment": "Kopiera till runtime.json. Nyckeln ligger i miljön, inte i den här filen. Start-sidan (frontend/start.html) kan skriva en ifylld kopia.",
+  "provider": "ollama",
+  "base_url": "http://127.0.0.1:11434",
+  "model": "hermes3:8b",
+  "api_key_env": null,
+  "notes": [
+    "provider: ollama | openai | anthropic | gemini | openai-compat | hem",
+    "openai-compat: valfri base_url (LM Studio, OpenRouter, egen proxy)",
+    "Safety i koden körs före och efter. Modellen får inte stänga av den."
+  ]
+}

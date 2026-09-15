@@ -51,9 +51,9 @@ P-03 och P-29.
 | ID | Vad | Varför | Research |
 |----|-----|--------|----------|
 | P-25 | **Kernel-gräns i repo.** Hosted = tenant + identitet + faktura, inte en fork av pedagogiken. | Accounted-modellen. | `accounted-open-core` |
-| P-26 | **Provider-adapter.** Ollama / OpenAI-compat / Gemini bakom samma interface. BYO-nyckel. | Odysseus-läget. | `accounted-open-core` |
+| P-26 | **Provider-adapter.** Läser `vault/config/runtime.json`. Ollama / OpenAI / Anthropic / Gemini / OpenAI-compat. BYO-nyckel i env. | Föräldern jackar in frontier-modeller. Plattan består. | `parent-baseplate` |
 | P-27 | **Förälder-PWA** (BankID, PIN, paus). Barn-PWA bara fallback. | Förälderns yta ≠ barnets yta. | `contact-not-destination` |
-| P-28 | **Hem-onboarding.** BankID, samtycke, barnkort, start-token. Fem minuter. | "Ge barnet detta" är jobbet. | `accounted-open-core` |
+| P-28 | **Webb-först onboarding.** Samtycke, form, barn, modell, yta. BankID bara på Hem sen. | Börjar i webben, inte Docker. Se `frontend/start.html`. | `parent-baseplate` |
 | P-29 | **DPIA + underbiträden + ZDR** innan första betalande familj. | Hosted = vi är personuppgiftsansvariga. | `gdpr-hem` |
 | P-30 | **Telegram start-token + allowlist** (dödar hårdkodat id). | Open och Hem. | `channel-sweden` |
 | P-31 | **Publik prissida + DPA-text** (Open / Hem / egen drift). | Accounted-tabell. Aldrig paywalla safety. | `accounted-open-core` |
@@ -72,6 +72,7 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 | P-37 | **Skolkontext-pack.** Föräldern skriver veckans teman eller släpper in ICS/export. Minimering + TTL 7–14 dagar. Relevans i chatten, inget läxlarm. | Sidekicken ska veta vad som är uppe, utan att suga i sig Unikum. | `parent-owned-school-context` |
 | P-38 | **Förälder-hostad connector.** De kör den hemma med sitt BankID/lösen. Skriver minimerad `context.json` till vault. Hem får aldrig skol-credentials eller live-API. | Byggarföräldrar gör det redan. Vi standardiserar formatet, inte inloggningen. | `parent-owned-school-context` |
 | P-40 | **Byt arbetsnamn → Gnista.** Kontakt i chatt, bot, frontend, safety-spec. Projekt Pennan stannar. Stjärnis bara som valfritt pack. | Skooli Buddy krockar med Homework Buddy / Studybuddy. Se `docs/NAME.md`. | `product-name` |
+| P-41 | **Förälder-start på webben.** `start.html` skriver runtime.json + .env. Ljuger inte om P-26. | Top-notch onboarding = receptet är sant. | `parent-baseplate` |
 
 ## Medvetet inte i scopet
 - Skola som operatör: Unikum-SSO, klass-tenant, lärarvy, write-back.
