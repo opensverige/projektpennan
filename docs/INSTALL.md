@@ -24,6 +24,7 @@ Barnet har ingen onboarding.
 | E. Hem | BankID, tyst kontakt | vi eller BYO | Inte byggt |
 | F. WhatsApp | kontakt i listan | samma kernel | P-32 |
 | G. Testa nu | `./scripts/demo.sh` | kärna, inte Grok | **Byggt** |
+| H. Testa SOUL | `./scripts/soul.sh` | Ollama + tutorfiler | **Byggt** |
 
 Byt väg senare. Samma vault. Samma barnkort.
 
@@ -97,6 +98,21 @@ http://127.0.0.1:8080/index.html — skriv som barnet.
 Läxfrågor får ett sokratiskt stubbsvar. Sex / bomb / hemlighet /
 kris / jailbreak kommer från `safety.py`, inte från en modell.
 P-26 (riktig Grok/ChatGPT i chatten) är inte kopplad än.
+
+## H. Testa SOUL (riktig agent, inte stubbar)
+
+Samma `SOUL.md` + `SKILL.md` + `RULES.md` som pipelinen staplar.
+Läxa går till Ollama. Kris/sex/hemlighet stannar i `safety.py`.
+
+```bash
+# Ollama måste köra. Default-modell: llama3.2:3b
+./scripts/soul.sh
+```
+
+http://127.0.0.1:8080/index.html — skriv som barnet.
+
+Chips på `test.html` är fortfarande kärnan (förälderns plan).
+Chatten är SOUL. Inte samma sak.
 
 ---
 

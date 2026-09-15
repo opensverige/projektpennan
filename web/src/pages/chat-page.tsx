@@ -9,7 +9,6 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "@/components/ui/input-group"
-import { previewTurn } from "@/lib/preview"
 import { loadSetup } from "@/lib/setup"
 
 type Msg = { role: "user" | "assistant" | "system"; text: string }
@@ -32,6 +31,7 @@ export function ChatPage() {
   const [busy, setBusy] = useState(false)
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [kernel, setKernel] = useState(false)
+  const [soulModel, setSoulModel] = useState<string | null>(null)
   const endRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -57,9 +57,14 @@ export function ChatPage() {
             response: string
             status: string
             mode?: string
+            model?: string
           }
           setSessionId(data.session_id)
           if (data.mode === "kernel") setKernel(true)
+          if (data.mode === "soul") {
+            setKernel(false)
+            setSoulModel(data.model || "SOUL")
+          }
           setMessages((m) => [...m, { role: "assistant", text: data.response }])
           if (data.status === "error") {
             setMessages((m) => [
@@ -73,12 +78,15 @@ export function ChatPage() {
           return
         }
       } catch {
-        /* backend sover — samma kärna som test.html */
+        /* backend sover */
       }
-      const result = await previewTurn(text)
-      setKernel(true)
-      setSessionId((id) => id || crypto.randomUUID())
-      setMessages((m) => [...m, { role: "assistant", text: result.response }])
+      setMessages((m) => [
+        ...m,
+        {
+          role: "system",
+          text: "SOUL sover. Inte stubbarna. Kör ./scripts/soul.sh hemma.",
+        },
+      ])
     } finally {
       setBusy(false)
     }
@@ -87,7 +95,11 @@ export function ChatPage() {
   return (
     <Shell current="chat">
       <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-4">
-        {kernel ? (
+        {soulModel ? (
+          <p className="pt-3 text-xs text-muted-foreground">
+            SOUL + {soulModel}. Modellen undervisar. Koden stoppar det farliga.
+          </p>
+        ) : kernel ? (
           <p className="pt-3 text-xs text-muted-foreground">
             Kärnan svarar. Inte Grok. Samma regler som i testet.
           </p>
