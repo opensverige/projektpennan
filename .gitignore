@@ -15,3 +15,4 @@ vault/curriculum-vectors/*
 vault/parent-reports/*
 !vault/parent-reports/.gitkeep
 .venv/
+.pytest_cache/

@@ -15,6 +15,17 @@
   "pedagogy": {
     "socratic_mode": true,
     "min_questions_before_answer": 2,
-    "max_questions_before_hint": 4
+    "max_questions_before_hint": 4,
+    "default_support_mode": "sma_steg",
+    "allowed_modes": ["sokratisk", "sma_steg", "kviss", "las_stod"]
+  },
+  "parent_controls": {
+    "operator": "guardian",
+    "school_integration": false,
+    "can_pause": true,
+    "can_revoke": true,
+    "can_export": true,
+    "can_set_support_mode": true,
+    "realtime_spectator": false
   }
 }

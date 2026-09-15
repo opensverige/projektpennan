@@ -1,0 +1,18 @@
+{
+  "id": "lgr22-coverage",
+  "date": "2026-09-15",
+  "theme": "curriculum",
+  "status": "accepted",
+  "claim": "En studiekompis som påstår sig vara kopplad till Lgr22 behöver centralt innehåll för hela mellanstadiet, inte tio åk 4-rader inklistrade i prompten.",
+  "evidence": [
+    {
+      "title": "Skolverket — Läroplan och kursplaner för grundskolan (Lgr22)",
+      "url": "https://www.skolverket.se/undervisning/grundskolan/laroplan-och-kursplaner-for-grundskolan",
+      "year": 2022,
+      "notes": "Centralt innehåll är per stadium/ämne. Vår ak4.json täcker matte, svenska, NO. Saknar SO, engelska, teknik m.fl. Åk 5–6 saknas helt. Yta A:s RAG-mapp är tom."
+    }
+  ],
+  "implication": "Utöka config/lgr22 och spegla till vault/curriculum-vectors. CLI ska kunna validera mot schema och lista luckor per ämne/årskurs (P-11). Sluta dumpa hela kursplanen i varje Gemini-anrop — använd sökning.",
+  "backlog_refs": ["P-11", "P-01"],
+  "confidence": "high"
+}

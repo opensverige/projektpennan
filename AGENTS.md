@@ -1,56 +1,103 @@
 # Skooli Buddy — Agent Brief
 
 ## Mission
-AI-stödd studiekompis för mellanstadiet (åk 4–6) som kör helt lokalt. FastAPI-backend pratar med Ollama i LAN, statisk HTML-chat UI. Ingen molnkoppling, inga elevdata lämnar datorn.
+Föräldrastyrd AI-studiekompis för barn i åk 4–6 (mål: åk 1–9).
+Barnet får en sidekick som hjälper till att tänka, öva och orka — inte en
+läxmaskin som ger svar. Föräldern sitter i spakarna. Skolans system är
+aldrig operatör, datavärd eller beslutsfattare.
+
+Projektet är öppen källkod under [opensverige](https://opensverige.se)
+(AGPL-3.0). Ingen elevdata ska behöva lämna hemmet för att produkten
+ska fungera.
+
+## Icke-förhandlingsbara principer
+1. **Föräldern styr.** Samtycke, paus, radering, tidsgränser, stödläge
+   och insyn är vårdnadshavarens. Skola, kommun eller leverantör får
+   inte kopplas in som kontrollplan.
+2. **Koden validerar. Modellen undervisar.** Säkerhet, samtycke och
+   gränser ligger i kod — inte i en prompt.
+3. **Ge aldrig svaret först.** Sokratisk stöttning, små steg, tänka
+   högt. Extra stöd är default, inte ett undantag.
+4. **Dataminimering.** Numeriskt id, aldrig namn/adress/skola. Lokal
+   lagring. `/revoke` raderar allt.
+5. **Öppenhet.** Regler, kursplan, research-fynd och backlog är
+   synliga i repot. Inga hemliga barn-profiler i git.
 
 ## Source of Truth
-- `agents/tutor/SOUL.md` + `SKILL.md` + `RULES.md` definierar lärarpersonan och beteenden. Backend staplar dem i en prompt tillsammans med barnets profil och policyer från `vault/config/`.
-- `backend/pipeline.py` är den enda sanningen för flödet (preflight → safety → RAG placeholder → LLM → safety → logg → svar).
-- `vault/` innehåller all data (barnprofil, policies, konversationsloggar, auditkedja, framtida RAG-embeddings). Lämna katalogstrukturen orörd.
+| Yta | Sanning |
+|-----|---------|
+| Identitet & pedagogik | `agents/tutor/SOUL.md` + `SKILL.md` + `RULES.md` |
+| Säkerhetsspec | `SKOOLI_BUDDY_SAFETY_SPEC.md` |
+| Produktvision | `docs/PRODUCT.md` |
+| Vad som är byggt | `docs/INVENTORY.md` |
+| Vad som ska göras | `docs/BACKLOG.md` |
+| Research | `research/` + `scripts/research_pipeline.py` |
+| Lokal stack-flöde | `backend/pipeline.py` |
+| Telegram-stack | `skooli_buddy/` |
 
-## Architecture Overview
+Prompten ska **laddas från SOUL/SKILL/RULES**, inte dupliceras i
+Python. `skooli_buddy/core.py` bryter mot det idag — se backlog P-01.
+
+## Två stackar (tillfälligt)
+Repot har två parallella implementationer. Båda är verkliga. Ingen får
+raderas tyst. Målet är **en kärna, två ytor**.
+
 ```
-Docker (uvicorn) ─┬─ FastAPI (`backend/main.py`)
-                  │    └─ `run_pipeline()` (input grinder + LLM call)
-                  ├─ Static frontend (`frontend/index.html`)
-                  └─ Bind mounts: `vault/`, `agents/`, `frontend/`
+Kärna (målbild)
+  profil + policies + Lgr22 + safety + logg + research-fynd
+        │
+        ├─ Yta A: FastAPI + lokal Ollama + HTML-chat + vault/
+        └─ Yta B: Telegram-bot + valfri moln-LLM + Streamlit-dashboard
 ```
 
-### Backend
-- Python 3.11 + FastAPI 0.115, uvicorn worker.
-- `pipeline.py` orchestrerar, `safety.py` kör deterministiska filter.
-- `session_store.py` + SQLite (`vault/session-store.db`) håller chatthistorik.
-- `rag.py` använder Chroma + Ollama-embeddings (`nomic-embed-text`) och läser data från `vault/curriculum-vectors/`.
-- `reports.py` exponerar `/api/reports` (guardian dashboard) baserat på `vault/parent-reports/*.json`.
-- Miljövariabler: `OLLAMA_URL` (default `http://ollama:11434`), `MODEL_NAME` (default `hermes3:8b`), `EMBED_MODEL` (default `nomic-embed-text`).
-- Auditlogg i `vault/audit/audit.log` är kedjad + HMAC-signad (hemlighet i `vault/config/audit-secret.txt`).
+| | Yta A — hem/lokal | Yta B — messaging |
+|---|-------------------|-------------------|
+| Kod | `backend/`, `frontend/`, `vault/`, `agents/` | `skooli_buddy/`, `dashboard/`, `config/` |
+| Modell | Ollama (`hermes3:8b`) | Gemini 2.5 Flash |
+| Data | `vault/` (SQLite, HMAC-audit, Chroma) | `logs/*.jsonl`, `config/consents.json` |
+| UI | `frontend/index.html` + `guardian.html` | Telegram + Streamlit |
+| Status | Scaffold med RAG + audit | Live-testad mot barn, 12 enhetstester |
 
-### Frontend
-- `frontend/index.html` är elevchatten och länkar till `guardian.html` (föräldravyn med rapportlista).
+**Default för OSS-release:** lokal-först (Yta A). Gemini är
+utvecklingsgenväg, inte produktkrav. Föräldern ska kunna köra
+helt offline.
 
-### Vault
-- `vault/config/child-profile.json` + `policies.json` måste finnas innan start.
-- `vault/curriculum-vectors/` innehåller JSON/JSONL med kursplansutdrag + `chroma/` för index.
-- `vault/parent-reports/` lagrar JSON-rapporter som frontenden visar.
-- `vault/conversations/` och `vault/audit/` växer utan rotation, planerat att adresseras i fas 2.
+## Vault
+Lämna katalogstrukturen orörd: `config/`, `conversations/`, `audit/`,
+`curriculum-vectors/`, `parent-reports/`. Testprofilen "Test-Elev" får
+ligga kvar. Riktiga barnprofiler committas aldrig.
 
 ## Development Workflow
-1. Kör Ollama lokalt med modellen du vill testa (`ollama run hermes3:8b`).
-2. Starta stacken:
-   ```bash
-   cd skooli-buddy
-   docker compose up --build
-   ```
-3. Öppna http://localhost:8080 i webbläsare.
-4. För backend-only dev: `uvicorn main:app --reload --host 0.0.0.0 --port 8080` från `backend/` (kräver `pip install -r backend/requirements.txt`).
-5. Vault-filer mountas, så uppdatera `vault/config` lokalt och starta om containern vid behov.
+```bash
+# Lokal stack
+docker compose up --build          # http://localhost:8080
+# eller: uvicorn main:app --reload --host 0.0.0.0 --port 8080   (från backend/)
 
-## Safety & Compliance Notes
-- Ingen nätverksåtkomst utåt för backend (förutom Ollama localhost). Behåll det så.
-- LLM gör undervisning, men koden bestämmer om input/output får passera. Utöka mönsterlistan i `safety.py` istället för att lägga regler i modellen.
-- Elevdata ska anonymiseras i `child-profile.json`. Testprofilen "Test-Elev" får ligga kvar i repo.
+# Telegram-stack
+cp .env.example .env
+python -m skooli_buddy.bot
+streamlit run dashboard/app.py
 
-## Current Focus / Next Steps
-- Fyll `vault/curriculum-vectors/` med Lgr22-data + CLI för uppdatering.
-- Utöka guardian dashboard med auth + export.
-- Rotera/logga `vault/conversations/` och `vault/audit/` (arkivering).
+# Tester + research
+python -m pytest tests/ -v
+python scripts/research_pipeline.py validate
+python scripts/curriculum_cli.py validate
+```
+
+## Safety
+- Utöka mönster i `backend/safety.py` och följ
+  `SKOOLI_BUDDY_SAFETY_SPEC.md`. Lägg inte nya hårda regler bara i
+  modellen.
+- Svenska + engelska blockmönster. Hänvisa till BRIS 116 111 vid
+  allvarliga signaler — koden ska kunna tvinga det, inte bara prompten.
+- Ingen utåt-nätverk för lokal backend utöver Ollama.
+- Hardcoded `ALLOWED_CHAT_ID` i `skooli_buddy/bot.py` är en
+  utvecklingslåsning, inte en OSS-default.
+
+## Current Focus
+1. En kärna, två ytor (P-01 i `docs/BACKLOG.md`).
+2. Föräldern i spakarna på riktigt — inte bara en loggvisning.
+3. Fyll research-pipelinen och Lgr22 (åk 4–6 minst).
+4. Extra-stöd-pedagogik (UDL, små steg, NPF-anpassning) i reglerna
+   *och* i koden.
+5. OSS-hygien: CI, SECURITY, inga hemliga id:n, en README som stämmer.

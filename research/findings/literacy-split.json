@@ -1,0 +1,24 @@
+{
+  "id": "literacy-split",
+  "date": "2026-09-15",
+  "theme": "pedagogy",
+  "status": "accepted",
+  "claim": "För barn med läs- och skrivsvårigheter måste avkodning och kunskapsinhämtning separeras. Assisterande teknik hjälper, men ersätter inte strukturerad träning — och en chattbot är inte talsyntes.",
+  "evidence": [
+    {
+      "title": "SPSM — Analysera och stöd elevens läs- och skrivutveckling",
+      "url": "https://spsm.se/stod-och-rad/undervisning/lasa-och-skriva/analysera-och-stod-las--och-skrivutveckling/",
+      "year": 2025,
+      "notes": "Strukturerad ljudningsmetod + kompensatoriska hjälpmedel. Arbetsminne går åt till stavning, då dör innehållet."
+    },
+    {
+      "title": "Skolverket lärportal — Språklig tillgänglighet",
+      "url": "https://larportalen.skolverket.se/api/resource/P05142804",
+      "year": 2024,
+      "notes": "Talsyntes ökade läshastighet ~2,4× hos långsamläsande mellan/högstadieelever (Grunér m.fl. 2017) med bibehållen förståelse. Lästräning ska ske på avkodningsnivå, skild från faktainlärning."
+    }
+  ],
+  "implication": "TUTOR_LITERACY i SKILL. Opt-in röst (P-16). Bild på läxan så barnet inte måste avkoda allt (P-12). Aldrig 'du har nog dyslexi'.",
+  "backlog_refs": ["P-09", "P-12", "P-16"],
+  "confidence": "high"
+}

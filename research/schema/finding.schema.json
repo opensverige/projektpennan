@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skooli Buddy research finding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "date",
+    "theme",
+    "status",
+    "claim",
+    "evidence",
+    "implication",
+    "backlog_refs",
+    "confidence"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{2,80}$"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "theme": {
+      "type": "string",
+      "enum": [
+        "pedagogy",
+        "safety",
+        "privacy",
+        "product",
+        "curriculum",
+        "accessibility"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "accepted", "superseded"]
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 20
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "url", "year", "notes"],
+        "properties": {
+          "title": { "type": "string", "minLength": 3 },
+          "url": { "type": "string", "minLength": 8 },
+          "year": { "type": "integer", "minimum": 1990, "maximum": 2100 },
+          "notes": { "type": "string", "minLength": 5 }
+        }
+      }
+    },
+    "implication": {
+      "type": "string",
+      "minLength": 20
+    },
+    "backlog_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^P-[0-9]{2}$"
+      }
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low"]
+    },
+    "superseded_by": {
+      "type": "string"
+    }
+  }
+}

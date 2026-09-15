@@ -1,0 +1,30 @@
+{
+  "id": "gdpr-hem",
+  "date": "2026-09-15",
+  "theme": "privacy",
+  "status": "accepted",
+  "claim": "I Sverige krävs vårdnadshavares samtycke för informationssamhällets tjänster när barnet bor här och är under 13. Samtycket ska kunna visas och återkallas. Lokal körning minskar ytan; Gemini som enda hjärna gör föräldern beroende av Googles villkor.",
+  "evidence": [
+    {
+      "title": "IMY — Personuppgifter om barn",
+      "url": "https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/introduktion-till-gdpr/personuppgifter/personuppgifter-om-barn/",
+      "year": 2025,
+      "notes": "Under 13: vårdnadshavares samtycke för onlinetjänster. Undantag för tjänster som ger hjälp/stöd direkt till barn — vi ska inte gömma oss bakom undantaget. Vi vill att föräldern styr."
+    },
+    {
+      "title": "Dataskyddslagen (2018:218) 2 kap. 4 §",
+      "url": "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2018218-med-kompletterande-bestammelser_sfs-2018-218/",
+      "year": 2018,
+      "notes": "13 år är den svenska digitala samtyckesåldern. Under 13: samtycke ges eller godkänns av den med föräldraansvar."
+    },
+    {
+      "title": "IMY — Barns och ungas rättigheter på digitala plattformar",
+      "url": "https://www.imy.se/globalassets/dokument/ovrigt/barn-och-ungas-rattigheter-pa-digitala-plattformar.pdf",
+      "year": 2024,
+      "notes": "Ålder + mognad. Känsliga uppgifter kräver mer. Återkallelse alltid möjlig."
+    }
+  ],
+  "implication": "Behåll consent-gate. Dokumentera att föräldern som self-hostar är personuppgiftsansvarig. Lokal modell som default (P-15). Inget skolkonto. /revoke måste vara komplett (även RAM-historik, session-db, Chroma om barndata hamnar där).",
+  "backlog_refs": ["P-15", "P-06", "P-08"],
+  "confidence": "high"
+}

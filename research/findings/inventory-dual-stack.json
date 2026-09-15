@@ -1,0 +1,18 @@
+{
+  "id": "inventory-dual-stack",
+  "date": "2026-09-15",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Repot har två halva produkter med motstridig sanning (lokal Ollama vs Telegram/Gemini, 'du är en AI' vs 'nämn aldrig AI'). Det blockerar både OSS-release och forskningsslingan.",
+  "evidence": [
+    {
+      "title": "Intern inventering 2026-09-15",
+      "url": "https://github.com/opensverige/projektpennan/blob/main/docs/INVENTORY.md",
+      "year": 2026,
+      "notes": "Se docs/INVENTORY.md. README, AGENTS.md och agents/tutor divergade. ALLOWED_CHAT_ID hårdkodat. Dashboard läser fel loggfält."
+    }
+  ],
+  "implication": "En kärna (P-01), tillåtna chatt-id via config (P-02), README som stämmer (P-05), research-pipeline som enda sätt att lägga till 'vi borde…' utan att glömma varför.",
+  "backlog_refs": ["P-01", "P-02", "P-05", "P-07"],
+  "confidence": "high"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "parent-controls",
+  "date": "2026-09-15",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "De stängda barn-tutorerna (Sorin, Tutur, Latio, Omega) vinner hos föräldrar på insyn, tidsgräns, lägesval och 'barnet är anonymt mot modellen' — inte på kursplan. Skolans Khanmigo-väg är fel hem för oss.",
+  "evidence": [
+    {
+      "title": "Sorin — parent-adjustable Socratic/Balanced/Direct + weekly insights",
+      "url": "https://sorin.ai/",
+      "year": 2026,
+      "notes": "Föräldern rattar hjälpstil. Privacy Guard före LLM. Ärlig AI-identitet, pekar tillbaka till människor."
+    },
+    {
+      "title": "Tutur — kamera på läxan, on-device, parent dashboard",
+      "url": "https://tutur.ai/",
+      "year": 2026,
+      "notes": "6–12 år. Inga ads. Bilder/ljud lagras inte. Det är ribban för läx-foto."
+    },
+    {
+      "title": "Khanmigo — skola vs förälder",
+      "url": "https://www.khanmigo.ai/",
+      "year": 2026,
+      "notes": "Under 18 bara via förälder eller district. Lärare kan inte släppa in elever själva. US-centrerat, ingen Lgr22. Visar att 'skolvägen' och 'hemvägen' redan är isär — vi tar hemvägen."
+    }
+  ],
+  "implication": "Bygg föräldrapanel som styr (P-08), inte bara tittar. Fixa den trasiga loggvisningen och /pause (P-07). Spectator-grupp (P-13). Ingen Unikum-export.",
+  "backlog_refs": ["P-07", "P-08", "P-12", "P-13"],
+  "confidence": "high"
+}

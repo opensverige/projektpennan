@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "notes": "Katalog över källor vi litar på. Nya fynd ska peka på en url härifrån eller motivera en ny källa i evidence.notes.",
+  "sources": [
+    {
+      "id": "skolverket-extra-stod",
+      "org": "Skolverket",
+      "title": "Extra anpassningar, särskilt stöd och åtgärdsprogram",
+      "url": "https://www.skolverket.se/styrning-och-ansvar/regler-och-ansvar/ansvar-i-skolfragor/extra-anpassningar-sarskilt-stod-och-atgardsprogram",
+      "themes": ["pedagogy", "accessibility"],
+      "cadence": "vid författningsändring"
+    },
+    {
+      "id": "skolverket-npf",
+      "org": "Skolverket",
+      "title": "Grundskolors arbete för en tillgänglig lärmiljö för elever med NPF",
+      "url": "https://www.skolverket.se/download/18.5a8347601943e11436367/1736260106641/pdf13187.pdf",
+      "themes": ["accessibility", "pedagogy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "skolverket-lgr22",
+      "org": "Skolverket",
+      "title": "Läroplan Lgr22 — centralt innehåll",
+      "url": "https://www.skolverket.se/undervisning/grundskolan/laroplan-och-kursplaner-for-grundskolan",
+      "themes": ["curriculum"],
+      "cadence": "vid revidering"
+    },
+    {
+      "id": "spsm-las-skriv",
+      "org": "SPSM",
+      "title": "Analysera och stöd elevens läs- och skrivutveckling",
+      "url": "https://spsm.se/stod-och-rad/undervisning/lasa-och-skriva/analysera-och-stod-las--och-skrivutveckling/",
+      "themes": ["accessibility", "pedagogy"],
+      "cadence": "halvår"
+    },
+    {
+      "id": "imy-barn",
+      "org": "IMY",
+      "title": "Personuppgifter om barn",
+      "url": "https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/introduktion-till-gdpr/personuppgifter/personuppgifter-om-barn/",
+      "themes": ["privacy", "safety"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "imy-plattformar",
+      "org": "IMY",
+      "title": "Barns och ungas rättigheter på digitala plattformar",
+      "url": "https://www.imy.se/globalassets/dokument/ovrigt/barn-och-ungas-rattigheter-pa-digitala-plattformar.pdf",
+      "themes": ["privacy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "dsl-2-4",
+      "org": "Sveriges riksdag",
+      "title": "Dataskyddslagen (2018:218) 2 kap. 4 § — ålder för samtycke",
+      "url": "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2018218-med-kompletterande-bestammelser_sfs-2018-218/",
+      "themes": ["privacy"],
+      "cadence": "vid lagändring"
+    },
+    {
+      "id": "cast-udl",
+      "org": "CAST",
+      "title": "Universal Design for Learning Guidelines",
+      "url": "https://udlguidelines.cast.org/",
+      "themes": ["pedagogy", "accessibility"],
+      "cadence": "vid ny version"
+    },
+    {
+      "id": "socratic-ai-rct",
+      "org": "Research Square preprint",
+      "title": "Socratic AI in K–12 Science Classrooms (RCT)",
+      "url": "https://doi.org/10.21203/rs.3.rs-8118546/v1",
+      "themes": ["pedagogy"],
+      "cadence": "när peer review landar"
+    },
+    {
+      "id": "inq-its",
+      "org": "Gobert et al.",
+      "title": "AI-based scaffolding of science inquiry (Inq-ITS)",
+      "url": "https://doi.org/10.1093/oso/9780198882077.003.0012",
+      "themes": ["pedagogy"],
+      "cadence": "vid uppföljningsstudier"
+    },
+    {
+      "id": "bris",
+      "org": "BRIS",
+      "title": "Barnens rätt i samhället — 116 111",
+      "url": "https://www.bris.se/",
+      "themes": ["safety"],
+      "cadence": "kontrollera nummer årligen"
+    }
+  ]
+}

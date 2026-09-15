@@ -1,6 +1,10 @@
 """
 Hjärnan i Skooli Buddy.
 Bygger systemprompt, hanterar konversationshistorik och anropar Gemini 2.5 Flash.
+
+Sanningen för identitet och regler ligger i agents/tutor/{SOUL,SKILL,RULES}.md
+plus SKOOLI_BUDDY_SAFETY_SPEC.md. Prompten nedan är en tillfällig kopia
+(P-01) och divergerar på AI-identitet — laga inte bara här.
 """
 import os
 import sys

@@ -1,0 +1,24 @@
+{
+  "id": "socratic-ai",
+  "date": "2026-09-15",
+  "theme": "pedagogy",
+  "status": "accepted",
+  "claim": "Sokratisk AI-stöttning kan höja argumentation och kritiskt tänkande jämfört med samma uppgift utan AI, men metakognition kommer inte gratis — vi måste bygga in små steg och synligt framsteg.",
+  "evidence": [
+    {
+      "title": "Socratic AI in K–12 Science Classrooms: RCT (n=90, åk 10)",
+      "url": "https://doi.org/10.21203/rs.3.rs-8118546/v1",
+      "year": 2025,
+      "notes": "AI-ADI (ChatGPT Study Mode) slog både ADI utan AI och kontroll på argumentation, kritiskt tänkande, self-efficacy och engagement. Metacognitive self-regulation: noll signifikant effekt. Preprint, äldre barn än vår målgrupp — ta som riktning, inte facit."
+    },
+    {
+      "title": "AI-based scaffolding of science inquiry (Inq-ITS)",
+      "url": "https://doi.org/10.1093/oso/9780198882077.003.0012",
+      "year": 2024,
+      "notes": "Realtids-scaffolding ger transfer av inquiry-praktiker över tid. Stöd måste vara just-in-time, inte en vägg av text."
+    }
+  ],
+  "implication": "Behåll 'aldrig facit'. Komplettera med TUTOR_SCAFFOLD och TUTOR_PACE. Mät inte bara 'ställde boten en fråga?' utan om barnet tog ett steg. Persona-tester + persisterat minne (P-10, P-14).",
+  "backlog_refs": ["P-09", "P-10", "P-14"],
+  "confidence": "medium"
+}
