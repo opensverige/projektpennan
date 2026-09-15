@@ -264,7 +264,11 @@
         }
 
         button.primary { background: var(--tg); color: #fff; }
-        button.primary:disabled { background: #b9d7ea; cursor: not-allowed; }
+        button.primary:disabled {
+            background: #d7e3ec;
+            color: #5a7080;
+            cursor: not-allowed;
+        }
         button.secondary { background: #e8eef3; color: var(--ink); }
         button.back { background: transparent; color: var(--muted); flex: 0 0 auto; padding-left: 8px; padding-right: 8px; }
 
@@ -810,7 +814,10 @@ document.querySelectorAll("[data-fail]").forEach((btn) => {
         if (kind === "other") go("s0-other");
         if (kind === "ios") go("s4-fallback");
         if (kind === "admin") go("s4-admin");
-        if (kind === "expired") go("s5-expired");
+        if (kind === "expired") {
+            state.childName = state.childName || "Alma";
+            go("s5-expired");
+        }
         if (kind === "lastname") {
             state.screen = "s2";
             state.consent = true;
