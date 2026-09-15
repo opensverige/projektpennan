@@ -1,0 +1,18 @@
+{
+  "id": "telegram-start-link",
+  "date": "2026-09-15",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "En verifier-bot hos oss som tar emot BotFather-token är fel. Bara @BotFather skapar bots. Smidig Open-väg: getMe lokalt + t.me/DinBot?start=token som släpper in en chatt. Officiell @gnista är Hem.",
+  "evidence": [
+    {
+      "title": "Telegram — create bot only via BotFather, start payload deep links",
+      "url": "https://core.telegram.org/bots/features",
+      "year": 2026,
+      "notes": "Ingen API för att skapa bot åt någon. start= max 64 tecken. Token är full kontroll."
+    }
+  ],
+  "implication": "P-02/P-30: skooli_buddy/telegram_link.py. Ingen hårdkodad chat-id. Se docs/INSTALL.md.",
+  "backlog_refs": ["P-02", "P-30"],
+  "confidence": "high"
+}
