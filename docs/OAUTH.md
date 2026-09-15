@@ -27,9 +27,11 @@ importera den lokala sessionen (`~/.codex/auth.json`,
 
 1. Vad heter barnet?
 2. Jag är vårdnadshavare.
-3. Fortsätt med ChatGPT **eller** Grok.
-4. Öppna länken, logga in hos dem, tryck Jag är inne.
-5. Claude? Klistra nyckel. Ingen OAuth-knapp.
+3. Fortsätt med ChatGPT **eller** Grok — öppnar *deras* inloggning.
+4. Logga in hos dem. Tryck Jag är inne. Vi letar efter `~/.codex`,
+   `~/.grok` eller Hermes `~/.hermes/auth.json`. Inga tokens i svaret.
+5. Ingen session än? Stanna. Tryck igen, eller Fortsätt ändå.
+6. Claude? Klistra nyckel. Ingen OAuth-knapp.
 
 ## Inte gjort
 

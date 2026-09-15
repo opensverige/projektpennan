@@ -15,8 +15,14 @@ type Msg = { role: "user" | "assistant" | "system"; text: string }
 
 export function ChatPage() {
   const setup = loadSetup()
+  const via =
+    setup?.auth === "oauth" && setup.provider === "chatgpt"
+      ? " med ChatGPT"
+      : setup?.auth === "oauth" && setup.provider === "grok"
+        ? " med Grok"
+        : ""
   const hello = setup?.child
-    ? `Hej ${setup.child}. Jag är Gnista. Skriv när det kärvar.`
+    ? `Hej ${setup.child}. Jag är Gnista${via}. Skriv när det kärvar.`
     : "Hej. Jag är Gnista. Skriv när det kärvar."
   const [messages, setMessages] = useState<Msg[]>([
     { role: "assistant", text: hello },

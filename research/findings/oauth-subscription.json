@@ -30,7 +30,7 @@
       "notes": "OAuth för Free/Pro/Max bara native Claude. Third-party ska använda API-nyckel. Februari 2026 förtydligat."
     }
   ],
-  "implication": "P-42 är device-onboarding + lokal import. Ingen Claude-knapp. P-26 anropar fortfarande inte. Se docs/OAUTH.md.",
+  "implication": "P-42 är device-onboarding + lokal import (Codex/Grok/Hermes). Hermes-filen matchar bara rätt alias så Grok inte räknas som ChatGPT. Inga tokens i API-svaret. Ingen Claude-knapp. P-26 anropar fortfarande inte. Se docs/OAUTH.md.",
   "backlog_refs": ["P-26", "P-42"],
   "confidence": "high"
 }

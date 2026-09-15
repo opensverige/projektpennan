@@ -72,6 +72,19 @@ export function StartPage() {
     goChat()
   }
 
+  function beginOauth(id: OauthId) {
+    if (!needReady()) return
+    window.open(OAUTH[id].deviceUrl, "_blank", "noopener,noreferrer")
+    setOauth(id)
+    setOauthStatus("")
+  }
+
+  function enterWithOauth() {
+    if (!oauth || !needReady()) return
+    saveOAuthSetup(child, oauth)
+    goChat()
+  }
+
   async function finishOauth() {
     if (!oauth || !needReady()) return
     try {
@@ -79,20 +92,19 @@ export function StartPage() {
       if (res.ok) {
         const data = (await res.json()) as { source?: string }
         toast(data.source ? `Hittade inloggningen (${data.source})` : "Inloggningen är sparad här")
-      } else {
-        const data = (await res.json().catch(() => ({}))) as { detail?: string }
-        setOauthStatus(
-          data.detail ||
-            "Ingen lokal session än. Det är okej — du har loggat in hos dem. P-26 kopplar anropet."
-        )
+        enterWithOauth()
+        return
       }
+      const data = (await res.json().catch(() => ({}))) as { detail?: string }
+      setOauthStatus(
+        data.detail ||
+          "Ingen lokal session än. Öppna inloggningen, sen tryck igen."
+      )
     } catch {
       setOauthStatus(
-        "Backend sover. Inloggningen hos dem räknas ändå — vi sparar valet här."
+        "Backend sover. Öppna inloggningen hos dem, eller fortsätt ändå."
       )
     }
-    saveOAuthSetup(child, oauth)
-    goChat()
   }
 
   return (
@@ -167,6 +179,7 @@ export function StartPage() {
                     setOauthStatus("")
                   }}
                   onDone={() => void finishOauth()}
+                  onSkip={enterWithOauth}
                 />
               ) : (
                 <>
@@ -176,14 +189,14 @@ export function StartPage() {
                       <Button
                         type="button"
                         variant="outline"
-                        onClick={() => needReady() && setOauth("chatgpt")}
+                        onClick={() => beginOauth("chatgpt")}
                       >
                         Fortsätt med ChatGPT
                       </Button>
                       <Button
                         type="button"
                         variant="outline"
-                        onClick={() => needReady() && setOauth("grok")}
+                        onClick={() => beginOauth("grok")}
                       >
                         Fortsätt med Grok
                       </Button>
@@ -295,39 +308,45 @@ function OauthPanel({
   status,
   onCancel,
   onDone,
+  onSkip,
 }: {
   provider: OauthId
   status: string
   onCancel: () => void
   onDone: () => void
+  onSkip: () => void
 }) {
   const spec = OAUTH[provider]
   return (
     <Field>
       <FieldLabel>Logga in hos {spec.label}</FieldLabel>
+      <p className="text-sm text-muted-foreground">
+        En länk, som Hermes. Logga in hos dem, sen Jag är inne.
+      </p>
       <p className="text-sm text-muted-foreground">{spec.hint}</p>
-      <a
-        href={spec.deviceUrl}
-        target="_blank"
-        rel="noreferrer"
-        className="break-all text-sm underline underline-offset-4"
-      >
-        {spec.deviceUrl}
-      </a>
       <div className="flex flex-col gap-2">
         <Button
           type="button"
           variant="outline"
-          onClick={() => {
-            navigator.clipboard.writeText(spec.deviceUrl)
-            toast("Länken är kopierad")
-          }}
+          onClick={() =>
+            window.open(spec.deviceUrl, "_blank", "noopener,noreferrer")
+          }
         >
-          Kopiera länken
+          Öppna {spec.label}
         </Button>
         <Button type="button" onClick={onDone}>
           Jag är inne
         </Button>
+        {status ? (
+          <Button
+            type="button"
+            variant="link"
+            className="h-auto p-0 text-muted-foreground"
+            onClick={onSkip}
+          >
+            Fortsätt ändå
+          </Button>
+        ) : null}
         <Button type="button" variant="ghost" onClick={onCancel}>
           Avbryt
         </Button>

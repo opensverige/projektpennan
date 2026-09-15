@@ -27,7 +27,7 @@ PROVIDERS = {
         "label": "Grok",
         "device_url": "https://auth.x.ai",
         "hint": "SuperGrok eller X Premium+. På en dator med terminal: grok login --device-auth.",
-        "import_files": ("~/.grok/auth.json",),
+        "import_files": ("~/.grok/auth.json", "~/.hermes/auth.json"),
         "token_keys": ("access_token", "refresh_token"),
     },
     "claude": {
@@ -35,6 +35,14 @@ PROVIDERS = {
         "label": "Claude",
         "reason": "Anthropic tillåter inte att vi loggar in med ett Claude-abonnemang. Klistra en API-nyckel.",
     },
+}
+
+# Hermes lägger flera leverantörer i samma auth.json. Matcha bara rätt nyckel.
+HERMES_ALIASES = {
+    "chatgpt": frozenset({"openai-codex", "chatgpt", "codex"}),
+    "grok": frozenset(
+        {"xai-oauth", "grok-oauth", "x-ai-oauth", "xai-grok-oauth", "grok"}
+    ),
 }
 
 
@@ -71,20 +79,55 @@ def _has_tokens(payload: object, keys: tuple[str, ...]) -> bool:
     return False
 
 
-def find_local_session(provider: str) -> dict:
+def _hermes_has_provider(
+    payload: object, aliases: frozenset[str], keys: tuple[str, ...], under: bool = False
+) -> bool:
+    if not isinstance(payload, dict):
+        return False
+    if under and _has_tokens(payload, keys):
+        return True
+    for name, value in payload.items():
+        next_under = under or str(name).lower() in aliases
+        if isinstance(value, dict) and _hermes_has_provider(
+            value, aliases, keys, next_under
+        ):
+            return True
+        if isinstance(value, list):
+            for item in value:
+                if isinstance(item, dict) and _hermes_has_provider(
+                    item, aliases, keys, next_under
+                ):
+                    return True
+    return False
+
+
+def _expand(raw: str, home: Path | None) -> Path:
+    if raw.startswith("~/"):
+        return (home or Path.home()) / raw[2:]
+    return Path(raw).expanduser()
+
+
+def find_local_session(provider: str, home: Path | None = None) -> dict:
     spec = get_provider(provider)
     if not spec.get("allowed"):
         return {"ok": False, "reason": spec["reason"]}
     keys = spec["token_keys"]
+    aliases = HERMES_ALIASES.get(provider, frozenset())
     for raw in spec["import_files"]:
-        path = Path(raw).expanduser()
+        path = _expand(raw, home)
         if not path.is_file():
             continue
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             continue
-        if _has_tokens(data, keys):
+        hermes_file = ".hermes/" in raw or raw.endswith(".hermes")
+        found = (
+            _hermes_has_provider(data, aliases, keys)
+            if hermes_file
+            else _has_tokens(data, keys)
+        )
+        if found:
             return {
                 "ok": True,
                 "provider": provider,
