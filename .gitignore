@@ -14,5 +14,10 @@ vault/curriculum-vectors/*
 !vault/curriculum-vectors/.gitkeep
 vault/parent-reports/*
 !vault/parent-reports/.gitkeep
+
+# Runtime state written by the backend at startup — never commit secrets/DB.
+vault/config/audit-secret.txt
+vault/session-store.db
+vault/session-store.db-*
 .venv/
 .pytest_cache/

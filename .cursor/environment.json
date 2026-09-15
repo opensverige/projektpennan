@@ -1,0 +1,17 @@
+{
+  "name": "Skooli Buddy",
+  "install": "bash .cursor/install.sh",
+  "terminals": [
+    {
+      "name": "backend",
+      "description": "FastAPI backend + static frontend on http://localhost:8080 (elevchatt + guardian.html). Requires Ollama reachable at OLLAMA_URL for live chat.",
+      "command": "source .venv/bin/activate && cd backend && OLLAMA_URL=\"${OLLAMA_URL:-http://127.0.0.1:11434}\" MODEL_NAME=\"${MODEL_NAME:-hermes3:8b}\" uvicorn main:app --host 0.0.0.0 --port 8080"
+    }
+  ],
+  "ports": [
+    {
+      "name": "backend",
+      "port": 8080
+    }
+  ]
+}
