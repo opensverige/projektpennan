@@ -1,0 +1,24 @@
+{
+  "id": "channel-sweden",
+  "date": "2026-09-15",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Telegram är fel default för hosted i Sverige: bara några procent av barn 8–19 använder det. WhatsApp leder (~40 %). Många 9–12 har dessutom ingen egen mobil. Hem v1 ska vara barn-PWA; Telegram är Open-yta; WhatsApp är senare Auto-koppling.",
+  "evidence": [
+    {
+      "title": "Internetstiftelsen — Barnen och internet 2025 (sammanfattning)",
+      "url": "https://svenskarnaochinternet.se/app/uploads/2025/11/internetstiftelsen-barnen-och-internet-2025-sammanfattning.pdf",
+      "year": 2025,
+      "notes": "WhatsApp vanligaste kommunikationsappen bland 8–19, cirka 4 av 10. Discord cirka en fjärdedel. Signal och Telegram några få procent."
+    },
+    {
+      "title": "Mediemyndigheten — Ungar & medier 2025",
+      "url": "https://mediemyndigheten.se/globalassets/rapporter-och-analyser/ungar--medier/mediemyndigheten-rapport-ungar-och-medier.pdf",
+      "year": 2025,
+      "notes": "Färre 9-åringar har egen mobil (nästan fördubblad andel utan sedan 2022). Läxa sker ofta på delad platta. Sociala medier minskar under 13 men hälften av 9–12 använder fortfarande."
+    }
+  ],
+  "implication": "P-27 barn/förälder-PWA som Hem-default. P-30 Telegram som säker tillvals-yta. P-32 WhatsApp senare. Sluta sälja produkten som 'bor i Telegram-gruppen'.",
+  "backlog_refs": ["P-27", "P-30", "P-32"],
+  "confidence": "high"
+}

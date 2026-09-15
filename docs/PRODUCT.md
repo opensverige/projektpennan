@@ -63,13 +63,25 @@ Ingen öppen, svensk, Lgr22-kopplad, föräldrastyrd sidekick finns.
 Vår kant: **svenska + öppen kod + föräldern som operatör + extra stöd
 som default**. Inte fler features än Khan Academy.
 
+## Hur det produktifieras
+Öppen kernel, betald drift. Mall: [Accounted](https://www.accounted.se/priser)
+(Open 0 kr / Auto ~199 / Custom) + Odysseus BYO-nyckel.
+
+- **Open:** hela motorn hemma, Docker, egen modell.
+- **Hem:** vi slår på den på fem minuter. BankID. Barn-PWA.
+  Telegram/WhatsApp som tillval. EU-inference.
+- **Egen drift:** er server, vår hjälp.
+
+Pedagogik och safety är aldrig paywall. Detalj:
+[docs/PRODUCTIZATION.md](PRODUCTIZATION.md),
+[docs/PRICING.md](PRICING.md).
+
 ## Nordstjärna för v1.0
-En förälder i Sverige kan på en kväll:
+En förälder i Sverige kan på fem minuter (Hem) eller en kväll (Open):
 
-1. klona repot eller köra en image,
-2. ge samtycke,
-3. sätta tid, stödläge och ämnen,
-4. låta barnet chatta i Telegram *eller* i webben mot lokal modell,
-5. se vad som hände, exportera eller radera.
+1. BankID *eller* klona/köra image,
+2. ge samtycke, sätta tid och stödläge,
+3. ge barnet en länk (PWA) — inte kräva Telegram,
+4. se, pausa, exportera eller radera.
 
-Inget skolkonto. Ingen klass. Ingen molnplikt.
+Inget skolkonto. Ingen klass. Ingen molnplikt på Open.

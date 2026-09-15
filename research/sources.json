@@ -89,6 +89,38 @@
       "url": "https://www.bris.se/",
       "themes": ["safety"],
       "cadence": "kontrollera nummer årligen"
+    },
+    {
+      "id": "accounted-priser",
+      "org": "Accounted / Arcim",
+      "title": "Priser — Open / Auto / Custom",
+      "url": "https://www.accounted.se/priser",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "odysseus",
+      "org": "Odysseus",
+      "title": "Self-hosted AI workspace (BYO + Ollama)",
+      "url": "https://github.com/odysseus-dev/odysseus",
+      "themes": ["product", "privacy"],
+      "cadence": "vid major"
+    },
+    {
+      "id": "internetstiftelsen-2025",
+      "org": "Internetstiftelsen",
+      "title": "Barnen och internet 2025 — kommunikationsappar",
+      "url": "https://svenskarnaochinternet.se/app/uploads/2025/11/internetstiftelsen-barnen-och-internet-2025-sammanfattning.pdf",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "mediemyndigheten-2025",
+      "org": "Mediemyndigheten",
+      "title": "Ungar & medier 2025",
+      "url": "https://mediemyndigheten.se/globalassets/rapporter-och-analyser/ungar--medier/mediemyndigheten-rapport-ungar-och-medier.pdf",
+      "themes": ["product"],
+      "cadence": "årlig"
     }
   ]
 }

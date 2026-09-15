@@ -23,3 +23,9 @@
   `research/` med 8 accepted-fynd. Backlog P-01–P-24 i `docs/BACKLOG.md`.
 - Policies fick `parent_controls` + stödlägen. Profilen fick
   `support_preferences` (inga diagnoser).
+
+## 2026-09-15 — produktifiering
+- Mall: Accounted Open/Auto/Custom + Odysseus BYO.
+- Hem-default är barn-PWA, inte Telegram (få svenska barn har det).
+- Hosted = vi blir personuppgiftsansvariga → DPIA innan sälj.
+- Docs: PRODUCTIZATION.md, PRICING.md. Backlog P-25–P-32.

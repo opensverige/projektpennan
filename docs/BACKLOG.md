@@ -43,6 +43,22 @@ kunna bli ett GitHub-issue. Research-id pekar på `research/findings/`.
 | P-23 | Threat model: prompt injection via läxbild, syskon som gissar lösenord, läckta JSONL. |
 | P-24 | Utvärdering mot riktiga familjer (samtycke, etikprövning-känsla även om det inte är forskning): NPF, SVA, "jag hatar matte". |
 
+## P3 — produktifiering (kernel / Hem / Auto)
+
+Se `docs/PRODUCTIZATION.md` och `docs/PRICING.md`. Inte sälj innan
+P-03 och P-29.
+
+| ID | Vad | Varför | Research |
+|----|-----|--------|----------|
+| P-25 | **Kernel-gräns i repo.** Hosted = tenant + identitet + faktura, inte en fork av pedagogiken. | Accounted-modellen. | `accounted-open-core` |
+| P-26 | **Provider-adapter.** Ollama / OpenAI-compat / Gemini bakom samma interface. BYO-nyckel. | Odysseus-läget. | `accounted-open-core` |
+| P-27 | **Barn-PWA + förälder-PWA.** Default-yta för Hem. PIN, paus, QR. | Telegram är inte där barnen är. | `channel-sweden` |
+| P-28 | **Hem-onboarding.** BankID, samtycke, barnkort, start-token. Fem minuter. | "Ge barnet detta" är jobbet. | `accounted-open-core` |
+| P-29 | **DPIA + underbiträden + ZDR** innan första betalande familj. | Hosted = vi är personuppgiftsansvariga. | `gdpr-hem` |
+| P-30 | **Telegram start-token + allowlist** (dödar hårdkodat id). | Open och Hem. | `channel-sweden` |
+| P-31 | **Publik prissida + DPA-text** (Open / Hem / egen drift). | Accounted-tabell. Aldrig paywalla safety. | `accounted-open-core` |
+| P-32 | **WhatsApp-yta som Hem-koppling**, inte som produktidentitet. | ~40 % av barn 8–19, men Meta-transfer. | `channel-sweden` |
+
 ## Medvetet inte i scopet
 - Integration mot Unikum, InfoMentor, Google Classroom, Skolon.
 - Lärar-dashboard eller klasslista.
@@ -50,8 +66,9 @@ kunna bli ett GitHub-issue. Research-id pekar på `research/findings/`.
 - Reklam, trackers, tillväxt-hack mot barn.
 - Diagnosverktyg.
 
-## Förslag på närmaste tre PR:er efter den här
-1. P-02 + P-07 (allowlist + dashboard + `/pause`) — liten, synlig.
-2. P-03 (gemensam `safety`-modul, svenska mönster, BRIS utan LLM).
-3. P-01 start: `core.py` läser SOUL/SKILL/RULES istället för att
-   äga en kopia.
+## Förslag på närmaste PR:er
+1. P-02 + P-30 + P-07 — allowlist, start-token, dashboard, `/pause`.
+2. P-03 — safety i kod, BRIS utan LLM.
+3. P-01 + P-26 — en kärna, BYO-providers.
+4. P-27 — barn- och förälder-PWA (då först Hem-känsla).
+5. P-29 — DPIA innan någon faktura.
