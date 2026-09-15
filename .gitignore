@@ -16,3 +16,5 @@ vault/parent-reports/*
 !vault/parent-reports/.gitkeep
 .venv/
 .pytest_cache/
+web/node_modules/
+web/dist/

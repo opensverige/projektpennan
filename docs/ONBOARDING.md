@@ -51,6 +51,10 @@ Nyckelns prefix avgör leverantören tyst (`sk-`, `sk-ant-`,
 
 Ingen progress-bar. Ingen fet “Sätt igång”. Inget recept i JSON.
 
+Ytan är shadcn + shadcnblocks `login1` + React Bits Aurora.
+Samma tokens på chatt och föräldravy. Se `docs/UX-ONBOARDING.md`.
+Källan lever i `web/`. Bygg: `cd web && npm run build` → `frontend/`.
+
 ## Av-ramp
 
 Bakom en textlänk längst ner: kopiera en systemprompt till

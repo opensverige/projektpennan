@@ -40,7 +40,7 @@
 - Backlog P-33–P-36. Research: parent-sovereignty-kernel,
   pedagogy-beyond-socratic, parent-authored-accommodations.
 - Namnet är låst som rekommendation: kontakt **Gnista**, initiativ Projekt Pennan. Se `docs/NAME.md`. Skooli Buddy fasas (P-40).
-- Plattan: vi ger safety/vault/ytor. Föräldern jackar in modell (ChatGPT m.fl.). Onboarding är Grok-tom: `frontend/start.html` är ordmärke + klistra-nyckel, päron bakom “Bygger du själv?”. Se `docs/ONBOARDING.md`.
+- Plattan: vi ger safety/vault/ytor. Föräldern jackar in modell (ChatGPT m.fl.). Onboarding är Grok-tom, ritad i shadcn (`web/`): `frontend/start.html` är login1-kort + klistra-nyckel + Aurora. Se `docs/ONBOARDING.md` och `docs/UX-ONBOARDING.md`.
 
 ## 2026-09-15 — byggarföräldrar + skolkontext
 - Analog: Obsidian-vault + Odysseus-runtime. Vi standardiserar

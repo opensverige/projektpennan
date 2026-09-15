@@ -5,6 +5,7 @@ jackar in den modell ni vill. Monument: [docs/BASEPLATE.md](BASEPLATE.md).
 
 Onboarding **börjar på webben**, en skärm.
 Öppna `frontend/start.html`. Namn, ev. nyckel, sätt igång.
+UI-källan är `web/` (shadcn). Efter ändring: `cd web && npm run build`.
 Inte Docker-först. Inte `/consent`. Inte sex steg.
 Av-ramp för päron bakom “Bygger du själv?”.
 
