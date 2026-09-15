@@ -13,7 +13,12 @@ import secrets
 import httpx
 from datetime import datetime, timezone
 from pathlib import Path
-from safety import check_input_safety, check_output_safety, load_policies
+from safety import (
+    check_input_safety,
+    check_output_safety,
+    kernel_reply,
+    load_policies,
+)
 from rag import search_curriculum
 
 VAULT_PATH = Path("/app/vault")
@@ -212,11 +217,12 @@ async def run_pipeline(session_id: str, user_message: str, history: list[dict]) 
     chain["steps"].append({"step": "safety_in", "result": input_check})
 
     if not input_check["safe"]:
-        safe_response = "Hmm, den frågan kan jag inte hjälpa till med. Vill du fråga om något annat?"
-        log_conversation_turn(session_id, "user", user_message, {"blocked": True})
+        kind = input_check.get("kind") or "block"
+        safe_response = kernel_reply(kind)
+        log_conversation_turn(session_id, "user", user_message, {"blocked": True, "kind": kind})
         log_conversation_turn(session_id, "assistant", safe_response)
         log_audit(session_id, "INPUT_BLOCKED", input_check["reason"])
-        chain["steps"].append({"step": "respond", "type": "blocked_input"})
+        chain["steps"].append({"step": "respond", "type": "blocked_input", "kind": kind})
         return {"status": "blocked_input", "response": safe_response, "processing_chain": chain}
 
     # --- STEG 3: RAG mot kursplanspack (av om föräldern stängt packen) ---

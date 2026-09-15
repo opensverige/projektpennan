@@ -8,7 +8,7 @@ export function Shell({
   current,
 }: {
   children: ReactNode
-  current: "start" | "chat" | "guardian"
+  current: "start" | "chat" | "guardian" | "test"
 }) {
   return (
     <div className="flex min-h-svh flex-col">
@@ -22,6 +22,9 @@ export function Shell({
         <nav className="flex items-center gap-1">
           <Button asChild variant={current === "start" ? "secondary" : "ghost"} size="sm">
             <a href="./start.html">Sätt upp</a>
+          </Button>
+          <Button asChild variant={current === "test" ? "secondary" : "ghost"} size="sm">
+            <a href="./test.html">Testa</a>
           </Button>
           <Button asChild variant={current === "chat" ? "secondary" : "ghost"} size="sm">
             <a href="./index.html">Chatten</a>

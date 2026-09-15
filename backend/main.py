@@ -16,6 +16,8 @@ from pipeline import run_pipeline
 from session_store import SessionStore
 from reports import list_reports, get_report
 from oauth import catalog, find_local_session, get_provider
+from preview import catalog as preview_catalog
+from preview import reply_for
 
 app = FastAPI(title="Skooli Buddy", version="0.2.0")
 
@@ -86,6 +88,22 @@ async def oauth_import(provider: str):
     if not result.get("ok"):
         raise HTTPException(status_code=404, detail=result["reason"])
     return result
+
+
+class PreviewTurn(BaseModel):
+    message: str
+
+
+@app.get("/api/preview")
+async def preview_index():
+    return preview_catalog()
+
+
+@app.post("/api/preview/turn")
+async def preview_turn(req: PreviewTurn):
+    if not req.message or not req.message.strip():
+        raise HTTPException(status_code=400, detail="Tomt meddelande.")
+    return reply_for(req.message.strip())
 
 
 @app.get("/api/reports")

@@ -56,7 +56,11 @@ Samma tokens på chatt och föräldravy. Se `docs/UX-ONBOARDING.md`.
 Källan lever i `web/`. Bygg: `cd web && npm run build` → `frontend/`.
 
 OAuth är primärt för ChatGPT och Grok (device-länk, som Hermes).
-Claude har ingen inloggningsknapp. Se `docs/OAUTH.md`.
+Claude har logotyp men ingen inloggning — bara nyckel. Se `docs/OAUTH.md`.
+
+Efter starten: `test.html`. Föräldern ser planen och trycker chips
+(Gorgias-mönster: se hur agenten svarar). Opassande, kris, hemlighet
+och jailbreak går mot samma kärna som chatten. Sen släpps barnet in.
 
 ## Av-ramp
 

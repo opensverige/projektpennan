@@ -74,6 +74,7 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 | P-40 | **Byt arbetsnamn → Gnista.** Kontakt i chatt, bot, frontend, safety-spec. Projekt Pennan stannar. Stjärnis bara som valfritt pack. | Skooli Buddy krockar med Homework Buddy / Studybuddy. Se `docs/NAME.md`. | `product-name` |
 | P-41 | **Förälder-start: en skärm.** Namn + klistra nyckel. Grok-tom, inte wizard. Av-ramp för päron. | Föräldern är inte developer. Se `docs/ONBOARDING.md`. | `parent-baseplate` |
 | P-42 | **Prenumerations-OAuth.** ChatGPT + Grok via device-länk (Hermes/Codex/Grok Build). Claude förbjuden. Lokal import av `~/.codex` / `~/.grok`. Inte impersonation. | Föräldern har redan betalat. Se `docs/OAUTH.md`. | `oauth-subscription` |
+| P-43 | **Förälder-testmiljö.** Plan + scenario-chips (även opassande) innan barnet släpps in. Samma safety-kärna. Igenkännbara ChatGPT/Claude/Grok-märken. | Föräldern ska känna sig säker. Se `frontend/test.html`. | `parent-preview` |
 
 ## Medvetet inte i scopet
 - Skola som operatör: Unikum-SSO, klass-tenant, lärarvy, write-back.

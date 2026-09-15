@@ -3,6 +3,7 @@ import { ArrowUpIcon, EyeIcon, EyeOffIcon } from "lucide-react"
 import { toast } from "sonner"
 
 import Aurora from "@/components/Aurora"
+import { BrandMark } from "@/components/brands"
 import { Shell } from "@/components/shell"
 import {
   Accordion,
@@ -37,8 +38,8 @@ import {
   saveSetup,
 } from "@/lib/setup"
 
-function goChat() {
-  window.location.href = "./index.html"
+function goPreview() {
+  window.location.href = "./test.html"
 }
 
 type OauthId = keyof typeof OAUTH
@@ -69,7 +70,7 @@ export function StartPage() {
   function submit(skipKey: boolean) {
     if (!needReady()) return
     saveSetup(child, skipKey ? "" : key.trim())
-    goChat()
+    goPreview()
   }
 
   function beginOauth(id: OauthId) {
@@ -82,7 +83,7 @@ export function StartPage() {
   function enterWithOauth() {
     if (!oauth || !needReady()) return
     saveOAuthSetup(child, oauth)
-    goChat()
+    goPreview()
   }
 
   async function finishOauth() {
@@ -189,16 +190,33 @@ export function StartPage() {
                       <Button
                         type="button"
                         variant="outline"
+                        className="justify-start gap-2"
                         onClick={() => beginOauth("chatgpt")}
                       >
+                        <BrandMark name="chatgpt" />
                         Fortsätt med ChatGPT
                       </Button>
                       <Button
                         type="button"
                         variant="outline"
+                        className="justify-start gap-2"
                         onClick={() => beginOauth("grok")}
                       >
+                        <BrandMark name="grok" />
                         Fortsätt med Grok
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="justify-start gap-2"
+                        onClick={() => {
+                          if (!needReady()) return
+                          document.getElementById("key")?.focus()
+                          toast("Claude kräver en nyckel. Klistra den här.")
+                        }}
+                      >
+                        <BrandMark name="claude" />
+                        Claude — klistra nyckel
                       </Button>
                     </div>
                     <FieldDescription>{CLAUDE_OAUTH_BAN}</FieldDescription>
