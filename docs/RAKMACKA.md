@@ -98,6 +98,11 @@ betalt kan lägga BankID *senare*. Det är inte räkmackan.
 
 ## Status
 
-Ritat. Inte byggt. Idag: `/consent [lösen]` + hårdkodat chat-id.
+Ritat. Inte byggt i Telegram. Idag: `/consent [lösen]` + hårdkodat
+chat-id. UX-review som Markov-kedja:
+[docs/UX-RAKMACKA-REVIEW.md](UX-RAKMACKA-REVIEW.md). Klickbar mock
+utan Telegram: `frontend/rakmacka.html`.
+
 Nästa kod: P-39 (Mini App / knapp-wizard) + P-30 (token) + P-13
-(grupp: bot svarar bara barnet).
+(grupp: bot svarar bara barnet). Den här miljön kan inte verifiera
+share-sheet, iOS Mini App eller invite-länk mot ett barn.

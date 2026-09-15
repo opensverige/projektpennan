@@ -71,7 +71,7 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 | P-36 | **Förälder-skrivna anpassningar.** Valfritt fält för diagnos/preferenser. Tyst anpassning. Krypterat i Hem. Aldrig till skola. Tomt = extra-stöd-default. | Vi sätter inte diagnos. Vi lyssnar när hemmet berättar. Art. 9. | `parent-authored-accommodations` |
 | P-37 | **Skolkontext-pack.** Föräldern skriver veckans teman eller släpper in ICS/export. Minimering + TTL 7–14 dagar. Relevans i chatten, inget läxlarm. | Sidekicken ska veta vad som är uppe, utan att suga i sig Unikum. | `parent-owned-school-context` |
 | P-38 | **Förälder-hostad connector.** De kör den hemma med sitt eget lösen/BankID mot *skolan*. Skriver minimerad `context.json` till vault. Hem får aldrig skol-credentials. | Byggarföräldrar gör det redan. Vi standardiserar formatet. | `parent-owned-school-context` |
-| P-39 | **Mini App / knapp-wizard.** Fyra steg, chips, sen `createChatInviteLink` + native share. Fallback utan `requestChat` på iOS. | Det som gör räkmackan till kod. | `telegram-rakmacka-onboarding` |
+| P-39 | **Mini App / knapp-wizard.** Fyra steg, chips, sen `createChatInviteLink` + native share. Fallback utan `requestChat` på iOS. | Det som gör räkmackan till kod. Mock (inte Telegram): `frontend/rakmacka.html`. Review: `docs/UX-RAKMACKA-REVIEW.md`. | `telegram-rakmacka-onboarding` |
 
 ## Medvetet inte i scopet
 - Skola som operatör: Unikum-SSO, klass-tenant, lärarvy, write-back.

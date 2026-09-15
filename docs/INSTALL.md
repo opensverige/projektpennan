@@ -12,7 +12,10 @@ Arbetsnamn: Skooli Buddy. Kernel föräldern äger.
 | Onboarding | Nej. Kommandon. | Ja — P-39. Inte byggt. |
 | Barn-onboarding | Avsiktligt ingen | Avsiktligt ingen |
 
-Detalj: [docs/RAKMACKA.md](RAKMACKA.md).
+Detalj: [docs/RAKMACKA.md](RAKMACKA.md). Vad som kan gå fel, steg
+för steg: [docs/UX-RAKMACKA-REVIEW.md](UX-RAKMACKA-REVIEW.md).
+Klickbar mock (Telegram testas inte här): öppna
+`frontend/rakmacka.html` i webbläsaren.
 
 ---
 
