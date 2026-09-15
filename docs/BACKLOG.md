@@ -71,6 +71,7 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 | P-36 | **Förälder-skrivna anpassningar.** Valfritt fält för diagnos/preferenser. Tyst anpassning. Krypterat i Hem. Aldrig till skola. Tomt = extra-stöd-default. | Vi sätter inte diagnos. Vi lyssnar när hemmet berättar. Art. 9. | `parent-authored-accommodations` |
 | P-37 | **Skolkontext-pack.** Föräldern skriver veckans teman eller släpper in ICS/export. Minimering + TTL 7–14 dagar. Relevans i chatten, inget läxlarm. | Sidekicken ska veta vad som är uppe, utan att suga i sig Unikum. | `parent-owned-school-context` |
 | P-38 | **Förälder-hostad connector.** De kör den hemma med sitt BankID/lösen. Skriver minimerad `context.json` till vault. Hem får aldrig skol-credentials eller live-API. | Byggarföräldrar gör det redan. Vi standardiserar formatet, inte inloggningen. | `parent-owned-school-context` |
+| P-40 | **Byt arbetsnamn → Gnista.** Kontakt i chatt, bot, frontend, safety-spec. Projekt Pennan stannar. Stjärnis bara som valfritt pack. | Skooli Buddy krockar med Homework Buddy / Studybuddy. Se `docs/NAME.md`. | `product-name` |
 
 ## Medvetet inte i scopet
 - Skola som operatör: Unikum-SSO, klass-tenant, lärarvy, write-back.

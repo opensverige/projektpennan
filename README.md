@@ -2,7 +2,8 @@
 
 > En sidekick för barn som behöver stöd i skolan. Föräldern sitter i
 > spakarna. Skolans system gör det inte. Ger aldrig svaret.
-> Arbetsnamn. Kernel föräldern äger — egna agenter, egen världsbild.
+> **Kontaktnamn: Gnista.** Initiativ: Projekt Pennan.
+> Skooli Buddy fasas. Se [docs/NAME.md](docs/NAME.md).
 
 **Projekt Pennan** är ett open-source-initiativ under
 [opensverige](https://github.com/opensverige) / [opensverige.se](https://opensverige.se).

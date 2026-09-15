@@ -1,6 +1,7 @@
 # Plattformen — kernel föräldern äger
 
-Arbetsnamn: **Skooli Buddy**. Namnet är inte låst.
+Kontaktnamn: **Gnista**. Initiativ: Projekt Pennan.
+Skooli Buddy är gammalt arbetsnamn. Se `docs/NAME.md`.
 
 > Föräldern styr sidekicken. Inte läroplanen. Inte skolan.
 > Inte vi. Kernel är öppen. Allt ovanpå går att byta ut.

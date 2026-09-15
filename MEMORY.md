@@ -39,7 +39,7 @@
 - Docs: PLATFORM.md. Pack-skelett i `vault/packs/`. Tutorregler v3.
 - Backlog P-33–P-36. Research: parent-sovereignty-kernel,
   pedagogy-beyond-socratic, parent-authored-accommodations.
-- Namnet är arbetsnamn.
+- Namnet är låst som rekommendation: kontakt **Gnista**, initiativ Projekt Pennan. Se `docs/NAME.md`. Skooli Buddy fasas (P-40).
 
 ## 2026-09-15 — byggarföräldrar + skolkontext
 - Analog: Obsidian-vault + Odysseus-runtime. Vi standardiserar
