@@ -9,6 +9,7 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "@/components/ui/input-group"
+import { previewTurn } from "@/lib/preview"
 import { loadSetup } from "@/lib/setup"
 
 type Msg = { role: "user" | "assistant" | "system"; text: string }
@@ -30,6 +31,7 @@ export function ChatPage() {
   const [draft, setDraft] = useState("")
   const [busy, setBusy] = useState(false)
   const [sessionId, setSessionId] = useState<string | null>(null)
+  const [kernel, setKernel] = useState(false)
   const endRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -43,33 +45,40 @@ export function ChatPage() {
     setMessages((m) => [...m, { role: "user", text }])
     setBusy(true)
     try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: sessionId, message: text }),
-      })
-      if (!response.ok) throw new Error(`HTTP ${response.status}`)
-      const data = (await response.json()) as {
-        session_id: string
-        response: string
-        status: string
+      try {
+        const response = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ session_id: sessionId, message: text }),
+        })
+        if (response.ok) {
+          const data = (await response.json()) as {
+            session_id: string
+            response: string
+            status: string
+            mode?: string
+          }
+          setSessionId(data.session_id)
+          if (data.mode === "kernel") setKernel(true)
+          setMessages((m) => [...m, { role: "assistant", text: data.response }])
+          if (data.status === "error") {
+            setMessages((m) => [
+              ...m,
+              {
+                role: "system",
+                text: "Något gick fel. Försök igen om du vill.",
+              },
+            ])
+          }
+          return
+        }
+      } catch {
+        /* backend sover — samma kärna som test.html */
       }
-      setSessionId(data.session_id)
-      setMessages((m) => [...m, { role: "assistant", text: data.response }])
-      if (data.status === "error") {
-        setMessages((m) => [
-          ...m,
-          {
-            role: "system",
-            text: "Något gick fel. Försök igen om du vill.",
-          },
-        ])
-      }
-    } catch {
-      setMessages((m) => [
-        ...m,
-        { role: "system", text: "Kunde inte nå Gnista. Kolla att den är igång." },
-      ])
+      const result = await previewTurn(text)
+      setKernel(true)
+      setSessionId((id) => id || crypto.randomUUID())
+      setMessages((m) => [...m, { role: "assistant", text: result.response }])
     } finally {
       setBusy(false)
     }
@@ -78,6 +87,11 @@ export function ChatPage() {
   return (
     <Shell current="chat">
       <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-4">
+        {kernel ? (
+          <p className="pt-3 text-xs text-muted-foreground">
+            Kärnan svarar. Inte Grok. Samma regler som i testet.
+          </p>
+        ) : null}
         <div className="flex flex-1 flex-col gap-3 overflow-y-auto py-4">
           {messages.map((msg, i) => (
             <div

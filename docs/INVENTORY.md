@@ -105,6 +105,13 @@ Betyg (0–5)
 | `vault/packs/` | manifest + mallar | Laddare saknas (P-33). Lgr22/worldview/pedagogy/accommodations/custom-agent. |
 | `scripts/curriculum_cli.py` | list + validate | Ingen import från Skolverket, ingen åk 5–6. |
 
+## Kärndemo (utan Ollama)
+
+`backend/demo.py` + `scripts/demo.sh`. Chatt och testchips
+använder `preview.reply_for` / `safety.py`. Ingen modell.
+`frontend/index.html` faller tillbaka till samma kärna om
+`/api/chat` sover.
+
 ## OSS- och driftläge
 
 | Finns | Saknas |

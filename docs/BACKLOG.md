@@ -75,6 +75,7 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 | P-41 | **Förälder-start: en skärm.** Namn + klistra nyckel. Grok-tom, inte wizard. Av-ramp för päron. | Föräldern är inte developer. Se `docs/ONBOARDING.md`. | `parent-baseplate` |
 | P-42 | **Prenumerations-OAuth.** ChatGPT + Grok via device-länk (Hermes/Codex/Grok Build). Claude förbjuden. Lokal import av `~/.codex` / `~/.grok`. Inte impersonation. | Föräldern har redan betalat. Se `docs/OAUTH.md`. | `oauth-subscription` |
 | P-43 | **Förälder-testmiljö.** Plan + scenario-chips (även opassande) innan barnet släpps in. Samma safety-kärna. Igenkännbara ChatGPT/Claude/Grok-märken. | Föräldern ska känna sig säker. Se `frontend/test.html`. | `parent-preview` |
+| P-44 | **Kärndemo utan Ollama.** `scripts/demo.sh` + `backend/demo.py`. Chatten faller tillbaka till kärnan. | Kunna testa i kväll. Inte låtsas att Grok svarar. | |
 
 ## Medvetet inte i scopet
 - Skola som operatör: Unikum-SSO, klass-tenant, lärarvy, write-back.

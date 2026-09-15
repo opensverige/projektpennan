@@ -75,6 +75,7 @@ världsbilds-/diagnos-packs committas aldrig.
 ## Development Workflow
 ```bash
 # Lokal stack
+./scripts/demo.sh                  # kärna, ingen Ollama — http://127.0.0.1:8080
 docker compose up --build          # http://localhost:8080
 # eller: uvicorn main:app --reload --host 0.0.0.0 --port 8080   (från backend/)
 

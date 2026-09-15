@@ -23,6 +23,7 @@ Barnet har ingen onboarding.
 | D. Telegram | `python -m skooli_buddy.bot` | Gemini, hårdkodat | Byggt som kommandon |
 | E. Hem | BankID, tyst kontakt | vi eller BYO | Inte byggt |
 | F. WhatsApp | kontakt i listan | samma kernel | P-32 |
+| G. Testa nu | `./scripts/demo.sh` | kärna, inte Grok | **Byggt** |
 
 Byt väg senare. Samma vault. Samma barnkort.
 
@@ -77,6 +78,25 @@ pip install -r requirements.txt
 cp .env.example .env
 python -m skooli_buddy.bot
 ```
+
+---
+
+## G. Testa chatten nu (kärna, inte Grok)
+
+Ingen Ollama. Ingen nyckel. Samma safety som barnet får.
+
+```bash
+pip install fastapi uvicorn pydantic httpx
+./scripts/demo.sh
+```
+
+http://127.0.0.1:8080/start.html — namn, samtycke.  
+http://127.0.0.1:8080/test.html — chips, även opassande.  
+http://127.0.0.1:8080/index.html — skriv som barnet.
+
+Läxfrågor får ett sokratiskt stubbsvar. Sex / bomb / hemlighet /
+kris / jailbreak kommer från `safety.py`, inte från en modell.
+P-26 (riktig Grok/ChatGPT i chatten) är inte kopplad än.
 
 ---
 
