@@ -62,17 +62,21 @@ hemma. Hosted *är samma kod*.
 
 ```
 kernel/
-  pedagogy     SOUL + SKILL + RULES
-  safety       filter, kris→BRIS, jailbreak, sessiongräns
+  pedagogy     SOUL + SKILL + RULES (flera metoder, inget läx-nudge)
+  safety       filter, kris→BRIS, jailbreak, sessiongräns   ← packs kan inte stänga av
   consent      ge / återkalla / radera
-  profile      barn + support_preferences (aldrig diagnos)
-  curriculum   Lgr22
+  profile      barn + support_preferences
+  packs        kursplan / världsbild / pedagogik / anpassning / egen agent
+  curriculum   Lgr22 som *pack*, avstängbart
   memory       lokalt, nollställbart
   log          JSONL + audit, dataminimerad
   providers    Ollama | OpenAI-compat | Gemini   ← BYO
   surfaces     web-PWA | Telegram | (senare WhatsApp)
-  parent_api   paus, tid, läge, export, revoke
+  parent_api   paus, tid, läge, packs, export, revoke
 ```
+
+Se [docs/PLATFORM.md](PLATFORM.md). Vendor lock-in på agent eller
+livsåskådning är ett fel. Det vi säljer på Hem är drift.
 
 Hosted lägger *utanpå* kernel: tenant-isolering, BankID, faktura,
 vår modellnyckel, supportkö, uptime. Inte en fork.
@@ -97,7 +101,8 @@ kostar oss pengar, därför kostar den familjen pengar *när vi hostar*.
 
 ### Vad vi medvetet inte säljer
 - Skolkonto, Unikum, klasslista, lärarvy
-- Diagnos eller "NPF-paket"
+- Diagnosverktyg eller "NPF-paket" som sälj. Föräldern får *själv*
+  skriva en anteckning; vi sätter aldrig etiketten.
 - Reklam, affiliates, sälj av insikter
 - Att *låsa* safety bakom paywall
 
@@ -166,7 +171,8 @@ hos Garmin är däremot rätt.
 ```
 1. Förälder   BankID på sin egen telefon. Barnen i sitt rum.
 2. Samtycke   kort. Inklusive: "chatten går via WhatsApp/Meta."
-3. Barnkort   tilltalsnamn, åk, stödpreferenser. Aldrig diagnos.
+3. Barnkort   tilltalsnamn, åk, stödpreferenser. Valfritt: det
+              föräldern vill berätta (diagnos, ork). Aldrig krav.
 4. Tid        45 min, 19:30 stopp. Inget läxalarm till barnet.
 5. Yta        Default: "Lägg Skooli som kontakt i barnets WhatsApp"
               (samma gest som att lägga till mormor)
@@ -186,7 +192,8 @@ En kvällsskärm:
 - Stor **Pausa**-knapp (Revolut-mönstret)
 - Idag: antal turer, ämne, ett genombrott i klartext
 - Vecka: enkel stapel, inte betyg
-- Inställningar bakom PIN: tid, stödläge, bilder på/av, yta, radera allt
+- Inställningar bakom PIN: tid, metoder, packs, världsbild, bilder
+  på/av, yta, radera allt
 
 Streamlit och `guardian.html` är proto. Hem v1 är en riktig
 föräldra-PWA. Samma `parent_api` som Open använder lokalt.
@@ -229,6 +236,8 @@ Då räcker inte "vi är open source". Innan Hem-lansering:
 | Telegram läser allt | Telegram-yta | Informerat val. PWA default just för att undvika det. |
 | Kris missas | Prompt-only BRIS | Kod-trigger, logga `blocked/crisis` till förälder (inte innehållet i push). |
 | Vi blir skol-leverantör av misstag | Säljtryck | Inget tenant-träd "klass". En familj = en tenant. |
+| Läckt diagnospack | Hosted / support | Art. 9. Krypterat i vila (P-36). Support ser aldrig labels. Aldrig till skola. |
+| Pack stänger safety | Upload | Manifest `cannot_override_safety`. Konflikt = pack vinner inte. |
 
 ### BYO (Odysseus-läget)
 Föräldern klistrar in egen nyckel i Hem *eller* i Open.

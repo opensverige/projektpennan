@@ -1,6 +1,7 @@
 # Produktvision — Skooli Buddy
 
 > En sidekick i barnets ficka. Spakarna hemma. Aldrig skolans system.
+> Arbetsnamn: Skooli Buddy. Kernel föräldern äger — inte en låst app.
 
 ## Vem vi bygger för
 - Barn 9–12 år (åk 4–6 först) som behöver **stöd, inte mer press**.
@@ -21,8 +22,9 @@ När läxan kärvar ska barnet kunna fråga en kompis som:
 4. stannar när det blir jobbigt,
 5. syns för föräldern.
 
-Det är läxhjälp + extra anpassning + trygg vuxen-insyn, i en app
-familjen redan använder (Telegram nu, lokal web och fler ytor sen).
+Det är läxhjälp + extra anpassning + trygg vuxen-insyn, i chatten
+barnet redan har. Föräldern kan byta världsbild, metoder och agenter.
+Läroplanen styr inte. Se [docs/PLATFORM.md](PLATFORM.md).
 
 ## Varför inte skolan i mitten
 Skolans digitala kedja (lärlogg, Unikum, Google-konto, kommunmoln)
@@ -44,24 +46,29 @@ Bygger på research i `research/findings/`:
 | Sokratisk dialog | Motfråga, inte facit | RCT på Socratic AI i K–12; Khanmigo-linjen |
 | Scaffolding | Små steg, tänka högt, ta bort stöd | Explicit instruction + fading |
 | UDL | Flera sätt att förstå / svara / orka | CAST; SNUDLE |
-| Extra anpassning | Behov, inte diagnos | Skolverket, SPSM |
+| Extra anpassning | Behov default; diagnos bara om *föräldern* skrivit den | Skolverket, SPSM |
+| Visat exempel / CPA | Likadant tal; äpplen → streck → siffror | Sweller; NCETM |
+| Saga och lek | Kreativ ingång, inte läx-nudge | UNICEF Learning through Play |
+| Hämtning ur minnet | Bara när barnet vill köras | Retrieval practice |
+| Världsbild | Förälderns pack, inklusive tro | Barnkonventionen art. 14 |
 | Separera avkodning och innehåll | Textuppgifter i två lager | SPSM dyslexi-stöd |
 | Kort session + synligt framsteg | Ork och NPF | Skolverket NPF-lärmiljö |
 | Kris = människa | BRIS, ingen chatbot-terapi | Safety spec |
 
 ## Konkurrentkarta (2026)
-Ingen öppen, svensk, Lgr22-kopplad, föräldrastyrd sidekick finns.
+Ingen öppen, svensk, föräldrastyrd kernel-sidekick finns. Lgr22 är
+ett pack hos oss, inte överhet.
 
-| | Svenska + Lgr22 | Aldrig facit | Förälder styr | Lokal / OSS | Messaging |
-|---|-----------------|--------------|---------------|-------------|-----------|
-| **Skooli Buddy** | ja (tunnt) | ja | delvis | ja | Telegram |
+| | Svenska + valfri kursplan | Aldrig facit | Förälder styr (packs) | Lokal / OSS | Messaging |
+|---|---------------------------|--------------|-----------------------|-------------|-----------|
+| **Skooli Buddy** | Lgr22 som pack (tunnt) | ja | ja (mål; kod delvis) | ja | kontakt i chatt |
 | Khanmigo | nej | ja | delvis, US/skola | nej | nej |
 | Sorin / Tutur / Latio | nej | ja | ja, stängt | nej | app |
 | ChatGPT / Gemini raw | nej | nej | nej | nej | ja |
 | Skolans "AI-assistent" | ev. | varierar | nej | nej | nej |
 
-Vår kant: **svenska + öppen kod + föräldern som operatör + extra stöd
-som default**. Inte fler features än Khan Academy.
+Vår kant: **öppen kernel + föräldern som operatör + extra stöd som
+default + egna agenter**. Inte en låst läroplansapp. Inte Khan Academy.
 
 ## Hur det produktifieras
 Öppen kernel, betald drift. Mall: [Accounted](https://www.accounted.se/priser)
@@ -81,9 +88,10 @@ Pedagogik och safety är aldrig paywall. Detalj:
 En förälder i Sverige kan på fem minuter (Hem) eller en kväll (Open):
 
 1. BankID *eller* klona/köra image,
-2. ge samtycke, sätta tid och stödläge,
-3. lägga Skooli som en tyst kontakt i barnets WhatsApp
+2. ge samtycke, sätta tid, metoder, ev. världsbild och ev. anpassning,
+3. lägga sidekicken som en tyst kontakt i barnets WhatsApp
    (PWA bara som fallback — inte en QR-ceremoni),
-4. se, pausa, exportera eller radera.
+4. se, pausa, exportera, byta pack eller radera.
 
 Inget skolkonto. Ingen klass. Ingen molnplikt på Open.
+Lgr22 av om de vill. Egna agenter in om de vill.

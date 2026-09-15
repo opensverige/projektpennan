@@ -115,6 +115,70 @@
       "cadence": "årlig"
     },
     {
+      "id": "uncrc-14",
+      "org": "OHCHR / FN",
+      "title": "Barnkonventionen artikel 14 — tanke, samvete, religion",
+      "url": "https://www.ohchr.org/en/instruments-mechanisms/instruments/convention-rights-child",
+      "themes": ["product", "privacy"],
+      "cadence": "vid konventionstolkning"
+    },
+    {
+      "id": "foraldrabalken",
+      "org": "Sveriges riksdag",
+      "title": "Föräldrabalken (1949:381)",
+      "url": "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/foraldrabalk-1949381_sfs-1949-381/",
+      "themes": ["product", "privacy"],
+      "cadence": "vid lagändring"
+    },
+    {
+      "id": "gdpr-art-20",
+      "org": "EU",
+      "title": "GDPR artikel 20 — dataportabilitet",
+      "url": "https://gdpr-info.eu/art-20-gdpr/",
+      "themes": ["privacy", "product"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "imy-kansliga",
+      "org": "IMY",
+      "title": "Känsliga personuppgifter (hälsa)",
+      "url": "https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/introduktion-till-gdpr/personuppgifter/kansliga-personuppgifter/",
+      "themes": ["privacy", "accessibility"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "cognitive-load",
+      "org": "Sweller / instructionaldesign.org",
+      "title": "Cognitive load and worked examples",
+      "url": "https://www.instructionaldesign.org/theories/cognitive-load/",
+      "themes": ["pedagogy"],
+      "cadence": "vid översikt"
+    },
+    {
+      "id": "ncetm-cpa",
+      "org": "NCETM",
+      "title": "Representations in the primary mathematics classroom (CPA)",
+      "url": "https://www.ncetm.org.uk/features/the-five-big-ideas-at-primary-representation-and-structure/",
+      "themes": ["pedagogy"],
+      "cadence": "vid revidering"
+    },
+    {
+      "id": "retrieval-practice",
+      "org": "Agarwal / retrievalpractice.org",
+      "title": "Retrieval practice",
+      "url": "https://www.retrievalpractice.org/",
+      "themes": ["pedagogy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "unicef-play",
+      "org": "UNICEF / Lego Foundation",
+      "title": "Learning through Play",
+      "url": "https://www.unicef.org/sites/default/files/2018-12/UNICEF-Lego-Foundation-Learning-through-Play.pdf",
+      "themes": ["pedagogy"],
+      "cadence": "vid ny rapport"
+    },
+    {
       "id": "mediemyndigheten-2025",
       "org": "Mediemyndigheten",
       "title": "Ungar & medier 2025",

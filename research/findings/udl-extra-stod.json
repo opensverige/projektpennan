@@ -24,7 +24,7 @@
       "notes": "Representation, action/expression, engagement. Digitala verktyg ska sänka irrelevanta hinder (lång text, ett enda svarssätt)."
     }
   ],
-  "implication": "Profilen får ha support_preferences, aldrig diagnosfält. SKILL ska innehålla små steg, tempo och val. Föräldern väljer läge (P-09). Botten får inte säga 'för att du har adhd'.",
+  "implication": "Profilen har support_preferences åt alla. Diagnos är bara parent-authored, valfritt och extra känsligt (P-36) — vi sätter aldrig etiketten. Tomt fält = extra-stöd-default. SKILL blandar metoder (P-09, P-35). Botten nämner inte 'för att du har adhd' om inte föräldern bett om det.",
   "backlog_refs": ["P-09", "P-16"],
   "confidence": "high"
 }

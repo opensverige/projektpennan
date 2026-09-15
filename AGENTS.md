@@ -11,24 +11,27 @@ Projektet är öppen källkod under [opensverige](https://opensverige.se)
 ska fungera.
 
 ## Icke-förhandlingsbara principer
-1. **Föräldern styr.** Samtycke, paus, radering, tidsgränser, stödläge
-   och insyn är vårdnadshavarens. Skola, kommun eller leverantör får
-   inte kopplas in som kontrollplan.
+1. **Föräldern styr.** Samtycke, paus, radering, tidsgränser, stödläge,
+   världsbild, packs och insyn är vårdnadshavarens. Skola, kommun,
+   läroplan eller leverantör får inte kopplas in som kontrollplan.
 2. **Koden validerar. Modellen undervisar.** Säkerhet, samtycke och
-   gränser ligger i kod — inte i en prompt.
-3. **Ge aldrig svaret först.** Sokratisk stöttning, små steg, tänka
-   högt. Extra stöd är default, inte ett undantag.
+   gränser ligger i kod — inte i en prompt. Packs kan inte stänga av
+   safety-kärnan.
+3. **Ge aldrig svaret först.** Flera metoder (Sokrates, små steg,
+   worked, CPA, saga, lek). Extra stöd är default. Inget läx-nudge.
 4. **Dataminimering.** Numeriskt id, aldrig namn/adress/skola. Lokal
-   lagring. `/revoke` raderar allt.
-5. **Öppenhet.** Regler, kursplan, research-fynd och backlog är
-   synliga i repot. Inga hemliga barn-profiler i git.
+   lagring. `/revoke` raderar allt. Diagnosanteckningar är valfria
+   och extra skyddade.
+5. **Öppenhet / ingen vendor lock-in.** Kernel + packs som filer.
+   Föräldern kan exportera, köra hemma, ladda egna agenter. Inga
+   hemliga barn-profiler i git.
 
 ## Source of Truth
 | Yta | Sanning |
 |-----|---------|
 | Identitet & pedagogik | `agents/tutor/SOUL.md` + `SKILL.md` + `RULES.md` |
 | Säkerhetsspec | `SKOOLI_BUDDY_SAFETY_SPEC.md` |
-| Produktvision | `docs/PRODUCT.md` + `docs/PRODUCTIZATION.md` + `docs/UX-SCENARIOS.md` |
+| Produktvision | `docs/PRODUCT.md` + `docs/PRODUCTIZATION.md` + `docs/PLATFORM.md` + `docs/UX-SCENARIOS.md` |
 | Vad som är byggt | `docs/INVENTORY.md` |
 | Vad som ska göras | `docs/BACKLOG.md` |
 | Research | `research/` + `scripts/research_pipeline.py` |
@@ -44,7 +47,7 @@ raderas tyst. Målet är **en kärna, två ytor**.
 
 ```
 Kärna (målbild)
-  profil + policies + Lgr22 + safety + logg + research-fynd
+  profil + policies + packs + safety + logg + research-fynd
         │
         ├─ Yta A: FastAPI + lokal Ollama + HTML-chat + vault/
         └─ Yta B: Telegram-bot + valfri moln-LLM + Streamlit-dashboard
@@ -64,8 +67,9 @@ helt offline.
 
 ## Vault
 Lämna katalogstrukturen orörd: `config/`, `conversations/`, `audit/`,
-`curriculum-vectors/`, `parent-reports/`. Testprofilen "Test-Elev" får
-ligga kvar. Riktiga barnprofiler committas aldrig.
+`curriculum-vectors/`, `parent-reports/`, `packs/`. Testprofilen
+"Test-Elev" får ligga kvar. Riktiga barnprofiler och ifyllda
+världsbilds-/diagnos-packs committas aldrig.
 
 ## Development Workflow
 ```bash
@@ -100,4 +104,6 @@ python scripts/curriculum_cli.py validate
 3. WhatsApp-kontakt hos barnet, förälder-PWA hos vuxen (P-32, P-27).
    Inte sälj Hem innan DPIA (P-29). Inget QR-ceremoni.
 4. Productisering: `docs/PRODUCTIZATION.md` är affärsmodellen.
-5. Lgr22 åk 4–6 + research-fynd som matar backlog.
+   `docs/PLATFORM.md` är kernel/pack-gränsen. Arbetsnamn.
+5. Pack-laddare (P-33), världsbild (P-34), metoder i kod (P-35),
+   krypterade anpassningar (P-36). Lgr22 åk 4–6 som pack.

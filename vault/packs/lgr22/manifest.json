@@ -1,0 +1,11 @@
+{
+  "id": "lgr22",
+  "name": "Lgr22 — valfritt kursplanspack",
+  "kind": "curriculum",
+  "enabled": true,
+  "authored_by": "project",
+  "version": "0.1.0",
+  "can_disable": true,
+  "cannot_override_safety": true,
+  "notes": "Default på för svenska läxor. Föräldern kan stänga av. Aldrig överhet."
+}

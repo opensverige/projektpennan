@@ -26,7 +26,7 @@ Det är Duolingo-stund. Det är inte en sidekick.
 
 Söndag kväll. Barnen sover eller sitter i sitt rum.
 Föräldern tar BankID på *sin* telefon, kryssar samtycke, sätter
-tid och stödläge. Sen gör de samma sak som när mormor skulle
+tid, stödläge och ev. världsbild. Sen gör de samma sak som när mormor skulle
 in i barnets WhatsApp: **lägger till en kontakt.**
 
 Skooli dyker upp i barnets chattlista. Inget tal. Ingen demo.

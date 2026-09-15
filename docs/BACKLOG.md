@@ -59,6 +59,17 @@ P-03 och P-29.
 | P-31 | **Publik prissida + DPA-text** (Open / Hem / egen drift). | Accounted-tabell. Aldrig paywalla safety. | `accounted-open-core` |
 | P-32 | **WhatsApp som Hem-barn-default:** tyst kontakt, bild, röst. Inget läxpush. | Där de redan är. | `contact-not-destination` |
 
+## P4 — förälderns kernel (packs, inte överhet)
+
+Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
+
+| ID | Vad | Varför | Research |
+|----|-----|--------|----------|
+| P-33 | **Pack-laddare + egen agent.** Läs `vault/packs/*/manifest.json`. Upload av markdown-overlay. Konflikt mot safety = pack vinner inte. Export/import av vault-zip. | Föräldern ska inte sitta i vendor lock-in. Kernel, inte en låst app. | `parent-sovereignty-kernel` |
+| P-34 | **Världsbilds-pack.** Föräldern slår på tro/värderingar i lärandet. Neutral bara när packen är av. Barnet kan inte byta pack. | Föräldern — inte läroplanen — styr livsåskådning. | `parent-sovereignty-kernel` |
+| P-35 | **Pedagogikbibliotek i kod.** Sokrates, små steg, worked, CPA, saga, lek, retrieve, lässtöd. Byt metod när det kärvar. `nudge_homework=false`. | En metod räcker inte. Intresse utan gnäll. | `pedagogy-beyond-socratic` |
+| P-36 | **Förälder-skrivna anpassningar.** Valfritt fält för diagnos/preferenser. Tyst anpassning. Krypterat i Hem. Aldrig till skola. Tomt = extra-stöd-default. | Vi sätter inte diagnos. Vi lyssnar när hemmet berättar. Art. 9. | `parent-authored-accommodations` |
+
 ## Medvetet inte i scopet
 - Integration mot Unikum, InfoMentor, Google Classroom, Skolon.
 - Lärar-dashboard eller klasslista.
@@ -73,3 +84,5 @@ P-03 och P-29.
 4. P-32 — WhatsApp-kontakt som barnets yta (då först Hem-känsla).
 5. P-27 — förälder-PWA vid sidan av, inte som barnets destination.
 6. P-29 — DPIA innan någon faktura (Meta i underbiträdeslistan).
+7. P-33 + P-34 — pack-laddare och världsbild (då först kernel-känsla).
+8. P-35 + P-36 — metodbyte i kod + krypterade anpassningar.

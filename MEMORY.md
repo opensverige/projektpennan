@@ -30,3 +30,13 @@
 - Föräldern sätter upp utan barnet i rummet. Inget läxpush.
 - Hosted = vi blir personuppgiftsansvariga → DPIA innan sälj.
 - Docs: PRODUCTIZATION.md, PRICING.md. Backlog P-25–P-32.
+
+## 2026-09-15 — förälderns kernel
+- Lgr22 är valfritt pack, inte överhet. Världsbild (inklusive tro)
+  är förälderns. Egna agenter. Flera metoder utöver Sokrates.
+- Diagnos/preferenser bara om föräldern skrivit dem; tyst anpassning.
+  Tomt = extra-stöd-default. Art. 9 i Hem (P-36).
+- Docs: PLATFORM.md. Pack-skelett i `vault/packs/`. Tutorregler v3.
+- Backlog P-33–P-36. Research: parent-sovereignty-kernel,
+  pedagogy-beyond-socratic, parent-authored-accommodations.
+- Namnet är arbetsnamn.

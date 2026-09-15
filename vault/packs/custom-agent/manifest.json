@@ -1,0 +1,11 @@
+{
+  "id": "custom-agent-family",
+  "name": "Egen agent-overlay",
+  "kind": "custom-agent",
+  "enabled": false,
+  "authored_by": "uploaded",
+  "version": "0.1.0",
+  "can_disable": true,
+  "cannot_override_safety": true,
+  "notes": "Ersätt OVERLAY.md eller ladda upp en egen. Safety-kärnan vinner vid konflikt."
+}

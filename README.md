@@ -2,6 +2,7 @@
 
 > En sidekick för barn som behöver stöd i skolan. Föräldern sitter i
 > spakarna. Skolans system gör det inte. Ger aldrig svaret.
+> Arbetsnamn. Kernel föräldern äger — egna agenter, egen världsbild.
 
 **Projekt Pennan** är ett open-source-initiativ under
 [opensverige](https://github.com/opensverige) / [opensverige.se](https://opensverige.se).
@@ -12,9 +13,12 @@ Skooli Buddy är den första produkten. Licens: AGPL-3.0.
 ## Vad är det?
 
 Barnet (9–12 år, åk 4–6 först) chattar med en studiekompis som leder
-med frågor, små steg och extra stöd — inte facit. Pedagogiken ska
-följa Lgr22. Föräldern ger samtycke, kan pausa, radera och se vad
-som hände. Ingen lärarvy. Ingen klasslista. Ingen Unikum-export.
+med frågor, små steg, saga, lek och extra stöd — inte facit. Inte
+läx-nudge. Lgr22 är ett *valfritt pack*, inte överhet. Föräldern ger
+samtycke, kan pausa, radera, byta världsbild och ladda egna agenter.
+Ingen lärarvy. Ingen klasslista. Ingen Unikum-export.
+
+Plattformen: [docs/PLATFORM.md](docs/PLATFORM.md).
 
 ```
 Barn: "Vad är 7 gånger 8?"
@@ -54,7 +58,7 @@ Målet är **en kärna, två ytor**. Just nu är de parallella. Se P-01.
 | Valfri moln-LLM | Google Gemini 2.5 Flash |
 | Föräldrapanel | Streamlit (Telegram) / `guardian.html` (lokal) |
 | Loggning | JSONL + HMAC-audit i vault |
-| Kursplan | Lgr22 i `config/lgr22/` |
+| Kursplan | Valfritt pack. Lgr22 i `config/lgr22/` + `vault/packs/lgr22/` |
 
 ---
 
@@ -154,9 +158,10 @@ Research som styr den: `python scripts/research_pipeline.py summary`.
 Kort:
 
 - **P0** — en kärna, inget hårdkodat chat-id, safety i kod, CI, ärlig README, fungerande föräldrainlogg + `/pause`
-- **P1** — föräldern styr stödläge/tid/export, Lgr22 åk 4–6, läx-foto opt-in, lokal modell som default, minne hemma
+- **P1** — föräldern styr stödläge/tid/export, Lgr22-pack åk 4–6, läx-foto opt-in, lokal modell som default, minne hemma
 - **P2** — röst, fler årskurser, WhatsApp, veckosammanfattning utan betyg
 - **P3** — kernel/Hem/BYO, WhatsApp-kontakt hos barnet, förälder-PWA, DPIA innan sälj
+- **P4** — pack-laddare, världsbild, fler metoder i kod, krypterade anpassningar
 
 Spectator-grupp, bildstöd och minne från den gamla v0.2–v0.4-listan
 ligger kvar som P-13, P-12, P-10. Produktmodellen:
@@ -177,10 +182,10 @@ ligger kvar som P-13, P-12, P-10. Produktmodellen:
 ## Varför Skooli Buddy?
 
 Ingen öppen produkt kombinerar:
-- Svenska + Lgr22
-- Sokratisk metod **och** extra stöd (små steg, UDL, inte diagnos)
-- Föräldern som operatör — inte skolan
-- Messaging *eller* helt lokalt
+- Svenska + valfri kursplan (Lgr22 som pack)
+- Flera metoder **och** extra stöd (Sokrates, worked, CPA, saga, lek)
+- Föräldern som operatör — världsbild, egna agenter, inte skolan
+- Messaging *eller* helt lokalt. Ingen vendor lock-in.
 - AGPL, research-pipeline, regler i git
 
 Khanmigo är närmast pedagogiskt, men är skol-/US-spåret.

@@ -102,6 +102,7 @@ Betyg (0–5)
 | `config/policies.json` | tid, safety, sokratisk | Ingen `parent_controls` före den här branchen. |
 | `vault/curriculum-vectors/` | gitkeep | RAG har inget att äta. |
 | `vault/parent-reports/` | gitkeep | Guardian-HTML är tom. |
+| `vault/packs/` | manifest + mallar | Laddare saknas (P-33). Lgr22/worldview/pedagogy/accommodations/custom-agent. |
 | `scripts/curriculum_cli.py` | list + validate | Ingen import från Skolverket, ingen åk 5–6. |
 
 ## OSS- och driftläge

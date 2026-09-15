@@ -28,3 +28,7 @@ dubbletter.
 När du kör detta hemma är **du** personuppgiftsansvarig. Sätt
 `GUARDIAN_PASSPHRASE`, släpp inte port 8080 mot internet, committa
 aldrig `.env` eller `config/consents.json` med riktiga id.
+
+Ifyllda världsbilds-packs och diagnosanteckningar är extra känsliga
+(livsåskådning / hälsa). De ska inte ligga i git. I Hem ska de
+kryptas (P-36). Support ska inte kunna läsa labels.

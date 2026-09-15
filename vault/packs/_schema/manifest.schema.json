@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skooli Buddy pack manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "kind",
+    "enabled",
+    "authored_by",
+    "version",
+    "can_disable",
+    "cannot_override_safety"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,64}$"
+    },
+    "name": { "type": "string", "minLength": 2 },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "curriculum",
+        "worldview",
+        "pedagogy",
+        "accommodations",
+        "custom-agent"
+      ]
+    },
+    "enabled": { "type": "boolean" },
+    "authored_by": {
+      "type": "string",
+      "enum": ["guardian", "project", "uploaded"]
+    },
+    "version": { "type": "string", "minLength": 1 },
+    "can_disable": { "type": "boolean" },
+    "cannot_override_safety": {
+      "type": "boolean",
+      "const": true
+    },
+    "notes": { "type": "string" }
+  }
+}

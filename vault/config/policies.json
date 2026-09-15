@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "session_limits": {
     "max_minutes_weekday": 45,
     "max_minutes_weekend": 90,
@@ -17,7 +17,24 @@
     "min_questions_before_answer": 2,
     "max_questions_before_hint": 4,
     "default_support_mode": "sma_steg",
-    "allowed_modes": ["sokratisk", "sma_steg", "kviss", "las_stod"]
+    "allowed_modes": [
+      "sokratisk",
+      "sma_steg",
+      "worked",
+      "cpa",
+      "story",
+      "play",
+      "retrieve",
+      "las_stod"
+    ],
+    "nudge_homework": false
+  },
+  "packs": {
+    "curriculum": "lgr22",
+    "curriculum_required": false,
+    "worldview": null,
+    "custom_agent": null,
+    "allow_parent_uploads": true
   },
   "parent_controls": {
     "operator": "guardian",

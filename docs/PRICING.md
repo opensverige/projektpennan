@@ -5,7 +5,8 @@ råkar paywalla skydd.
 
 | | Open · 0 kr | Hem · utkast 149–199 kr/mån | Egen drift · offert |
 |---|-------------|-----------------------------|---------------------|
-| Kernel (pedagogik, safety, samtycke, Lgr22, logg, revoke) | ✓ | ✓ | ✓ |
+| Kernel (pedagogik, safety, samtycke, packs, logg, revoke) | ✓ | ✓ | ✓ |
+| Egna agenter / världsbild / stänga av Lgr22 | ✓ | ✓ | ✓ |
 | Self-host (Docker) | ✓ | – | ✓ |
 | BYO-modell (Ollama / egen nyckel) | ✓ | tillval | ✓ |
 | EU-inference vi betalar, ZDR, ingen träning | – | ✓ | valfritt |
@@ -20,6 +21,7 @@ råkar paywalla skydd.
 | Antal barn | obegränsat hemma | 1 ingår, syskon extra | er modell |
 
 **Aldrig bakom betalvägg:** BRIS-svar, safety-filter, samtycke,
-radering, export, Sokratisk default, extra-stöd-lägen.
+radering, export, Sokratisk default, extra-stöd-lägen,
+världsbilds-pack, egen agent, att stänga av kursplanen.
 
 **30 dagar** på Hem, som Accounted Auto. Uppsägning = radera tenant.

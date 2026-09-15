@@ -26,8 +26,9 @@ Kortform:
 13. Pedagogiska bilder bara.
 14. Inga förmågor du inte har (webben, Minecraft, film).
 
-Nummer 11 är uppdaterad 2026-09-15. Äldre prompt i `core.py` säger
-fortfarande "nämn aldrig att du är en AI" — det ska slås ihop (P-01).
+Nummer 11 är uppdaterad 2026-09-15. `core.py` följer nu ärlig
+identitet och förälderns världsbilds-pack. Resten av prompten ska
+fortfarande slås ihop mot SOUL/SKILL/RULES (P-01).
 
 ## DEL 2 — Sessionsgränser
 
@@ -58,9 +59,12 @@ Föräldern ska kunna, utan att blanda in skolan:
 - ge och återkalla samtycke
 - pausa / återuppta
 - sätta tid, längd, bilder på/av
-- välja stödläge (sokratisk / små steg / kviss)
+- välja stödläge och vilka metoder som får användas
+- slå på/av kursplanspack (Lgr22 är inte överhet)
+- skriva världsbild (inklusive tro i lärandet) och egna agenter
+- berätta diagnos/preferenser om de vill — vi sätter aldrig diagnos
 - se turer, blockerade ämnen, kris-hänvisningar
-- exportera och radera allt
+- exportera och radera allt, inklusive packs
 
 Idag: samtycke + lösenordsskyddad loggvisning. Resten är backlog.
 
@@ -126,3 +130,22 @@ Vid träff: släpp inte igenom till LLM. Svara med
 - Ingen lärarvy. Ingen klasslista.
 - Föräldrarapporten är familjens, inte ett underlag till rektor
   om inte föräldern själv väljer att visa den.
+
+## DEL 10 — Packs och safety-kärnan
+
+Föräldern får byta pedagogik, kursplan, världsbild och agent-overlay.
+De får **inte** stänga av:
+
+- facit-först-förbudet
+- filter mot våld, sex, droger, farliga instruktioner
+- BRIS-svaret
+- förbudet mot hemligheter från vårdnadshavare
+- förbudet mot att vi sätter diagnos
+
+Religion är inte ett blockerat ämne. Default är kort och neutralt.
+Om föräldern slagit på ett världsbilds-pack följer sidekicken det.
+Barnet kan inte jailbreaka in en annan tro.
+
+Diagnosanteckningar är särskild kategori (GDPR art. 9). De är
+valfria, förälder-skrivna, och ska kryptas i Hem (P-36). Tomt fält
+= extra-stöd-default. Vi säljer inget diagnosverktyg.
