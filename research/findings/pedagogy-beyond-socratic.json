@@ -1,0 +1,36 @@
+{
+  "id": "pedagogy-beyond-socratic",
+  "date": "2026-09-15",
+  "theme": "pedagogy",
+  "status": "accepted",
+  "claim": "Sokrates räcker inte för att hålla ett barn intresserat eller för att stötta den som kärvar. Sidekicken behöver flera metoder — visat exempel, konkret-bild-symbol, saga, lek, hämtning ur minnet — och byta när en metod irriterar. Läx-nudge är inte en metod.",
+  "evidence": [
+    {
+      "title": "Worked examples and cognitive load (Sweller)",
+      "url": "https://www.instructionaldesign.org/theories/cognitive-load/",
+      "year": 2010,
+      "notes": "Ett visat likadant tal, sen ett halvfärdigt, sen barnets, sänker belastning när motfrågor bara irriterar. TUTOR_WORKED."
+    },
+    {
+      "title": "NCETM — representation and structure (CPA i grundskolematte)",
+      "url": "https://www.ncetm.org.uk/features/the-five-big-ideas-at-primary-representation-and-structure/",
+      "year": 2024,
+      "notes": "CPA är standard i grundskolematte: äpplen → streck → siffror. TUTOR_CPA."
+    },
+    {
+      "title": "Retrieval practice — retrievalpractice.org",
+      "url": "https://www.retrievalpractice.org/",
+      "year": 2024,
+      "notes": "Hämtning ur minnet stärker mer än om-läsning, men bara när barnet själv vill köras. Inte ett schemalagt prov som pushas in i chatten. TUTOR_RETRIEVE."
+    },
+    {
+      "title": "UNICEF / Lego Foundation — Learning through Play",
+      "url": "https://www.unicef.org/sites/default/files/2018-12/UNICEF-Lego-Foundation-Learning-through-Play.pdf",
+      "year": 2018,
+      "notes": "Lek och hypotes är giltiga ingångar till lärande, inte socker på läxan. TUTOR_PLAY / TUTOR_STORY. Inget 'dags för matteläxan'."
+    }
+  ],
+  "implication": "SKILL v3 är källan. Kod ska välja metod efter ork och pack, inte hårdkoda Sokrates (P-35). policies.pedagogy.nudge_homework förblir false.",
+  "backlog_refs": ["P-35"],
+  "confidence": "high"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "contact-not-destination",
+  "date": "2026-09-15",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Barnet ska inte 'gå till Skooli'. De ska skriva till Skooli i den chatt de redan lever i. QR, PWA-ceremoni och 'nu ska du prata med AI:n' dödar självmant användning. WhatsApp-kontakt är Hem-barnets default; föräldrapanel är en annan yta.",
+  "evidence": [
+    {
+      "title": "Internetstiftelsen 2025 — WhatsApp vanligaste kommunikationsappen",
+      "url": "https://svenskarnaochinternet.se/app/uploads/2025/11/internetstiftelsen-barnen-och-internet-2025-sammanfattning.pdf",
+      "year": 2025,
+      "notes": "Barnet är redan i chattlistan. En ny destination konkurrerar med Snapchat/Roblox och förlorar."
+    },
+    {
+      "title": "WhatsApp iOS — skicka foto från kamera eller rulle",
+      "url": "https://mobbin.com/flows/d7c12641-fbf6-4c95-ad93-e020a53bee9c",
+      "year": 2026,
+      "notes": "Samma gest som till en kompis: plus → foto → skicka. Det är läx-fotot utan läxapp."
+    }
+  ],
+  "implication": "P-32 före P-27 som barnyta. Inget läxpush. Noll barn-onboarding. Samtycke måste nämna Meta. PWA är föräldern + fallback. Se docs/UX-SCENARIOS.md.",
+  "backlog_refs": ["P-32", "P-27", "P-12"],
+  "confidence": "high"
+}

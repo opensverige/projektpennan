@@ -1,0 +1,16 @@
+{
+  "parent_authored": true,
+  "valid_from": null,
+  "valid_until": null,
+  "topics": [],
+  "dropped": [
+    "grades",
+    "classmates",
+    "teacher_private_notes",
+    "photos",
+    "school_id",
+    "credentials"
+  ],
+  "nudge_homework": false,
+  "write_back_to_school": false
+}

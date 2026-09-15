@@ -41,6 +41,18 @@ def build_system_prompt(profile: dict, policies: dict) -> str:
     rules = (agents_path / "RULES.md").read_text(encoding="utf-8")
 
     child = profile.get("child", {})
+    pedagogy = policies.get("pedagogy", {})
+    packs = policies.get("packs", {})
+    accommodations = child.get("accommodations") or {}
+    acc_notes = ""
+    if accommodations.get("parent_authored") and (
+        accommodations.get("notes") or accommodations.get("labels")
+    ):
+        acc_notes = accommodations.get("notes") or ", ".join(
+            accommodations.get("labels") or []
+        )
+        if not accommodations.get("tell_child_the_label"):
+            acc_notes = f"Anpassa tyst efter: {acc_notes}. Nämn inte etiketten."
 
     context_block = f"""
 ## Aktuell elev
@@ -49,11 +61,22 @@ def build_system_prompt(profile: dict, policies: dict) -> str:
 - Ålder: {child.get('age', '?')}
 - Ämnen: {', '.join(child.get('subjects', []))}
 - Intressen: {', '.join(child.get('interests', []))}
+- Stödpreferenser: {', '.join(child.get('support_preferences', []))}
+- Förälder-skriven anpassning: {acc_notes or 'ingen — extra-stöd-default'}
+
+## Packs (föräldern styr)
+- Kursplan: {packs.get('curriculum') or 'av — hjälp ändå, åberopa inte skolan'}
+- Kursplan är överhet: {'JA' if packs.get('curriculum_required') else 'NEJ'}
+- Världsbild: {packs.get('worldview') or 'ingen — var kort, ta inte ställning'}
+- Egen agent: {packs.get('custom_agent') or 'ingen'}
+- Skolkontext: {packs.get('school_context') or 'ingen — gissa inte vad skolan gör, nudge:a inte'}
 
 ## Pedagogiska inställningar
-- Sokratiskt läge: {'JA' if policies.get('pedagogy', {}).get('socratic_mode') else 'NEJ'}
-- Frågor innan ledtråd: {policies.get('pedagogy', {}).get('min_questions_before_answer', 2)}
-- Frågor innan förklaring: {policies.get('pedagogy', {}).get('max_questions_before_hint', 4)}
+- Tillåtna metoder: {', '.join(pedagogy.get('allowed_modes', []))}
+- Sokratiskt läge: {'JA' if pedagogy.get('socratic_mode') else 'NEJ'}
+- Frågor innan ledtråd: {pedagogy.get('min_questions_before_answer', 2)}
+- Frågor innan förklaring: {pedagogy.get('max_questions_before_hint', 4)}
+- Nudge läxa: {'JA' if pedagogy.get('nudge_homework') else 'NEJ — barnet öppnar själv'}
 """
 
     return f"{soul}\n\n---\n\n{skill}\n\n---\n\n{rules}\n\n---\n\n{context_block}"
@@ -196,14 +219,23 @@ async def run_pipeline(session_id: str, user_message: str, history: list[dict]) 
         chain["steps"].append({"step": "respond", "type": "blocked_input"})
         return {"status": "blocked_input", "response": safe_response, "processing_chain": chain}
 
-    # --- STEG 3: RAG mot Lgr22 ---
+    # --- STEG 3: RAG mot kursplanspack (av om föräldern stängt packen) ---
     child_info = profile.get("child", {})
-    rag_result = await search_curriculum(
-        query=user_message,
-        grade=child_info.get("grade"),
-        subject=None,
-        top_k=3,
-    )
+    curriculum_pack = policies.get("packs", {}).get("curriculum")
+    if curriculum_pack:
+        rag_result = await search_curriculum(
+            query=user_message,
+            grade=child_info.get("grade"),
+            subject=None,
+            top_k=3,
+        )
+    else:
+        rag_result = {
+            "context": "",
+            "hits": 0,
+            "status": "skipped",
+            "reason": "curriculum_pack_off",
+        }
     rag_context = rag_result.get("context", "")
     chain["steps"].append(
         {

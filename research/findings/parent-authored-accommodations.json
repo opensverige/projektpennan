@@ -1,0 +1,30 @@
+{
+  "id": "parent-authored-accommodations",
+  "date": "2026-09-15",
+  "theme": "accessibility",
+  "status": "accepted",
+  "claim": "Om föräldern berättar om en diagnos eller en preferens ska sidekicken anpassa tyst och bli en bättre skol-sidekick. Vi sätter aldrig diagnosen. Tomt fält ger extra-stöd-default åt alla. Hälsouppgifter är särskild kategori och kräver starkare skydd än vanliga preferenser.",
+  "evidence": [
+    {
+      "title": "Skolverket — Extra anpassningar: behov styr, diagnos krävs inte",
+      "url": "https://www.skolverket.se/styrning-och-ansvar/regler-och-ansvar/ansvar-i-skolfragor/extra-anpassningar-sarskilt-stod-och-atgardsprogram",
+      "year": 2025,
+      "notes": "Diagnos får varken krävas eller räcka. Om hemmet ändå berättar vad som funkar ska verktyget lyssna — källan är föräldern, inte ett skolärende."
+    },
+    {
+      "title": "IMY — känsliga personuppgifter (hälsa)",
+      "url": "https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/introduktion-till-gdpr/personuppgifter/kansliga-personuppgifter/",
+      "year": 2024,
+      "notes": "Diagnosord är hälsouppgift, art. 9. Explicit samtycke, minimering, kryptering, aldrig till skola. Tomt fält ska ge samma extra stöd."
+    },
+    {
+      "title": "CAST UDL Guidelines",
+      "url": "https://udlguidelines.cast.org/",
+      "year": 2024,
+      "notes": "Flera sätt att förstå, svara och orka är default. En förälder-anteckning finjusterar, den skapar inte ett särläge som alla andra saknar."
+    }
+  ],
+  "implication": "Valfritt accommodations-fält, tyst anpassning, nämn inte etiketten för barnet om inte packen säger det (P-36). Kryptera i Hem. Inget diagnosverktyg i säljytan.",
+  "backlog_refs": ["P-36"],
+  "confidence": "high"
+}

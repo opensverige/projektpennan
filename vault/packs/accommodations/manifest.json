@@ -1,0 +1,11 @@
+{
+  "id": "accommodations-family",
+  "name": "Anpassningar föräldern valt att berätta",
+  "kind": "accommodations",
+  "enabled": false,
+  "authored_by": "guardian",
+  "version": "0.1.0",
+  "can_disable": true,
+  "cannot_override_safety": true,
+  "notes": "Särskild kategori (hälsa) om ni skriver diagnos. Krypteras i Hem (P-36). Vi sätter aldrig diagnos."
+}

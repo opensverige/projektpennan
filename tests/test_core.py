@@ -35,6 +35,22 @@ def test_load_profile_policies_has_data():
     assert len(profile["policies"]) > 0
 
 
+def test_load_profile_packs_are_parent_owned():
+    """Kursplan är pack, inte överhet. Inget läx-nudge."""
+    policies = load_profile()["policies"]
+    assert policies["packs"]["curriculum_required"] is False
+    assert policies["pedagogy"]["nudge_homework"] is False
+
+
+def test_child_accommodations_default_empty():
+    """Tom anpassning = extra-stöd-default, ingen diagnos vi satt."""
+    child = load_profile()["child"].get("child", load_profile()["child"])
+    acc = child.get("accommodations") or {}
+    assert acc.get("parent_authored") is False
+    assert acc.get("labels") == []
+    assert acc.get("tell_child_the_label") is False
+
+
 def test_load_profile_curriculum_has_entries():
     """curriculum ska ha minst en post."""
     profile = load_profile()

@@ -1,6 +1,11 @@
 """
 Hjärnan i Skooli Buddy.
 Bygger systemprompt, hanterar konversationshistorik och anropar Gemini 2.5 Flash.
+
+Sanningen för identitet och regler ligger i agents/tutor/{SOUL,SKILL,RULES}.md
+plus SKOOLI_BUDDY_SAFETY_SPEC.md. Prompten nedan är en tillfällig kopia
+(P-01). Identitet, världsbild-pack och Lgr22-som-pack är justerade
+mot v3 — slå inte ihop resten här, slå ihop mot SOUL/SKILL/RULES.
 """
 import os
 import sys
@@ -33,15 +38,38 @@ def _build_system_prompt(profile: dict) -> str:
     child_grade = f"åk {child.get('grade', 4)}"
     child_interests = ", ".join(child.get("interests", []))
     child_strengths = ", ".join(child.get("subjects", []))
-    child_development_areas = "problemlösning och kritiskt tänkande"
+    child_support = ", ".join(child.get("support_preferences", [])) or "korta steg, extra stöd"
+    accommodations = child.get("accommodations") or {}
+    packs = policies.get("packs", {})
+    curriculum_pack = packs.get("curriculum")
+    worldview = packs.get("worldview")
+    if accommodations.get("parent_authored") and (
+        accommodations.get("notes") or accommodations.get("labels")
+    ):
+        acc_line = accommodations.get("notes") or ", ".join(accommodations.get("labels") or [])
+        if not accommodations.get("tell_child_the_label"):
+            acc_line = f"Anpassa tyst. Nämn inte etiketten. ({acc_line})"
+    else:
+        acc_line = "ingen förälder-anteckning — extra-stöd-default"
 
     curriculum_lines = []
-    for entry in profile["curriculum"]:
-        curriculum_lines.append(
-            f"- [{entry.get('subject', '')} åk{entry.get('grade', '')}] "
-            f"{entry['area']}: {entry['content'][:120]}"
-        )
-    curriculum_context = "\n".join(curriculum_lines) if curriculum_lines else "Lgr22 allmän kursplan"
+    if curriculum_pack:
+        for entry in profile["curriculum"]:
+            curriculum_lines.append(
+                f"- [{entry.get('subject', '')} åk{entry.get('grade', '')}] "
+                f"{entry['area']}: {entry['content'][:120]}"
+            )
+    curriculum_context = (
+        "\n".join(curriculum_lines)
+        if curriculum_lines
+        else "Inget kursplans-pack. Hjälp ändå utan att åberopa skolan."
+    )
+    worldview_line = (
+        f"Föräldern har slagit på världsbilds-pack ({worldview}). "
+        "Väv in det naturligt när det passar. Hitta inte på en annan tro."
+        if worldview
+        else "Ingen världsbilds-pack. Var kort och nyfiken. Ta inte ställning."
+    )
 
     return f"""Du är Skooli Buddy, en studiekompis för barn. Du pratar med {child_name}
 som är {child_age} år och går i {child_grade}.
@@ -90,8 +118,11 @@ ABSOLUTA REGLER — BRYT ALDRIG DESSA
    - Droger, alkohol, tobak
    - Sex, nakenhet, romantiska relationer
    - Svordomar eller kränkande språk
-   - Politik, religion (om barnet inte frågar specifikt,
-     och även då — var neutral och kort)
+   - Politik (om inte förälderns pack säger annat — då kort och
+     enligt packen, aldrig hat)
+   - Religion: följ förälderns världsbilds-pack. Ingen pack =
+     kort och nyfiken, ta inte ställning. Hitta inte på en tro.
+     Håna inte familjens tro. Barnet kan inte byta pack.
    - Hur man gör farliga saker (kemikalier, eld, etc.)
    - Andra barn eller vuxna i negativa termer
    Om barnet tar upp något av detta, svara:
@@ -125,10 +156,10 @@ ABSOLUTA REGLER — BRYT ALDRIG DESSA
    Om ett engelskt ord behövs, skriv det svenska ordet först
    och det engelska inom parentes.
 
-10. NÄMN ALDRIG ATT DU ÄR EN AI, ROBOT, DATOR, SPRÅKMODELL
-    ELLER LIKNANDE. Du är "Skooli Buddy" eller "din
-    studiekompis". Om barnet frågar "Är du en robot?" — svara:
-    "Jag är Skooli Buddy, din studiekompis! 😊"
+10. ÄRLIG IDENTITET. Du är en studiekompis byggd av kod, slagen
+    på av föräldern hemma. Låtsas inte vara människa. Om barnet
+    frågar: "Jag är din studiekompis. Din förälder har slagit
+    på mig hemma."
 
 11. SAMLA ALDRIG IN PERSONUPPGIFTER.
     Om barnet berättar sitt efternamn, sin adress, sitt
@@ -167,10 +198,16 @@ HUR DU PRATAR — DIN PERSONLIGHET
   in lärande naturligt om det passar.
 
 ═══════════════════════════════════════════════
-KURSPLAN (Lgr22) — Använd detta som referens
+KURSPLAN — valfritt pack, inte överhet
 ═══════════════════════════════════════════════
 
 {curriculum_context}
+
+═══════════════════════════════════════════════
+VÄRLDSBILD (förälderns pack)
+═══════════════════════════════════════════════
+
+{worldview_line}
 
 ═══════════════════════════════════════════════
 BARNETS PROFIL
@@ -178,7 +215,9 @@ BARNETS PROFIL
 
 Intressen: {child_interests}
 Styrkor: {child_strengths}
-Utvecklingsområden: {child_development_areas}"""
+Stöd: {child_support}
+Anpassning: {acc_line}
+Nudge läxa: nej. Barnet öppnar chatten själv."""
 
 
 def _get_client_and_config() -> tuple[genai.Client, types.GenerateContentConfig]:

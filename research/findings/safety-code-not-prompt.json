@@ -1,0 +1,24 @@
+{
+  "id": "safety-code-not-prompt",
+  "date": "2026-09-15",
+  "theme": "safety",
+  "status": "accepted",
+  "claim": "Barnsäkerhet som bara lever i systemprompten går att jailbreaka. Kris-hänvisning till BRIS måste kunna triggas av kod. Filter ska täcka svenska, inte bara engelska.",
+  "evidence": [
+    {
+      "title": "Egen kodgranskning 2026-09-15 — backend/safety.py vs skooli_buddy/core.py",
+      "url": "https://github.com/opensverige/projektpennan",
+      "year": 2026,
+      "notes": "safety.py: få engelska regex, ingen BRIS, ingen svenskt självskada-lexikon. Telegram-ytan skickar allt till Gemini förutom sessionsräknare. Leo-testerna är prompt-beroende."
+    },
+    {
+      "title": "BRIS — 116 111",
+      "url": "https://www.bris.se/",
+      "year": 2026,
+      "notes": "Fast nummer, gratis, alltid öppet. Ska vara den enda krisvägen i produkten. Kontrollera numret i CI en gång per år."
+    }
+  ],
+  "implication": "Gemensam safety-modul (P-03). Deterministiskt BRIS-svar. Svenska mönster. Prompten får upprepa, inte vara enda spärren.",
+  "backlog_refs": ["P-03", "P-14"],
+  "confidence": "high"
+}

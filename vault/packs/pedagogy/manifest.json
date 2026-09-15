@@ -1,0 +1,11 @@
+{
+  "id": "pedagogy-default",
+  "name": "Blandade metoder — inget läxgnäll",
+  "kind": "pedagogy",
+  "enabled": true,
+  "authored_by": "project",
+  "version": "0.1.0",
+  "can_disable": true,
+  "cannot_override_safety": true,
+  "notes": "Default blandar Sokrates, små steg, worked, CPA, saga, lek, retrieve, lässtöd. nudge_homework är alltid av."
+}

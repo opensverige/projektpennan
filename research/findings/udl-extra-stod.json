@@ -1,0 +1,30 @@
+{
+  "id": "udl-extra-stod",
+  "date": "2026-09-15",
+  "theme": "accessibility",
+  "status": "accepted",
+  "claim": "Stöd ska utgå från behov och tillgänglig lärmiljö, aldrig från diagnos. Flera sätt att förstå, svara och orka (UDL) är default — inte ett särläge för 'NPF-barn'.",
+  "evidence": [
+    {
+      "title": "Skolverket — Extra anpassningar, särskilt stöd och åtgärdsprogram",
+      "url": "https://www.skolverket.se/styrning-och-ansvar/regler-och-ansvar/ansvar-i-skolfragor/extra-anpassningar-sarskilt-stod-och-atgardsprogram",
+      "year": 2025,
+      "notes": "Diagnos får varken krävas eller räcka för stöd. Det är elevens behov som styr."
+    },
+    {
+      "title": "Skolverket — Tillgänglig lärmiljö för elever med NPF",
+      "url": "https://www.skolverket.se/download/18.5a8347601943e11436367/1736260106641/pdf13187.pdf",
+      "year": 2025,
+      "notes": "Heterogen grupp. Generella anpassningar (tydlighet, pauser, en sak i taget) plus individuellt stöd. 6,2 % hade åtgärdsprogram 2023/24 — många fler behöver extra anpassning."
+    },
+    {
+      "title": "CAST UDL Guidelines",
+      "url": "https://udlguidelines.cast.org/",
+      "year": 2024,
+      "notes": "Representation, action/expression, engagement. Digitala verktyg ska sänka irrelevanta hinder (lång text, ett enda svarssätt)."
+    }
+  ],
+  "implication": "Profilen har support_preferences åt alla. Diagnos är bara parent-authored, valfritt och extra känsligt (P-36) — vi sätter aldrig etiketten. Tomt fält = extra-stöd-default. SKILL blandar metoder (P-09, P-35). Botten nämner inte 'för att du har adhd' om inte föräldern bett om det.",
+  "backlog_refs": ["P-09", "P-16"],
+  "confidence": "high"
+}

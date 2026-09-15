@@ -1,0 +1,11 @@
+{
+  "id": "worldview-family",
+  "name": "Familjens världsbild",
+  "kind": "worldview",
+  "enabled": false,
+  "authored_by": "guardian",
+  "version": "0.1.0",
+  "can_disable": true,
+  "cannot_override_safety": true,
+  "notes": "Fyll i OVERLAY.md och slå på enabled. Tom/av = neutral default."
+}

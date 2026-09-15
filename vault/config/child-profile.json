@@ -1,13 +1,20 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "child": {
     "display_name": "Test-Elev",
     "grade": 4,
     "age": 10,
     "language": "sv",
     "subjects": ["matematik", "svenska", "NO"],
-    "interests": ["dinosaurier", "minecraft"]
+    "interests": ["dinosaurier", "minecraft"],
+    "support_preferences": ["korta_steg", "en_sak_i_taget", "pauser"],
+    "accommodations": {
+      "parent_authored": false,
+      "notes": "",
+      "labels": [],
+      "tell_child_the_label": false
+    }
   },
   "created_at": "2026-03-11T00:00:00Z",
-  "updated_at": "2026-03-11T00:00:00Z"
+  "updated_at": "2026-09-15T00:00:00Z"
 }

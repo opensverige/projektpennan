@@ -1,0 +1,30 @@
+{
+  "id": "accounted-open-core",
+  "date": "2026-09-15",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Accounted-modellen — öppen AGPL-motor, 0 kr för att köra själv, betalt för drift och kopplingar (~199 kr), Custom för egen server — är rätt mall för Skooli. Skydd och pedagogik får inte paywallas; hosted säljer fem-minuters-onboarding och EU-inference.",
+  "evidence": [
+    {
+      "title": "Accounted — Priser (Open 0 / Auto 199 / Custom)",
+      "url": "https://www.accounted.se/priser",
+      "year": 2026,
+      "notes": "Hela motorn i Open. Auto tar betalt för PSD2, AI i EU (Bedrock Stockholm), WhatsApp-kvitton, support. BankID i alla planer hos dem; hos oss BankID bara när vi är personuppgiftsansvariga (Hem)."
+    },
+    {
+      "title": "Accounted GitHub — AGPL, Docker self-host, hosted app",
+      "url": "https://github.com/erp-mafia/accounted",
+      "year": 2026,
+      "notes": "Yours to run. Hosted eller egen. AGPL hindrar tyst SaaS-kopia. Commercial license för inbäddning i stängd produkt."
+    },
+    {
+      "title": "Odysseus — self-host workspace, BYO OpenAI-compat, lokal Ollama default",
+      "url": "https://github.com/odysseus-dev/odysseus",
+      "year": 2026,
+      "notes": "Auth på. Porta inte ut. Nyckel i Settings. Samma BYO-form: vi är ytan, inte obligatoriskt modellen."
+    }
+  ],
+  "implication": "Lås kernel vs Hem i docs/PRODUCTIZATION.md. Backlog P-25–P-31. Ingen Hem-försäljning innan DPIA och safety-i-kod.",
+  "backlog_refs": ["P-25", "P-26", "P-28", "P-29", "P-31"],
+  "confidence": "high"
+}

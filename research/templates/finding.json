@@ -1,0 +1,18 @@
+{
+  "id": "kort-kebab-id",
+  "date": "2026-09-15",
+  "theme": "pedagogy",
+  "status": "draft",
+  "claim": "Ett mening som kan bevisas eller motbevisas.",
+  "evidence": [
+    {
+      "title": "Källans titel",
+      "url": "https://example.org",
+      "year": 2026,
+      "notes": "Vad i källan som bär upp påståendet."
+    }
+  ],
+  "implication": "Vad vi ändrar i produkt, regler eller backlog.",
+  "backlog_refs": ["P-09"],
+  "confidence": "medium"
+}

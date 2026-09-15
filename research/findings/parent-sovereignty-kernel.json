@@ -1,0 +1,30 @@
+{
+  "id": "parent-sovereignty-kernel",
+  "date": "2026-09-15",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Vårdnadshavaren — inte läroplanen, skolan eller leverantören — styr barnets sidekick: världsbild (inklusive tro i lärandet), egna agenter och om kursplan ens ska vara på. Kernel är utbytbar ovanpå en låst safety-kärna.",
+  "evidence": [
+    {
+      "title": "Barnkonventionen artikel 14 — förälderns rätt och skyldighet att vägleda i tanke, samvete och religion",
+      "url": "https://www.ohchr.org/en/instruments-mechanisms/instruments/convention-rights-child",
+      "year": 1990,
+      "notes": "Staten ska respektera föräldrars rätt att ge barnet ledning i tros- och samvetsfrågor, i takt med barnets mognad. En plattform som låser livsåskådning till läroplan eller leverantör går emot den linjen."
+    },
+    {
+      "title": "Föräldrabalken (1949:381) — vårdnadshavares ansvar för barnets personliga angelägenheter",
+      "url": "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/foraldrabalk-1949381_sfs-1949-381/",
+      "year": 2024,
+      "notes": "Vårdnadshavaren har rätt och skyldighet att bestämma i frågor som rör barnets personliga förhållanden. Sidekicken är ett hemverktyg, inte ett skolärende."
+    },
+    {
+      "title": "GDPR artikel 20 — dataportabilitet",
+      "url": "https://gdpr-info.eu/art-20-gdpr/",
+      "year": 2016,
+      "notes": "Föräldern ska kunna exportera barnkort, logg och packs som vanliga filer och köra samma kernel någon annanstans. Vendor lock-in på agent eller pedagogik är ett fel."
+    }
+  ],
+  "implication": "Pack-laddare + egen agent-upload (P-33). Världsbilds-pack, inklusive tro, som föräldern slår på (P-34). Lgr22 är pack med can_disable, aldrig överhet. Safety-kärnan kan inte packas bort.",
+  "backlog_refs": ["P-33", "P-34"],
+  "confidence": "high"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "school-context-family",
+  "name": "Veckans skolkontext",
+  "kind": "school-context",
+  "enabled": false,
+  "authored_by": "guardian",
+  "version": "0.1.0",
+  "can_disable": true,
+  "cannot_override_safety": true,
+  "notes": "Förälder-ägt. Ämne + tema + datum. Inga betyg, inga klasskamrater. TTL 14 dagar. Aldrig skol-lösen till Hem."
+}

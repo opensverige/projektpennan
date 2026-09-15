@@ -1,0 +1,222 @@
+{
+  "version": 1,
+  "notes": "Katalog över källor vi litar på. Nya fynd ska peka på en url härifrån eller motivera en ny källa i evidence.notes.",
+  "sources": [
+    {
+      "id": "skolverket-extra-stod",
+      "org": "Skolverket",
+      "title": "Extra anpassningar, särskilt stöd och åtgärdsprogram",
+      "url": "https://www.skolverket.se/styrning-och-ansvar/regler-och-ansvar/ansvar-i-skolfragor/extra-anpassningar-sarskilt-stod-och-atgardsprogram",
+      "themes": ["pedagogy", "accessibility"],
+      "cadence": "vid författningsändring"
+    },
+    {
+      "id": "skolverket-npf",
+      "org": "Skolverket",
+      "title": "Grundskolors arbete för en tillgänglig lärmiljö för elever med NPF",
+      "url": "https://www.skolverket.se/download/18.5a8347601943e11436367/1736260106641/pdf13187.pdf",
+      "themes": ["accessibility", "pedagogy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "skolverket-lgr22",
+      "org": "Skolverket",
+      "title": "Läroplan Lgr22 — centralt innehåll",
+      "url": "https://www.skolverket.se/undervisning/grundskolan/laroplan-och-kursplaner-for-grundskolan",
+      "themes": ["curriculum"],
+      "cadence": "vid revidering"
+    },
+    {
+      "id": "spsm-las-skriv",
+      "org": "SPSM",
+      "title": "Analysera och stöd elevens läs- och skrivutveckling",
+      "url": "https://spsm.se/stod-och-rad/undervisning/lasa-och-skriva/analysera-och-stod-las--och-skrivutveckling/",
+      "themes": ["accessibility", "pedagogy"],
+      "cadence": "halvår"
+    },
+    {
+      "id": "imy-barn",
+      "org": "IMY",
+      "title": "Personuppgifter om barn",
+      "url": "https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/introduktion-till-gdpr/personuppgifter/personuppgifter-om-barn/",
+      "themes": ["privacy", "safety"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "imy-plattformar",
+      "org": "IMY",
+      "title": "Barns och ungas rättigheter på digitala plattformar",
+      "url": "https://www.imy.se/globalassets/dokument/ovrigt/barn-och-ungas-rattigheter-pa-digitala-plattformar.pdf",
+      "themes": ["privacy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "dsl-2-4",
+      "org": "Sveriges riksdag",
+      "title": "Dataskyddslagen (2018:218) 2 kap. 4 § — ålder för samtycke",
+      "url": "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2018218-med-kompletterande-bestammelser_sfs-2018-218/",
+      "themes": ["privacy"],
+      "cadence": "vid lagändring"
+    },
+    {
+      "id": "cast-udl",
+      "org": "CAST",
+      "title": "Universal Design for Learning Guidelines",
+      "url": "https://udlguidelines.cast.org/",
+      "themes": ["pedagogy", "accessibility"],
+      "cadence": "vid ny version"
+    },
+    {
+      "id": "socratic-ai-rct",
+      "org": "Research Square preprint",
+      "title": "Socratic AI in K–12 Science Classrooms (RCT)",
+      "url": "https://doi.org/10.21203/rs.3.rs-8118546/v1",
+      "themes": ["pedagogy"],
+      "cadence": "när peer review landar"
+    },
+    {
+      "id": "inq-its",
+      "org": "Gobert et al.",
+      "title": "AI-based scaffolding of science inquiry (Inq-ITS)",
+      "url": "https://doi.org/10.1093/oso/9780198882077.003.0012",
+      "themes": ["pedagogy"],
+      "cadence": "vid uppföljningsstudier"
+    },
+    {
+      "id": "bris",
+      "org": "BRIS",
+      "title": "Barnens rätt i samhället — 116 111",
+      "url": "https://www.bris.se/",
+      "themes": ["safety"],
+      "cadence": "kontrollera nummer årligen"
+    },
+    {
+      "id": "accounted-priser",
+      "org": "Accounted / Arcim",
+      "title": "Priser — Open / Auto / Custom",
+      "url": "https://www.accounted.se/priser",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "odysseus",
+      "org": "Odysseus",
+      "title": "Self-hosted AI workspace (BYO + Ollama)",
+      "url": "https://github.com/odysseus-dev/odysseus",
+      "themes": ["product", "privacy"],
+      "cadence": "vid major"
+    },
+    {
+      "id": "internetstiftelsen-2025",
+      "org": "Internetstiftelsen",
+      "title": "Barnen och internet 2025 — kommunikationsappar",
+      "url": "https://svenskarnaochinternet.se/app/uploads/2025/11/internetstiftelsen-barnen-och-internet-2025-sammanfattning.pdf",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "oppna-skolplattformen",
+      "org": "Öppna skolplattformen / kolplattformen",
+      "title": "Föräldrar som hämtar egen skolinfo, data på enheten",
+      "url": "https://github.com/kolplattformen/skolplattformen",
+      "themes": ["product", "privacy"],
+      "cadence": "vid major"
+    },
+    {
+      "id": "oppna-skolplattformen-webb",
+      "org": "Öppna skolplattformen",
+      "title": "skolplattformen.org — ingen barninfo till oss",
+      "url": "https://skolplattformen.org/",
+      "themes": ["product", "privacy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "obsidian",
+      "org": "Obsidian",
+      "title": "Lokal markdown-vault, du äger filerna",
+      "url": "https://obsidian.md/",
+      "themes": ["product", "privacy"],
+      "cadence": "vid major"
+    },
+    {
+      "id": "gdpr-art-5",
+      "org": "EU",
+      "title": "GDPR artikel 5 — principer, minimering",
+      "url": "https://gdpr-info.eu/art-5-gdpr/",
+      "themes": ["privacy"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "uncrc-14",
+      "org": "OHCHR / FN",
+      "title": "Barnkonventionen artikel 14 — tanke, samvete, religion",
+      "url": "https://www.ohchr.org/en/instruments-mechanisms/instruments/convention-rights-child",
+      "themes": ["product", "privacy"],
+      "cadence": "vid konventionstolkning"
+    },
+    {
+      "id": "foraldrabalken",
+      "org": "Sveriges riksdag",
+      "title": "Föräldrabalken (1949:381)",
+      "url": "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/foraldrabalk-1949381_sfs-1949-381/",
+      "themes": ["product", "privacy"],
+      "cadence": "vid lagändring"
+    },
+    {
+      "id": "gdpr-art-20",
+      "org": "EU",
+      "title": "GDPR artikel 20 — dataportabilitet",
+      "url": "https://gdpr-info.eu/art-20-gdpr/",
+      "themes": ["privacy", "product"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "imy-kansliga",
+      "org": "IMY",
+      "title": "Känsliga personuppgifter (hälsa)",
+      "url": "https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/introduktion-till-gdpr/personuppgifter/kansliga-personuppgifter/",
+      "themes": ["privacy", "accessibility"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "cognitive-load",
+      "org": "Sweller / instructionaldesign.org",
+      "title": "Cognitive load and worked examples",
+      "url": "https://www.instructionaldesign.org/theories/cognitive-load/",
+      "themes": ["pedagogy"],
+      "cadence": "vid översikt"
+    },
+    {
+      "id": "ncetm-cpa",
+      "org": "NCETM",
+      "title": "Representations in the primary mathematics classroom (CPA)",
+      "url": "https://www.ncetm.org.uk/features/the-five-big-ideas-at-primary-representation-and-structure/",
+      "themes": ["pedagogy"],
+      "cadence": "vid revidering"
+    },
+    {
+      "id": "retrieval-practice",
+      "org": "Agarwal / retrievalpractice.org",
+      "title": "Retrieval practice",
+      "url": "https://www.retrievalpractice.org/",
+      "themes": ["pedagogy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "unicef-play",
+      "org": "UNICEF / Lego Foundation",
+      "title": "Learning through Play",
+      "url": "https://www.unicef.org/sites/default/files/2018-12/UNICEF-Lego-Foundation-Learning-through-Play.pdf",
+      "themes": ["pedagogy"],
+      "cadence": "vid ny rapport"
+    },
+    {
+      "id": "mediemyndigheten-2025",
+      "org": "Mediemyndigheten",
+      "title": "Ungar & medier 2025",
+      "url": "https://mediemyndigheten.se/globalassets/rapporter-och-analyser/ungar--medier/mediemyndigheten-rapport-ungar-och-medier.pdf",
+      "themes": ["product"],
+      "cadence": "årlig"
+    }
+  ]
+}
