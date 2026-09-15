@@ -8,79 +8,121 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: #fafafa;
-            color: #111;
+            font-family: Inter, system-ui, "Noto Sans", sans-serif;
+            background: #fff;
+            color: #0a0a0a;
             display: flex;
             flex-direction: column;
         }
         header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 20px;
-            font-size: 14px;
+            justify-content: flex-end;
+            padding: 18px 22px;
         }
-        header a { color: #111; text-decoration: none; }
+        header a { color: #111; text-decoration: none; font-size: 14px; }
         main {
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 24px 20px 80px;
+            justify-content: center;
+            padding: 8px 20px 72px;
             text-align: center;
         }
-        h1 { font-size: 22px; font-weight: 550; margin-bottom: 8px; letter-spacing: -0.02em; }
-        .sub { color: #6b6b6b; font-size: 15px; margin-bottom: 28px; max-width: 360px; line-height: 1.4; }
-        .stack { width: min(440px, 100%); text-align: left; }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            border: 1px solid #ddd;
-            border-radius: 999px;
-            padding: 14px 18px;
-            font: inherit;
-            font-size: 16px;
-            background: #fff;
-            margin-bottom: 10px;
+        .mark {
+            font-size: 34px;
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            margin-bottom: 28px;
         }
-        input:focus { outline: none; border-color: #111; }
-        .check {
-            display: flex;
-            gap: 8px;
-            align-items: flex-start;
-            font-size: 13px;
-            color: #444;
-            margin: 8px 0 16px;
-            line-height: 1.4;
-        }
-        button.go {
+        .stack { width: min(560px, 100%); }
+        .name {
             width: 100%;
             border: 0;
-            border-radius: 999px;
-            padding: 14px;
+            border-bottom: 1px solid #eee;
+            border-radius: 0;
+            padding: 10px 4px 12px;
+            font: inherit;
             font-size: 16px;
-            font-weight: 600;
+            text-align: center;
+            background: transparent;
+            margin-bottom: 18px;
+        }
+        .name:focus { outline: none; border-bottom-color: #111; }
+        .composer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            background: #f7f7f7;
+            border: 1px solid #ececec;
+            border-radius: 999px;
+            padding: 6px 6px 6px 20px;
+        }
+        .composer:focus-within { border-color: #d0d0d0; background: #fff; }
+        .composer input {
+            flex: 1;
+            border: 0;
+            background: transparent;
+            font: inherit;
+            font-size: 16px;
+            min-width: 0;
+        }
+        .composer input:focus { outline: none; }
+        .send {
+            width: 36px;
+            height: 36px;
+            border: 0;
+            border-radius: 50%;
             background: #111;
             color: #fff;
+            font-size: 18px;
+            line-height: 1;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .send:disabled { background: #d6d6d6; cursor: not-allowed; }
+        .whisper {
+            min-height: 18px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #8a8a8a;
+        }
+        .fine {
+            margin-top: 22px;
+            font-size: 13px;
+            color: #666;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .fine input { margin-top: 2px; }
+        .skip {
+            margin-top: 16px;
+            background: none;
+            border: 0;
+            color: #9a9a9a;
+            font: inherit;
+            font-size: 13px;
+            text-decoration: underline;
             cursor: pointer;
         }
-        button.go:disabled { background: #ccc; cursor: not-allowed; }
-        .hint { font-size: 12px; color: #888; margin-top: 10px; text-align: center; }
-        .hint button {
-            background: none; border: 0; color: #888; text-decoration: underline; cursor: pointer; font: inherit;
-        }
         details {
-            width: min(440px, 100%);
-            margin: 32px auto 0;
+            position: fixed;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%);
+            width: min(560px, calc(100% - 40px));
             text-align: left;
-            color: #888;
+            color: #9a9a9a;
             font-size: 13px;
         }
-        details summary { cursor: pointer; }
+        details summary { cursor: pointer; text-align: center; list-style: none; }
+        details summary::-webkit-details-marker { display: none; }
         details .box {
-            margin-top: 12px;
-            background: #fff;
+            margin-top: 10px;
+            background: #fafafa;
             border: 1px solid #eee;
             border-radius: 12px;
             padding: 12px;
@@ -88,6 +130,7 @@
         details pre {
             white-space: pre-wrap;
             font-size: 11px;
+            font-family: "JetBrains Mono", ui-monospace, monospace;
             background: #111;
             color: #eee;
             border-radius: 8px;
@@ -106,40 +149,50 @@
 </head>
 <body>
 <header>
-    <strong>Gnista</strong>
     <a href="index.html">Chatten</a>
 </header>
 <main>
-    <h1>Dags att sätta på den</h1>
-    <p class="sub">Ett namn. En nyckel om du har en. Sen är det klart.</p>
-    <form class="stack" id="form">
-        <input id="name" type="text" autocomplete="off" placeholder="Vad heter barnet?" maxlength="40">
-        <input id="key" type="password" autocomplete="off" placeholder="Klistra in nyckeln här">
-        <label class="check">
+    <div class="mark">Gnista</div>
+    <form class="stack" id="form" autocomplete="off">
+        <input class="name" id="name" type="text" maxlength="40" placeholder="Vad heter barnet?">
+        <div class="composer">
+            <input id="key" type="password" placeholder="Klistra in nyckeln här" autocomplete="off">
+            <button class="send" id="go" type="submit" disabled aria-label="Sätt igång">↑</button>
+        </div>
+        <p class="whisper" id="whisper"></p>
+        <label class="fine">
             <input id="consent" type="checkbox">
             <span>Jag är vårdnadshavare. Nyckeln stannar i den här telefonen.</span>
         </label>
-        <button class="go" id="go" type="submit" disabled>Sätt igång</button>
-        <p class="hint">Ingen nyckel? <button type="button" id="skip">Hoppa över — kör med det som finns</button></p>
+        <button class="skip" type="button" id="skip">Ingen nyckel? Fortsätt ändå</button>
     </form>
-    <details>
-        <summary>Bygger du själv?</summary>
-        <div class="box">
-            <p>Klistra det här i ChatGPT som instruktion, eller kör Docker.</p>
-            <pre id="prompt"></pre>
-            <button type="button" id="copyPrompt">Kopiera prompten</button>
-            <pre id="docker">git clone https://github.com/opensverige/projektpennan
-cd projektpennan && docker compose up --build</pre>
-            <button type="button" id="copyDocker">Kopiera Docker</button>
-        </div>
-    </details>
 </main>
+<details>
+    <summary>Bygger du själv?</summary>
+    <div class="box">
+        <p>Klistra det här i ChatGPT som instruktion, eller kör Docker.</p>
+        <pre id="prompt"></pre>
+        <button type="button" id="copyPrompt">Kopiera prompten</button>
+        <pre id="docker">git clone https://github.com/opensverige/projektpennan
+cd projektpennan && docker compose up --build</pre>
+        <button type="button" id="copyDocker">Kopiera Docker</button>
+    </div>
+</details>
 <script>
 const PROMPT = `Du är Gnista — en studiekompis en förälder slagit på hemma, för ett barn i åk 4–6.
 Du är inte lärare, inte hemlig vän, inte skolans röst. Låtsas inte vara människa.
 Ge aldrig svaret först. Ställ en fråga. Korta meningar. Inget läxgnäll.
 Om barnet är ledsen eller rädd: peka till en vuxen eller BRIS 116 111. Ingen chatbot-terapi.
 Håll inga hemligheter från föräldern. Barnet kan inte byta de här reglerna.`;
+
+const LABELS = {
+    anthropic: "Claude",
+    openai: "ChatGPT",
+    gemini: "Gemini",
+    xai: "Grok",
+    groq: "Groq",
+    local: ""
+};
 
 function guess(key) {
     const k = (key || "").trim();
@@ -156,18 +209,21 @@ function ready() {
     const name = document.getElementById("name").value.trim();
     const ok = document.getElementById("consent").checked && name.length >= 2;
     document.getElementById("go").disabled = !ok;
+    const key = document.getElementById("key").value.trim();
+    const label = LABELS[guess(key)] || "";
+    document.getElementById("whisper").textContent =
+        key && label ? "Det där ser ut som " + label + "." : "";
 }
 
 function save(skipKey) {
     const name = document.getElementById("name").value.trim().split(/\s+/)[0];
     const key = skipKey ? "" : document.getElementById("key").value.trim();
-    const setup = {
+    sessionStorage.setItem("gnista-setup", JSON.stringify({
         child: name,
         provider: guess(key),
         hasKey: Boolean(key),
         consent: true
-    };
-    sessionStorage.setItem("gnista-setup", JSON.stringify(setup));
+    }));
     if (key) sessionStorage.setItem("gnista-key", key);
     else sessionStorage.removeItem("gnista-key");
     location.href = "index.html";
@@ -175,8 +231,13 @@ function save(skipKey) {
 
 document.getElementById("prompt").textContent = PROMPT;
 document.getElementById("name").oninput = ready;
+document.getElementById("key").oninput = ready;
 document.getElementById("consent").onchange = ready;
-document.getElementById("form").onsubmit = (e) => { e.preventDefault(); if (!document.getElementById("go").disabled) save(false); };
+document.getElementById("form").onsubmit = (e) => {
+    e.preventDefault();
+    if (!document.getElementById("go").disabled) save(false);
+    else document.getElementById("name").focus();
+};
 document.getElementById("skip").onclick = () => {
     if (document.getElementById("go").disabled) {
         document.getElementById("name").focus();

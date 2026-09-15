@@ -53,7 +53,7 @@ P-03 och P-29.
 | P-25 | **Kernel-gräns i repo.** Hosted = tenant + identitet + faktura, inte en fork av pedagogiken. | Accounted-modellen. | `accounted-open-core` |
 | P-26 | **Provider-adapter.** Läser `vault/config/runtime.json`. Ollama / OpenAI / Anthropic / Gemini / OpenAI-compat. BYO-nyckel i env. | Föräldern jackar in frontier-modeller. Plattan består. | `parent-baseplate` |
 | P-27 | **Förälder-PWA** (BankID, PIN, paus). Barn-PWA bara fallback. | Förälderns yta ≠ barnets yta. | `contact-not-destination` |
-| P-28 | **Webb-först onboarding.** Samtycke, form, barn, modell, yta. BankID bara på Hem sen. | Börjar i webben, inte Docker. Se `frontend/start.html`. | `parent-baseplate` |
+| P-28 | **Webb-först onboarding.** En skärm: namn, klistra nyckel, samtycke. BankID bara på Hem sen. | Börjar i webben, inte Docker. Se `frontend/start.html`. | `parent-baseplate` |
 | P-29 | **DPIA + underbiträden + ZDR** innan första betalande familj. | Hosted = vi är personuppgiftsansvariga. | `gdpr-hem` |
 | P-30 | **Telegram start-token + allowlist** (dödar hårdkodat id). | Open och Hem. | `channel-sweden` |
 | P-31 | **Publik prissida + DPA-text** (Open / Hem / egen drift). | Accounted-tabell. Aldrig paywalla safety. | `accounted-open-core` |

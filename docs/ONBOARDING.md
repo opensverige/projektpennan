@@ -4,7 +4,8 @@ Föräldern vi bygger åt är inte en developer. Förra
 `start.html` var en install-wizard: sex steg, P-26-märken,
 bas-URL, Docker mot Telegram. Det är Vibecode
 ([lista på ANTHROPIC_API_KEY](https://mobbin.com/screens/1d7d1e3a-0d6b-4f56-a2e9-5292cd3923f6)).
-Inte Grok.
+Inte Grok. Andra varvet var fortfarande ett *formulär*
+(rubrik, två fält, fet knapp). Grok har ingen rubrik.
 
 ## Teamet
 
@@ -12,45 +13,49 @@ Inte Grok.
 ge barnet en chatt, inte förstå en platta. Om de har en nyckel
 ska de kunna klistra in den. Annars ska de ändå komma in.
 
-**Grok-designern.** Efter konto är Grok en tom yta och
-“Ask anything”
-([chatt](https://mobbin.com/flows/5ceeca79-6456-46c8-a95c-d113294f0fa9),
-[hem](https://mobbin.com/flows/4d069838-3109-4241-9086-405c81b309f1)).
-Deras *konto*-onboarding är 14 skärmar — den kopierar vi inte.
-Produkten är den tomma ytan.
+**Grok-designern.** Efter konto är Grok en tom yta, ett
+ordmärke och en pillerad
+([Ask anything](https://mobbin.com/screens/f53f0654-607c-45e6-8533-1babfb09a1e3),
+[How can I help](https://mobbin.com/screens/5a43c0f5-f1ea-4c20-a04c-e3d324bb912e)).
+Pilen sitter *i* fältet. Deras *konto*-onboarding är 14
+skärmar — den kopierar vi inte. Produkten är den tomma ytan.
 
 **ChatGPT-designern.** Webben är en mening och en ruta
-([Ready when you are](https://mobbin.com/screens/18548847-534b-4263-9ffb-3f6cfdda7582),
-[Where should we begin?](https://mobbin.com/screens/89314f68-aeb4-4303-b4d2-e36e9ff43cd6)).
-Ingen leverantörsväljare.
+([What's on the agenda](https://mobbin.com/screens/d9925cb3-c483-46ed-8e7c-acfdf39185b9),
+[Ready to dive in](https://mobbin.com/screens/9b4ff6b8-cf1c-4344-92c5-15bcff3e226b)).
+Ingen leverantörsväljare. Ingen signup-knapp under.
 
-**Secrets-designern.** Brave livestream: ett fält, “Enter your
-key here”, en knapp
-([skärm](https://mobbin.com/screens/47ad645e-8764-4950-b76a-f256854326e7)).
-WhatsApp hemlig kod: ett fält, en mening
-([skärm](https://mobbin.com/screens/39a7a3d6-80ac-44e8-9b2b-a951a2791c4d)).
-Inget RPC-URL. Inget modellnamn.
+**Secrets-designern.** Ett fält, “klistra in här”. Inte
+OpenAI Platform / Relevance AI med region och curl
+([Grok-nyckel + curl](https://mobbin.com/screens/5fe0f0c1-56f6-4d67-942f-604073ce4c72)
+är päron-sidan, inte förstasidan). WhatsApp hemlig kod: ett
+fält, en mening
+([skärm](https://mobbin.com/screens/f43918a2-fbc9-424f-91a3-fbe214344f91)).
 
 **Päron-off-ramp.** Den som vill ha ChatGPT-integration eller
-Docker får en *prompt att klistra* och en länk, gömd bakom
+Docker får en *prompt att klistra* och en rad, gömd bakom
 “Bygger du själv?”. Inte på förstasidan.
 
-## Default-vägen (en skärm)
+## Default-vägen (en skärm, som produkten)
 
-1. Jag är vårdnadshavare.
-2. Vad heter barnet?
-3. Klistra in nyckeln här. (valfritt)
-4. Sätt igång.
+Ordmärke. Namn som en tyst rad. Sen *ett* pastafält.
+
+1. Vad heter barnet?
+2. Klistra in nyckeln här. (valfritt)
+3. Jag är vårdnadshavare.
+4. Pilen i fältet.
 
 Nyckelns prefix avgör leverantören tyst (`sk-`, `sk-ant-`,
-`AIza`, `xai-`). Föräldern ser aldrig “openai-compat”.
+`AIza`, `xai-`). En viskning “Det där ser ut som ChatGPT”
+är allt de ser. Aldrig “openai-compat”.
 
-Ingen progress-bar. Inget recept i JSON. Inget “kör i kväll”.
+Ingen progress-bar. Ingen fet “Sätt igång”. Inget recept i JSON.
 
 ## Av-ramp
 
-Bakom en textlänk: kopiera en systemprompt till ChatGPT, eller
-en rad Docker. Det är för päronen. Det är inte onboardingen.
+Bakom en textlänk längst ner: kopiera en systemprompt till
+ChatGPT, eller en rad Docker. Det är för päronen. Det är
+inte onboardingen.
 
 ## Inte Grok-konto
 

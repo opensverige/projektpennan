@@ -1,0 +1,36 @@
+{
+  "id": "onboarding-grok-simple",
+  "date": "2026-09-15",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Förälderstarten ska vara Grok efter login: ordmärke + ett pastafält. Inte wizard, inte leverantörslista, inte fet signup-knapp. Päron får en gömd prompt att klistra i ChatGPT.",
+  "evidence": [
+    {
+      "title": "Grok web empty composer — Ask anything / How can I help",
+      "url": "https://mobbin.com/screens/f53f0654-607c-45e6-8533-1babfb09a1e3",
+      "year": 2026,
+      "notes": "Ordmärke, en pillerad, pilen i fältet. Ingen onboarding-copy. Det är produkten."
+    },
+    {
+      "title": "ChatGPT web empty composer — What's on the agenda / Ask anything",
+      "url": "https://mobbin.com/screens/d9925cb3-c483-46ed-8e7c-acfdf39185b9",
+      "year": 2026,
+      "notes": "En mening, en ruta. Ingen provider-picker."
+    },
+    {
+      "title": "WhatsApp enter code — one field, one sentence",
+      "url": "https://mobbin.com/screens/f43918a2-fbc9-424f-91a3-fbe214344f91",
+      "year": 2026,
+      "notes": "Hemlig kod som ett enda fält. Inte ett admin-dialog."
+    },
+    {
+      "title": "Anti-pattern: Grok API key create + curl",
+      "url": "https://mobbin.com/screens/5fe0f0c1-56f6-4d67-942f-604073ce4c72",
+      "year": 2026,
+      "notes": "Region, curl, playground. Det är päron-av-rampen, aldrig förstasidan."
+    }
+  ],
+  "implication": "P-41 är canvas, inte formulär. Prefix sniffar provider. Av-ramp bakom Bygger du själv. Se docs/ONBOARDING.md.",
+  "backlog_refs": ["P-28", "P-41"],
+  "confidence": "high"
+}

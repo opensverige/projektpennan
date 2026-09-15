@@ -46,8 +46,8 @@ låsa modell. Laddaren är P-26. Tills dess läser backend
 
 ## B. Samma platta, er frontier-modell
 
-Från start-sidan: välj ChatGPT / Claude / Gemini / egen endpoint.
-Ladda ner `.env`. Lägg den i projektroten. **Skicka inte nyckeln
+Från start-sidan: klistra in nyckeln. Prefixet väljer
+ChatGPT / Claude / Gemini / Grok tyst. **Skicka inte nyckeln
 till oss.** Ni betalar leverantören. Ni godkänner att läxtext
 lämnar hemmet.
 
