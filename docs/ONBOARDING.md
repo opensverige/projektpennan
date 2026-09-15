@@ -55,6 +55,9 @@ Ytan är shadcn + shadcnblocks `login1` + React Bits Aurora.
 Samma tokens på chatt och föräldravy. Se `docs/UX-ONBOARDING.md`.
 Källan lever i `web/`. Bygg: `cd web && npm run build` → `frontend/`.
 
+OAuth är primärt för ChatGPT och Grok (device-länk, som Hermes).
+Claude har ingen inloggningsknapp. Se `docs/OAUTH.md`.
+
 ## Av-ramp
 
 Bakom en textlänk längst ner: kopiera en systemprompt till

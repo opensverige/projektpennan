@@ -21,7 +21,26 @@ export type Setup = {
   provider: string
   hasKey: boolean
   consent: boolean
+  auth?: "key" | "oauth" | "local"
 }
+
+export const OAUTH = {
+  chatgpt: {
+    id: "chatgpt",
+    label: "ChatGPT",
+    deviceUrl: "https://auth.openai.com/codex/device",
+    hint: "Samma inloggning som Codex. Plus eller högre.",
+  },
+  grok: {
+    id: "grok",
+    label: "Grok",
+    deviceUrl: "https://auth.x.ai",
+    hint: "SuperGrok eller X Premium+.",
+  },
+} as const
+
+export const CLAUDE_OAUTH_BAN =
+  "Claude tillåter inte inloggning i andra appar. Klistra en API-nyckel."
 
 export function guessProvider(key: string): string {
   const k = key.trim()
@@ -56,8 +75,23 @@ export function saveSetup(child: string, key: string) {
       provider,
       hasKey: Boolean(key),
       consent: true,
+      auth: key ? "key" : "local",
     } satisfies Setup)
   )
   if (key) sessionStorage.setItem("gnista-key", key)
   else sessionStorage.removeItem("gnista-key")
+}
+
+export function saveOAuthSetup(child: string, provider: "chatgpt" | "grok") {
+  sessionStorage.setItem(
+    "gnista-setup",
+    JSON.stringify({
+      child,
+      provider,
+      hasKey: false,
+      consent: true,
+      auth: "oauth",
+    } satisfies Setup)
+  )
+  sessionStorage.removeItem("gnista-key")
 }

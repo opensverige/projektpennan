@@ -18,6 +18,7 @@ import {
   FieldDescription,
   FieldGroup,
   FieldLabel,
+  FieldSeparator,
 } from "@/components/ui/field"
 import {
   InputGroup,
@@ -26,11 +27,21 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group"
 import { Input } from "@/components/ui/input"
-import { DOCKER, PROMPT, providerLabel, saveSetup } from "@/lib/setup"
+import {
+  CLAUDE_OAUTH_BAN,
+  DOCKER,
+  OAUTH,
+  PROMPT,
+  providerLabel,
+  saveOAuthSetup,
+  saveSetup,
+} from "@/lib/setup"
 
 function goChat() {
   window.location.href = "./index.html"
 }
+
+type OauthId = keyof typeof OAUTH
 
 export function StartPage() {
   const [name, setName] = useState("")
@@ -38,6 +49,8 @@ export function StartPage() {
   const [consent, setConsent] = useState(false)
   const [showKey, setShowKey] = useState(false)
   const [hint, setHint] = useState(false)
+  const [oauth, setOauth] = useState<OauthId | null>(null)
+  const [oauthStatus, setOauthStatus] = useState("")
   const reduceMotion = useMemo(
     () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     []
@@ -47,12 +60,38 @@ export function StartPage() {
   const ready = consent && child.length >= 2
   const label = providerLabel(key)
 
+  function needReady() {
+    if (ready) return true
+    setHint(true)
+    return false
+  }
+
   function submit(skipKey: boolean) {
-    if (!ready) {
-      setHint(true)
-      return
-    }
+    if (!needReady()) return
     saveSetup(child, skipKey ? "" : key.trim())
+    goChat()
+  }
+
+  async function finishOauth() {
+    if (!oauth || !needReady()) return
+    try {
+      const res = await fetch(`/api/oauth/import/${oauth}`, { method: "POST" })
+      if (res.ok) {
+        const data = (await res.json()) as { source?: string }
+        toast(data.source ? `Hittade inloggningen (${data.source})` : "Inloggningen är sparad här")
+      } else {
+        const data = (await res.json().catch(() => ({}))) as { detail?: string }
+        setOauthStatus(
+          data.detail ||
+            "Ingen lokal session än. Det är okej — du har loggat in hos dem. P-26 kopplar anropet."
+        )
+      }
+    } catch {
+      setOauthStatus(
+        "Backend sover. Inloggningen hos dem räknas ändå — vi sparar valet här."
+      )
+    }
+    saveOAuthSetup(child, oauth)
     goChat()
   }
 
@@ -102,46 +141,6 @@ export function StartPage() {
                 />
               </Field>
 
-              <Field>
-                <FieldLabel htmlFor="key">Nyckel</FieldLabel>
-                <InputGroup className="h-11">
-                  <InputGroupInput
-                    id="key"
-                    type={showKey ? "text" : "password"}
-                    value={key}
-                    placeholder="Klistra in nyckeln här"
-                    autoComplete="off"
-                    onChange={(e) => setKey(e.target.value)}
-                  />
-                  <InputGroupAddon align="inline-end">
-                    <InputGroupButton
-                      size="icon-sm"
-                      aria-label={showKey ? "Dölj nyckel" : "Visa nyckel"}
-                      onClick={() => setShowKey((v) => !v)}
-                    >
-                      {showKey ? <EyeOffIcon /> : <EyeIcon />}
-                    </InputGroupButton>
-                    <InputGroupButton
-                      type="submit"
-                      size="icon-sm"
-                      variant="default"
-                      disabled={!ready}
-                      aria-label="Sätt igång"
-                    >
-                      <ArrowUpIcon />
-                    </InputGroupButton>
-                  </InputGroupAddon>
-                </InputGroup>
-                {label ? (
-                  <Badge variant="secondary">Det där ser ut som {label}</Badge>
-                ) : (
-                  <FieldDescription>
-                    Valfritt. Har du en nyckel från ChatGPT, Claude eller Gemini —
-                    klistra in den.
-                  </FieldDescription>
-                )}
-              </Field>
-
               <Field orientation="horizontal" data-invalid={hint && !consent}>
                 <Checkbox
                   id="consent"
@@ -149,7 +148,7 @@ export function StartPage() {
                   onCheckedChange={(v) => setConsent(v === true)}
                 />
                 <FieldLabel htmlFor="consent" className="font-normal">
-                  Jag är vårdnadshavare. Nyckeln stannar i den här telefonen.
+                  Jag är vårdnadshavare. Inloggningen stannar i den här telefonen.
                 </FieldLabel>
               </Field>
 
@@ -159,14 +158,90 @@ export function StartPage() {
                 </FieldDescription>
               ) : null}
 
-              <Button
-                type="button"
-                variant="link"
-                className="h-auto p-0 text-muted-foreground"
-                onClick={() => submit(true)}
-              >
-                Ingen nyckel? Fortsätt ändå
-              </Button>
+              {oauth ? (
+                <OauthPanel
+                  provider={oauth}
+                  status={oauthStatus}
+                  onCancel={() => {
+                    setOauth(null)
+                    setOauthStatus("")
+                  }}
+                  onDone={() => void finishOauth()}
+                />
+              ) : (
+                <>
+                  <Field>
+                    <FieldLabel>Använd abonnemanget</FieldLabel>
+                    <div className="flex flex-col gap-2">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => needReady() && setOauth("chatgpt")}
+                      >
+                        Fortsätt med ChatGPT
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => needReady() && setOauth("grok")}
+                      >
+                        Fortsätt med Grok
+                      </Button>
+                    </div>
+                    <FieldDescription>{CLAUDE_OAUTH_BAN}</FieldDescription>
+                  </Field>
+
+                  <FieldSeparator>eller klistra en nyckel</FieldSeparator>
+
+                  <Field>
+                    <FieldLabel htmlFor="key">Nyckel</FieldLabel>
+                    <InputGroup className="h-11">
+                      <InputGroupInput
+                        id="key"
+                        type={showKey ? "text" : "password"}
+                        value={key}
+                        placeholder="Klistra in nyckeln här"
+                        autoComplete="off"
+                        onChange={(e) => setKey(e.target.value)}
+                      />
+                      <InputGroupAddon align="inline-end">
+                        <InputGroupButton
+                          size="icon-sm"
+                          aria-label={showKey ? "Dölj nyckel" : "Visa nyckel"}
+                          onClick={() => setShowKey((v) => !v)}
+                        >
+                          {showKey ? <EyeOffIcon /> : <EyeIcon />}
+                        </InputGroupButton>
+                        <InputGroupButton
+                          type="submit"
+                          size="icon-sm"
+                          variant="default"
+                          disabled={!ready}
+                          aria-label="Sätt igång"
+                        >
+                          <ArrowUpIcon />
+                        </InputGroupButton>
+                      </InputGroupAddon>
+                    </InputGroup>
+                    {label ? (
+                      <Badge variant="secondary">Det där ser ut som {label}</Badge>
+                    ) : (
+                      <FieldDescription>
+                        För den som har en nyckel. Claude hör hemma här.
+                      </FieldDescription>
+                    )}
+                  </Field>
+
+                  <Button
+                    type="button"
+                    variant="link"
+                    className="h-auto p-0 text-muted-foreground"
+                    onClick={() => submit(true)}
+                  >
+                    Ingen nyckel? Fortsätt ändå
+                  </Button>
+                </>
+              )}
             </FieldGroup>
           </form>
 
@@ -177,7 +252,8 @@ export function StartPage() {
               </AccordionTrigger>
               <AccordionContent className="flex flex-col gap-3">
                 <p className="text-sm text-muted-foreground">
-                  Klistra det här i ChatGPT som instruktion, eller kör Docker.
+                  Päron: `codex login --device-auth` eller `grok login --device-auth`,
+                  sen “Jag är inne”. Eller klistra prompten i ChatGPT.
                 </p>
                 <pre className="overflow-x-auto rounded-lg bg-foreground p-3 font-mono text-xs text-background whitespace-pre-wrap">
                   {PROMPT}
@@ -211,5 +287,52 @@ export function StartPage() {
         </div>
       </section>
     </Shell>
+  )
+}
+
+function OauthPanel({
+  provider,
+  status,
+  onCancel,
+  onDone,
+}: {
+  provider: OauthId
+  status: string
+  onCancel: () => void
+  onDone: () => void
+}) {
+  const spec = OAUTH[provider]
+  return (
+    <Field>
+      <FieldLabel>Logga in hos {spec.label}</FieldLabel>
+      <p className="text-sm text-muted-foreground">{spec.hint}</p>
+      <a
+        href={spec.deviceUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="break-all text-sm underline underline-offset-4"
+      >
+        {spec.deviceUrl}
+      </a>
+      <div className="flex flex-col gap-2">
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => {
+            navigator.clipboard.writeText(spec.deviceUrl)
+            toast("Länken är kopierad")
+          }}
+        >
+          Kopiera länken
+        </Button>
+        <Button type="button" onClick={onDone}>
+          Jag är inne
+        </Button>
+        <Button type="button" variant="ghost" onClick={onCancel}>
+          Avbryt
+        </Button>
+      </div>
+      {status ? <FieldDescription>{status}</FieldDescription> : null}
+    </Field>
   )
 }

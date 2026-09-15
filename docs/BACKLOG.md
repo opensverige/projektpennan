@@ -73,6 +73,7 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 | P-38 | **Förälder-hostad connector.** De kör den hemma med sitt BankID/lösen. Skriver minimerad `context.json` till vault. Hem får aldrig skol-credentials eller live-API. | Byggarföräldrar gör det redan. Vi standardiserar formatet, inte inloggningen. | `parent-owned-school-context` |
 | P-40 | **Byt arbetsnamn → Gnista.** Kontakt i chatt, bot, frontend, safety-spec. Projekt Pennan stannar. Stjärnis bara som valfritt pack. | Skooli Buddy krockar med Homework Buddy / Studybuddy. Se `docs/NAME.md`. | `product-name` |
 | P-41 | **Förälder-start: en skärm.** Namn + klistra nyckel. Grok-tom, inte wizard. Av-ramp för päron. | Föräldern är inte developer. Se `docs/ONBOARDING.md`. | `parent-baseplate` |
+| P-42 | **Prenumerations-OAuth.** ChatGPT + Grok via device-länk (Hermes/Codex/Grok Build). Claude förbjuden. Lokal import av `~/.codex` / `~/.grok`. Inte impersonation. | Föräldern har redan betalat. Se `docs/OAUTH.md`. | `oauth-subscription` |
 
 ## Medvetet inte i scopet
 - Skola som operatör: Unikum-SSO, klass-tenant, lärarvy, write-back.

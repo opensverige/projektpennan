@@ -15,6 +15,7 @@ from pydantic import BaseModel
 from pipeline import run_pipeline
 from session_store import SessionStore
 from reports import list_reports, get_report
+from oauth import catalog, find_local_session, get_provider
 
 app = FastAPI(title="Skooli Buddy", version="0.2.0")
 
@@ -66,6 +67,25 @@ async def chat(req: ChatRequest):
 @app.get("/api/health")
 async def health():
     return {"status": "ok", "service": "skooli-buddy", "version": "0.2.0"}
+
+
+@app.get("/api/oauth/providers")
+async def oauth_providers():
+    return {"providers": catalog()}
+
+
+@app.post("/api/oauth/import/{provider}")
+async def oauth_import(provider: str):
+    try:
+        spec = get_provider(provider)
+    except KeyError:
+        raise HTTPException(status_code=404, detail="Okänd leverantör.")
+    if not spec.get("allowed"):
+        raise HTTPException(status_code=403, detail=spec["reason"])
+    result = find_local_session(provider)
+    if not result.get("ok"):
+        raise HTTPException(status_code=404, detail=result["reason"])
+    return result
 
 
 @app.get("/api/reports")

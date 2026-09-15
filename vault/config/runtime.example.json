@@ -6,7 +6,8 @@
   "model": "hermes3:8b",
   "api_key_env": null,
   "notes": [
-    "provider: ollama | openai | anthropic | gemini | openai-compat | hem",
+    "provider: ollama | openai | anthropic | gemini | openai-compat | hem | chatgpt-oauth | grok-oauth",
+    "oauth: ChatGPT/Grok via deras CLI-session. Claude = nyckel, inte OAuth.",
     "openai-compat: valfri base_url (LM Studio, OpenRouter, egen proxy)",
     "Safety i koden körs före och efter. Modellen får inte stänga av den."
   ]
