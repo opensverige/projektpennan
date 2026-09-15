@@ -4,6 +4,9 @@ Arbetsnamn: **Skooli Buddy**. Namnet är inte låst.
 
 > Föräldern styr sidekicken. Inte läroplanen. Inte skolan.
 > Inte vi. Kernel är öppen. Allt ovanpå går att byta ut.
+>
+> Analog: Obsidian (du äger vaulten) + Odysseus (du kör runtime).
+> Vi sätter standard och safety. Byggarföräldrarna kör redan.
 
 ## Vad som är kernel, vad som är pack
 
@@ -13,7 +16,8 @@ Arbetsnamn: **Skooli Buddy**. Namnet är inte låst.
   runtime          BYO-modell, ytor, logg, samtycke, tenant
         │
   packs            föräldern laddar / skriver / stänger av
-                   pedagogik · världsbild · kursplan · röst · extra agenter
+                   pedagogik · världsbild · kursplan · skolkontext
+                   röst · extra agenter
 ```
 
 **Vendor lock-in är ett fel.** En förälder ska kunna:
@@ -30,6 +34,24 @@ Arbetsnamn: **Skooli Buddy**. Namnet är inte låst.
 Det vi säljer på Hem är drift och att kontakten hamnar i barnets
 chatt. Inte en låst pedagogik. Inte en statlig kursplansmotor.
 
+## Byggarföräldrarna är redan i gång
+
+Många vårdnadshavare som kodar eller "vibar" gör redan det här
+själva: en Custom GPT till barnet, ett script mot Unikum, inlogg
+på skolplattformen "åt" ungen, en Obsidian-vault med veckans
+läxa. Öppna skolplattformen visade att föräldrar reverse-engineerar
+API:er när staden inte levererar — och att datan kan stanna på
+*deras* enhet.
+
+Vi är inte ännu en app de ska byta till. Vi är **standarden de
+kan släppa in sina grejer i**: samma pack-format, samma
+safety-kärna, samma export. Som en kernel. Som en vault.
+Namnet är arbetsnamn — Odysseus, Obsidian, Skooli, Pennan:
+metaforen är lokal fil + utbytbar runtime, inte en butik.
+
+De som inte bygger själva får samma kernel färdigslagen (Hem).
+Samma kontrakt. Ingen andra klassens pedagogik.
+
 ## Vem som inte får styra
 
 | Aktör | Roll |
@@ -37,7 +59,7 @@ chatt. Inte en låst pedagogik. Inte en statlig kursplansmotor.
 | Förälder / vårdnadshavare | Operatör. Världsbild, packs, tid, yta, radering. |
 | Barnet | Öppnar chatten självmant. Styr inte säkerhetskärnan. |
 | Skolverket / Lgr22 | **Valfritt pack.** Default på för svenska läxor, av för den som inte vill. Aldrig överhet. |
-| Skola, kommun, lärplatta | Ingen koppling. Inget tenant-träd "klass". |
+| Skola, kommun, lärplatta | Aldrig operatör, tenant eller write-back. Får vara *källa* om föräldern själv hämtar och minimerar. |
 | Vi (hosted) | Processor/drift. Inte livsåskådning. Inte nudging. |
 
 Om en förälder vill att sidekicken väver in Gud i lärandet — det
@@ -62,6 +84,7 @@ vault/packs/
   pedagogy/        # vilka metoder som får användas
   accommodations/  # det föräldern valt att berätta (diagnos, preferenser)
   custom-agent/    # egen SOUL/SKILL ovanpå kernel
+  school-context/  # vad som händer i skolan — förälder-ägt, minimerat
 ```
 
 `manifest.json`: id, namn, slår_på, av_förälder, version.
@@ -69,6 +92,33 @@ Kernel laddar packs **efter** safety. Konflikt mot safety = pack
 vinner inte.
 
 Export: zip av vault. Import på en annan maskin. Ingen molnplikt.
+
+## Skolkontext utan att läcka massor
+
+Sidekicken blir bättre om den vet *vad som är uppe just nu*
+(bråk, vikingar, kapitel 4) — inte barnets betyg, inte klassen,
+inte lärarens hela veckobrev.
+
+**Tre vägar, samma minimering:**
+
+1. **Föräldern skriver.** En lapp i vaulten: ämne + tema + datum.
+   Det är Obsidian-vägen. Default. Tillräckligt för de flesta.
+2. **Föräldern släpper in en export.** Kalender/ICS, en PDF de
+   själva laddat ner. Vi tar emot filen *hemma*. Inget konto hos oss.
+3. **Föräldern kör en connector hos sig.** Som Öppna skolplattformen:
+   BankID/lösen stannar på deras NUC eller telefon. Connectorn
+   skriver en minimerad `context.json` in i vaulten. Hem får
+   **aldrig** skol-lösen eller live-API mot Unikum.
+
+Vad som får ligga i packen: ämne, tema, ev. uppgiftstitel, från–till.
+Vad som slängs: betyg, omdömen, klasslista, andra barn, foton,
+lärarens privata anteckningar, skol-id.
+
+TTL: 7–14 dagar, sen tyst. Kontext får göra svaret relevant.
+Den får **inte** bli ett läxlarm. Ingen write-back till skolan.
+
+Skola-som-operatör är fortfarande förbjudet. Det här är
+förälder-ägd ingest.
 
 ## Diagnos och preferenser
 

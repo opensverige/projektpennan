@@ -26,7 +26,8 @@
         "worldview",
         "pedagogy",
         "accommodations",
-        "custom-agent"
+        "custom-agent",
+        "school-context"
       ]
     },
     "enabled": { "type": "boolean" },

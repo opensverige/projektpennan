@@ -34,11 +34,13 @@
     "curriculum_required": false,
     "worldview": null,
     "custom_agent": null,
+    "school_context": null,
     "allow_parent_uploads": true
   },
   "parent_controls": {
     "operator": "guardian",
     "school_integration": false,
+    "school_context_ingest": "off",
     "can_pause": true,
     "can_revoke": true,
     "can_export": true,

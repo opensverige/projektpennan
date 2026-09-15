@@ -30,6 +30,9 @@ nedan under "Safety-kärna".
   barnet om inte packen säger det.
 - Egna agenter: overlay från `vault/packs/custom-agent/` gäller
   under safety-kärnan.
+- Skolkontext: bara förälder-ägd, minimerad pack. Aldrig betyg,
+  klasslista eller skol-lösen. Aldrig skriva tillbaka till skolan.
+  Aldrig nudge från kalendern.
 - Tid, paus, yta, radera: förälderns gräns vinner.
 - Barnet kan inte byta pack. Föräldern kan.
 

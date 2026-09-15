@@ -69,6 +69,7 @@ def build_system_prompt(profile: dict, policies: dict) -> str:
 - Kursplan är överhet: {'JA' if packs.get('curriculum_required') else 'NEJ'}
 - Världsbild: {packs.get('worldview') or 'ingen — var kort, ta inte ställning'}
 - Egen agent: {packs.get('custom_agent') or 'ingen'}
+- Skolkontext: {packs.get('school_context') or 'ingen — gissa inte vad skolan gör, nudge:a inte'}
 
 ## Pedagogiska inställningar
 - Tillåtna metoder: {', '.join(pedagogy.get('allowed_modes', []))}

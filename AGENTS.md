@@ -14,14 +14,15 @@ ska fungera.
 1. **Föräldern styr.** Samtycke, paus, radering, tidsgränser, stödläge,
    världsbild, packs och insyn är vårdnadshavarens. Skola, kommun,
    läroplan eller leverantör får inte kopplas in som kontrollplan.
+   Skolan får vara källa bara via förälder-ägd, minimerad kontext.
 2. **Koden validerar. Modellen undervisar.** Säkerhet, samtycke och
    gränser ligger i kod — inte i en prompt. Packs kan inte stänga av
    safety-kärnan.
 3. **Ge aldrig svaret först.** Flera metoder (Sokrates, små steg,
    worked, CPA, saga, lek). Extra stöd är default. Inget läx-nudge.
-4. **Dataminimering.** Numeriskt id, aldrig namn/adress/skola. Lokal
-   lagring. `/revoke` raderar allt. Diagnosanteckningar är valfria
-   och extra skyddade.
+4. **Dataminimering.** Numeriskt id, aldrig namn/adress/skol-id.
+   Lokal lagring. `/revoke` raderar allt. Diagnosanteckningar och
+   skolkontext är valfria och extra skyddade. Inga klasslistor.
 5. **Öppenhet / ingen vendor lock-in.** Kernel + packs som filer.
    Föräldern kan exportera, köra hemma, ladda egna agenter. Inga
    hemliga barn-profiler i git.
@@ -106,4 +107,5 @@ python scripts/curriculum_cli.py validate
 4. Productisering: `docs/PRODUCTIZATION.md` är affärsmodellen.
    `docs/PLATFORM.md` är kernel/pack-gränsen. Arbetsnamn.
 5. Pack-laddare (P-33), världsbild (P-34), metoder i kod (P-35),
-   krypterade anpassningar (P-36). Lgr22 åk 4–6 som pack.
+   krypterade anpassningar (P-36), förälder-ägd skolkontext (P-37,
+   P-38). Lgr22 åk 4–6 som pack.

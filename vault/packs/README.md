@@ -13,6 +13,7 @@ vault/packs/
   pedagogy/         vilka metoder som får användas
   accommodations/   det föräldern valt att berätta (diagnos, preferenser)
   custom-agent/     egen SOUL/SKILL-overlay ovanpå kernel
+  school-context/   vad som är uppe i skolan — förälder-ägt, minimerat
 ```
 
 `manifest.json` måste följa `_schema/manifest.schema.json`.

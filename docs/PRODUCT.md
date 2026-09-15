@@ -8,6 +8,9 @@
 - Vårdnadshavare som vill hjälpa till med läxor utan att sitta
   bredvid varje kväll — och utan att lämna data till skolan.
 - Familjer som inte har råd med 600 kr/timme i läxhjälp.
+- **Byggar- och viber-föräldrar** som redan slänger ihop en GPT,
+  en vault eller ett script mot skolplattformen — de ska kunna
+  släppa in det i samma kernel, inte börja om.
 
 Vi bygger **inte** för rektorer, kommuner, lärplattformar eller
 EdTech-upphandlingar. Om skolan vill rekommendera oss är det bra.
@@ -36,7 +39,9 @@ Skolans digitala kedja (lärlogg, Unikum, Google-konto, kommunmoln)
 
 Skooli Buddy är ett **hemverktyg**. Föräldern är personuppgiftsansvarig
 när de kör det själva. Vi ger dem koden, reglerna och en lokal
-default. Vi kopplar inte barnet till ett skol-id.
+default. Vi kopplar inte barnet till ett skol-id. Skolan får vara *källa*
+om föräldern själv hämtar och minimerar (ämne + tema, inte betyg).
+Se [docs/PLATFORM.md](PLATFORM.md).
 
 ## Lärandeformer vi står för
 Bygger på research i `research/findings/`:
@@ -93,5 +98,6 @@ En förälder i Sverige kan på fem minuter (Hem) eller en kväll (Open):
    (PWA bara som fallback — inte en QR-ceremoni),
 4. se, pausa, exportera, byta pack eller radera.
 
-Inget skolkonto. Ingen klass. Ingen molnplikt på Open.
+Inget skolkonto hos oss. Ingen klass. Ingen molnplikt på Open.
 Lgr22 av om de vill. Egna agenter in om de vill.
+Veckans skolteman in om de vill — som en lapp, inte som Unikum.

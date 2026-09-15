@@ -40,3 +40,11 @@
 - Backlog P-33–P-36. Research: parent-sovereignty-kernel,
   pedagogy-beyond-socratic, parent-authored-accommodations.
 - Namnet är arbetsnamn.
+
+## 2026-09-15 — byggarföräldrar + skolkontext
+- Analog: Obsidian-vault + Odysseus-runtime. Vi standardiserar
+  det de redan bygger. Skolan aldrig operatör.
+- Skolkontext = förälder-ägd, minimerad (ämne/tema, TTL).
+  Connector hos dem, lösen aldrig till Hem. P-37, P-38.
+- Research: parent-owned-school-context. Öppna skolplattformen
+  är beviset att de redan gör ingest själva.

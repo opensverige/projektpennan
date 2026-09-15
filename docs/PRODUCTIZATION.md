@@ -100,7 +100,9 @@ Koden för dem ska ligga öppet. Driften (vision-API, transkription)
 kostar oss pengar, därför kostar den familjen pengar *när vi hostar*.
 
 ### Vad vi medvetet inte säljer
-- Skolkonto, Unikum, klasslista, lärarvy
+- Skolkonto hos oss, Unikum-SSO, klasslista, lärarvy, write-back.
+  Förälder-ägd minimerad skolkontext (lapp / lokal connector) är
+  kernel, inte en kommundeal.
 - Diagnosverktyg eller "NPF-paket" som sälj. Föräldern får *själv*
   skriva en anteckning; vi sätter aldrig etiketten.
 - Reklam, affiliates, sälj av insikter

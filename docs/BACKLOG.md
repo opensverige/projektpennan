@@ -69,10 +69,13 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 | P-34 | **Världsbilds-pack.** Föräldern slår på tro/värderingar i lärandet. Neutral bara när packen är av. Barnet kan inte byta pack. | Föräldern — inte läroplanen — styr livsåskådning. | `parent-sovereignty-kernel` |
 | P-35 | **Pedagogikbibliotek i kod.** Sokrates, små steg, worked, CPA, saga, lek, retrieve, lässtöd. Byt metod när det kärvar. `nudge_homework=false`. | En metod räcker inte. Intresse utan gnäll. | `pedagogy-beyond-socratic` |
 | P-36 | **Förälder-skrivna anpassningar.** Valfritt fält för diagnos/preferenser. Tyst anpassning. Krypterat i Hem. Aldrig till skola. Tomt = extra-stöd-default. | Vi sätter inte diagnos. Vi lyssnar när hemmet berättar. Art. 9. | `parent-authored-accommodations` |
+| P-37 | **Skolkontext-pack.** Föräldern skriver veckans teman eller släpper in ICS/export. Minimering + TTL 7–14 dagar. Relevans i chatten, inget läxlarm. | Sidekicken ska veta vad som är uppe, utan att suga i sig Unikum. | `parent-owned-school-context` |
+| P-38 | **Förälder-hostad connector.** De kör den hemma med sitt BankID/lösen. Skriver minimerad `context.json` till vault. Hem får aldrig skol-credentials eller live-API. | Byggarföräldrar gör det redan. Vi standardiserar formatet, inte inloggningen. | `parent-owned-school-context` |
 
 ## Medvetet inte i scopet
-- Integration mot Unikum, InfoMentor, Google Classroom, Skolon.
-- Lärar-dashboard eller klasslista.
+- Skola som operatör: Unikum-SSO, klass-tenant, lärarvy, write-back.
+- Officiellt partnerskap där *vi* loggar in mot kommunens plattform.
+- Att suga i oss betyg, klasslistor eller hela veckobrev.
 - Betyg, NP-förberedelse som facit-motor.
 - Reklam, trackers, tillväxt-hack mot barn.
 - Diagnosverktyg.
@@ -86,3 +89,4 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 6. P-29 — DPIA innan någon faktura (Meta i underbiträdeslistan).
 7. P-33 + P-34 — pack-laddare och världsbild (då först kernel-känsla).
 8. P-35 + P-36 — metodbyte i kod + krypterade anpassningar.
+9. P-37 — veckans lapp (då först relevant utan läcka). P-38 sen.

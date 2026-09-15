@@ -13,6 +13,7 @@ KINDS = {
     "pedagogy",
     "accommodations",
     "custom-agent",
+    "school-context",
 }
 REQUIRED = {
     "id",
@@ -63,12 +64,26 @@ def test_worldview_pack_starts_off():
     assert "Neutral är default" in overlay
 
 
+def test_school_context_pack_is_parent_owned_and_minimized():
+    data = json.loads((PACKS / "school-context" / "manifest.json").read_text(encoding="utf-8"))
+    assert data["enabled"] is False
+    assert data["kind"] == "school-context"
+    ctx = json.loads((PACKS / "school-context" / "context.json").read_text(encoding="utf-8"))
+    assert ctx["nudge_homework"] is False
+    assert ctx["write_back_to_school"] is False
+    assert "grades" in ctx["dropped"]
+    assert "credentials" in ctx["dropped"]
+
+
 def test_policies_mark_curriculum_not_required():
     for rel in ("config/policies.json", "vault/config/policies.json"):
         policies = json.loads((ROOT / rel).read_text(encoding="utf-8"))
         packs = policies["packs"]
         assert packs["curriculum_required"] is False
         assert packs["allow_parent_uploads"] is True
+        assert packs.get("school_context") in (None, "school-context-family")
+        assert policies["parent_controls"]["school_integration"] is False
+        assert policies["parent_controls"]["school_context_ingest"] in ("off", "parent_owned")
         assert policies["pedagogy"]["nudge_homework"] is False
         modes = set(policies["pedagogy"]["allowed_modes"])
         assert {"sokratisk", "worked", "cpa", "story", "play", "retrieve"} <= modes

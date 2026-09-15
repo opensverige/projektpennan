@@ -1,0 +1,36 @@
+{
+  "id": "parent-owned-school-context",
+  "date": "2026-09-15",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Byggarföräldrar hämtar redan skolinfo själva. Kernelns jobb är att ta emot minimerad kontext de äger — inte att bli Unikum, inte att ta deras lösen, inte att läcka klasslistor. Skolan får aldrig bli operatör.",
+  "evidence": [
+    {
+      "title": "Öppna skolplattformen — föräldrar som redan reverse-engineerar skol-API",
+      "url": "https://github.com/kolplattformen/skolplattformen",
+      "year": 2021,
+      "notes": "Civic tech av vårdnadshavare. BankID mot stadens plattform, data stannar på deras enhet, ingen molnlagring hos byggarna. Precis den ingest-modellen vi får kopiera — inte officiell skol-SSO."
+    },
+    {
+      "title": "Öppna skolplattformen — produktlöfte: ingen barninfo till oss",
+      "url": "https://skolplattformen.org/",
+      "year": 2021,
+      "notes": "Uttalat: kommunikationen går mellan förälderns telefon och skolplattformen. Vi ska inte bli en tredje part som samlar massor."
+    },
+    {
+      "title": "Obsidian — lokal vault, du äger filerna",
+      "url": "https://obsidian.md/",
+      "year": 2024,
+      "notes": "Byggarföräldrar tänker redan i markdown-vault. Pack-formatet ska kännas så: släpp in en lapp, inte en ny inloggning."
+    },
+    {
+      "title": "GDPR artikel 5 — uppgiftsminimering",
+      "url": "https://gdpr-info.eu/art-5-gdpr/",
+      "year": 2016,
+      "notes": "Ämne + tema + datumfönster räcker för relevans. Betyg, klasskamrater och skol-id är överflödigt och riskabelt."
+    }
+  ],
+  "implication": "School-context-pack som förälder skriver eller släpper in (P-37). Connector de kör själva, lösen aldrig till Hem (P-38). Minimering + TTL i kod. Fortfarande inget skol-tenant, ingen write-back, inget läx-nudge från kalendern.",
+  "backlog_refs": ["P-37", "P-38"],
+  "confidence": "high"
+}

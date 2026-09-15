@@ -16,7 +16,8 @@ Barnet (9–12 år, åk 4–6 först) chattar med en studiekompis som leder
 med frågor, små steg, saga, lek och extra stöd — inte facit. Inte
 läx-nudge. Lgr22 är ett *valfritt pack*, inte överhet. Föräldern ger
 samtycke, kan pausa, radera, byta världsbild och ladda egna agenter.
-Ingen lärarvy. Ingen klasslista. Ingen Unikum-export.
+Ingen lärarvy. Ingen klasslista. Ingen Unikum-SSO. Föräldern
+kan släppa in *minimerad* skolkontext de själva hämtat.
 
 Plattformen: [docs/PLATFORM.md](docs/PLATFORM.md).
 

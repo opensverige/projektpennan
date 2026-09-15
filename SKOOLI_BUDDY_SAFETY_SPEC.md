@@ -125,11 +125,13 @@ Vid träff: släpp inte igenom till LLM. Svara med
 
 ## DEL 9 — Vad som inte är skolans
 
-- Ingen SSO mot skolkonto.
-- Ingen export till Unikum / InfoMentor / Google Classroom.
-- Ingen lärarvy. Ingen klasslista.
+- Ingen SSO mot skolkonto. Inga skol-lösen till Hem.
+- Ingen write-back till Unikum / InfoMentor / Google Classroom.
+- Ingen lärarvy. Ingen klasslista. Inga betyg i vaulten.
 - Föräldrarapporten är familjens, inte ett underlag till rektor
   om inte föräldern själv väljer att visa den.
+- Förälder-ägd skolkontext (ämne + tema + datum) är tillåten.
+  Connectorn körs hos dem. Utgånget fönster raderas. Inget läxlarm.
 
 ## DEL 10 — Packs och safety-kärnan
 

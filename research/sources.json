@@ -115,6 +115,38 @@
       "cadence": "årlig"
     },
     {
+      "id": "oppna-skolplattformen",
+      "org": "Öppna skolplattformen / kolplattformen",
+      "title": "Föräldrar som hämtar egen skolinfo, data på enheten",
+      "url": "https://github.com/kolplattformen/skolplattformen",
+      "themes": ["product", "privacy"],
+      "cadence": "vid major"
+    },
+    {
+      "id": "oppna-skolplattformen-webb",
+      "org": "Öppna skolplattformen",
+      "title": "skolplattformen.org — ingen barninfo till oss",
+      "url": "https://skolplattformen.org/",
+      "themes": ["product", "privacy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "obsidian",
+      "org": "Obsidian",
+      "title": "Lokal markdown-vault, du äger filerna",
+      "url": "https://obsidian.md/",
+      "themes": ["product", "privacy"],
+      "cadence": "vid major"
+    },
+    {
+      "id": "gdpr-art-5",
+      "org": "EU",
+      "title": "GDPR artikel 5 — principer, minimering",
+      "url": "https://gdpr-info.eu/art-5-gdpr/",
+      "themes": ["privacy"],
+      "cadence": "vid vägledning"
+    },
+    {
       "id": "uncrc-14",
       "org": "OHCHR / FN",
       "title": "Barnkonventionen artikel 14 — tanke, samvete, religion",

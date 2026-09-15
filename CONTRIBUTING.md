@@ -27,8 +27,11 @@ Persona-matrisen (`scripts/run_tests.py`) kräver Gemini-nyckel och
 eller tutor-reglerna.
 
 ## Vad vi inte mergar
-- Skolintegrationer (Unikum, Classroom, kommun-SSO).
-- Diagnosfält eller "NPF-läge" som stämplar barnet.
+- Skola som operatör: Unikum-SSO, klass-tenant, write-back,
+  att *vi* tar emot skol-lösen. Förälder-ägd minimerad kontext
+  (P-37/P-38) är ok.
+- Diagnosfält eller "NPF-läge" som stämplar barnet. Vi sätter
+  inte diagnos. Föräldern får skriva en anteckning.
 - Features som kräver att barndata lämnar hemmet utan tydlig opt-in.
 - Prompt-only safety utan kod.
 - Hemliga chat-id, nycklar eller riktiga barnprofiler.
