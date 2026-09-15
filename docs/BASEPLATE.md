@@ -35,19 +35,18 @@ hjärnan byts.
 
 Inte Docker först. Inte `/consent [lösen]`. Inte BankID-default.
 
-1. Föräldern öppnar **webben** (den här datorn eller Hem sen).
-2. Kryssar: jag är vårdnadshavare.
-3. Formar: extra stöd / saga / tro / tre rader egen.
-4. Barnkort: tilltalsnamn + åk.
-5. Jackar in en modell *eller* säger “lokalt, ingen nyckel”.
-6. Väljer hur den ska leva: i webbläsaren, Docker, Telegram.
-7. Får ett recept: `runtime.json` + `.env`. Inget barn i knät.
+En skärm. Som Grok efter login: tom yta, inte en wizard.
+Se `docs/ONBOARDING.md`.
 
-Barnet har ingen onboarding. Första gången de skriver är
-första gången produkten börjar.
+1. Jag är vårdnadshavare.
+2. Vad heter barnet?
+3. Klistra in nyckeln här — om de har en.
+4. Sätt igång.
 
-Klickbar start: `frontend/start.html`. Monumentet är den här
-filen. Live ChatGPT-anrop är P-26 — start-sidan ljuger inte.
+Prefixet på nyckeln väljer leverantör tyst. Päronen får
+“Bygger du själv?” med en prompt att klistra i ChatGPT.
+
+Klickbar start: `frontend/start.html`. Live-anrop är P-26.
 
 ## Flera sätt att installera (samma platta)
 

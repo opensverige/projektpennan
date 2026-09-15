@@ -3,9 +3,10 @@
 Kontaktnamn: Gnista. Vi ger **basplattan**. Ni formar den och
 jackar in den modell ni vill. Monument: [docs/BASEPLATE.md](BASEPLATE.md).
 
-Onboarding **börjar på webben**. Inte Docker. Inte `/consent`.
-Öppna `frontend/start.html` (eller http://localhost:8080/start.html
-när stacken kör). Den spottar ur `runtime.json` + `.env`.
+Onboarding **börjar på webben**, en skärm.
+Öppna `frontend/start.html`. Namn, ev. nyckel, sätt igång.
+Inte Docker-först. Inte `/consent`. Inte sex steg.
+Av-ramp för päron bakom “Bygger du själv?”.
 
 Barnet har ingen onboarding.
 

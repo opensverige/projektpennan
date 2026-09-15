@@ -164,17 +164,16 @@
 <div class="header">
     <span class="mascot">🦉</span>
     <div>
-        Skooli Buddy
-        <div class="subtitle">Din studiekamrat (AI, inte en riktig uggla)</div>
+        Gnista
+        <div class="subtitle">Studiekompis. Föräldern har slagit på mig.</div>
     </div>
     <a class="dashboard-link" href="start.html">Sätt upp</a>
     <a class="dashboard-link" href="guardian.html">Föräldravy</a>
 </div>
 
 <div class="chat-area" id="chatArea">
-    <div class="message assistant">
-        Hej! Jag heter Skooli och jag finns har for att hjälpa dig med skolarbetet.
-        Vad vill du jobba med idag? 🦉
+    <div class="message assistant" id="hello">
+        Hej. Jag är Gnista. Skriv när det kärvar.
     </div>
 </div>
 
@@ -195,6 +194,13 @@
 
 <script>
     let sessionId = null;
+    try {
+        const setup = JSON.parse(sessionStorage.getItem("gnista-setup") || "{}");
+        if (setup.child) {
+            document.getElementById("hello").textContent =
+                "Hej " + setup.child + ". Jag är Gnista. Skriv när det kärvar.";
+        }
+    } catch (e) {}
 
     const chatArea = document.getElementById("chatArea");
     const messageInput = document.getElementById("messageInput");
