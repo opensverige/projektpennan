@@ -61,16 +61,22 @@ Tills P-26 är klar gör nyckeln *ingenting* i FastAPI-chatten.
 Telegram-boten läser fortfarande bara `GEMINI_API_KEY`.
 Receptet är sant. Kopplingen är nästa PR.
 
-## D. Telegram som den ser ut nu
+## D. Telegram — deras bot, vår start-länk
+
+Ingen officiell @gnista-bot. Ingen verifier-bot som tar emot token
+(då sitter *vi* på nyckeln). Bara @BotFather kan skapa en bot.
+
+1. På `test.html`: Öppna @BotFather → `/newbot` → klistra token.
+2. Vi kör `getMe` *här*. Får en länk `t.me/DinBot?start=…`.
+3. Föräldern öppnar länken. Den chatten släpps in. Andra ignoreras.
+4. `python -m skooli_buddy.bot` hos dem (eller Docker). Tom allowlist
+   utan start-länk = vägrar starta. Inget hårdkodat chat-id.
 
 ```bash
 pip install -r requirements.txt
 cp .env.example .env
 python -m skooli_buddy.bot
 ```
-
-`/consent [lösenord]` → `/start`. Hårdkodat chat-id (P-02).
-Det är inte räkmackan och inte webbstarten.
 
 ---
 

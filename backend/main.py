@@ -5,6 +5,7 @@ FastAPI-server. Kör lokalt, exponerar INGET till internet.
 from __future__ import annotations
 
 import os
+import sys
 import uuid
 from pathlib import Path
 
@@ -18,6 +19,13 @@ from reports import list_reports, get_report
 from oauth import catalog, find_local_session, get_provider
 from preview import catalog as preview_catalog
 from preview import reply_for
+
+_here = Path(__file__).resolve().parent
+for _root in (_here.parent, _here):
+    if (_root / "skooli_buddy").is_dir() and str(_root) not in sys.path:
+        sys.path.append(str(_root))
+
+from skooli_buddy.telegram_link import public_status, verify_and_bind
 
 app = FastAPI(title="Skooli Buddy", version="0.2.0")
 
@@ -104,6 +112,23 @@ async def preview_turn(req: PreviewTurn):
     if not req.message or not req.message.strip():
         raise HTTPException(status_code=400, detail="Tomt meddelande.")
     return reply_for(req.message.strip())
+
+
+class TelegramBind(BaseModel):
+    token: str
+
+
+@app.get("/api/telegram")
+async def telegram_status():
+    return public_status()
+
+
+@app.post("/api/telegram/bind")
+async def telegram_bind(req: TelegramBind):
+    try:
+        return verify_and_bind(req.token)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @app.get("/api/reports")

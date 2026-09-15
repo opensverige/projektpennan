@@ -62,6 +62,9 @@ Efter starten: `test.html`. Föräldern ser planen och trycker chips
 (Gorgias-mönster: se hur agenten svarar). Opassande, kris, hemlighet
 och jailbreak går mot samma kärna som chatten. Sen släpps barnet in.
 
+Telegram: inte en verifier-bot hos oss. BotFather + token lokalt +
+`t.me/DinBot?start=…`. Se `docs/INSTALL.md`.
+
 ## Av-ramp
 
 Bakom en textlänk längst ner: kopiera en systemprompt till

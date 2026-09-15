@@ -1,8 +1,11 @@
-import { useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { ArrowUpIcon } from "lucide-react"
+import { toast } from "sonner"
 
 import { Shell } from "@/components/shell"
 import { Button } from "@/components/ui/button"
+import { Field, FieldDescription, FieldLabel } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
 import {
   Card,
   CardContent,
@@ -18,6 +21,7 @@ import {
 } from "@/components/ui/input-group"
 import { PLAN, SCENARIOS, previewTurn } from "@/lib/preview"
 import { loadSetup } from "@/lib/setup"
+import { bindTelegram, telegramStatus, type TelegramStatus } from "@/lib/telegram"
 import { cn } from "@/lib/utils"
 
 type Msg = { role: "user" | "assistant"; text: string }
@@ -32,6 +36,7 @@ export function TestPage() {
   const [hit, setHit] = useState<string>("socratic")
   const [draft, setDraft] = useState("")
   const [busy, setBusy] = useState(false)
+  const [tg, setTg] = useState<TelegramStatus>({})
   const [messages, setMessages] = useState<Msg[]>([
     {
       role: "assistant",
@@ -41,6 +46,10 @@ export function TestPage() {
   const endRef = useRef<HTMLDivElement>(null)
 
   const chips = useMemo(() => SCENARIOS, [])
+
+  useEffect(() => {
+    void telegramStatus().then(setTg)
+  }, [])
 
   async function play(text: string) {
     const message = text.trim()
@@ -102,6 +111,8 @@ export function TestPage() {
               </Button>
             ))}
           </div>
+
+          <TelegramLink child={child} status={tg} onBound={setTg} />
         </div>
 
         <Card className="w-full md:max-w-sm md:sticky md:top-4">
@@ -163,5 +174,77 @@ export function TestPage() {
         </Card>
       </section>
     </Shell>
+  )
+}
+
+function TelegramLink({
+  child,
+  status,
+  onBound,
+}: {
+  child: string
+  status: TelegramStatus
+  onBound: (s: TelegramStatus) => void
+}) {
+  const [token, setToken] = useState("")
+  const [busy, setBusy] = useState(false)
+
+  async function bind() {
+    if (!token.trim()) return
+    setBusy(true)
+    const result = await bindTelegram(token.trim())
+    setBusy(false)
+    if (result.detail) {
+      toast(result.detail)
+      return
+    }
+    setToken("")
+    onBound(result)
+    if (result.invite) {
+      await navigator.clipboard.writeText(result.invite)
+      toast("Länken är kopierad. Öppna den i din Telegram.")
+    }
+  }
+
+  return (
+    <div className="rounded-xl border border-border bg-card px-4 py-4">
+      <p className="text-sm font-medium">{child} skriver i Telegram</p>
+      <p className="mt-1 text-sm text-muted-foreground">
+        Inte vår bot. Du skapar en hos BotFather. Tokenen stannar här.
+        Ingen verifier-bot som tar emot nyckeln.
+      </p>
+      <div className="mt-3 flex flex-col gap-2">
+        <Button asChild variant="outline" size="sm">
+          <a href="https://t.me/BotFather" target="_blank" rel="noreferrer">
+            Öppna @BotFather
+          </a>
+        </Button>
+        <Field>
+          <FieldLabel htmlFor="tg-token">Klistra token</FieldLabel>
+          <Input
+            id="tg-token"
+            type="password"
+            value={token}
+            autoComplete="off"
+            placeholder="123456:AA…"
+            onChange={(e) => setToken(e.target.value)}
+          />
+          <FieldDescription>
+            /newbot hos dem. Sen klistra här. Vi kör getMe lokalt.
+          </FieldDescription>
+        </Field>
+        <Button type="button" size="sm" disabled={busy || !token.trim()} onClick={() => void bind()}>
+          Skapa start-länk
+        </Button>
+        {status.invite ? (
+          <p className="break-all text-sm">
+            <a href={status.invite} className="underline underline-offset-4" target="_blank" rel="noreferrer">
+              {status.invite}
+            </a>
+            {status.linked ? " — länkad." : " — öppna den, sen kan barnet skriva."}
+          </p>
+        ) : null}
+      </div>
+    </div>
   )
 }

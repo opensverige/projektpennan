@@ -9,7 +9,7 @@ kunna bli ett GitHub-issue. Research-id pekar på `research/findings/`.
 | ID | Vad | Varför | Research |
 |----|-----|--------|----------|
 | P-01 | **En kärna, två ytor.** SOUL/SKILL/RULES + safety + logg + profil som enda sanning. `core.py` slutar äga en egen prompt. | Dubbel stack + motstridig AI-identitet. | `inventory-dual-stack` |
-| P-02 | **Ta bort hårdkodat `ALLOWED_CHAT_ID`.** Allowlist via env/`config`, default tom = vägra starta. | Annars läcker ett privat Telegram-id och boten är oanvändbar för andra. | |
+| P-02 | **Ta bort hårdkodat `ALLOWED_CHAT_ID`.** Allowlist via start-länk / env. Tom = vägra starta. | Privat id läckte. Andra kunde inte köra. Se `skooli_buddy/telegram_link.py`. | |
 | P-03 | **Safety i kod på båda ytorna.** Svenska+engelska mönster, kris → BRIS-svar utan LLM, jailbreak-filter. | Prompt räcker inte. `safety.py` är engelska-only. | `safety-code-not-prompt` |
 | P-04 | **CI:** pytest, `research_pipeline.py validate`, `curriculum_cli.py validate`. `pytest` i requirements. | OSS utan grön pipeline är teater. | |
 | P-05 | **README som stämmer.** En story: lokal default, Telegram valfritt, länka inventory/backlog/research. | README sålde bara Gemini. AGENTS sålde bara Ollama. | |

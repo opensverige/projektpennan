@@ -52,7 +52,7 @@ Betyg (0–5)
 - AGPL-3.0, opensverige, README på svenska.
 
 ### Hål i Yta B
-- `ALLOWED_CHAT_ID = 544123218` hårdkodat — inte opensourcebart.
+- Telegram-id är inte hårdkodat. Start-länk + allowlist. Token i vault, inte git.
 - Prompten duplicerar och *motsäger* `agents/tutor/*` (AI-identitet).
 - Policies (`max_minutes_*`, klockslag) läses in men används inte.
 - Ingen input-safety i kod före Gemini.

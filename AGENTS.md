@@ -96,8 +96,8 @@ python scripts/curriculum_cli.py validate
 - Svenska + engelska blockmönster. Hänvisa till BRIS 116 111 vid
   allvarliga signaler — koden ska kunna tvinga det, inte bara prompten.
 - Ingen utåt-nätverk för lokal backend utöver Ollama.
-- Hardcoded `ALLOWED_CHAT_ID` i `skooli_buddy/bot.py` är en
-  utvecklingslåsning, inte en OSS-default.
+- Telegram: ingen officiell bot. Token verifieras lokalt med getMe.
+  Start-länk släpper in en chatt. Tom allowlist utan länk = vägra start.
 
 ## Current Focus
 1. En kärna, BYO-providers (P-01, P-26).

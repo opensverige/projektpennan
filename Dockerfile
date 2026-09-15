@@ -14,6 +14,7 @@ RUN npm run build
 WORKDIR /app
 COPY backend/ ./
 COPY agents/ /app/agents/
+COPY skooli_buddy/ /app/skooli_buddy/
 
 EXPOSE 8080
 
