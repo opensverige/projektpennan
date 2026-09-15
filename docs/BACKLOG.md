@@ -12,7 +12,7 @@ kunna bli ett GitHub-issue. Research-id pekar på `research/findings/`.
 | P-02 | **Ta bort hårdkodat `ALLOWED_CHAT_ID`.** Allowlist via env/`config`, default tom = vägra starta. | Annars läcker ett privat Telegram-id och boten är oanvändbar för andra. | |
 | P-03 | **Safety i kod på båda ytorna.** Svenska+engelska mönster, kris → BRIS-svar utan LLM, jailbreak-filter. | Prompt räcker inte. `safety.py` är engelska-only. | `safety-code-not-prompt` |
 | P-04 | **CI:** pytest, `research_pipeline.py validate`, `curriculum_cli.py validate`. `pytest` i requirements. | OSS utan grön pipeline är teater. | |
-| P-05 | **README som stämmer.** En story: lokal default, Telegram valfritt, länka inventory/backlog/research. | README sålde bara Gemini. AGENTS sålde bara Ollama. | |
+| P-05 | **README som stämmer.** En story: Gnista, lokal default, Telegram valfritt, länka inventory/backlog/research. | Gjort i rot-README. Håll den ärlig när ytor landar. | |
 | P-06 | **Inga hemligheter i git.** Audit-secret-generering ok, men dokumentera. Rotera exempel. | Föräldrar som forkar ska inte ärva vårt id. | |
 | P-07 | **Fixa dashboard-fält** `user_text`/`bot_text`. Implementera `/pause`. | Vi lovar insyn och paus i samtyckestexten. | `parent-controls` |
 

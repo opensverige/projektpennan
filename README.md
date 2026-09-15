@@ -1,243 +1,184 @@
-# Skooli Buddy
+# Gnista
 
-> En sidekick för barn som behöver stöd i skolan. Föräldern sitter i
-> spakarna. Skolans system gör det inte. Ger aldrig svaret.
-> Arbetsnamn. Kernel föräldern äger — egna agenter, egen världsbild.
+**En studiekompis för åk 4–6. Föräldern äger plattan. Barnet får frågor, inte facit.**
 
-**Projekt Pennan** är ett open-source-initiativ under
-[opensverige](https://github.com/opensverige) / [opensverige.se](https://opensverige.se).
-Skooli Buddy är den första produkten. Licens: AGPL-3.0.
+*English:* A parent-owned, local-first study companion for Swedish grades 4–6. The child never gets the answer first. The school is never the operator.
+
+Kontaktnamnet — det barnet skriver till — är **Gnista**.  
+Repot och initiativet heter **Projekt Pennan**, under [Open Sverige](https://opensverige.se).  
+Licens: [AGPL-3.0](LICENSE).
+
+`Skooli Buddy` och `Stjärnis` är inte produktnamn. Det första krockar med Homework Buddy / Studybuddy. Det andra låser in oss hos niorna och stöter bort tolvåringar.
 
 ---
 
-## Vad är det?
+## Vad det är
 
-Barnet (9–12 år, åk 4–6 först) chattar med en studiekompis som leder
-med frågor, små steg, saga, lek och extra stöd — inte facit. Inte
-läx-nudge. Lgr22 är ett *valfritt pack*, inte överhet. Föräldern ger
-samtycke, kan pausa, radera, byta världsbild och ladda egna agenter.
-Ingen lärarvy. Ingen klasslista. Ingen Unikum-SSO. Föräldern
-kan släppa in *minimerad* skolkontext de själva hämtat.
+När läxan kärvar ska barnet kunna fråga en kompis som:
 
-Plattformen: [docs/PLATFORM.md](docs/PLATFORM.md).
+1. aldrig ger svaret först,
+2. anpassar tempot,
+3. tål “jag är dum” utan att hålla med,
+4. stannar när det blir jobbigt,
+5. syns för föräldern.
 
 ```
-Barn: "Vad är 7 gånger 8?"
-Skooli: "Vet du vad 7 gånger 7 är? Då kan vi räkna ett steg till! 🤔"
+Barn:   Vad är 7 gånger 8?
+Gnista: Vet du vad 7 × 7 är? Då tar vi ett steg till.
 ```
 
-Hur man installerar, och vad som *inte* är byggt:
-[docs/INSTALL.md](docs/INSTALL.md).
+Vi ger **basplattan**: safety, samtycke, vault, pack-format, logg.  
+Föräldern formar den och jackar in den modell de vill — Ollama hemma, eller ChatGPT / Grok / en egen nyckel. Plattan består när hjärnan byts.
 
-Läs [docs/PRODUCT.md](docs/PRODUCT.md) för visionen,
-[docs/PRODUCTIZATION.md](docs/PRODUCTIZATION.md) för open-core
-(kernel / Hem / egen drift),
-[docs/INVENTORY.md](docs/INVENTORY.md) för vad som faktiskt är byggt
-och [docs/BACKLOG.md](docs/BACKLOG.md) för vad som återstår.
+Lgr22 är ett *valfritt pack*, inte överhet. Världsbild, tro och egna agenter är förälderns. Extra stöd är default. Inget läxgnäll.
 
-Barnet möter oss som en kontakt i chatten de redan har (WhatsApp
-i Sverige), inte som en QR eller en ny app. Telegram är Open-yta.
+Vi bygger **inte** för rektorer, kommuner, Unikum eller klasslistor. Skolan får rekommendera oss. De får inte drifta oss.
 
 ---
 
-## Två ytor (samma mål)
+## Vad det inte är
 
-| | Hem / lokal (default för OSS) | Messaging (det som testats mot barn) |
-|---|-------------------------------|--------------------------------------|
-| Kod | `backend/` + `frontend/` + `vault/` | `skooli_buddy/` + `dashboard/` |
-| Modell | Ollama på din maskin | Gemini 2.5 Flash (opt-in) |
-| UI | HTML-chat på localhost:8080 | Telegram + Streamlit |
-| Status | Scaffold med RAG + audit | Live-testad, 12 enhetstester |
-
-Målet är **en kärna, två ytor**. Just nu är de parallella. Se P-01.
-
----
-
-## Stack
-
-| Del | Teknologi |
-|-----|-----------|
-| Lokal server | FastAPI + Ollama + Chroma |
-| Bot | Python + python-telegram-bot v21+ |
-| Valfri moln-LLM | Google Gemini 2.5 Flash |
-| Föräldrapanel | Streamlit (Telegram) / `guardian.html` (lokal) |
-| Loggning | JSONL + HMAC-audit i vault |
-| Kursplan | Valfritt pack. Lgr22 i `config/lgr22/` + `vault/packs/lgr22/` |
+| Inte | Utan |
+|------|------|
+| En facit-app | Frågor, små steg, saga, lek |
+| Skolans system | Ett hemverktyg |
+| En låst lärare | En kernel + packs föräldern byter |
+| En barn-app med QR | En kontakt i en chatt de redan har |
+| Prompt-regler | Regler i kod. Barnet kan inte stänga av dem. |
 
 ---
 
-## Quickstart
+## Testa i kväll
 
-**Hem-onboarding (BankID, tyst WhatsApp-kontakt) är inte byggt.**
-Det är monumentet — se [docs/INSTALL.md](docs/INSTALL.md).
-Det som går att köra i kväll är Open: Docker/Ollama eller Telegram.
+Onboarding börjar på webben när den ytan är på plats. Det som **finns på `main` i kväll** är Open: lokal chatt eller Telegram.
 
-## Quickstart (Open, idag)
+### 1. Lokal platta (default)
+
+Ingen moln-LLM. Data stannar i `vault/`.
 
 ```bash
-# 1. Klona och installera
 git clone https://github.com/opensverige/projektpennan
 cd projektpennan
+# Ollama med t.ex. hermes3:8b på 11434
+docker compose up --build
+```
+
+[http://localhost:8080](http://localhost:8080) — barnchatt.  
+[http://localhost:8080/guardian.html](http://localhost:8080/guardian.html) — tunn logg.
+
+Utan Docker: `pip install -r backend/requirements.txt` och `uvicorn main:app --reload --host 0.0.0.0 --port 8080` från `backend/`.
+
+### 2. Telegram (valfritt, egen bot)
+
+Ingen officiell `@gnista`. Föräldern skapar boten hos [@BotFather](https://t.me/BotFather). Tokenen stannar hos dem. Om *vi* tar emot tokenen ser vi chatten i klartext — det gör vi inte.
+
+```bash
 pip install -r requirements.txt
-
-# 2. Konfigurera
-cp .env.example .env
-# Fyll i TELEGRAM_BOT_TOKEN, GEMINI_API_KEY, GUARDIAN_PASSPHRASE
-
-# 3. Starta boten
+cp .env.example .env   # TELEGRAM_BOT_TOKEN, ev. GEMINI_API_KEY
 python -m skooli_buddy.bot
 ```
 
-Telegram-boten har just nu ett hårdkodat tillåtet chat-id (P-02).
-Sätt inte den i produktion åt andra familjer innan det är env-styrt.
+På `main` finns fortfarande ett hårdkodat tillåtet chat-id (P-02). Kör inte den boten åt andra familjer förrän allowlist + start-länk är inne.
 
-### Lokal stack (ingen moln-LLM)
+Hem — BankID, tyst WhatsApp-kontakt, fem minuter — är monumentet. **Inte byggt.** Se [docs/INSTALL.md](docs/INSTALL.md).
 
-```bash
-# Kräver Ollama med t.ex. hermes3:8b på port 11434
-docker compose up --build
-# http://localhost:8080
+---
+
+## Plattan
+
+```
+  packs / egen agent / världsbild     ← föräldern skriver
+              │
+  modell (BYO)                        ← de jackar in, de byter
+              │
+  yta: webb · Docker · Telegram · WA  ← de väljer hur den lever
+              │
+  ┌───────────┴────────────┐
+  │  SAFETY  samtycke  logg │  ← vi. går inte att stänga av
+  │  pack-format  vault     │
+  └─────────────────────────┘
 ```
 
-Backend-only: `pip install -r backend/requirements.txt` och
-`uvicorn main:app --reload --host 0.0.0.0 --port 8080` från `backend/`.
+**Open:** de hostar. Vi ser inte deras chatter.  
+**Hem:** vi hostar. Då ser vi dem, Telegram/WhatsApp ser dem, och vi behöver DPIA innan första familjen betalar. Safety får aldrig bli paywall.
 
-### Föräldrapanel
-
-```bash
-streamlit run dashboard/app.py
-```
-
-Logga in med `GUARDIAN_PASSPHRASE`. Panelen visar antal meddelanden, aktiva dagar och de senaste 50 konversationsturerna (anonymiserade).
-
-### Curriculum CLI
-
-```bash
-python scripts/curriculum_cli.py list      # Lista alla Lgr22-poster
-python scripts/curriculum_cli.py validate  # Validera JSON-format
-```
-
-Lägg till fler Lgr22-data som `.json`-filer i `config/lgr22/` — samma schema som befintliga filer.
+Hur man sätter upp och byter väg: [docs/INSTALL.md](docs/INSTALL.md).  
+Vad som är kernel vs pack: [docs/PLATFORM.md](docs/PLATFORM.md).  
+Open / Hem / egen drift: [docs/PRODUCTIZATION.md](docs/PRODUCTIZATION.md).
 
 ---
 
-## Föräldrainstruktioner
+## Säkerhet och integritet
 
-Barn under 13 år faller under digital samtyckesålder i Sverige. **Samtycke måste ges innan barnet kan chatta.**
+Koden validerar. Modellen undervisar.
 
-1. Öppna boten i Telegram
-2. Skriv: `/consent [ditt-lösenord]`
-3. Bekräfta att du tagit del av integritetsinformationen
-4. Ditt barn kan nu skriva `/start` och börja
+- Kris → människa. **BRIS 116 111.** Ingen chatbot-terapi, ingen följdfråga.
+- Sex, våld, droger → en vuxen hemma, inte modellen.
+- Inga hemligheter från föräldern.
+- Jailbreak byter inte personligheten. Reglerna sitter inte i prompten.
+- Numeriskt id, inte namn eller skol-id. `/revoke` raderar.
+- Diagnos bara om *föräldern* skrivit den. Tomt = extra-stöd-default.
 
-Återkalla samtycke och radera all data: `/revoke`
+Spec: [SKOOLI_BUDDY_SAFETY_SPEC.md](SKOOLI_BUDDY_SAFETY_SPEC.md).  
+Tutorregler: `agents/tutor/SOUL.md` + `SKILL.md` + `RULES.md`.
 
----
-
-## Säkerhet
-
-Skooli Buddy har **13 absoluta regler** hårdkodade i systempromptena — skrivna av människor, inte genererade av AI:
-
-- Svarar alltid på svenska
-- Ger **aldrig** ett rakt svar på en skoluppgift
-- Max 2 korta meningar + 1 fråga per svar
-- Anti-jailbreak: byter aldrig personlighet oavsett prompt
-- Samlar aldrig in personuppgifter
-- Hänvisar till **BRIS 116 111** vid allvarliga signaler
-- Blockerar ämnen som inte hör hemma i ett klassrum
-
-Barn kan inte kringgå reglerna. Reglerna kan inte kringgå boten.
+Samtycke krävs innan barnet chattar (GDPR art. 8, under 13). På Telegram-ytan i dag: `/consent`, återkalla med `/revoke`.
 
 ---
 
-## Status
+## Ärligt läge
 
-| Test | Resultat |
-|------|----------|
-| Enhetstester | 12/12 gröna |
-| Persona-tester (Sokratisk metod) | 46/47 PASS |
-| Första riktiga barntest (9-åring) | ✅ Framgångsrik klocka-konversation |
+Två halva produkter, samma mål. **En kärna är P-01.**
 
----
+| | Lokal stack | Messaging-stack |
+|---|-------------|-----------------|
+| Kod | `backend/` · `frontend/` · `vault/` | `skooli_buddy/` · `dashboard/` |
+| Modell i kväll | Ollama | Gemini (opt-in) |
+| UI | HTML på `:8080` | Telegram + Streamlit |
+| Status | RAG + HMAC-audit, tunn chatt | Live-testad mot barn, 12 tester |
 
-## Roadmap
+Frontier-nyckel i onboarding (ChatGPT / Claude / Grok) är receptet. **Adapter = P-26 — inte kopplad än.** Att klistra en nyckel gör ingenting i FastAPI-chatten i kväll.
 
-Levande lista: [docs/BACKLOG.md](docs/BACKLOG.md).
-Research som styr den: `python scripts/research_pipeline.py summary`.
-
-Kort:
-
-- **P0** — en kärna, inget hårdkodat chat-id, safety i kod, CI, ärlig README, fungerande föräldrainlogg + `/pause`
-- **P1** — föräldern styr stödläge/tid/export, Lgr22-pack åk 4–6, läx-foto opt-in, lokal modell som default, minne hemma
-- **P2** — röst, fler årskurser, WhatsApp, veckosammanfattning utan betyg
-- **P3** — kernel/Hem/BYO, WhatsApp-kontakt hos barnet, förälder-PWA, DPIA innan sälj
-- **P4** — pack-laddare, världsbild, fler metoder i kod, krypterade anpassningar
-
-Spectator-grupp, bildstöd och minne från den gamla v0.2–v0.4-listan
-ligger kvar som P-13, P-12, P-10. Produktmodellen:
-[docs/PRODUCTIZATION.md](docs/PRODUCTIZATION.md).
+Vad som faktiskt är byggt: [docs/INVENTORY.md](docs/INVENTORY.md).  
+Vad som återstår: [docs/BACKLOG.md](docs/BACKLOG.md).  
+Vision: [docs/PRODUCT.md](docs/PRODUCT.md).
 
 ---
 
-## GDPR
+## Repo
 
-- **Dataminimering:** Bara numeriskt `chat_id` sparas — aldrig namn eller personuppgifter
-- **Samtycke:** Förälders samtycke krävs (GDPR Art. 8, barn under 13 år)
-- **Rätt till radering:** `/revoke` raderar all data omedelbart
-- **Datalagring:** Bara lokalt på din server, aldrig delat med tredje part
-- **Gemini Paid Tier 1:** Google använder inte datan för modellträning
+| Sök här | För det här |
+|---------|-------------|
+| `agents/tutor/` | Persona och pedagogik |
+| `backend/` | FastAPI, pipeline, safety, vault |
+| `frontend/` | Lokal chatt + föräldravy |
+| `vault/` | Barnkort, policies, logg, packs — strukturen rörs inte |
+| `skooli_buddy/` | Telegram-yta |
+| `config/lgr22/` | Kursplansposter som pack |
+| `research/` | Fynd. Utan källa får de inte styra backlogen |
+| `docs/` | Produkt, platta, install, inventory |
 
----
-
-## Varför Skooli Buddy?
-
-Ingen öppen produkt kombinerar:
-- Svenska + valfri kursplan (Lgr22 som pack)
-- Flera metoder **och** extra stöd (Sokrates, worked, CPA, saga, lek)
-- Föräldern som operatör — världsbild, egna agenter, inte skolan
-- Messaging *eller* helt lokalt. Ingen vendor lock-in.
-- AGPL, research-pipeline, regler i git
-
-Khanmigo är närmast pedagogiskt, men är skol-/US-spåret.
-Sorin/Tutur/Latio har föräldrakontroll, men är stängda och engelska.
-
-## Research
-
-```bash
-python scripts/research_pipeline.py validate
-python scripts/research_pipeline.py summary
-python scripts/research_pipeline.py backlog
-```
-
-Nytt påstående: se [research/README.md](research/README.md).
-Fynd utan källa får inte styra backlogen.
+Testprofilen “Test-Elev” får ligga kvar. Riktiga barnprofiler committas aldrig.
 
 ---
 
 ## Bidra
 
-Läs [CONTRIBUTING.md](CONTRIBUTING.md). Kort:
+Läs [CONTRIBUTING.md](CONTRIBUTING.md) innan du kodar. Kort:
 
 ```bash
-git checkout -b feat/din-feature
+git checkout -b feat/kort-beskrivning
 python -m pytest tests/ -v
 python scripts/research_pipeline.py validate
-# Öppna en PR mot main
+python scripts/curriculum_cli.py validate
 ```
+
+Nytt påstående om pedagogik eller safety: `python scripts/research_pipeline.py new` — se [research/README.md](research/README.md).
+
+Vi mergar inte: skola som operatör, diagnosstämpel, prompt-only safety, hemliga chat-id eller riktiga barn i git.
 
 Säkerhetsfel: [SECURITY.md](SECURITY.md), inte ett publikt issue.
 
-Frågor? [github.com/opensverige/projektpennan](https://github.com/opensverige/projektpennan)
-eller [opensverige.se](https://opensverige.se).
-
 ---
 
-## Tester
-
-```bash
-python -m pytest tests/ -v
-```
-
----
-
-*Projekt Pennan — AI för svensk utbildning, byggt öppet.*
+*Projekt Pennan — öppen kernel för läxhjälp hemma. Inte en skolapp.*
