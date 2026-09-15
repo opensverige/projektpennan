@@ -10,6 +10,8 @@ import {
   DrawablyTooltip,
 } from "drawably/react"
 
+const ink = "#171717"
+
 export function LandPage() {
   const parentRef = useRef<HTMLSpanElement>(null)
   const startRef = useRef<HTMLAnchorElement>(null)
@@ -31,6 +33,20 @@ export function LandPage() {
             </DrawablyHighlight>{" "}
             äger plattan.
           </p>
+          <div className="land-go-row">
+            <a ref={startRef} className="land-go" href="./start.html">
+              Sätt igång
+            </a>
+            <DrawablyTooltip
+              to={startRef}
+              className="land-tip"
+              stroke={ink}
+              fill={ink}
+            >
+              Ingen nyckel behövs
+            </DrawablyTooltip>
+          </div>
+          <DrawablyArrow from={parentRef} to={startRef} stroke={ink} fill={ink} />
         </section>
 
         <DrawablyDivider />
@@ -51,15 +67,6 @@ export function LandPage() {
           <p className="land-lead">
             En skärm. Namn. Sen chatten. Ingen QR. Inget barnkonto.
           </p>
-          <div className="land-go-row">
-            <a ref={startRef} className="land-go" href="./start.html">
-              Sätt igång
-            </a>
-            <DrawablyTooltip to={startRef} className="land-tip">
-              Ingen nyckel behövs
-            </DrawablyTooltip>
-          </div>
-          <DrawablyArrow from={parentRef} to={startRef} />
           <a
             className="land-git"
             href="https://github.com/opensverige/projektpennan"

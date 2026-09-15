@@ -86,11 +86,8 @@
   font-size: 1.05rem;
   font-weight: 500;
   color: #171717;
-  text-underline-offset: 5px;
-}
-
-.land-go:hover {
   text-decoration: underline;
+  text-underline-offset: 5px;
 }
 
 .land-tip {
