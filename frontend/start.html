@@ -107,12 +107,10 @@
             text-decoration: underline;
             cursor: pointer;
         }
+        footer { padding: 8px 20px 28px; }
         details {
-            position: fixed;
-            left: 50%;
-            bottom: 20px;
-            transform: translateX(-50%);
-            width: min(560px, calc(100% - 40px));
+            width: min(560px, 100%);
+            margin: 0 auto;
             text-align: left;
             color: #9a9a9a;
             font-size: 13px;
@@ -166,6 +164,7 @@
         <button class="skip" type="button" id="skip">Ingen nyckel? Fortsätt ändå</button>
     </form>
 </main>
+<footer>
 <details>
     <summary>Bygger du själv?</summary>
     <div class="box">
@@ -177,6 +176,7 @@ cd projektpennan && docker compose up --build</pre>
         <button type="button" id="copyDocker">Kopiera Docker</button>
     </div>
 </details>
+</footer>
 <script>
 const PROMPT = `Du är Gnista — en studiekompis en förälder slagit på hemma, för ett barn i åk 4–6.
 Du är inte lärare, inte hemlig vän, inte skolans röst. Låtsas inte vara människa.
