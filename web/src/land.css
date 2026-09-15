@@ -1,16 +1,11 @@
 .land {
-  --drawably-stroke: #2724d1;
-  --drawably-fill: #2724d1;
-  --drawably-paper: #f6f1e4;
-  --paper: #f6f1e4;
-  --ink: #1c1914;
+  --drawably-stroke: #171717;
+  --drawably-fill: #171717;
+  --drawably-paper: #ffffff;
   min-height: 100svh;
-  background:
-    radial-gradient(circle at 20% 10%, #fff8e8 0%, transparent 42%),
-    radial-gradient(circle at 90% 80%, #efe6d2 0%, transparent 38%),
-    var(--paper);
-  color: var(--ink);
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  background: #ffffff;
+  color: #171717;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 .land main {
@@ -18,8 +13,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.25rem;
-  width: min(34rem, calc(100% - 2.5rem));
+  gap: 2.75rem;
+  width: min(32rem, calc(100% - 2.5rem));
   margin: 0 auto;
   padding: 18vh 0 12vh;
   text-align: center;
@@ -29,58 +24,93 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.1rem;
+  gap: 1rem;
   width: 100%;
+}
+
+.land-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem 0.85rem;
 }
 
 .land h1 {
   margin: 0;
-  font-family: "Drawably Pen", Inter, ui-serif, Georgia, serif;
-  font-size: clamp(3.2rem, 12vw, 5.4rem);
-  font-weight: 400;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(2.8rem, 9vw, 4.4rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
   line-height: 1;
-  letter-spacing: -0.03em;
 }
 
 .land-lead {
   margin: 0;
-  max-width: 26rem;
-  font-size: 1.125rem;
-  line-height: 1.55;
+  max-width: 24rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #525252;
 }
 
 .land-kicker {
   margin: 0;
-  font-size: 0.8rem;
-  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  opacity: 0.7;
+  color: #a3a3a3;
 }
 
-.land-card {
+.land-list {
   width: 100%;
-  box-sizing: border-box;
-  padding: 1.4rem 1.6rem;
-  text-align: left;
-}
-
-.land-card ul {
-  margin: 0;
+  max-width: 22rem;
+  margin: 0 auto;
   padding: 0;
+  text-align: left;
+  color: #404040;
 }
 
-.land-card li + li {
-  margin-top: 0.7rem;
+.land-list li + li {
+  margin-top: 0.75rem;
+}
+
+.land-go-row {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem 1.1rem;
+}
+
+.land-go {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #171717;
+  text-underline-offset: 5px;
+}
+
+.land-go:hover {
+  text-decoration: underline;
+}
+
+.land-tip {
+  font-size: 0.78rem;
+  line-height: 1.3;
+  color: #737373;
+  white-space: nowrap;
 }
 
 .land-git {
-  margin-top: 0.25rem;
-  font-size: 0.9rem;
-  color: inherit;
+  font-size: 0.85rem;
+  color: #a3a3a3;
   text-underline-offset: 4px;
 }
 
+.land-git:hover {
+  color: #171717;
+}
+
 .land hr {
-  width: min(12rem, 50%);
+  width: min(8rem, 40%);
   border: 0;
 }
