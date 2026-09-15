@@ -48,3 +48,8 @@
   Connector hos dem, lösen aldrig till Hem. P-37, P-38.
 - Research: parent-owned-school-context. Öppna skolplattformen
   är beviset att de redan gör ingest själva.
+
+## 2026-09-15 — install vs monument
+- Hem-onboarding är ritad, inte kod. `docs/INSTALL.md` håller
+  isär Open-kväll (Docker / Telegram `/consent`) och Hem
+  (BankID + tyst kontakt, P-28). Ingen barn-onboarding, avsiktligt.

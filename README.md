@@ -26,6 +26,9 @@ Barn: "Vad är 7 gånger 8?"
 Skooli: "Vet du vad 7 gånger 7 är? Då kan vi räkna ett steg till! 🤔"
 ```
 
+Hur man installerar, och vad som *inte* är byggt:
+[docs/INSTALL.md](docs/INSTALL.md).
+
 Läs [docs/PRODUCT.md](docs/PRODUCT.md) för visionen,
 [docs/PRODUCTIZATION.md](docs/PRODUCTIZATION.md) för open-core
 (kernel / Hem / egen drift),
@@ -64,6 +67,12 @@ Målet är **en kärna, två ytor**. Just nu är de parallella. Se P-01.
 ---
 
 ## Quickstart
+
+**Hem-onboarding (BankID, tyst WhatsApp-kontakt) är inte byggt.**
+Det är monumentet — se [docs/INSTALL.md](docs/INSTALL.md).
+Det som går att köra i kväll är Open: Docker/Ollama eller Telegram.
+
+## Quickstart (Open, idag)
 
 ```bash
 # 1. Klona och installera
