@@ -3,11 +3,9 @@ import "drawably/style.css"
 import "@/land.css"
 import {
   DrawablyArrow,
-  DrawablyBadge,
   DrawablyDivider,
   DrawablyHighlight,
   DrawablyList,
-  DrawablyTooltip,
 } from "drawably/react"
 
 const ink = "#171717"
@@ -20,11 +18,6 @@ export function LandPage() {
     <div className="land">
       <main>
         <section className="land-block">
-          <div className="land-badges">
-            <DrawablyBadge>åk 4–6</DrawablyBadge>
-            <DrawablyBadge>hemma</DrawablyBadge>
-            <DrawablyBadge>öppen</DrawablyBadge>
-          </div>
           <h1>Gnista</h1>
           <p className="land-lead">
             En studiekompis. Frågor, inte facit.{" "}
@@ -33,19 +26,9 @@ export function LandPage() {
             </DrawablyHighlight>{" "}
             äger plattan.
           </p>
-          <div className="land-go-row">
-            <a ref={startRef} className="land-go" href="./start.html">
-              Sätt igång
-            </a>
-            <DrawablyTooltip
-              to={startRef}
-              className="land-tip"
-              stroke={ink}
-              fill={ink}
-            >
-              Ingen nyckel behövs
-            </DrawablyTooltip>
-          </div>
+          <a ref={startRef} className="land-go" href="./start.html">
+            Sätt igång
+          </a>
           <DrawablyArrow from={parentRef} to={startRef} stroke={ink} fill={ink} />
         </section>
 
