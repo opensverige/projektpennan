@@ -136,7 +136,8 @@ export function StartPage() {
                   <Badge variant="secondary">Det där ser ut som {label}</Badge>
                 ) : (
                   <FieldDescription>
-                    Valfritt. Prefixet väljer ChatGPT, Claude eller Gemini tyst.
+                    Valfritt. Har du en nyckel från ChatGPT, Claude eller Gemini —
+                    klistra in den.
                   </FieldDescription>
                 )}
               </Field>
