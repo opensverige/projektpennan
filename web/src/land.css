@@ -1,0 +1,86 @@
+.land {
+  --drawably-stroke: #2724d1;
+  --drawably-fill: #2724d1;
+  --drawably-paper: #f6f1e4;
+  --paper: #f6f1e4;
+  --ink: #1c1914;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 20% 10%, #fff8e8 0%, transparent 42%),
+    radial-gradient(circle at 90% 80%, #efe6d2 0%, transparent 38%),
+    var(--paper);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.land main {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.25rem;
+  width: min(34rem, calc(100% - 2.5rem));
+  margin: 0 auto;
+  padding: 18vh 0 12vh;
+  text-align: center;
+}
+
+.land-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  width: 100%;
+}
+
+.land h1 {
+  margin: 0;
+  font-family: "Drawably Pen", Inter, ui-serif, Georgia, serif;
+  font-size: clamp(3.2rem, 12vw, 5.4rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.land-lead {
+  margin: 0;
+  max-width: 26rem;
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+.land-kicker {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.land-card {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.4rem 1.6rem;
+  text-align: left;
+}
+
+.land-card ul {
+  margin: 0;
+  padding: 0;
+}
+
+.land-card li + li {
+  margin-top: 0.7rem;
+}
+
+.land-git {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  color: inherit;
+  text-underline-offset: 4px;
+}
+
+.land hr {
+  width: min(12rem, 50%);
+  border: 0;
+}

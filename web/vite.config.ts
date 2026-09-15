@@ -20,6 +20,7 @@ export default defineConfig({
         start: path.resolve(__dirname, "start.html"),
         test: path.resolve(__dirname, "test.html"),
         guardian: path.resolve(__dirname, "guardian.html"),
+        land: path.resolve(__dirname, "land.html"),
       },
     },
   },
