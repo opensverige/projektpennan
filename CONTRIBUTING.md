@@ -44,3 +44,8 @@ Python. Om Yta A och Yta B divergerar: laga kärnan, inte README.
 ## Språk
 Kodkommentarer och docs på svenska är ok. Barnets UI är alltid
 svenska först. Commit-meddelanden: `typ: kort beskrivning`.
+
+GitHub-ytan: `README.md` (svenska) är sanningen. Korta dörrar:
+`README.en.md`, `README.es.md`, `README.ar.md`. Ändra vad
+produkten är eller hur man startar → svenska först, sen de korta.
+Kommandon översätts inte. Inte i18n i koden.

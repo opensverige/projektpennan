@@ -1,8 +1,8 @@
 # Gnista
 
-**En studiekompis för åk 4–6. Föräldern äger plattan. Barnet får frågor, inte facit.**
+[Svenska](README.md) · [English](README.en.md) · [Español](README.es.md) · [العربية](README.ar.md)
 
-*English:* A parent-owned, local-first study companion for Swedish grades 4–6. The child never gets the answer first. The school is never the operator.
+**En studiekompis för åk 4–6. Föräldern äger plattan. Barnet får frågor, inte facit.**
 
 Kontaktnamnet — det barnet skriver till — är **Gnista**.  
 Repot och initiativet heter **Projekt Pennan**, under [Open Sverige](https://opensverige.se).  
@@ -159,6 +159,21 @@ Vision: [docs/PRODUCT.md](docs/PRODUCT.md).
 | `docs/` | Produkt, platta, install, inventory |
 
 Testprofilen “Test-Elev” får ligga kvar. Riktiga barnprofiler committas aldrig.
+
+---
+
+## Språk i det här repot
+
+`README.md` är sanningen. Den är svenska — produkten är svensk skola,
+svensk förälder, svensk BRIS.
+
+Korta översättningar ligger bredvid: `README.en.md`, `README.es.md`,
+`README.ar.md`. Samma mönster som Vue och Rust. Inte fyra kompletta
+manualer. Inte i18n i koden. Barnet pratar fortfarande svenska.
+Packs kan senare bära ett annat undervisningsspråk. Det är inte det här.
+
+När du ändrar vad produkten *är* eller hur man startar den: börja i
+svenska README, sen de korta. Kommandon (`git`, `docker`) översätts inte.
 
 ---
 

@@ -39,7 +39,7 @@ kunna bli ett GitHub-issue. Research-id pekar på `research/findings/`.
 | P-19 | WhatsApp-adapter bakom samma kärna. |
 | P-20 | Veckosammanfattning till föräldern: ämnen, ork, genombrott, förslag på analog hjälp — aldrig betyg. |
 | P-21 | Arkivering/rotation av `logs/`, `vault/conversations/`, `vault/audit/`. |
-| P-22 | CODE_OF_CONDUCT, issue-mallar, översättning av docs till engelska *utan* att byta barnspråk. |
+| P-22 | CODE_OF_CONDUCT, issue-mallar. Docs-översättning: korta README-dörrar finns (en/es/ar). Inte byta barnspråk. Inte fyra fulla manualer. |
 | P-23 | Threat model: prompt injection via läxbild, syskon som gissar lösenord, läckta JSONL. |
 | P-24 | Utvärdering mot riktiga familjer (samtycke, etikprövning-känsla även om det inte är forskning): NPF, SVA, "jag hatar matte". |
 
