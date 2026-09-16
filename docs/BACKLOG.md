@@ -9,7 +9,7 @@ kunna bli ett GitHub-issue. Research-id pekar på `research/findings/`.
 | ID | Vad | Varför | Research |
 |----|-----|--------|----------|
 | P-01 | **En kärna, två ytor.** SOUL/SKILL/RULES + safety + logg + profil som enda sanning. `core.py` slutar äga en egen prompt. | Dubbel stack + motstridig AI-identitet. | `inventory-dual-stack` |
-| P-02 | **Ta bort hårdkodat `ALLOWED_CHAT_ID`.** Allowlist via env/`config`, default tom = vägra starta. | Annars läcker ett privat Telegram-id och boten är oanvändbar för andra. | |
+| P-02 | **Ta bort hårdkodat `ALLOWED_CHAT_ID`.** Allowlist via start-länk / env. Tom = vägra starta. | Privat id läckte. Andra kunde inte köra. Se `skooli_buddy/telegram_link.py`. | |
 | P-03 | **Safety i kod på båda ytorna.** Svenska+engelska mönster, kris → BRIS-svar utan LLM, jailbreak-filter. | Prompt räcker inte. `safety.py` är engelska-only. | `safety-code-not-prompt` |
 | P-04 | **CI:** pytest, `research_pipeline.py validate`, `curriculum_cli.py validate`. `pytest` i requirements. | OSS utan grön pipeline är teater. | |
 | P-05 | **README som stämmer.** En story: lokal default, Telegram valfritt, länka inventory/backlog/research. | README sålde bara Gemini. AGENTS sålde bara Ollama. | |
@@ -51,13 +51,14 @@ P-03 och P-29.
 | ID | Vad | Varför | Research |
 |----|-----|--------|----------|
 | P-25 | **Kernel-gräns i repo.** Hosted = tenant + identitet + faktura, inte en fork av pedagogiken. | Accounted-modellen. | `accounted-open-core` |
-| P-26 | **Provider-adapter.** Ollama / OpenAI-compat / Gemini bakom samma interface. BYO-nyckel. | Odysseus-läget. | `accounted-open-core` |
+| P-26 | **Provider-adapter.** ~~Öppen.~~ Kopplad: OpenAI / xAI / Anthropic / Groq / Gemini / openai-compat / Ollama-sist. Safety in+ut. | Föräldern jackar in frontier eller smart OSS. Inte Ollama-default. | `parent-baseplate` |
 | P-27 | **Förälder-PWA** (BankID, PIN, paus). Barn-PWA bara fallback. | Förälderns yta ≠ barnets yta. | `contact-not-destination` |
-| P-28 | **Hem-onboarding.** BankID, samtycke, barnkort, start-token. Fem minuter. | "Ge barnet detta" är jobbet. | `accounted-open-core` |
+| P-28 | **Webb-först onboarding.** En skärm: namn, klistra nyckel, samtycke. BankID bara på Hem sen. | Börjar i webben, inte Docker. Se `frontend/start.html`. | `parent-baseplate` |
 | P-29 | **DPIA + underbiträden + ZDR** innan första betalande familj. | Hosted = vi är personuppgiftsansvariga. | `gdpr-hem` |
 | P-30 | **Telegram start-token + allowlist** (dödar hårdkodat id). | Open och Hem. | `channel-sweden` |
 | P-31 | **Publik prissida + DPA-text** (Open / Hem / egen drift). | Accounted-tabell. Aldrig paywalla safety. | `accounted-open-core` |
 | P-32 | **WhatsApp som Hem-barn-default:** tyst kontakt, bild, röst. Inget läxpush. | Där de redan är. | `contact-not-destination` |
+| P-39 | **Telegram Mini App / räkmacka.** Fyra tryck, grupplänk, ingen BankID. Mock i `frontend/rakmacka.html`. | Där Open-ytan börjar. Inte officiell @gnista. | `telegram-rakmacka-onboarding` |
 
 ## P4 — förälderns kernel (packs, inte överhet)
 
@@ -71,6 +72,11 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 | P-36 | **Förälder-skrivna anpassningar.** Valfritt fält för diagnos/preferenser. Tyst anpassning. Krypterat i Hem. Aldrig till skola. Tomt = extra-stöd-default. | Vi sätter inte diagnos. Vi lyssnar när hemmet berättar. Art. 9. | `parent-authored-accommodations` |
 | P-37 | **Skolkontext-pack.** Föräldern skriver veckans teman eller släpper in ICS/export. Minimering + TTL 7–14 dagar. Relevans i chatten, inget läxlarm. | Sidekicken ska veta vad som är uppe, utan att suga i sig Unikum. | `parent-owned-school-context` |
 | P-38 | **Förälder-hostad connector.** De kör den hemma med sitt BankID/lösen. Skriver minimerad `context.json` till vault. Hem får aldrig skol-credentials eller live-API. | Byggarföräldrar gör det redan. Vi standardiserar formatet, inte inloggningen. | `parent-owned-school-context` |
+| P-40 | **Byt arbetsnamn → Gnista.** Kontakt i chatt, bot, frontend, safety-spec. Projekt Pennan stannar. Stjärnis bara som valfritt pack. | Skooli Buddy krockar med Homework Buddy / Studybuddy. Se `docs/NAME.md`. | `product-name` |
+| P-41 | **Förälder-start: en skärm.** Namn + klistra nyckel. Grok-tom, inte wizard. Av-ramp för päron. | Föräldern är inte developer. Se `docs/ONBOARDING.md`. | `parent-baseplate` |
+| P-42 | **Prenumerations-OAuth.** ChatGPT + Grok via device-länk (Hermes/Codex/Grok Build). Claude förbjuden. Lokal import av `~/.codex` / `~/.grok`. Inte impersonation. | Föräldern har redan betalat. Se `docs/OAUTH.md`. | `oauth-subscription` |
+| P-43 | **Förälder-testmiljö.** Plan + scenario-chips (även opassande) innan barnet släpps in. Samma safety-kärna. Igenkännbara ChatGPT/Claude/Grok-märken. | Föräldern ska känna sig säker. Se `frontend/test.html`. | `parent-preview` |
+| P-44 | **Kärndemo utan Ollama.** `scripts/demo.sh` + `backend/demo.py`. Chatten faller tillbaka till kärnan. | Kunna testa i kväll. Inte låtsas att Grok svarar. | |
 
 ## Medvetet inte i scopet
 - Skola som operatör: Unikum-SSO, klass-tenant, lärarvy, write-back.

@@ -1,0 +1,36 @@
+{
+  "id": "product-name",
+  "date": "2026-09-15",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Produktens kontaktnamn ska vara Gnista. Skooli Buddy krockar med Homework Buddy och Studybuddy. Stjärnis är samma -is-form som Pluggis och landar i förskolehyllan — bra för 9, dåligt för 12. Projekt Pennan stannar som initiativnamn.",
+  "evidence": [
+    {
+      "title": "Homework Buddy — svensk AI-läxkompis, Lgr22, åk 4+",
+      "url": "https://homeworkbuddy.app/sv/",
+      "year": 2026,
+      "notes": "Samma jobb, samma ålder, ordet Buddy i namnet. Skooli Buddy är förväxlingsbart."
+    },
+    {
+      "title": "Studybuddy — registrerat svenskt läxhjälpsvarumärke sedan 2009",
+      "url": "https://studybuddy.se/om-oss/",
+      "year": 2026,
+      "notes": "120 000 elever. Allakando säljer dessutom 'study buddy' som tjänst. Buddy är upptaget i kategorin."
+    },
+    {
+      "title": "Pluggis — svensk AI-läxhjälp med -is-diminutiv",
+      "url": "https://www.pluggis.app/",
+      "year": 2026,
+      "notes": "Samma hylla och samma morfologi som Stjärnis. Draknästet + skolor 2026."
+    },
+    {
+      "title": "Khanmigo for parents — Socratic tutor, org+amigo",
+      "url": "https://khanmigo.ai/parents",
+      "year": 2026,
+      "notes": "Namnmönstret kräver ett känt stamnamn. Vi har inte Khan. Uggla/amigo är redan taget."
+    }
+  ],
+  "implication": "Lås Gnista som kontaktnamn innan räkmacka och copy. Stjärnis bara som valfritt pack. Byt strängar i UI/bot i P-40. Se docs/NAME.md.",
+  "backlog_refs": ["P-40"],
+  "confidence": "high"
+}

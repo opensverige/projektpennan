@@ -1,6 +1,7 @@
 # Plattformen — kernel föräldern äger
 
-Arbetsnamn: **Skooli Buddy**. Namnet är inte låst.
+Kontaktnamn: **Gnista**. Initiativ: Projekt Pennan.
+Skooli Buddy är gammalt arbetsnamn. Se `docs/NAME.md`.
 
 > Föräldern styr sidekicken. Inte läroplanen. Inte skolan.
 > Inte vi. Kernel är öppen. Allt ovanpå går att byta ut.
@@ -23,8 +24,8 @@ Arbetsnamn: **Skooli Buddy**. Namnet är inte låst.
 **Vendor lock-in är ett fel.** En förälder ska kunna:
 
 - köra samma kernel hemma (Open) eller hos oss (Hem)
-- byta modell (Ollama, egen nyckel, vår EU-nyckel)
-- byta yta (WhatsApp, Telegram, PWA)
+- byta modell (Ollama, ChatGPT, Claude, Gemini, egen endpoint)
+- byta yta (webb först, Docker, Telegram, sen WhatsApp)
 - exportera barnkort, logg, packs som vanliga filer
 - **ladda upp egna agenter** (markdown: SOUL/SKILL-overlay) eller
   skriva en själv
@@ -46,8 +47,8 @@ API:er när staden inte levererar — och att datan kan stanna på
 Vi är inte ännu en app de ska byta till. Vi är **standarden de
 kan släppa in sina grejer i**: samma pack-format, samma
 safety-kärna, samma export. Som en kernel. Som en vault.
-Namnet är arbetsnamn — Odysseus, Obsidian, Skooli, Pennan:
-metaforen är lokal fil + utbytbar runtime, inte en butik.
+Namnet i chatten är Gnista. Metaforen är basplatta + utbytbar
+hjärna, inte en butik. Se `docs/BASEPLATE.md`.
 
 De som inte bygger själva får samma kernel färdigslagen (Hem).
 Samma kontrakt. Ingen andra klassens pedagogik.

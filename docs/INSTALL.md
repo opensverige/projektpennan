@@ -1,92 +1,126 @@
-# Installera — vad som finns, vad som är monumentet
+# Installera — webben först, sen den väg ni vill
 
-Arbetsnamn: Skooli Buddy. Kernel föräldern äger.
+Kontaktnamn: Gnista. Vi ger **basplattan**. Ni formar den och
+jackar in den modell ni vill. Monument: [docs/BASEPLATE.md](BASEPLATE.md).
 
-Det finns **två installationer**. Blanda inte ihop dem.
+Onboarding **börjar på webben**, en skärm.
+Skiss av hemsidan: `frontend/land.html` (drawably, tre sektioner).
+Öppna `frontend/start.html`. Namn, ev. nyckel, sätt igång.
+UI-källan är `web/` (shadcn). Efter ändring: `cd web && npm run build`.
+Inte Docker-först. Inte `/consent`. Inte sex steg.
+Av-ramp för päron bakom “Bygger du själv?”.
 
-| | **Idag (byggt)** | **Hem (monumentet, ej byggt)** |
-|---|------------------|--------------------------------|
-| Vem | Tech-förälder, bidrag, vi som utvecklar | Vanlig familj, fem minuter |
-| Barn ser | Telegram-bot eller localhost:8080 | En tyst kontakt i WhatsApp |
-| Förälder gör | Klona, `.env`, `/consent [lösen]` | BankID på *sin* telefon, barnet inte i rummet |
-| Onboarding | Nej. Kommandon. | Ja — P-28. Inte byggt. |
-| Barn-onboarding | Avsiktligt ingen | Avsiktligt ingen |
-
----
-
-## Scenariot vi håller uppe (Hem)
-
-Söndag kväll. Barnen är i sitt rum.
-
-1. Föräldern öppnar Hem på sin telefon. BankID. Inte barnets skärm.
-2. Kort samtycke. Inklusive: chatten kan gå via WhatsApp/Meta.
-3. Barnkort: tilltalsnamn, åk, stöd. Valfritt: världsbild, diagnos,
-   veckans skolteman. Aldrig krav.
-4. Tid: 45 min, stopp 19:30. Inget läxlarm.
-5. Samma gest som att lägga till mormor: en kontakt i barnets WhatsApp.
-6. PIN på föräldrapanelen. Pausa / radera där.
-7. Klart. Ingen demo med barnet i knät.
-
-Barnet ser aldrig BankID, aldrig pris, aldrig loggen.
-Första gången de skriver i tråden är första gången produkten börjar.
-
-Det är `docs/UX-SCENARIOS.md` och `docs/PRODUCTIZATION.md`.
-Koden för det är backlog **P-28** (plus P-27, P-30, P-32).
-**Den onboarding-flödet är inte byggt.**
+Barnet har ingen onboarding.
 
 ---
 
-## Scenariot som går att köra i kväll (Open)
+## Välj väg efter starten
 
-### A. Lokal kernel — ingen moln-LLM
+| Väg | Kommando / gest | Modell i kväll | Ärligt läge |
+|-----|-----------------|----------------|-------------|
+| A. Webb + Docker + Ollama | `GNISTA_USE_OLLAMA=1 docker compose up --build` | lokal, sista utväg | Byggt, inte default |
+| B. Webb + egen modell | nyckel i starten eller env | ChatGPT / Grok / Claude / Groq / vLLM | **Byggt (P-26)** |
+| C. Bara filer | start.html → ladda ner config | — | Plattan, ingen chatt än |
+| D. Telegram | `python -m skooli_buddy.bot` | Gemini, hårdkodat | Byggt som kommandon |
+| E. Hem | BankID, tyst kontakt | vi eller BYO | Inte byggt |
+| F. WhatsApp | kontakt i listan | samma kernel | P-32 |
+| G. Testa nu | `./scripts/demo.sh` | kärna, inte Grok | **Byggt** |
+| H. Testa SOUL | `./scripts/soul.sh` | samma BYO-modell + tutorfiler | **Byggt** |
 
-Föräldern (eller du) har Docker och Ollama.
+Byt väg senare. Samma vault. Samma barnkort.
+
+---
+
+## A. Lokal platta, data hemma
 
 ```bash
 git clone https://github.com/opensverige/projektpennan
 cd projektpennan
-# Ollama med t.ex. hermes3:8b på port 11434
+# Ollama med t.ex. hermes3:8b på 11434
 docker compose up --build
 ```
 
-Öppna http://localhost:8080 — det är HTML-chatten.
-`frontend/guardian.html` är en tunn föräldralogg, inte Hem-panelen.
-Ingen BankID. Ingen WhatsApp-kontakt. Ingen fem-minuters-guide.
+http://localhost:8080 — barnchatt.  
+http://localhost:8080/start.html — förälderstart.  
+http://localhost:8080/guardian.html — tunn logg.
 
-Vaulten ligger i `vault/`. Packs (världsbild, Lgr22, skolkontext,
-egen agent) är mallar i `vault/packs/`. Laddaren är P-33 — du
-redigerar filer för hand.
+`vault/config/runtime.example.json` → `runtime.json` när ni vill
+låsa modell. Backend läser den, sen env (`OPENAI_API_KEY`,
+`XAI_API_KEY`, `ANTHROPIC_API_KEY`, `GROQ_API_KEY`,
+`OPENAI_BASE_URL`). Ollama bara om ni valt `provider: ollama`.
 
-### B. Telegram — det som testats mot ett barn
+## B. Samma platta, er frontier-modell
+
+Från start-sidan: klistra in nyckeln. Prefixet väljer
+ChatGPT / Claude / Gemini / Grok tyst. **Skicka inte nyckeln
+till oss.** Ni betalar leverantören. Ni godkänner att läxtext
+lämnar hemmet.
+
+```
+OPENAI_API_KEY=sk-...          # eller ANTHROPIC_ / GEMINI_
+# runtime.json: provider + model + base_url
+```
+
+Nyckeln i starten skickas bara till er lokala `/api/chat`
+(header, loggas inte). Telegram-boten läser fortfarande
+`GEMINI_API_KEY` tills P-01 slår ihop ytorna.
+
+## D. Telegram — deras bot, vår start-länk
+
+Ingen officiell @gnista-bot. Ingen verifier-bot som tar emot token
+(då sitter *vi* på nyckeln). Bara @BotFather kan skapa en bot.
+
+1. På `test.html`: Öppna @BotFather → `/newbot` → klistra token.
+2. Vi kör `getMe` *här*. Får en länk `t.me/DinBot?start=…`.
+3. Föräldern öppnar länken. Den chatten släpps in. Andra ignoreras.
+4. `python -m skooli_buddy.bot` hos dem (eller Docker). Tom allowlist
+   utan start-länk = vägrar starta. Inget hårdkodat chat-id.
 
 ```bash
 pip install -r requirements.txt
 cp .env.example .env
-# TELEGRAM_BOT_TOKEN, GEMINI_API_KEY, GUARDIAN_PASSPHRASE
 python -m skooli_buddy.bot
 ```
 
-Sedan, i Telegram:
+---
 
-1. Föräldern skriver `/consent [lösenord]`
-2. Barnet (eller samma chatt) skriver `/start`
-3. Föräldrapanel: `streamlit run dashboard/app.py`
+## G. Testa chatten nu (kärna, inte Grok)
 
-Det är **inte** en onboarding. Det är kommandon. Boten har dessutom
-ett hårdkodat tillåtet chat-id (P-02) — den är inte redo att delas
-ut till andra familjer.
+Ingen Ollama. Ingen nyckel. Samma safety som barnet får.
 
-`/pause` lovas i samtyckestexten men saknas (P-07).
+```bash
+pip install fastapi uvicorn pydantic httpx
+./scripts/demo.sh
+```
+
+http://127.0.0.1:8080/start.html — namn, samtycke.  
+http://127.0.0.1:8080/test.html — chips, även opassande.  
+http://127.0.0.1:8080/index.html — skriv som barnet.
+
+Läxfrågor får ett sokratiskt stubbsvar. Sex / bomb / hemlighet /
+kris / jailbreak kommer från `safety.py`, inte från en modell.
+P-26 är kopplad: samma safety före och efter, oavsett modell.
+
+## H. Testa SOUL (riktig agent, inte stubbar)
+
+Samma `SOUL.md` + `SKILL.md` + `RULES.md` som pipelinen staplar.
+Läxa går till den modell ni jackat in. Kris/sex/hemlighet stannar i `safety.py`. Svaret filtreras också.
+
+```bash
+export OPENAI_API_KEY=sk-...   # eller GROQ_ / XAI_ / ANTHROPIC_
+./scripts/soul.sh
+```
+
+http://127.0.0.1:8080/index.html — skriv som barnet.
+
+Chips på `test.html` är fortfarande kärnan (förälderns plan).
+Chatten är SOUL. Inte samma sak.
 
 ---
 
-## Vad som medvetet inte finns
+## Vad som medvetet inte krävs
 
-- Ingen wizard. Ingen QR. Ingen “nu ska du prata med AI:n”.
-- Ingen barn-onboarding (avatar, “vad vill du lära dig”).
-- Ingen BankID, ingen start-länk, ingen WhatsApp-adapter.
-- Ingen pack-UI — vaulten är filer, som Obsidian.
-
-När Hem byggs ska den här filen fortfarande vara sann:
-Open = klona och kör. Hem = BankID och en tyst kontakt.
-Samma kernel. Samma safety. Olika hur den hamnar hos barnet.
+- BankID för att *börja* (Hem kan lägga det sen)
+- Att föräldern kan Docker (väg C + sen Hem)
+- Barnkonto, QR, “nu prata med AI:n”
+- Att *vi* äger modellvalet

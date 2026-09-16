@@ -1,7 +1,8 @@
 # Produktvision — Skooli Buddy
 
 > En sidekick i barnets ficka. Spakarna hemma. Aldrig skolans system.
-> Arbetsnamn: Skooli Buddy. Kernel föräldern äger — inte en låst app.
+> Kontaktnamn: Gnista. Initiativ: Projekt Pennan.
+> Kernel föräldern äger — inte en låst app. Se `docs/NAME.md`.
 
 ## Vem vi bygger för
 - Barn 9–12 år (åk 4–6 först) som behöver **stöd, inte mer press**.
@@ -64,13 +65,16 @@ Bygger på research i `research/findings/`:
 Ingen öppen, svensk, föräldrastyrd kernel-sidekick finns. Lgr22 är
 ett pack hos oss, inte överhet.
 
-| | Svenska + valfri kursplan | Aldrig facit | Förälder styr (packs) | Lokal / OSS | Messaging |
-|---|---------------------------|--------------|-----------------------|-------------|-----------|
-| **Skooli Buddy** | Lgr22 som pack (tunnt) | ja | ja (mål; kod delvis) | ja | kontakt i chatt |
+| | Svenska + valfri kursplan | Aldrig facit | Förälder styr | Lokal / OSS | Messaging |
+|---|---------------------------|--------------|---------------|-------------|-----------|
+| **Gnista** | Lgr22 som pack | ja | ja (mål) | ja | kontakt i chatt |
+| Homework Buddy | Lgr22 inbakat | delvis | nej | nej | app |
+| Pluggis | skolans material | ja | nej | nej | app |
+| Allakando AI-lärare | svensk skola | delvis | nej | nej | webb |
+| Studybuddy / Allakando | människa, 400 kr/h | — | nej | nej | — |
 | Khanmigo | nej | ja | delvis, US/skola | nej | nej |
-| Sorin / Tutur / Latio | nej | ja | ja, stängt | nej | app |
 | ChatGPT / Gemini raw | nej | nej | nej | nej | ja |
-| Skolans "AI-assistent" | ev. | varierar | nej | nej | nej |
+| Skolon AI-studiehjälp | ja, skolkedja | varierar | nej | nej | app |
 
 Vår kant: **öppen kernel + föräldern som operatör + extra stöd som
 default + egna agenter**. Inte en låst läroplansapp. Inte Khan Academy.

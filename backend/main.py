@@ -5,16 +5,28 @@ FastAPI-server. Kör lokalt, exponerar INGET till internet.
 from __future__ import annotations
 
 import os
+import sys
 import uuid
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, Header, HTTPException
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from pipeline import run_pipeline
+from providers import load_runtime
 from session_store import SessionStore
 from reports import list_reports, get_report
+from oauth import catalog, find_local_session, get_provider
+from preview import catalog as preview_catalog
+from preview import reply_for
+
+_here = Path(__file__).resolve().parent
+for _root in (_here.parent, _here):
+    if (_root / "skooli_buddy").is_dir() and str(_root) not in sys.path:
+        sys.path.append(str(_root))
+
+from skooli_buddy.telegram_link import public_status, verify_and_bind
 
 app = FastAPI(title="Skooli Buddy", version="0.2.0")
 
@@ -33,10 +45,15 @@ class ChatResponse(BaseModel):
     session_id: str
     response: str
     status: str
+    model: str | None = None
 
 
 @app.post("/api/chat", response_model=ChatResponse)
-async def chat(req: ChatRequest):
+async def chat(
+    req: ChatRequest,
+    x_gnista_key: str | None = Header(default=None),
+    x_gnista_provider: str | None = Header(default=None),
+):
     if not req.message or not req.message.strip():
         raise HTTPException(status_code=400, detail="Tomt meddelande.")
 
@@ -47,7 +64,13 @@ async def chat(req: ChatRequest):
 
     history = session_store.get_history(session_id)
 
-    result = await run_pipeline(session_id, req.message.strip(), history)
+    result = await run_pipeline(
+        session_id,
+        req.message.strip(),
+        history,
+        api_key=x_gnista_key,
+        provider=x_gnista_provider,
+    )
 
     if result["status"] == "ok":
         history.append({"role": "user", "content": req.message.strip()})
@@ -59,13 +82,73 @@ async def chat(req: ChatRequest):
     return ChatResponse(
         session_id=session_id,
         response=result["response"],
-        status=result["status"]
+        status=result["status"],
+        model=result.get("model"),
     )
 
 
 @app.get("/api/health")
 async def health():
-    return {"status": "ok", "service": "skooli-buddy", "version": "0.2.0"}
+    runtime = load_runtime()
+    return {
+        "status": "ok",
+        "service": "skooli-buddy",
+        "version": "0.3.0",
+        "provider": runtime.provider,
+        "model": runtime.model if runtime.provider != "none" else None,
+    }
+
+
+@app.get("/api/oauth/providers")
+async def oauth_providers():
+    return {"providers": catalog()}
+
+
+@app.post("/api/oauth/import/{provider}")
+async def oauth_import(provider: str):
+    try:
+        spec = get_provider(provider)
+    except KeyError:
+        raise HTTPException(status_code=404, detail="Okänd leverantör.")
+    if not spec.get("allowed"):
+        raise HTTPException(status_code=403, detail=spec["reason"])
+    result = find_local_session(provider)
+    if not result.get("ok"):
+        raise HTTPException(status_code=404, detail=result["reason"])
+    return result
+
+
+class PreviewTurn(BaseModel):
+    message: str
+
+
+@app.get("/api/preview")
+async def preview_index():
+    return preview_catalog()
+
+
+@app.post("/api/preview/turn")
+async def preview_turn(req: PreviewTurn):
+    if not req.message or not req.message.strip():
+        raise HTTPException(status_code=400, detail="Tomt meddelande.")
+    return reply_for(req.message.strip())
+
+
+class TelegramBind(BaseModel):
+    token: str
+
+
+@app.get("/api/telegram")
+async def telegram_status():
+    return public_status()
+
+
+@app.post("/api/telegram/bind")
+async def telegram_bind(req: TelegramBind):
+    try:
+        return verify_and_bind(req.token)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @app.get("/api/reports")

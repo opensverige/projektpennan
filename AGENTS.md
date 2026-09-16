@@ -75,6 +75,8 @@ världsbilds-/diagnos-packs committas aldrig.
 ## Development Workflow
 ```bash
 # Lokal stack
+./scripts/soul.sh                  # SOUL + Ollama — http://127.0.0.1:8080
+./scripts/demo.sh                  # kärna, ingen Ollama — http://127.0.0.1:8080
 docker compose up --build          # http://localhost:8080
 # eller: uvicorn main:app --reload --host 0.0.0.0 --port 8080   (från backend/)
 
@@ -96,8 +98,8 @@ python scripts/curriculum_cli.py validate
 - Svenska + engelska blockmönster. Hänvisa till BRIS 116 111 vid
   allvarliga signaler — koden ska kunna tvinga det, inte bara prompten.
 - Ingen utåt-nätverk för lokal backend utöver Ollama.
-- Hardcoded `ALLOWED_CHAT_ID` i `skooli_buddy/bot.py` är en
-  utvecklingslåsning, inte en OSS-default.
+- Telegram: ingen officiell bot. Token verifieras lokalt med getMe.
+  Start-länk släpper in en chatt. Tom allowlist utan länk = vägra start.
 
 ## Current Focus
 1. En kärna, BYO-providers (P-01, P-26).

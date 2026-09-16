@@ -21,11 +21,9 @@ from dotenv import load_dotenv
 from .consent import has_consent, record_consent, revoke_consent
 from .core import get_response, reset_chat
 from .logger import log_turn, delete_logs_for_chat
+from .telegram_link import bot_token, can_start, claim_start, is_allowed
 
 load_dotenv()
-
-# Enda tillåtna användaren — ignorera alla andra
-ALLOWED_CHAT_ID = 544123218
 
 # Sessionsgränser (DEL 2)
 SESSION_MSG_LIMIT = 30
@@ -152,18 +150,29 @@ def _next_turn(chat_id: int) -> int:
     return n
 
 
+def _gate(chat_id: int, start_payload: str | None = None) -> bool:
+    """Bara länkad familj. Fel länk = tyst, inte en publik bot."""
+    if is_allowed(chat_id):
+        return True
+    return claim_start(chat_id, start_payload)
+
+
 async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Hanterar /start."""
+    """Hanterar /start och ev. start-token från webben."""
     chat_id = update.effective_chat.id
-    if not has_consent(chat_id):
-        await update.message.reply_text(CONSENT_REQUEST_MSG)
+    payload = (context.args or [None])[0]
+    if not _gate(chat_id, payload):
         return
+    if not has_consent(chat_id):
+        record_consent(chat_id)
     await update.message.reply_text(WELCOME_MSG)
 
 
 async def cmd_consent(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Hanterar /consent [lösenord] — registrerar förälders samtycke."""
     chat_id = update.effective_chat.id
+    if not _gate(chat_id):
+        return
     guardian_passphrase = os.getenv("GUARDIAN_PASSPHRASE", "")
 
     if not guardian_passphrase:
@@ -182,6 +191,8 @@ async def cmd_consent(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
 async def cmd_revoke(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Hanterar /revoke — återkallar samtycke och raderar ALL data (DEL 3)."""
     chat_id = update.effective_chat.id
+    if not _gate(chat_id):
+        return
     revoke_consent(chat_id)
     reset_chat(chat_id)
     delete_logs_for_chat(chat_id)
@@ -195,6 +206,8 @@ async def cmd_revoke(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
 async def cmd_reset(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Hanterar /reset — rensar konversationshistorik och sessionsräknare."""
     chat_id = update.effective_chat.id
+    if not _gate(chat_id):
+        return
     if not has_consent(chat_id):
         await update.message.reply_text(MSG_NO_CONSENT)
         return
@@ -206,11 +219,15 @@ async def cmd_reset(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 async def cmd_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Hanterar /help."""
+    if not _gate(update.effective_chat.id):
+        return
     await update.message.reply_text(HELP_MSG, parse_mode="Markdown")
 
 
 async def handle_voice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """DEL 8: Röstmeddelanden stöds inte."""
+    if not _gate(update.effective_chat.id):
+        return
     await update.message.reply_text(
         "Jag kan bara läsa text och bilder just nu! Skriv det\nistället, så hjälper jag dig. 😊"
     )
@@ -219,6 +236,8 @@ async def handle_voice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Hanterar vanliga textmeddelanden."""
     chat_id = update.effective_chat.id
+    if not _gate(chat_id):
+        return
     user_text = update.message.text or ""
 
     if not has_consent(chat_id):
@@ -256,21 +275,21 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 
 def main() -> None:
     """Startar Telegram-boten."""
-    token = os.getenv("TELEGRAM_BOT_TOKEN")
-    if not token:
-        print("Fel: TELEGRAM_BOT_TOKEN saknas i .env", file=sys.stderr)
+    token = bot_token()
+    ok, reason = can_start()
+    if not token or not ok:
+        print(f"Fel: {reason}", file=sys.stderr)
         sys.exit(1)
 
     app = Application.builder().token(token).build()
 
-    allowed = filters.Chat(ALLOWED_CHAT_ID)
-    app.add_handler(CommandHandler("start", cmd_start, filters=allowed))
-    app.add_handler(CommandHandler("consent", cmd_consent, filters=allowed))
-    app.add_handler(CommandHandler("revoke", cmd_revoke, filters=allowed))
-    app.add_handler(CommandHandler("reset", cmd_reset, filters=allowed))
-    app.add_handler(CommandHandler("help", cmd_help, filters=allowed))
-    app.add_handler(MessageHandler(allowed & filters.VOICE, handle_voice))
-    app.add_handler(MessageHandler(allowed & filters.TEXT & ~filters.COMMAND, handle_message))
+    app.add_handler(CommandHandler("start", cmd_start))
+    app.add_handler(CommandHandler("consent", cmd_consent))
+    app.add_handler(CommandHandler("revoke", cmd_revoke))
+    app.add_handler(CommandHandler("reset", cmd_reset))
+    app.add_handler(CommandHandler("help", cmd_help))
+    app.add_handler(MessageHandler(filters.VOICE, handle_voice))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
     print("Skooli Buddy startar... tryck Ctrl+C för att stoppa.")
     app.run_polling()

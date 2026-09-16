@@ -1,0 +1,36 @@
+{
+  "id": "oauth-subscription",
+  "date": "2026-09-15",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Föräldern ska kunna OAuth:a in med ChatGPT- eller Grok-abonnemang (device-kod som Hermes/Codex/Grok Build). Claude-abonnemang är förbjudet i third-party. Vi impersonerar inte deras CLI.",
+  "evidence": [
+    {
+      "title": "OpenAI Codex — Sign in with ChatGPT for subscription access",
+      "url": "https://developers.openai.com/codex/auth",
+      "year": 2026,
+      "notes": "Officiellt: Plus/workspace via browser eller `codex login --device-auth`. Inte samma sak som Sign in with ChatGPT hos Notion (bara identitet)."
+    },
+    {
+      "title": "Hermes Agent — openai-codex device flow",
+      "url": "https://hermes-agent.nousresearch.com/docs/integrations/providers",
+      "year": 2026,
+      "notes": "Öppna auth.openai.com/codex/device, skriv koden, tokens i auth.json. Det är mallen för vår knapp."
+    },
+    {
+      "title": "xAI Grok Build — grok login --device-auth",
+      "url": "https://docs.x.ai/build/enterprise",
+      "year": 2026,
+      "notes": "RFC 8628 mot auth.x.ai. SuperGrok / Premium+. Inference via deras CLI-proxy, inte nödvändigtvis api.x.ai."
+    },
+    {
+      "title": "Anthropic — no third-party Claude subscription OAuth",
+      "url": "https://code.claude.com/docs/en/legal-and-compliance",
+      "year": 2026,
+      "notes": "OAuth för Free/Pro/Max bara native Claude. Third-party ska använda API-nyckel. Februari 2026 förtydligat."
+    }
+  ],
+  "implication": "P-42 är device-onboarding + lokal import (Codex/Grok/Hermes). Hermes-filen matchar bara rätt alias så Grok inte räknas som ChatGPT. Inga tokens i API-svaret. Ingen Claude-knapp. P-26 anropar fortfarande inte. Se docs/OAUTH.md.",
+  "backlog_refs": ["P-26", "P-42"],
+  "confidence": "high"
+}

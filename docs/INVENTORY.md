@@ -52,7 +52,7 @@ Betyg (0–5)
 - AGPL-3.0, opensverige, README på svenska.
 
 ### Hål i Yta B
-- `ALLOWED_CHAT_ID = 544123218` hårdkodat — inte opensourcebart.
+- Telegram-id är inte hårdkodat. Start-länk + allowlist. Token i vault, inte git.
 - Prompten duplicerar och *motsäger* `agents/tutor/*` (AI-identitet).
 - Policies (`max_minutes_*`, klockslag) läses in men används inte.
 - Ingen input-safety i kod före Gemini.
@@ -104,6 +104,13 @@ Betyg (0–5)
 | `vault/parent-reports/` | gitkeep | Guardian-HTML är tom. |
 | `vault/packs/` | manifest + mallar | Laddare saknas (P-33). Lgr22/worldview/pedagogy/accommodations/custom-agent. |
 | `scripts/curriculum_cli.py` | list + validate | Ingen import från Skolverket, ingen åk 5–6. |
+
+## Kärndemo (utan Ollama)
+
+`backend/demo.py` + `scripts/demo.sh`. Chatt och testchips
+använder `preview.reply_for` / `safety.py`. Ingen modell.
+`frontend/index.html` faller tillbaka till samma kärna om
+`/api/chat` sover.
 
 ## OSS- och driftläge
 

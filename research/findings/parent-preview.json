@@ -1,0 +1,24 @@
+{
+  "id": "parent-preview",
+  "date": "2026-09-15",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Föräldern ska kunna testa Gnistas plan mot barnet — inklusive opassande, kris och hemlighet — innan barnet släpps in. Samma kärna som chatten, inte en demo-lögn.",
+  "evidence": [
+    {
+      "title": "Gorgias — Now see how your AI Agent will respond",
+      "url": "https://mobbin.com/screens/30949071-182f-4b67-92b0-73ae063d4f11",
+      "year": 2026,
+      "notes": "Vänster: scenarier. Höger: preview-chatt. Det är testmiljön, inte en wizard."
+    },
+    {
+      "title": "Dropbox Dash — Continue with Google/Apple logos",
+      "url": "https://mobbin.com/screens/e1fe4ed5-8c62-49bc-b5fb-c9e1768cde88",
+      "year": 2026,
+      "notes": "Igenkännbara märken på knapparna. ChatGPT/Grok OAuth, Claude bara nyckel."
+    }
+  ],
+  "implication": "P-43. frontend/test.html efter start.html. safety.py klassar kris/hemlighet/block/jailbreak. Se docs/ONBOARDING.md.",
+  "backlog_refs": ["P-03", "P-43"],
+  "confidence": "high"
+}

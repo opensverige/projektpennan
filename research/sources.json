@@ -217,6 +217,38 @@
       "url": "https://mediemyndigheten.se/globalassets/rapporter-och-analyser/ungar--medier/mediemyndigheten-rapport-ungar-och-medier.pdf",
       "themes": ["product"],
       "cadence": "årlig"
+    },
+    {
+      "id": "homework-buddy",
+      "org": "Reko Mat i Lund AB",
+      "title": "Homework Buddy",
+      "url": "https://homeworkbuddy.app/sv/",
+      "themes": ["product"],
+      "cadence": "kvartal"
+    },
+    {
+      "id": "pluggis",
+      "org": "Pluggis",
+      "title": "Pluggis — smart läxhjälp",
+      "url": "https://www.pluggis.app/",
+      "themes": ["product"],
+      "cadence": "kvartal"
+    },
+    {
+      "id": "studybuddy-se",
+      "org": "Familjo / Studybuddy",
+      "title": "Om Studybuddy Läxhjälp",
+      "url": "https://studybuddy.se/om-oss/",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "khanmigo-parents",
+      "org": "Khan Academy",
+      "title": "Khanmigo for parents",
+      "url": "https://khanmigo.ai/parents",
+      "themes": ["product", "pedagogy"],
+      "cadence": "årlig"
     }
   ]
 }

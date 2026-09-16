@@ -39,7 +39,8 @@
 - Docs: PLATFORM.md. Pack-skelett i `vault/packs/`. Tutorregler v3.
 - Backlog P-33–P-36. Research: parent-sovereignty-kernel,
   pedagogy-beyond-socratic, parent-authored-accommodations.
-- Namnet är arbetsnamn.
+- Namnet är låst som rekommendation: kontakt **Gnista**, initiativ Projekt Pennan. Se `docs/NAME.md`. Skooli Buddy fasas (P-40).
+- Plattan: vi ger safety/vault/ytor. Föräldern jackar in modell (ChatGPT m.fl.). Onboarding är Grok-tom, ritad i shadcn (`web/`): `frontend/start.html` är login1-kort + klistra-nyckel + Aurora. ChatGPT/Grok kan OAuth:as (Hermes/device). Claude inte. Efter starten: `test.html` — plan + chips så föräldern ser hur Gnista möter barnet. Se `docs/OAUTH.md`.
 
 ## 2026-09-15 — byggarföräldrar + skolkontext
 - Analog: Obsidian-vault + Odysseus-runtime. Vi standardiserar

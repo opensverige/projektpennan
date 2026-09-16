@@ -10,6 +10,7 @@ services:
       - ./vault:/app/vault
       - ./agents:/app/agents
       - ./frontend:/app/frontend
+      - ./skooli_buddy:/app/skooli_buddy
     environment:
       - OLLAMA_URL=http://host.docker.internal:11434
       - MODEL_NAME=hermes3:8b

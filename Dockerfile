@@ -5,9 +5,16 @@ WORKDIR /app
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+COPY web/package.json web/package-lock.json /app/web/
+WORKDIR /app/web
+RUN npm ci
+COPY web/ /app/web/
+RUN npm run build
+
+WORKDIR /app
 COPY backend/ ./
 COPY agents/ /app/agents/
-COPY frontend/ /app/frontend/
+COPY skooli_buddy/ /app/skooli_buddy/
 
 EXPOSE 8080
 

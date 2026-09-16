@@ -14,5 +14,9 @@ vault/curriculum-vectors/*
 !vault/curriculum-vectors/.gitkeep
 vault/parent-reports/*
 !vault/parent-reports/.gitkeep
+vault/config/telegram.json
+vault/config/telegram-bot-token.txt
 .venv/
 .pytest_cache/
+web/node_modules/
+web/dist/

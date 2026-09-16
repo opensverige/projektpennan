@@ -10,15 +10,18 @@ import hashlib
 import hmac
 import os
 import secrets
-import httpx
 from datetime import datetime, timezone
 from pathlib import Path
-from safety import check_input_safety, check_output_safety, load_policies
+from safety import (
+    check_input_safety,
+    check_output_safety,
+    kernel_reply,
+    load_policies,
+)
 from rag import search_curriculum
+from providers import complete, load_runtime
 
-VAULT_PATH = Path("/app/vault")
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://ollama:11434")
-MODEL_NAME = os.getenv("MODEL_NAME", "hermes3:8b")
+VAULT_PATH = Path(os.getenv("VAULT_PATH", "/app/vault"))
 AUDIT_SECRET_FILE = VAULT_PATH / "config" / "audit-secret.txt"
 _AUDIT_SECRET: str | None = None
 
@@ -160,32 +163,13 @@ def log_audit(session_id: str, action: str, details: str):
         f.write(line)
 
 
-async def call_ollama(system_prompt: str, conversation_history: list[dict]) -> str:
-    """
-    Skicka request till Ollama. Returnerar LLM-svaret som sträng.
-    """
-    messages = [{"role": "system", "content": system_prompt}]
-    messages.extend(conversation_history)
-
-    async with httpx.AsyncClient(timeout=120.0) as client:
-        response = await client.post(
-            f"{OLLAMA_URL}/api/chat",
-            json={
-                "model": MODEL_NAME,
-                "messages": messages,
-                "stream": False,
-                "options": {
-                    "temperature": 0.7,
-                    "num_predict": 512,
-                }
-            }
-        )
-        response.raise_for_status()
-        data = response.json()
-        return data.get("message", {}).get("content", "")
-
-
-async def run_pipeline(session_id: str, user_message: str, history: list[dict]) -> dict:
+async def run_pipeline(
+    session_id: str,
+    user_message: str,
+    history: list[dict],
+    api_key: str | None = None,
+    provider: str | None = None,
+) -> dict:
     """
     Hela pipelinen. Ett meddelande in, ett resultat ut.
 
@@ -212,11 +196,12 @@ async def run_pipeline(session_id: str, user_message: str, history: list[dict]) 
     chain["steps"].append({"step": "safety_in", "result": input_check})
 
     if not input_check["safe"]:
-        safe_response = "Hmm, den frågan kan jag inte hjälpa till med. Vill du fråga om något annat?"
-        log_conversation_turn(session_id, "user", user_message, {"blocked": True})
+        kind = input_check.get("kind") or "block"
+        safe_response = kernel_reply(kind)
+        log_conversation_turn(session_id, "user", user_message, {"blocked": True, "kind": kind})
         log_conversation_turn(session_id, "assistant", safe_response)
         log_audit(session_id, "INPUT_BLOCKED", input_check["reason"])
-        chain["steps"].append({"step": "respond", "type": "blocked_input"})
+        chain["steps"].append({"step": "respond", "type": "blocked_input", "kind": kind})
         return {"status": "blocked_input", "response": safe_response, "processing_chain": chain}
 
     # --- STEG 3: RAG mot kursplanspack (av om föräldern stängt packen) ---
@@ -253,16 +238,18 @@ async def run_pipeline(session_id: str, user_message: str, history: list[dict]) 
         conversation.append({"role": "system", "content": f"[Kursplan]\n{rag_context}"})
     conversation.append({"role": "user", "content": user_message})
 
+    runtime = load_runtime(override_key=api_key, override_provider=provider)
     try:
-        llm_response = await call_ollama(system_prompt, conversation)
-        chain["steps"].append({"step": "llm", "status": "ok", "model": MODEL_NAME})
+        llm_response = await complete(system_prompt, conversation, runtime)
+        chain["steps"].append({"step": "llm", "status": "ok", "model": runtime.label()})
     except Exception as e:
-        log_audit(session_id, "LLM_ERROR", str(e))
-        chain["steps"].append({"step": "llm", "status": "error", "error": str(e)})
+        log_audit(session_id, "LLM_ERROR", type(e).__name__)
+        chain["steps"].append({"step": "llm", "status": "error", "error": type(e).__name__})
         return {
             "status": "error",
             "response": "Oj, jag tappade tråden. Kan du försöka igen?",
-            "processing_chain": chain
+            "processing_chain": chain,
+            "model": runtime.label(),
         }
 
     # --- STEG 5: Output safety ---
@@ -279,7 +266,7 @@ async def run_pipeline(session_id: str, user_message: str, history: list[dict]) 
                 {"role": "user", "content": "[SYSTEM] Ditt svar bröt mot säkerhetsreglerna. Formulera om ditt svar."}
             ]
             try:
-                llm_response = await call_ollama(system_prompt, retry_msg)
+                llm_response = await complete(system_prompt, retry_msg, runtime)
                 output_check = check_output_safety(llm_response, policies)
             except Exception:
                 break
@@ -288,7 +275,12 @@ async def run_pipeline(session_id: str, user_message: str, history: list[dict]) 
             safe_response = "Jag behöver tänka lite mer på det där. Kan vi prata om något annat?"
             log_audit(session_id, "OUTPUT_BLOCKED", f"After {retry_count} retries")
             chain["steps"].append({"step": "respond", "type": "blocked_output"})
-            return {"status": "blocked_output", "response": safe_response, "processing_chain": chain}
+            return {
+                "status": "blocked_output",
+                "response": safe_response,
+                "processing_chain": chain,
+                "model": runtime.label(),
+            }
 
     # Använd trimmad version om den fanns
     final_response = output_check.get("trimmed") or llm_response
@@ -296,11 +288,16 @@ async def run_pipeline(session_id: str, user_message: str, history: list[dict]) 
     # --- STEG 6: Log ---
     log_conversation_turn(session_id, "user", user_message)
     log_conversation_turn(session_id, "assistant", final_response, {
-        "model": MODEL_NAME,
+        "model": runtime.label(),
         "rag_used": bool(rag_context),
         "rag_hits": rag_result.get("hits", 0)
     })
     log_audit(session_id, "RESPONSE_SENT", f"Length: {len(final_response)} chars")
     chain["steps"].append({"step": "log", "status": "ok"})
 
-    return {"status": "ok", "response": final_response, "processing_chain": chain}
+    return {
+        "status": "ok",
+        "response": final_response,
+        "processing_chain": chain,
+        "model": runtime.label(),
+    }

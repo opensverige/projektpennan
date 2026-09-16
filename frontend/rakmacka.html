@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Räkmackan — mock (Telegram testas inte här)</title>
+    <style>
+        :root {
+            --tg: #2aabee;
+            --tg-dark: #1e96d1;
+            --ink: #1a2332;
+            --muted: #5c6b7a;
+            --line: #d8e0e8;
+            --bg: #eef3f8;
+            --warn: #8a4b12;
+            --warn-bg: #fff4e5;
+            --bad: #8b1e2d;
+            --bad-bg: #fdecee;
+            --ok: #1b6b4a;
+            --ok-bg: #e6f6ee;
+            --chip: #e8f4fc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+        }
+
+        .banner {
+            background: #3d2a12;
+            color: #ffe7c2;
+            padding: 12px 20px;
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+        .banner strong { color: #fff; }
+
+        .banner a { color: #ffd59a; }
+
+        .page {
+            display: grid;
+            grid-template-columns: minmax(280px, 360px) minmax(320px, 420px) minmax(260px, 1fr);
+            gap: 24px;
+            padding: 24px;
+            align-items: start;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .panel {
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 4px 18px rgba(20, 40, 70, 0.06);
+            border: 1px solid var(--line);
+        }
+
+        .panel h2 {
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .panel p, .panel li {
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--muted);
+        }
+
+        .panel ul { padding-left: 18px; margin: 8px 0 12px; }
+
+        .states {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .state-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            padding: 6px 8px;
+            border-radius: 8px;
+        }
+
+        .state-row.active {
+            background: #e8f4fc;
+            color: #145a86;
+            font-weight: 600;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #c5d0da;
+            flex-shrink: 0;
+        }
+
+        .state-row.active .dot { background: var(--tg); }
+        .state-row.done .dot { background: #2a9d6a; }
+
+        .fail-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .fail-btns button, .ghost {
+            appearance: none;
+            border: 1px solid var(--line);
+            background: #fff;
+            color: var(--ink);
+            border-radius: 10px;
+            padding: 8px 10px;
+            font-size: 13px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .fail-btns button:hover, .ghost:hover { border-color: var(--tg); }
+
+        .phone-wrap { display: flex; justify-content: center; }
+
+        .phone {
+            width: 390px;
+            max-width: 100%;
+            background: #111;
+            border-radius: 36px;
+            padding: 12px;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+        }
+
+        .screen {
+            background: #f4f6f8;
+            border-radius: 26px;
+            overflow: hidden;
+            min-height: 680px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tg-bar {
+            background: var(--tg);
+            color: #fff;
+            padding: 14px 16px 12px;
+        }
+
+        .tg-bar .who { font-size: 11px; opacity: 0.85; }
+        .tg-bar h1 { font-size: 17px; font-weight: 650; margin-top: 2px; }
+
+        .progress {
+            display: flex;
+            gap: 6px;
+            padding: 12px 16px 0;
+        }
+
+        .progress span {
+            flex: 1;
+            height: 4px;
+            background: #d5dee6;
+            border-radius: 99px;
+        }
+
+        .progress span.on { background: var(--tg); }
+
+        .body {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .body h2 { font-size: 20px; line-height: 1.25; margin-bottom: 8px; }
+        .body .lead { font-size: 14px; color: var(--muted); margin-bottom: 16px; line-height: 1.45; }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+
+        .chip {
+            border: 1px solid var(--line);
+            background: #fff;
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .chip.sel {
+            background: var(--chip);
+            border-color: var(--tg);
+            color: #145a86;
+            font-weight: 600;
+        }
+
+        label.field {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 12px 0 6px;
+        }
+
+        input[type="text"], textarea, select {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 11px 12px;
+            font: inherit;
+            font-size: 15px;
+            background: #fff;
+        }
+
+        textarea { min-height: 96px; resize: vertical; }
+
+        .check {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 16px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .note, .alert, .ok {
+            border-radius: 12px;
+            padding: 10px 12px;
+            font-size: 13px;
+            line-height: 1.45;
+            margin: 10px 0;
+        }
+
+        .note { background: #eef6fb; color: #21506e; }
+        .alert { background: var(--warn-bg); color: var(--warn); }
+        .ok { background: var(--ok-bg); color: var(--ok); }
+        .bad { background: var(--bad-bg); color: var(--bad); border-radius: 12px; padding: 10px 12px; font-size: 13px; line-height: 1.45; margin: 10px 0; }
+
+        .foot {
+            padding: 12px 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: #fff;
+            border-top: 1px solid var(--line);
+        }
+
+        .row { display: flex; gap: 8px; }
+
+        button.primary, button.secondary, button.back {
+            border: 0;
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        button.primary { background: var(--tg); color: #fff; }
+        button.primary:disabled {
+            background: #d7e3ec;
+            color: #5a7080;
+            cursor: not-allowed;
+        }
+        button.secondary { background: #e8eef3; color: var(--ink); }
+        button.back { background: transparent; color: var(--muted); flex: 0 0 auto; padding-left: 8px; padding-right: 8px; }
+
+        .count { font-size: 12px; color: var(--muted); text-align: right; margin-top: 4px; }
+
+        .invite-card {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 14px;
+        }
+
+        .invite-card code {
+            display: block;
+            background: #f3f6f9;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            word-break: break-all;
+            margin: 8px 0;
+        }
+
+        .chat {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .bubble {
+            max-width: 82%;
+            padding: 9px 12px;
+            border-radius: 14px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .bubble.child { background: #fff; align-self: flex-start; }
+        .bubble.bot { background: #dff3ff; align-self: flex-start; }
+        .bubble.parent { background: #d9f5c8; align-self: flex-end; }
+        .bubble.sys { align-self: center; background: transparent; color: var(--muted); font-size: 12px; }
+
+        .who-tag { font-size: 11px; font-weight: 700; margin-bottom: 2px; color: var(--muted); }
+
+        .links { font-size: 13px; margin-top: 16px; }
+        .links a { color: #145a86; }
+
+        @media (max-width: 980px) {
+            .page { grid-template-columns: 1fr; }
+            .phone { width: min(390px, 100%); }
+        }
+    </style>
+</head>
+<body>
+<div class="banner">
+    <strong>Det här är en mock.</strong>
+    Telegram, Mini App och share-sheet går inte att testa i den här miljön.
+    Granska tillstånden och felvägarna här. Monumentet ligger i
+    <code>docs/UX-RAKMACKA-REVIEW.md</code>
+    · <a href="index.html">Lokal barnchatt</a>
+    · <a href="guardian.html">Föräldravy</a>
+</div>
+
+<div class="page">
+    <aside class="panel">
+        <h2>Markov-kedjan</h2>
+        <p>Föräldern minns bara den här skärmen. Ett tillstånd som antar att de redan kryssade samtycke är ett hål.</p>
+        <div class="states" id="stateList"></div>
+        <p style="margin-top:12px">Lyckat slut är <strong>S6</strong> — barnet skriver. Invite skickad är inte klart.</p>
+        <button class="ghost" id="resetBtn" type="button" style="margin-top:12px;width:100%">Börja om</button>
+    </aside>
+
+    <div class="phone-wrap">
+        <div class="phone">
+            <div class="screen" id="app"></div>
+        </div>
+    </div>
+
+    <aside class="panel">
+        <h2 id="failTitle">Vad kan gå fel</h2>
+        <div id="failCopy"></div>
+        <h2 style="margin-top:16px">Hoppa till felväg</h2>
+        <div class="fail-btns">
+            <button type="button" data-fail="child">Barnet öppnade länken</button>
+            <button type="button" data-fail="other">Lärare / moster öppnade</button>
+            <button type="button" data-fail="ios">iOS requestChat dog</button>
+            <button type="button" data-fail="admin">Botten är inte admin</button>
+            <button type="button" data-fail="expired">Länken dog (48 h)</button>
+            <button type="button" data-fail="lastname">Fyll efternamn i barnkortet</button>
+            <button type="button" data-fail="unikum">Klistra Unikum i kontext</button>
+            <button type="button" data-fail="s6">Hoppa till S6 — barnet skriver</button>
+        </div>
+        <p class="lead" style="margin-top:16px">Markdown i repot: <code>docs/UX-RAKMACKA-REVIEW.md</code>, <code>docs/RAKMACKA.md</code>.</p>
+    </aside>
+</div>
+
+<script>
+const STEPS = [
+    { id: "s0", label: "S0 Öppna" },
+    { id: "s1", label: "S1 Agent" },
+    { id: "s2", label: "S2 Barn" },
+    { id: "s3", label: "S3 Kontext" },
+    { id: "s4", label: "S4 Invite" },
+    { id: "s5", label: "S5 Väntar" },
+    { id: "s6", label: "S6 Barnet skriver" }
+];
+
+const FAILS = {
+    s0: {
+        title: "S0 — öppna länken",
+        html: "<ul><li>Barnet eller läraren öppnar <code>?startapp</code> → fel operatör.</li><li>Mini App död → knappar i 1:1, inte en tom skärm.</li><li>Hårdkodat chat-id tystar alla utom oss.</li></ul><p>Största läckaget. En länk i skolchatten = fel kedja.</p>"
+    },
+    "s0-child": {
+        title: "S0-barn",
+        html: "<p>Ingen wizard. Ingen agent, ingen tro, ingen kontext. Bara: be en vuxen.</p>"
+    },
+    "s0-other": {
+        title: "S0-annan vuxen",
+        html: "<p>Checkbox räcker inte mot socialt tryck. Texten måste säga: inte skolan.</p>"
+    },
+    s1: {
+        title: "S1 — agent",
+        html: "<ul><li>Fortsätt av tills rutan är ikryssad.</li><li>Tro: barnet kan inte byta sen.</li><li>Back från S2 får inte nolla chipset.</li></ul>"
+    },
+    s2: {
+        title: "S2 — barn",
+        html: "<ul><li>Bara tilltalsnamn. Klipp vid mellanslag.</li><li>Ingen e-post. Ett barn i v1.</li><li>Åk utanför 4–6: varning, inte stopp.</li></ul>"
+    },
+    s3: {
+        title: "S3 — kontext",
+        html: "<ul><li>Hoppa över lika stor som Fortsätt.</li><li>Betyg / klasslista / Unikum stripas.</li><li>280 tecken. Funkar tomt.</li></ul>"
+    },
+    s4: {
+        title: "S4 — invite",
+        html: "<ul><li>Inte klart förrän Dela eller Kopiera.</li><li>Ingen QR mot barnet.</li><li>Tvinga ny tom grupp — historik läcker.</li><li>Säg här om barnet saknar Telegram.</li></ul>"
+    },
+    "s4-fallback": {
+        title: "S4-fallback (iOS)",
+        html: "<p>requestChat var no-op på iOS (maj 2026). Spinner som aldrig dör är värre än en ful knapp.</p>"
+    },
+    "s4-admin": {
+        title: "S4 — botten inte admin",
+        html: "<p>Gruppen finns, invite failar. En mening + en knapp. Inte en stack trace.</p>"
+    },
+    s5: {
+        title: "S5 — väntar",
+        html: "<ul><li>Invite skickad ≠ klart.</li><li>Inget gnäll mot barnet.</li><li>48 h: meddelande i 1:1, ny länk.</li></ul>"
+    },
+    "s5-expired": {
+        title: "S5-utgången",
+        html: "<p>Som KOHO unable-to-accept: gå tillbaka + ny länk, inte bara fel.</p>"
+    },
+    s6: {
+        title: "S6 — barnet skriver",
+        html: "<ul><li>Wizard osynlig.</li><li>Inte «Vad vill du lära dig idag?» — det är läxgnäll.</li><li>Botten svarar bara barnets user_id.</li></ul>"
+    }
+};
+
+const defaultState = () => ({
+    screen: "s0",
+    agent: "extra",
+    egenText: "",
+    consent: false,
+    childName: "",
+    grade: "5",
+    context: "",
+    shared: false,
+    copied: false,
+    nameClipped: false,
+    contextStripped: false,
+    parentTried: false,
+    childWrote: false
+});
+
+let state = load();
+
+function load() {
+    try {
+        const raw = sessionStorage.getItem("rakmacka-mock");
+        return raw ? { ...defaultState(), ...JSON.parse(raw) } : defaultState();
+    } catch {
+        return defaultState();
+    }
+}
+
+function save() {
+    sessionStorage.setItem("rakmacka-mock", JSON.stringify(state));
+}
+
+function firstName(raw) {
+    const t = (raw || "").trim();
+    if (!t) return "";
+    return t.split(/\s+/)[0];
+}
+
+function isNameOk(raw) {
+    const n = firstName(raw);
+    if (!n) return false;
+    if (/^[\p{Extended_Pictographic}\s]+$/u.test(n)) return false;
+    return n.length >= 2;
+}
+
+function stripContext(text) {
+    const banned = /unikum|betyg|klasslista|personnummer|lösenord|lösen|skolplattform/i;
+    if (!banned.test(text)) return { text, stripped: false };
+    const cleaned = text
+        .split(/[\n.]+/)
+        .filter((part) => !banned.test(part))
+        .join(". ")
+        .trim();
+    return { text: cleaned || "", stripped: true };
+}
+
+function stepIndex(screen) {
+    const map = { s0: 0, "s0-child": 0, "s0-other": 0, s1: 1, s2: 2, s3: 3, s4: 4, "s4-fallback": 4, "s4-admin": 4, s5: 5, "s5-expired": 5, s6: 6 };
+    return map[screen] ?? 0;
+}
+
+function renderStates() {
+    const here = state.screen;
+    const idx = stepIndex(here);
+    document.getElementById("stateList").innerHTML = STEPS.map((s, i) => {
+        const cls = s.id === (here.startsWith(s.id) ? s.id : here) || (here.startsWith(s.id) && s.id !== "s0")
+            ? "active"
+            : (i < idx ? "done" : "");
+        const active = (
+            (s.id === "s0" && here.startsWith("s0")) ||
+            (s.id === "s4" && here.startsWith("s4")) ||
+            (s.id === "s5" && here.startsWith("s5")) ||
+            s.id === here
+        );
+        return `<div class="state-row ${active ? "active" : cls}"><span class="dot"></span>${s.label}${here !== s.id && here.startsWith(s.id) ? " · avvikelse" : ""}</div>`;
+    }).join("");
+}
+
+function renderFail() {
+    const key = FAILS[state.screen] ? state.screen : state.screen.split("-")[0];
+    const pack = FAILS[state.screen] || FAILS[key] || FAILS.s0;
+    document.getElementById("failTitle").textContent = pack.title;
+    document.getElementById("failCopy").innerHTML = pack.html;
+}
+
+function progressHtml(n) {
+    if (n < 1 || n > 4) return "";
+    return `<div class="progress">${[1,2,3,4].map((i) => `<span class="${i <= n ? "on" : ""}"></span>`).join("")}</div>`;
+}
+
+function foot(inner) {
+    return `<div class="foot">${inner}</div>`;
+}
+
+function render() {
+    save();
+    renderStates();
+    renderFail();
+    const app = document.getElementById("app");
+    const name = firstName(state.childName) || "barnet";
+    const screens = {
+        s0: () => `
+            <div class="tg-bar"><div class="who">t.me/skoolibot?startapp</div><h1>Skooli Buddy</h1></div>
+            <div class="body">
+                <h2>Den här telefonen sätter upp sidekicken</h2>
+                <p class="lead">Telegram-kontot som öppnade länken är föräldern. Inget BankID. Inget barnkonto.</p>
+                <div class="note">Bara vårdnadshavare. Inte skolan. Inte barnet.</div>
+                <p class="lead">Om Mini App inte öppnas: vanliga knappar i 1:1 med boten. Inte en tom skärm.</p>
+            </div>
+            ${foot(`<button class="primary" id="goS1" type="button">Jag är vårdnadshavare — fortsätt</button>`)}
+        `,
+        "s0-child": () => `
+            <div class="tg-bar"><div class="who">Öppnad från barnets konto</div><h1>Skooli Buddy</h1></div>
+            <div class="body">
+                <h2>Be en vuxen</h2>
+                <p class="lead">Det här sätts inte upp av dig. Ingen agent, ingen tro, ingen grupp härifrån.</p>
+                <div class="bad">Wizard är av. Ett barn som öppnar <code>?startapp</code> ska inte kunna välja världsbild.</div>
+            </div>
+            ${foot(`<button class="secondary" id="toS0" type="button">Tillbaka till S0</button>`)}
+        `,
+        "s0-other": () => `
+            <div class="tg-bar"><div class="who">Öppnad av annan vuxen</div><h1>Skooli Buddy</h1></div>
+            <div class="body">
+                <h2>Inte skolan</h2>
+                <p class="lead">Sidekicken ägs av vårdnadshavare. Lärare, moster eller klasschatten ska inte köra setup.</p>
+                <div class="bad">Skicka länken till en förälder i stället. Vi skapar inget skolkonto.</div>
+            </div>
+            ${foot(`<button class="secondary" id="toS0" type="button">Tillbaka till S0</button>`)}
+        `,
+        s1: () => `
+            <div class="tg-bar"><div class="who">Steg 1 av 4 · förälder</div><h1>Vilken kompis?</h1></div>
+            ${progressHtml(1)}
+            <div class="body">
+                <h2>Välj hur den ska kännas</h2>
+                <p class="lead">Inte modellnamn. Inte API-nyckel.</p>
+                <div class="chips">
+                    ${[["extra","Extra stöd"],["saga","Saga"],["tro","Tro"],["egen","Egen"]].map(([id, label]) =>
+                        `<button type="button" class="chip ${state.agent === id ? "sel" : ""}" data-agent="${id}">${label}</button>`
+                    ).join("")}
+                </div>
+                ${state.agent === "tro" ? `<div class="note">Det här följer <em>er</em> tro. Barnet kan inte byta.</div>` : ""}
+                ${state.agent === "egen" ? `<label class="field">Tre rader, eller hoppa till extra stöd sen</label><textarea id="egenText" placeholder="T.ex. prata som en tränare, korta meningar.">${escapeHtml(state.egenText)}</textarea>` : ""}
+                <label class="check">
+                    <input type="checkbox" id="consent" ${state.consent ? "checked" : ""}>
+                    <span>Jag är vårdnadshavare. Inte skolan. Telegram-kontot här är mitt.</span>
+                </label>
+            </div>
+            ${foot(`<div class="row"><button class="back" id="back" type="button">Tillbaka</button><button class="primary" id="next" type="button" ${state.consent ? "" : "disabled"}>Fortsätt</button></div>`)}
+        `,
+        s2: () => `
+            <div class="tg-bar"><div class="who">Steg 2 av 4 · förälder</div><h1>Vem är barnet?</h1></div>
+            ${progressHtml(2)}
+            <div class="body">
+                <h2>Tilltalsnamn och årskurs</h2>
+                <p class="lead">Inte efternamn. Inte e-post. Inte personnummer. Ett barn nu — syskon sen.</p>
+                <label class="field" for="childName">Tilltalsnamn</label>
+                <input id="childName" type="text" autocomplete="off" placeholder="Bara tilltalsnamn" value="${escapeHtml(state.childName)}">
+                ${state.nameClipped ? `<div class="alert">Vi sparar bara förnamnet. Efternamn hör inte hit.</div>` : ""}
+                <label class="field" for="grade">Årskurs</label>
+                <select id="grade">
+                    ${["3","4","5","6","7"].map((g) => `<option value="${g}" ${state.grade === g ? "selected" : ""}>${g}</option>`).join("")}
+                </select>
+                ${!["4","5","6"].includes(state.grade) ? `<div class="note">Vi är bäst på åk 4–6. Du kan ändå fortsätta.</div>` : ""}
+            </div>
+            ${foot(`<div class="row"><button class="back" id="back" type="button">Tillbaka</button><button class="primary" id="next" type="button" ${isNameOk(state.childName) ? "" : "disabled"}>Fortsätt</button></div>`)}
+        `,
+        s3: () => `
+            <div class="tg-bar"><div class="who">Steg 3 av 4 · förälder</div><h1>Vad händer just nu?</h1></div>
+            ${progressHtml(3)}
+            <div class="body">
+                <h2>Valfri lapp</h2>
+                <p class="lead">Funkar utan. Du kan fylla i sen. Inte Unikum, inte betyg.</p>
+                <textarea id="context" maxlength="280" placeholder="T.ex. bråk, vikingar">${escapeHtml(state.context)}</textarea>
+                <div class="count">${(state.context || "").length}/280</div>
+                ${state.contextStripped ? `<div class="alert">Det där sparar vi inte (betyg, klasslista, plattform, lösen). Bara temat.</div>` : ""}
+            </div>
+            ${foot(`<div class="row"><button class="back" id="back" type="button">Tillbaka</button></div>
+                <div class="row"><button class="secondary" id="skip" type="button">Hoppa över</button><button class="primary" id="next" type="button">Fortsätt</button></div>`)}
+        `,
+        s4: () => `
+            <div class="tg-bar"><div class="who">Steg 4 av 4 · förälder</div><h1>Bjud in till en ny grupp</h1></div>
+            ${progressHtml(4)}
+            <div class="body">
+                <h2>Ny tom grupp. Inte familjechatten.</h2>
+                <p class="lead">Gamla meddelanden syns för den som går med. Därför en tom grupp: du, ${escapeHtml(name)}, botten.</p>
+                <div class="invite-card">
+                    <strong>Länk, 48 timmar, max 3</strong>
+                    <code>https://t.me/+skooli-mock-48h</code>
+                    Inte klart förrän du delar eller kopierar.
+                </div>
+                <div class="note">Barnet behöver redan Telegram. Vi skapar inget konto åt dem. Ingen QR i köket.</div>
+                ${state.shared || state.copied ? `<div class="ok">${state.shared ? "Delad (mock)." : "Kopierad (mock)."} Nästa steg är att vänta.</div>` : ""}
+            </div>
+            ${foot(`<div class="row"><button class="back" id="back" type="button">Tillbaka</button></div>
+                <div class="row"><button class="primary" id="share" type="button">Dela</button><button class="secondary" id="copy" type="button">Kopiera</button></div>`)}
+        `,
+        "s4-fallback": () => `
+            <div class="tg-bar"><div class="who">iOS · Mini App strulade</div><h1>Gör det i 1:1 i stället</h1></div>
+            <div class="body">
+                <h2>Telegram skapade inte gruppen</h2>
+                <p class="lead">requestChat kan vara tyst på iPhone. Ingen evig spinner.</p>
+                <div class="invite-card">
+                    <strong>Lägg till botten i en ny grupp</strong>
+                    <code>https://t.me/skoolibot?startgroup=mock</code>
+                    Sen kommer samma 48-timmarslänk.
+                </div>
+            </div>
+            ${foot(`<div class="row"><button class="back" id="toS4" type="button">Tillbaka</button><button class="primary" id="copy" type="button">Kopiera länk</button></div>`)}
+        `,
+        "s4-admin": () => `
+            <div class="tg-bar"><div class="who">Gruppen finns, invite dog</div><h1>Gör botten till admin</h1></div>
+            <div class="body">
+                <h2>En knapp till</h2>
+                <p class="lead">Utan admin kan vi inte skapa invite-länken. Inte en stack trace.</p>
+                <div class="note">I Telegram: gruppinfo → administratörer → Skooli.</div>
+            </div>
+            ${foot(`<div class="row"><button class="back" id="toS4" type="button">Tillbaka</button><button class="primary" id="toS4ok" type="button">Klart, försök igen</button></div>`)}
+        `,
+        s5: () => `
+            <div class="tg-bar"><div class="who">1:1 med boten · inte gruppen</div><h1>Väntar på ${escapeHtml(name)}</h1></div>
+            <div class="body">
+                <h2>Länken är ute. Det är inte klart.</h2>
+                <p class="lead">Inget «har de skrivit än?» till barnet. Du tittar här. De skriver när de kör fast.</p>
+                <div class="invite-card">
+                    <strong>Aktiv länk</strong>
+                    <p>Dör om 48 timmar. Max tre personer. Join-request om någon annan dyker upp.</p>
+                </div>
+                <div class="note">Syskon eller kompis som går med får inte svar från botten. Bara ${escapeHtml(name)}s konto.</div>
+            </div>
+            ${foot(`<button class="secondary" id="expire" type="button">Visa: 48 h gick</button>
+                <button class="primary" id="childWrote" type="button">${escapeHtml(name)} skrev i gruppen</button>`)}
+        `,
+        "s5-expired": () => `
+            <div class="tg-bar"><div class="who">1:1 med boten</div><h1>Länken dog</h1></div>
+            <div class="body">
+                <h2>Ingen gick med i tid</h2>
+                <p class="lead">Inte bara ett fel. Ny länk, samma grupp. Inget gnäll mot barnet.</p>
+                <div class="bad">t.me/+skooli-mock-48h gick ut.</div>
+            </div>
+            ${foot(`<div class="row"><button class="back" id="toS5" type="button">Tillbaka</button><button class="primary" id="newLink" type="button">Ny länk</button></div>`)}
+        `,
+        s6: () => `
+            <div class="tg-bar"><div class="who">Grupp · du, ${escapeHtml(name)}, Skooli</div><h1>${escapeHtml(name)}s grupp</h1></div>
+            <div class="body">
+                <div class="chat">
+                    <div class="bubble sys">Ingen välkomstläxa. Wizard är osynlig.</div>
+                    ${state.childWrote ? `
+                        <div class="bubble child"><div class="who-tag">${escapeHtml(name)}</div>hur gör man 3/4 + 5/6?</div>
+                        <div class="bubble bot"><div class="who-tag">Skooli</div>Okej. Vad är gemensam nämnare för 4 och 6, tror du?</div>
+                    ` : ""}
+                    ${state.parentTried ? `
+                        <div class="bubble parent"><div class="who-tag">Du</div>vad blev det?</div>
+                        <div class="bubble sys">Botten svarar inte dig. Du tittar. De skriver.</div>
+                    ` : ""}
+                </div>
+            </div>
+            ${foot(`
+                ${!state.childWrote ? `<button class="primary" id="childWrote" type="button">Barnet skriver</button>` : ""}
+                ${state.childWrote && !state.parentTried ? `<button class="secondary" id="parentTry" type="button">Du skriver i gruppen</button>` : ""}
+                <button class="back" id="toS5" type="button">Tillbaka till väntar</button>
+            `)}
+        `
+    };
+
+    app.innerHTML = (screens[state.screen] || screens.s0)();
+    bind();
+}
+
+function escapeHtml(s) {
+    return String(s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+}
+
+function go(screen) {
+    state.screen = screen;
+    render();
+}
+
+function bind() {
+    const $ = (id) => document.getElementById(id);
+
+    if ($("goS1")) $("goS1").onclick = () => go("s1");
+    if ($("toS0")) $("toS0").onclick = () => go("s0");
+    if ($("toS4")) $("toS4").onclick = () => go("s4");
+    if ($("toS4ok")) $("toS4ok").onclick = () => go("s4");
+    if ($("toS5")) $("toS5").onclick = () => go("s5");
+
+    if ($("back")) $("back").onclick = () => {
+        const prev = { s1: "s0", s2: "s1", s3: "s2", s4: "s3" };
+        go(prev[state.screen] || "s0");
+    };
+
+    document.querySelectorAll("[data-agent]").forEach((el) => {
+        el.onclick = () => { state.agent = el.dataset.agent; render(); };
+    });
+
+    if ($("consent")) $("consent").onchange = (e) => { state.consent = e.target.checked; render(); };
+    if ($("egenText")) $("egenText").oninput = (e) => { state.egenText = e.target.value; save(); };
+
+    if ($("childName")) {
+        $("childName").oninput = (e) => {
+            state.childName = e.target.value;
+            state.nameClipped = /\s/.test(e.target.value.trim());
+            save();
+            const btn = $("next");
+            if (btn) btn.disabled = !isNameOk(state.childName);
+        };
+        $("childName").onblur = () => {
+            if (state.childName.trim().includes(" ")) {
+                state.childName = firstName(state.childName);
+                state.nameClipped = true;
+                render();
+            }
+        };
+    }
+    if ($("grade")) $("grade").onchange = (e) => { state.grade = e.target.value; render(); };
+
+    if ($("context")) {
+        $("context").oninput = (e) => {
+            const { text, stripped } = stripContext(e.target.value);
+            if (stripped) {
+                state.context = text;
+                state.contextStripped = true;
+                render();
+                return;
+            }
+            state.context = e.target.value.slice(0, 280);
+            save();
+            e.target.value = state.context;
+            document.querySelector(".count").textContent = `${state.context.length}/280`;
+        };
+    }
+
+    if ($("next")) $("next").onclick = () => {
+        if (state.screen === "s1" && !state.consent) return;
+        if (state.screen === "s2") {
+            if (!isNameOk(state.childName)) return;
+            if (state.childName.trim().includes(" ")) {
+                state.childName = firstName(state.childName);
+                state.nameClipped = true;
+            }
+        }
+        if (state.screen === "s3") {
+            const { text, stripped } = stripContext(state.context);
+            state.context = text;
+            state.contextStripped = state.contextStripped || stripped;
+        }
+        const nxt = { s1: "s2", s2: "s3", s3: "s4" };
+        go(nxt[state.screen]);
+    };
+
+    if ($("skip")) $("skip").onclick = () => { state.context = ""; go("s4"); };
+
+    if ($("share")) $("share").onclick = () => { state.shared = true; go("s5"); };
+    if ($("copy")) $("copy").onclick = () => {
+        state.copied = true;
+        const link = "https://t.me/+skooli-mock-48h";
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(link).catch(() => {});
+        }
+        if (state.screen === "s4-fallback") {
+            render();
+            return;
+        }
+        go("s5");
+    };
+
+    if ($("expire")) $("expire").onclick = () => go("s5-expired");
+    if ($("newLink")) $("newLink").onclick = () => { state.shared = true; go("s5"); };
+    if ($("childWrote")) $("childWrote").onclick = () => { state.childWrote = true; go("s6"); };
+    if ($("parentTry")) $("parentTry").onclick = () => { state.parentTried = true; render(); };
+}
+
+document.getElementById("resetBtn").onclick = () => {
+    state = defaultState();
+    sessionStorage.removeItem("rakmacka-mock");
+    render();
+};
+
+document.querySelectorAll("[data-fail]").forEach((btn) => {
+    btn.onclick = () => {
+        const kind = btn.dataset.fail;
+        if (kind === "child") go("s0-child");
+        if (kind === "other") go("s0-other");
+        if (kind === "ios") go("s4-fallback");
+        if (kind === "admin") go("s4-admin");
+        if (kind === "expired") {
+            state.childName = state.childName || "Alma";
+            go("s5-expired");
+        }
+        if (kind === "lastname") {
+            state.screen = "s2";
+            state.consent = true;
+            state.childName = "Alma Svensson";
+            state.nameClipped = true;
+            render();
+        }
+        if (kind === "unikum") {
+            state.screen = "s3";
+            state.consent = true;
+            state.childName = state.childName || "Alma";
+            state.context = "Unikum: betyg C i matte. Klasslista: Omar, Nora.";
+            const stripped = stripContext(state.context);
+            state.context = stripped.text;
+            state.contextStripped = true;
+            render();
+        }
+        if (kind === "s6") {
+            state.consent = true;
+            state.childName = state.childName || "Alma";
+            state.shared = true;
+            state.childWrote = true;
+            go("s6");
+        }
+    };
+});
+
+render();
+</script>
+</body>
+</html>
