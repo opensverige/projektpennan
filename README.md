@@ -8,7 +8,7 @@ Kontaktnamnet — det barnet skriver till — är **Utter**.
 Repot och initiativet heter **Projekt Pennan**, under [Open Sverige](https://opensverige.se).  
 Licens: [AGPL-3.0](LICENSE).
 
-`Skooli Buddy`, `Stjärnis` och `Gnista` är inte produktnamn. Buddy krockar med Homework Buddy / Studybuddy. Stjärnis låser in oss hos niorna. Gnista bär sexuell/romantisk ton (“gnistan mellan dem”).
+`Skooli Buddy` och `Stjärnis` är inte produktnamn. Det första krockar med Homework Buddy / Studybuddy. Det andra låser in oss hos niorna.
 
 ---
 
