@@ -46,9 +46,18 @@ export function ChatPage() {
     setBusy(true)
     try {
       try {
+        const key =
+          typeof sessionStorage !== "undefined"
+            ? sessionStorage.getItem("gnista-key")
+            : null
+        const headers: Record<string, string> = {
+          "Content-Type": "application/json",
+        }
+        if (key) headers["X-Gnista-Key"] = key
+        if (setup?.provider) headers["X-Gnista-Provider"] = setup.provider
         const response = await fetch("/api/chat", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers,
           body: JSON.stringify({ session_id: sessionId, message: text }),
         })
         if (response.ok) {
@@ -84,7 +93,7 @@ export function ChatPage() {
         ...m,
         {
           role: "system",
-          text: "SOUL sover. Inte stubbarna. Kör ./scripts/soul.sh hemma.",
+          text: "Ingen modell. Klistra en nyckel på startsidan eller sätt OPENAI_API_KEY / GROQ_API_KEY hemma.",
         },
       ])
     } finally {

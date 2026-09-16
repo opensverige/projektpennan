@@ -1,7 +1,7 @@
 """Live SOUL-tur. Prompten från agents/tutor. Modellen undervisar.
 
-Kärnan (safety.py) stoppar kris/block/hemlighet/jailbreak.
-Läxa och vanligt snack går till Ollama — inte till stubbarna.
+Kärnan (safety.py) stoppar kris/block/hemlighet/jailbreak — in och ut.
+Hjärnan är frontier eller smart OSS via providers.py. Inte Ollama-default.
 """
 
 from __future__ import annotations
@@ -10,15 +10,12 @@ import json
 import os
 from pathlib import Path
 
-import httpx
-
-from safety import classify_input, kernel_reply
+from providers import complete, load_runtime, ping, ready
+from safety import check_output_safety, classify_input, kernel_reply
 
 ROOT = Path(__file__).resolve().parent.parent
 AGENTS = ROOT / "agents" / "tutor"
 VAULT = Path(os.getenv("VAULT_PATH", ROOT / "vault"))
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://127.0.0.1:11434").rstrip("/")
-MODEL_NAME = os.getenv("MODEL_NAME", "llama3.2:3b")
 
 
 def load_json(path: Path) -> dict:
@@ -64,34 +61,14 @@ def build_system_prompt(profile: dict | None = None, policies: dict | None = Non
     )
 
 
-async def call_ollama(system_prompt: str, history: list[dict]) -> str:
-    messages = [{"role": "system", "content": system_prompt}, *history]
-    async with httpx.AsyncClient(timeout=120.0) as client:
-        response = await client.post(
-            f"{OLLAMA_URL}/api/chat",
-            json={
-                "model": MODEL_NAME,
-                "messages": messages,
-                "stream": False,
-                "options": {"temperature": 0.7, "num_predict": 256},
-            },
-        )
-        response.raise_for_status()
-        data = response.json()
-    return (data.get("message") or {}).get("content", "").strip()
-
-
-async def ollama_up() -> bool:
-    try:
-        async with httpx.AsyncClient(timeout=2.0) as client:
-            res = await client.get(f"{OLLAMA_URL}/api/tags")
-        return res.status_code == 200
-    except httpx.HTTPError:
-        return False
-
-
-async def turn(message: str, history: list[dict] | None = None) -> dict:
+async def turn(
+    message: str,
+    history: list[dict] | None = None,
+    api_key: str | None = None,
+    provider: str | None = None,
+) -> dict:
     text = message.strip()
+    runtime = load_runtime(override_key=api_key, override_provider=provider)
     hit = classify_input(text)
     if hit["kind"] != "ok":
         return {
@@ -101,33 +78,44 @@ async def turn(message: str, history: list[dict] | None = None) -> dict:
             "kind": hit["kind"],
             "model": None,
         }
-    if not await ollama_up():
+    if not ready(runtime) or not await ping(runtime):
         return {
-            "response": "SOUL sover. Starta Ollama och ./scripts/soul.sh.",
+            "response": (
+                "Ingen modell igång. Klistra ChatGPT, Grok, Claude eller Groq "
+                "på startsidan, eller peka OPENAI_BASE_URL mot en lokal motor."
+            ),
             "status": "error",
             "mode": "soul",
             "kind": "offline",
-            "model": MODEL_NAME,
+            "model": runtime.label() if runtime.provider != "none" else None,
         }
     convo = list(history or [])
     convo.append({"role": "user", "content": text})
     try:
-        reply = await call_ollama(build_system_prompt(), convo)
-    except Exception as exc:
+        reply = await complete(build_system_prompt(), convo, runtime)
+    except Exception:
         return {
             "response": "Oj, jag tappade tråden. Försök igen.",
             "status": "error",
             "mode": "soul",
             "kind": "llm_error",
-            "model": MODEL_NAME,
-            "detail": str(exc),
+            "model": runtime.label(),
         }
     if not reply:
         reply = "Jag hängde inte med. Kan du säga det igen, en bit i taget?"
+    output = check_output_safety(reply, load_policies())
+    if not output["safe"]:
+        return {
+            "response": "Jag behöver tänka lite mer på det där. Kan vi prata om något annat?",
+            "status": "blocked_output",
+            "mode": "soul",
+            "kind": "unsafe_output",
+            "model": runtime.label(),
+        }
     return {
-        "response": reply,
+        "response": output.get("trimmed") or reply,
         "status": "ok",
         "mode": "soul",
         "kind": "llm",
-        "model": MODEL_NAME,
+        "model": runtime.label(),
     }

@@ -1,23 +1,24 @@
-"""Live SOUL-demo: frontend + tutorfiler + Ollama.
+"""Live SOUL-demo: frontend + tutorfiler + BYO-modell.
 
-Läxa går till modellen. Kris/block stannar i koden.
+Läxa går till frontier/smart OSS. Kris/block stannar i koden.
 """
 
 from __future__ import annotations
 
 from uuid import uuid4
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, Header, HTTPException
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from preview import catalog as preview_catalog
 from preview import reply_for
-from soul import MODEL_NAME, ollama_up, turn
+from providers import load_runtime, ping, ready
+from soul import turn
 
 from demo import FRONTEND
 
-app = FastAPI(title="Gnista SOUL", version="0.1.0")
+app = FastAPI(title="Gnista SOUL", version="0.2.0")
 
 _sessions: dict[str, list[dict]] = {}
 
@@ -33,13 +34,14 @@ class PreviewTurn(BaseModel):
 
 @app.get("/api/health")
 async def health():
-    live = await ollama_up()
+    runtime = load_runtime()
+    live = await ping(runtime)
     return {
         "status": "ok" if live else "degraded",
         "service": "gnista-soul",
         "mode": "soul",
-        "model": MODEL_NAME,
-        "ollama": live,
+        "model": runtime.label() if ready(runtime) else None,
+        "provider": runtime.provider,
     }
 
 
@@ -56,12 +58,21 @@ async def preview_turn(req: PreviewTurn):
 
 
 @app.post("/api/chat")
-async def chat(req: ChatRequest):
+async def chat(
+    req: ChatRequest,
+    x_gnista_key: str | None = Header(default=None),
+    x_gnista_provider: str | None = Header(default=None),
+):
     if not req.message or not req.message.strip():
         raise HTTPException(status_code=400, detail="Tomt meddelande.")
     session_id = req.session_id or str(uuid4())
     history = _sessions.setdefault(session_id, [])
-    result = await turn(req.message, history)
+    result = await turn(
+        req.message,
+        history,
+        api_key=x_gnista_key,
+        provider=x_gnista_provider,
+    )
     if result["status"] == "ok":
         history.append({"role": "user", "content": req.message.strip()})
         history.append({"role": "assistant", "content": result["response"]})

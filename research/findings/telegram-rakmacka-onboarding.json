@@ -1,0 +1,36 @@
+{
+  "id": "telegram-rakmacka-onboarding",
+  "date": "2026-09-15",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "OSS-räkmackan är fyra tryck i Telegram — agent, barn, kontext, gruppinbjudan — inte BankID. Telegram har Mini Apps och invite-länkar. Produktions-UX som funkar är korta chip-skärmar plus native share, inte 16-stegs barnkort.",
+  "evidence": [
+    {
+      "title": "Telegram Mini Apps + requestChat (Bot API 9.6)",
+      "url": "https://core.telegram.org/bots/webapps",
+      "year": 2026,
+      "notes": "startapp-länk, setup inuti Telegram. 9.6: requestChat för att välja/skapa grupp och lägga in botten. iOS hade en känd no-op i maj 2026 — fallback krävs."
+    },
+    {
+      "title": "Bot API changelog — createChatInviteLink, prepared buttons, managed bots",
+      "url": "https://core.telegram.org/bots/api-changelog",
+      "year": 2026,
+      "notes": "Expire, member_limit, join-request. Managed bots (april) är för oss som driftar, inte barnets yta."
+    },
+    {
+      "title": "ChatGPT Customize — tre korta fält + chips",
+      "url": "https://mobbin.com/flows/a3659710-c1a1-48b4-bbdb-505f969cb856",
+      "year": 2026,
+      "notes": "Så kort ska agent+barn+kontext vara. Inte GoHenry-längd."
+    },
+    {
+      "title": "Discord group invite — länk som går ut, heads-up",
+      "url": "https://mobbin.com/flows/203a63f2-c66e-49b4-bcce-7c6bf8879070",
+      "year": 2026,
+      "notes": "24 h expire + varning. Vi skapar tom grupp så historik-varningen inte behövs. Native share, inte QR mot barnet."
+    }
+  ],
+  "implication": "BankID åker ur default (P-28 skrivs om). Räkmacka = Mini App eller knapp-wizard + grupplänk (P-39). P-27 blir Mini App, inte PWA-först. P-30 start-token kvar. WhatsApp (P-32) är senare, inte räkmackan.",
+  "backlog_refs": ["P-28", "P-30", "P-39"],
+  "confidence": "high"
+}

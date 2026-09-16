@@ -51,13 +51,14 @@ P-03 och P-29.
 | ID | Vad | Varför | Research |
 |----|-----|--------|----------|
 | P-25 | **Kernel-gräns i repo.** Hosted = tenant + identitet + faktura, inte en fork av pedagogiken. | Accounted-modellen. | `accounted-open-core` |
-| P-26 | **Provider-adapter.** Läser `vault/config/runtime.json`. Ollama / OpenAI / Anthropic / Gemini / OpenAI-compat. BYO-nyckel i env. | Föräldern jackar in frontier-modeller. Plattan består. | `parent-baseplate` |
+| P-26 | **Provider-adapter.** ~~Öppen.~~ Kopplad: OpenAI / xAI / Anthropic / Groq / Gemini / openai-compat / Ollama-sist. Safety in+ut. | Föräldern jackar in frontier eller smart OSS. Inte Ollama-default. | `parent-baseplate` |
 | P-27 | **Förälder-PWA** (BankID, PIN, paus). Barn-PWA bara fallback. | Förälderns yta ≠ barnets yta. | `contact-not-destination` |
 | P-28 | **Webb-först onboarding.** En skärm: namn, klistra nyckel, samtycke. BankID bara på Hem sen. | Börjar i webben, inte Docker. Se `frontend/start.html`. | `parent-baseplate` |
 | P-29 | **DPIA + underbiträden + ZDR** innan första betalande familj. | Hosted = vi är personuppgiftsansvariga. | `gdpr-hem` |
 | P-30 | **Telegram start-token + allowlist** (dödar hårdkodat id). | Open och Hem. | `channel-sweden` |
 | P-31 | **Publik prissida + DPA-text** (Open / Hem / egen drift). | Accounted-tabell. Aldrig paywalla safety. | `accounted-open-core` |
 | P-32 | **WhatsApp som Hem-barn-default:** tyst kontakt, bild, röst. Inget läxpush. | Där de redan är. | `contact-not-destination` |
+| P-39 | **Telegram Mini App / räkmacka.** Fyra tryck, grupplänk, ingen BankID. Mock i `frontend/rakmacka.html`. | Där Open-ytan börjar. Inte officiell @gnista. | `telegram-rakmacka-onboarding` |
 
 ## P4 — förälderns kernel (packs, inte överhet)
 

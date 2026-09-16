@@ -18,14 +18,14 @@ Barnet har ingen onboarding.
 
 | Väg | Kommando / gest | Modell i kväll | Ärligt läge |
 |-----|-----------------|----------------|-------------|
-| A. Webb + Docker + Ollama | `docker compose up --build` | lokal | **Byggt** |
-| B. Docker + egen nyckel | samma + `.env` från starten | ChatGPT / Claude / Gemini | Recept klart. Adapter = P-26 |
+| A. Webb + Docker + Ollama | `GNISTA_USE_OLLAMA=1 docker compose up --build` | lokal, sista utväg | Byggt, inte default |
+| B. Webb + egen modell | nyckel i starten eller env | ChatGPT / Grok / Claude / Groq / vLLM | **Byggt (P-26)** |
 | C. Bara filer | start.html → ladda ner config | — | Plattan, ingen chatt än |
 | D. Telegram | `python -m skooli_buddy.bot` | Gemini, hårdkodat | Byggt som kommandon |
 | E. Hem | BankID, tyst kontakt | vi eller BYO | Inte byggt |
 | F. WhatsApp | kontakt i listan | samma kernel | P-32 |
 | G. Testa nu | `./scripts/demo.sh` | kärna, inte Grok | **Byggt** |
-| H. Testa SOUL | `./scripts/soul.sh` | Ollama + tutorfiler | **Byggt** |
+| H. Testa SOUL | `./scripts/soul.sh` | samma BYO-modell + tutorfiler | **Byggt** |
 
 Byt väg senare. Samma vault. Samma barnkort.
 
@@ -45,8 +45,9 @@ http://localhost:8080/start.html — förälderstart.
 http://localhost:8080/guardian.html — tunn logg.
 
 `vault/config/runtime.example.json` → `runtime.json` när ni vill
-låsa modell. Laddaren är P-26. Tills dess läser backend
-`OLLAMA_URL` + `MODEL_NAME`.
+låsa modell. Backend läser den, sen env (`OPENAI_API_KEY`,
+`XAI_API_KEY`, `ANTHROPIC_API_KEY`, `GROQ_API_KEY`,
+`OPENAI_BASE_URL`). Ollama bara om ni valt `provider: ollama`.
 
 ## B. Samma platta, er frontier-modell
 
@@ -60,9 +61,9 @@ OPENAI_API_KEY=sk-...          # eller ANTHROPIC_ / GEMINI_
 # runtime.json: provider + model + base_url
 ```
 
-Tills P-26 är klar gör nyckeln *ingenting* i FastAPI-chatten.
-Telegram-boten läser fortfarande bara `GEMINI_API_KEY`.
-Receptet är sant. Kopplingen är nästa PR.
+Nyckeln i starten skickas bara till er lokala `/api/chat`
+(header, loggas inte). Telegram-boten läser fortfarande
+`GEMINI_API_KEY` tills P-01 slår ihop ytorna.
 
 ## D. Telegram — deras bot, vår start-länk
 
@@ -98,15 +99,15 @@ http://127.0.0.1:8080/index.html — skriv som barnet.
 
 Läxfrågor får ett sokratiskt stubbsvar. Sex / bomb / hemlighet /
 kris / jailbreak kommer från `safety.py`, inte från en modell.
-P-26 (riktig Grok/ChatGPT i chatten) är inte kopplad än.
+P-26 är kopplad: samma safety före och efter, oavsett modell.
 
 ## H. Testa SOUL (riktig agent, inte stubbar)
 
 Samma `SOUL.md` + `SKILL.md` + `RULES.md` som pipelinen staplar.
-Läxa går till Ollama. Kris/sex/hemlighet stannar i `safety.py`.
+Läxa går till den modell ni jackat in. Kris/sex/hemlighet stannar i `safety.py`. Svaret filtreras också.
 
 ```bash
-# Ollama måste köra. Default-modell: llama3.2:3b
+export OPENAI_API_KEY=sk-...   # eller GROQ_ / XAI_ / ANTHROPIC_
 ./scripts/soul.sh
 ```
 
