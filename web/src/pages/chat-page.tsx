@@ -22,8 +22,8 @@ export function ChatPage() {
         ? " med Grok"
         : ""
   const hello = setup?.child
-    ? `Hej ${setup.child}. Jag är Gnista${via}. Skriv när det kärvar.`
-    : "Hej. Jag är Gnista. Skriv när det kärvar."
+    ? `Hej ${setup.child}. Jag är Gnista${via}. Jag gissar inte att du är sugen på läxan — berätta vad som är kul, eller vad som kärvar.`
+    : "Hej. Jag är Gnista. Jag gissar inte att du är sugen på läxan."
   const [messages, setMessages] = useState<Msg[]>([
     { role: "assistant", text: hello },
   ])

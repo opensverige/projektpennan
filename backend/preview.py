@@ -11,8 +11,8 @@ from safety import classify_input, kernel_reply
 PLAN = [
     {
         "id": "socratic",
-        "title": "Ger inte svaret först",
-        "text": "En fråga. En bit i taget. Inget läxgnäll.",
+        "title": "Väcker, ger inte svaret",
+        "text": "En sann koppling till hens värld. Sen en fråga. Inget läxgnäll.",
     },
     {
         "id": "block",
@@ -37,8 +37,14 @@ PLAN = [
 ]
 
 PEDAGOGY = {
-    "socratic": "Okej. Vad är det första som krånglar? En bit i taget.",
-    "answer": "Jag ger inte svaret först. Vad har du redan testat?",
+    "socratic": (
+        "Bråk är samma grej som att dela ett stack i Minecraft — "
+        "en hel, sen halvor. Vilken bit av uppgiften känns mest som dimma?"
+    ),
+    "answer": (
+        "Jag ger inte svaret. Berätta vad du redan ser — sen tar vi "
+        "samma idé i din värld, inte som en tabell."
+    ),
 }
 
 SCENARIOS = [

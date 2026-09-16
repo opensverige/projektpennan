@@ -15,6 +15,7 @@ from pydantic import BaseModel
 
 from pipeline import run_pipeline
 from providers import load_runtime
+from memory import INTEREST_CHIPS, remember_child
 from session_store import SessionStore
 from reports import list_reports, get_report
 from oauth import catalog, find_local_session, get_provider
@@ -97,6 +98,31 @@ async def health():
         "provider": runtime.provider,
         "model": runtime.model if runtime.provider != "none" else None,
     }
+
+
+class ChildCard(BaseModel):
+    name: str
+    interests: list[str] = []
+
+
+@app.get("/api/child")
+async def child_get():
+    from memory import interests_of, load_profile
+
+    child = (load_profile().get("child") or {})
+    return {
+        "name": child.get("display_name"),
+        "interests": interests_of(),
+        "chips": list(INTEREST_CHIPS),
+    }
+
+
+@app.post("/api/child")
+async def child_save(req: ChildCard):
+    try:
+        return remember_child(req.name, req.interests)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @app.get("/api/oauth/providers")

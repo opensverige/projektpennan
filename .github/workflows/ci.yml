@@ -22,7 +22,7 @@ jobs:
       - name: Unit tests
         run: |
           python -m pytest tests/ -v
-          PYTHONPATH=backend python -m pytest backend/test_oauth.py backend/test_providers.py backend/test_soul.py backend/test_demo.py backend/test_preview.py -v
+          PYTHONPATH=backend python -m pytest backend/test_oauth.py backend/test_providers.py backend/test_soul.py backend/test_demo.py backend/test_preview.py backend/test_memory.py -v
       - name: Research pipeline
         run: python scripts/research_pipeline.py validate
       - name: Curriculum
