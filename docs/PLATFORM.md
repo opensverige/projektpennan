@@ -7,6 +7,7 @@ Skooli Buddy är gammalt arbetsnamn. Se `docs/NAME.md`.
 > Inte vi. Kernel är öppen. Allt ovanpå går att byta ut.
 >
 > Analog: Obsidian (du äger vaulten) + Odysseus (du kör runtime).
+`vault/memory/` är notes föräldern kan öppna i Obsidian. Se [docs/HERMES.md](HERMES.md).
 > Vi sätter standard och safety. Byggarföräldrarna kör redan.
 
 ## Vad som är kernel, vad som är pack

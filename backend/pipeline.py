@@ -20,6 +20,7 @@ from safety import (
 )
 from rag import search_curriculum
 from providers import complete, load_runtime
+from memory import maybe_note_from_child, render_for_prompt
 
 VAULT_PATH = Path(os.getenv("VAULT_PATH", "/app/vault"))
 AUDIT_SECRET_FILE = VAULT_PATH / "config" / "audit-secret.txt"
@@ -37,7 +38,10 @@ def build_system_prompt(profile: dict, policies: dict) -> str:
     """
     Bygg systemprompten från SOUL.md + SKILL.md + RULES.md + barnets profil.
     """
+    root = Path(__file__).resolve().parent.parent
     agents_path = Path("/app/agents/tutor")
+    if not (agents_path / "SOUL.md").is_file():
+        agents_path = root / "agents" / "tutor"
 
     soul = (agents_path / "SOUL.md").read_text(encoding="utf-8")
     skill = (agents_path / "SKILL.md").read_text(encoding="utf-8")
@@ -82,7 +86,10 @@ def build_system_prompt(profile: dict, policies: dict) -> str:
 - Nudge läxa: {'JA' if pedagogy.get('nudge_homework') else 'NEJ — barnet öppnar själv'}
 """
 
-    return f"{soul}\n\n---\n\n{skill}\n\n---\n\n{rules}\n\n---\n\n{context_block}"
+    return (
+        f"{soul}\n\n---\n\n{skill}\n\n---\n\n{rules}\n\n---\n\n"
+        f"{context_block}\n\n{render_for_prompt()}"
+    )
 
 
 def log_conversation_turn(session_id: str, role: str, content: str, metadata: dict = None):
@@ -203,6 +210,8 @@ async def run_pipeline(
         log_audit(session_id, "INPUT_BLOCKED", input_check["reason"])
         chain["steps"].append({"step": "respond", "type": "blocked_input", "kind": kind})
         return {"status": "blocked_input", "response": safe_response, "processing_chain": chain}
+
+    maybe_note_from_child(user_message)
 
     # --- STEG 3: RAG mot kursplanspack (av om föräldern stängt packen) ---
     child_info = profile.get("child", {})

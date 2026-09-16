@@ -22,7 +22,7 @@ kunna bli ett GitHub-issue. Research-id pekar på `research/findings/`.
 |----|-----|--------|----------|
 | P-08 | **Föräldrapanel som styr**, inte bara tittar. Samtycke, paus, tid, bilder, stödläge, export, radera. Lösenord + rate-limit. | Sorin/Tutur/Latio vinner på kontroll. Vi ska vinna på öppen kontroll. | `parent-controls` |
 | P-09 | **Stödlägen i profil:** sokratisk / små_steg / kviss / läs_stöd. Föräldern sätter. Koden väljer SKILL-förmåga. | Extra stöd är vårt jobb, inte en prompt-rad. | `udl-extra-stod`, `literacy-split` |
-| P-10 | **Persisterat minne (lokalt):** var vi slutade, vad som funkade, vad som kärvade. Inga diagnoser. Föräldern kan nolla. | Roadmap v0.4. Utan minne är varje kväll dag ett. | `socratic-ai` |
+| P-10 | **Persisterat minne (lokalt).** `vault/memory/` som Obsidian-notes. Intressen + gnistor. Inte diagnoser. Föräldern kan nolla. | Utan minne är varje kväll 4+3. | `socratic-ai` |
 | P-11 | **Lgr22 åk 4–6** i `config/lgr22/` + spegling till vault för RAG. CLI: validate, add, diff mot källa. | 13 poster räcker inte för en studiekompis. | `lgr22-coverage` |
 | P-12 | **Bild på läxan** (opt-in). Ingen ansiktslagring. Pedagogiska bilder ut. | Roadmap v0.3. Tutur vinner på kamera. | `parent-controls` |
 | P-13 | **Telegram-grupp:** förälder spectator, barnet pratar, boten svarar bara barnet. | Roadmap v0.2. Insyn i realtid utan att störa. | `parent-controls` |

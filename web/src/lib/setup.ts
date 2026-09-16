@@ -16,12 +16,24 @@ const LABELS: Record<string, string> = {
   local: "",
 }
 
+export const INTEREST_CHIPS = [
+  "Minecraft",
+  "Fotboll",
+  "Hästar",
+  "Rymden",
+  "Djur",
+  "Rita",
+  "Musik",
+  "Lego",
+] as const
+
 export type Setup = {
   child: string
   provider: string
   hasKey: boolean
   consent: boolean
   auth?: "key" | "oauth" | "local"
+  interests?: string[]
 }
 
 export const OAUTH = {
@@ -66,7 +78,7 @@ export function loadSetup(): Setup | null {
   }
 }
 
-export function saveSetup(child: string, key: string) {
+export function saveSetup(child: string, key: string, interests: string[] = []) {
   const provider = guessProvider(key)
   sessionStorage.setItem(
     "gnista-setup",
@@ -76,13 +88,18 @@ export function saveSetup(child: string, key: string) {
       hasKey: Boolean(key),
       consent: true,
       auth: key ? "key" : "local",
+      interests,
     } satisfies Setup)
   )
   if (key) sessionStorage.setItem("gnista-key", key)
   else sessionStorage.removeItem("gnista-key")
 }
 
-export function saveOAuthSetup(child: string, provider: "chatgpt" | "grok") {
+export function saveOAuthSetup(
+  child: string,
+  provider: "chatgpt" | "grok",
+  interests: string[] = []
+) {
   sessionStorage.setItem(
     "gnista-setup",
     JSON.stringify({
@@ -91,7 +108,20 @@ export function saveOAuthSetup(child: string, provider: "chatgpt" | "grok") {
       hasKey: false,
       consent: true,
       auth: "oauth",
+      interests,
     } satisfies Setup)
   )
   sessionStorage.removeItem("gnista-key")
+}
+
+export async function rememberChild(child: string, interests: string[]) {
+  try {
+    await fetch("/api/child", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: child, interests }),
+    })
+  } catch {
+    /* backend sover — sessionStorage räcker för kvällen */
+  }
 }
