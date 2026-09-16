@@ -89,13 +89,19 @@ stjärnan. `skooli` är redan en rysk Telegram-kanal
 (ritskola). `gnista` var sig själv — och bar idiom vi inte
 vill ha.
 
-### 6. Tillgänglighet (grov, inte PRV-ok)
+### 6. Tillgänglighet (kollad 2026-09-16, inte ombuds-ok)
 
-Inte juridiskt bindande. En halvtimme hos ombud innan tryck.
+Inte juridiskt bindande. Fyra research-spår + live DNS/HTTP/iTunes/PRV.
+Se `research/findings/name-utter-availability.json`.
+
+**Handle och domän: upptaget.**  
+**Svensk läxhylla: ledigt.**  
+**App Store / engelska AI: smutsigt.**  
+**Köksbord: håller. Inte ett veto.**
 
 | | `.se` DNS | Telegram | X | Anmärkning |
 |--|-----------|----------|---|------------|
-| **utter** | kolla före tryck | `@utter` troligen upptaget | engelska *utter* = “säga / totalt” | Svenskt djurnamn. Engelska README:er tar proper noun. |
+| **utter** | [utter.se](https://utter.se) parkerad One.com sedan 2003. `.nu` tom. `.app` till salu. [utter.ai](https://utter.ai) live enterprise-röst. | [@utter](https://fragment.com/username/utter) collectible, min 610 TON. Inte fritt. | `x.com/utter` avstängt | Ingen svensk läxhjälp. App Store SE: *Utter - AI Note Taker* (Utbildning) + diktering. PRV-ordmärke 1998 avskrivet. |
 | gnista | ingen A-record | `@gnista` är ett konto | — | **Veto.** “Gnistan mellan dem”, “det gnistrar”. Miun-projekt. |
 | stjarnis | ingen A-record | `@stjarnis` är ett konto | [@stjarnis](https://x.com/stjarnis) är en person | Formkrock med Pluggis. Förskoleregister. |
 | skooli | `.app` / `.ai` tagna | kanal finns | — | Kanadensisk tutoring-historia + Buddy-krocken. |
@@ -103,8 +109,10 @@ Inte juridiskt bindande. En halvtimme hos ombud innan tryck.
 | korp | `korp.se` tagen | konto | — | Korpen = motionsförbund. Dött. |
 | pennan | `pennan.se` tagen | — | — | Bra *initiativ*. Dålig kontakt (“skriv till Pennan”). |
 
-PRV/EUIPO är inte genomsökt post för post. Det är nästa steg
-för Utter, inte ett skäl att behålla Gnista.
+Ombud: TMview + EUIPO eSearch plus (klass 9, 38, 41, 42) innan
+tryck. Vi körde PRV-API och WIPO Madrid, inte hela eSearch.
+Säg **Utter**, aldrig *Uttern* (båtar, Gyllene Uttern) eller
+*Projekt Utter* (WWF/Naturvårdsverket).
 
 ---
 
@@ -149,7 +157,7 @@ chattlistan för alla.
 
 | | Tunga | 9 år | 12 år | Förälder | Upptaget | Dom |
 |--|-------|------|-------|----------|----------|-----|
-| **Utter** | Ut-ter. | ja (djur) | visar det | “de skriver till Utter” | kolla handle | **Vinnare** |
+| **Utter** | Ut-ter. | ja (djur) | visar det | “de skriver till Utter” | handle/domän tagen; läxhyllan ledig | **Vinnare** |
 | Gnista | Gnis-ta. Hårt G. | ok | ok | “gnistan mellan dem” | Miun-projekt | **Veto: sexuell/romantisk idiom** |
 | Mira / Nora | två stavelser | ja | könsskämt | fint vid köksbordet | vanliga namn | Veto: könat |
 | Nästan | Näs-tan. Skämt. | ler | kan gilla | för fiffigt | fritt-ish | Reserv: slogan, inte namn |
@@ -177,8 +185,8 @@ Barnet ska aldrig säga “Utter Läxhjälp AI”. De ska skriva
 
 ## Inte gjort här
 
-- Full PRV + EUIPO + Bolagsverket.
-- Köpa `utter.se` / Telegram `@utter`.
+- Ombud: TMview + EUIPO eSearch plus, identiskt/liknande.
+- Köpa `utter.se` eller Fragment `@utter` (610 TON).
 - Barnpanel. Det här är vuxna som läst marknaden.
 
 Social recency (Reddit/X last-30) gav nästan noll på

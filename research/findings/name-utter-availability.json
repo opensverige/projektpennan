@@ -1,0 +1,48 @@
+{
+  "id": "name-utter-availability",
+  "date": "2026-09-16",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Utter som handle och domän är upptaget. Det finns ingen svensk läxhjälp eller Telegram-studiekompis med det namnet. App Store Sverige har redan Utter som utbildning (AI Note Taker) plus flera röstappar. Inget levande svenskt ordmärke UTTER i klass 9/38/41/42. Köksbordet håller. Google/App Store är smutsigt. Inte ett Gnista-veto.",
+  "evidence": [
+    {
+      "title": "utter.se — One.com-parkering, aktiv sedan 2003",
+      "url": "https://utter.se",
+      "year": 2026,
+      "notes": "HTTP 200. 'Hosted By One.com'. IIS whois: active, skapad 2003-04-24, holder dold. utter.nu likadant tomt. Inte en produkt — bara tagen."
+    },
+    {
+      "title": "UTTER.AI — enterprise voice/chat, Bengaluru",
+      "url": "https://utter.ai",
+      "year": 2026,
+      "notes": "Live produkt: 'Enterprise AI Platform for Voice, Chat & Data Intelligence'. getutter.com är separat macOS-diktering. Engelska AI-Utter är klungan, inte svensk läxhylla."
+    },
+    {
+      "title": "Telegram @utter till salu på Fragment",
+      "url": "https://fragment.com/username/utter",
+      "year": 2026,
+      "notes": "Collectible username. Minimum bid 610 TON (~801 USD). t.me/utter svarar 200 men är inte en publik kanal. Inte fritt att ta."
+    },
+    {
+      "title": "App Store SE — Utter - AI Note Taker, kategori Utbildning",
+      "url": "https://apps.apple.com/se/app/utter-ai-note-taker/id6739954906",
+      "year": 2026,
+      "notes": "Friday Lunch, LLC. Föreläsning → anteckningar, quiz, flashcards. iTunes lookup country=se bekräftar Education. Föräldern som googlar krocken. Inte en svensk Telegram-tutor."
+    },
+    {
+      "title": "PRV 1998-08405 UTTER — avskriven, klass 24/25",
+      "url": "https://api.prv.se/trademarks/applications/1998-08405",
+      "year": 1998,
+      "notes": "Ordmärke UTTER, Blåkläder, status Avskriven/Dismissed. Inget levande svenskt UTTER i 9/38/41/42 i den sökning vi kunde köra. EUIPO eSearch kördes inte fullt. UtterBerry IR 1662416 är levande EU klass 9 (sensor/data), annat jobb."
+    },
+    {
+      "title": "sv.wiktionary utter — djur först, gayslang tertiärt",
+      "url": "https://sv.wiktionary.org/wiki/utter",
+      "year": 2026,
+      "notes": "Första läsning: djuret. En gayslang-betydelse (smal hårig man, mot björn) finns. Inte vardaglig sexuell idiom som 'gnistan mellan dem'. Slangopedia tom."
+    }
+  ],
+  "implication": "Behåll Utter som kontaktnamn. Räkna med att förlora @utter, utter.se och App Store-sök. Säg aldrig Uttern eller Projekt Utter. Ombud gör TMview + eSearch plus före tryck. Se docs/NAME.md.",
+  "backlog_refs": ["P-40"],
+  "confidence": "high"
+}
