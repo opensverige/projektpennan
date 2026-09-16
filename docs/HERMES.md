@@ -6,7 +6,7 @@ Kort: **form, inte runtime.**
 filesystem-first agent-ramverk: `SOUL.md`, minne som filer, verktyg,
 sessioner, cron. Vi lånade den formen.
 
-| | Hermes | Gnista nu |
+| | Hermes | Utter nu |
 |---|--------|-----------|
 | Identitet | `SOUL.md` på disk | `agents/tutor/SOUL.md` + SKILL + RULES |
 | Minne | markdown-filer agenten läser/skriver | `vault/memory/` — samma idé, Obsidian-öppet |
@@ -18,5 +18,5 @@ Vi kör inte Hermes CLI. Vi är en **kernel med Hermes-formade filer**:
 föräldern äger vaulten, byter modell, safety sitter i kod.
 
 Obsidian: öppna mappen `vault/` som vault. `memory/barn.md`,
-`intressen.md`, `gnistor.md` är vanliga notes med `[[wikilänkar]]`.
+`intressen.md`, `vinklar.md` är vanliga notes med `[[wikilänkar]]`.
 Ingen plugin, ingen moln-sync hos oss.

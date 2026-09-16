@@ -1,6 +1,6 @@
 # Basplattan — vi ger golvet, de formar huset
 
-Kontaktnamn: Gnista. Initiativ: Projekt Pennan.
+Kontaktnamn: Utter. Initiativ: Projekt Pennan.
 
 > Vi säljer inte en färdig lärare. Vi säljer **plattan**:
 > safety, samtycke, pack-format, logg, ytor.

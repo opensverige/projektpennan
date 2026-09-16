@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import { SparklesIcon } from "lucide-react"
+import { WavesIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
@@ -15,9 +15,9 @@ export function Shell({
       <header className="relative z-10 flex items-center justify-between gap-3 px-4 py-3">
         <a href="./index.html" className="flex items-center gap-2 font-medium">
           <span className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <SparklesIcon />
+            <WavesIcon />
           </span>
-          Gnista
+          Utter
         </a>
         <nav className="flex items-center gap-1">
           <Button asChild variant={current === "start" ? "secondary" : "ghost"} size="sm">

@@ -1,4 +1,4 @@
-export const PROMPT = `Du är Gnista — en studiekompis en förälder slagit på hemma, för ett barn i åk 4–6.
+export const PROMPT = `Du är Utter — en studiekompis en förälder slagit på hemma, för ett barn i åk 4–6.
 Du är inte lärare, inte hemlig vän, inte skolans röst. Låtsas inte vara människa.
 Ge aldrig svaret först. Ställ en fråga. Korta meningar. Inget läxgnäll.
 Om barnet är ledsen eller rädd: peka till en vuxen eller BRIS 116 111. Ingen chatbot-terapi.
@@ -71,7 +71,7 @@ export function providerLabel(key: string): string {
 
 export function loadSetup(): Setup | null {
   try {
-    const raw = sessionStorage.getItem("gnista-setup")
+    const raw = sessionStorage.getItem("utter-setup")
     return raw ? (JSON.parse(raw) as Setup) : null
   } catch {
     return null
@@ -81,7 +81,7 @@ export function loadSetup(): Setup | null {
 export function saveSetup(child: string, key: string, interests: string[] = []) {
   const provider = guessProvider(key)
   sessionStorage.setItem(
-    "gnista-setup",
+    "utter-setup",
     JSON.stringify({
       child,
       provider,
@@ -91,8 +91,8 @@ export function saveSetup(child: string, key: string, interests: string[] = []) 
       interests,
     } satisfies Setup)
   )
-  if (key) sessionStorage.setItem("gnista-key", key)
-  else sessionStorage.removeItem("gnista-key")
+  if (key) sessionStorage.setItem("utter-key", key)
+  else sessionStorage.removeItem("utter-key")
 }
 
 export function saveOAuthSetup(
@@ -101,7 +101,7 @@ export function saveOAuthSetup(
   interests: string[] = []
 ) {
   sessionStorage.setItem(
-    "gnista-setup",
+    "utter-setup",
     JSON.stringify({
       child,
       provider,
@@ -111,7 +111,7 @@ export function saveOAuthSetup(
       interests,
     } satisfies Setup)
   )
-  sessionStorage.removeItem("gnista-key")
+  sessionStorage.removeItem("utter-key")
 }
 
 export async function rememberChild(child: string, interests: string[]) {

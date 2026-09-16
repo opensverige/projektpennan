@@ -1,6 +1,6 @@
 # Plattformen — kernel föräldern äger
 
-Kontaktnamn: **Gnista**. Initiativ: Projekt Pennan.
+Kontaktnamn: **Utter**. Initiativ: Projekt Pennan.
 Skooli Buddy är gammalt arbetsnamn. Se `docs/NAME.md`.
 
 > Föräldern styr sidekicken. Inte läroplanen. Inte skolan.
@@ -48,7 +48,7 @@ API:er när staden inte levererar — och att datan kan stanna på
 Vi är inte ännu en app de ska byta till. Vi är **standarden de
 kan släppa in sina grejer i**: samma pack-format, samma
 safety-kärna, samma export. Som en kernel. Som en vault.
-Namnet i chatten är Gnista. Metaforen är basplatta + utbytbar
+Namnet i chatten är Utter. Metaforen är basplatta + utbytbar
 hjärna, inte en butik. Se `docs/BASEPLATE.md`.
 
 De som inte bygger själva får samma kernel färdigslagen (Hem).

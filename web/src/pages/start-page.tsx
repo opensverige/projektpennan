@@ -134,7 +134,7 @@ export function StartPage() {
           <div className="text-center">
             <p className="text-sm text-muted-foreground">Föräldern slår på den</p>
             <h1 className="font-heading text-3xl font-semibold tracking-tight">
-              Gnista
+              Utter
             </h1>
           </div>
 

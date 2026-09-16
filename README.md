@@ -1,14 +1,14 @@
-# Gnista
+# Utter
 
 [Svenska](README.md) · [English](README.en.md) · [Español](README.es.md) · [العربية](README.ar.md)
 
 **En studiekompis för åk 4–6. Föräldern äger plattan. Barnet får frågor, inte facit.**
 
-Kontaktnamnet — det barnet skriver till — är **Gnista**.  
+Kontaktnamnet — det barnet skriver till — är **Utter**.  
 Repot och initiativet heter **Projekt Pennan**, under [Open Sverige](https://opensverige.se).  
 Licens: [AGPL-3.0](LICENSE).
 
-`Skooli Buddy` och `Stjärnis` är inte produktnamn. Det första krockar med Homework Buddy / Studybuddy. Det andra låser in oss hos niorna och stöter bort tolvåringar.
+`Skooli Buddy`, `Stjärnis` och `Gnista` är inte produktnamn. Buddy krockar med Homework Buddy / Studybuddy. Stjärnis låser in oss hos niorna. Gnista bär sexuell/romantisk ton (“gnistan mellan dem”).
 
 ---
 
@@ -24,7 +24,7 @@ När läxan kärvar ska barnet kunna fråga en kompis som:
 
 ```
 Barn:   Vad är 7 gånger 8?
-Gnista: Vet du vad 7 × 7 är? Då tar vi ett steg till.
+Utter: Vet du vad 7 × 7 är? Då tar vi ett steg till.
 ```
 
 Vi ger **basplattan**: safety, samtycke, vault, pack-format, logg.  
@@ -66,11 +66,11 @@ cd backend && uvicorn main:app --reload --host 127.0.0.1 --port 8080
 [http://127.0.0.1:8080/land.html](http://127.0.0.1:8080/land.html) — skiss av hemsidan.
 
 Smart OSS utan OpenAI: `GROQ_API_KEY` eller `OPENAI_BASE_URL` mot vLLM / LM Studio.  
-Ollama bara om ni sätter `GNISTA_USE_OLLAMA=1` — inte default.
+Ollama bara om ni sätter `UTTER_USE_OLLAMA=1` — inte default.
 
 ### 2. Telegram (valfritt, egen bot)
 
-Ingen officiell `@gnista`. Föräldern skapar boten hos [@BotFather](https://t.me/BotFather). Tokenen stannar hos dem. Om *vi* tar emot tokenen ser vi chatten i klartext — det gör vi inte.
+Ingen officiell `@utter`. Föräldern skapar boten hos [@BotFather](https://t.me/BotFather). Tokenen stannar hos dem. Om *vi* tar emot tokenen ser vi chatten i klartext — det gör vi inte.
 
 ```bash
 pip install -r requirements.txt
@@ -78,7 +78,7 @@ cp .env.example .env   # TELEGRAM_BOT_TOKEN, ev. GEMINI_API_KEY
 python -m skooli_buddy.bot
 ```
 
-Start-länk + allowlist, ingen officiell `@gnista`. Tokenen stannar i er vault.
+Start-länk + allowlist, ingen officiell `@utter`. Tokenen stannar i er vault.
 
 Hem — BankID, tyst WhatsApp-kontakt, fem minuter — är monumentet. **Inte byggt.** Se [docs/INSTALL.md](docs/INSTALL.md).
 

@@ -1,13 +1,12 @@
 # Namn — teamets beslut
 
-**Kontaktnamn (det barnet skriver till): Gnista.**  
+**Kontaktnamn (det barnet skriver till): Utter.**  
 **Initiativet (GitHub, vuxna): Projekt Pennan.**  
-**Skooli Buddy** och **Stjärnis** är inte produktnamn.
+**Skooli Buddy**, **Stjärnis** och **Gnista** är inte produktnamn.
 
 Det här är inte en brainstorm. Det är en konkurrensanalys plus
 tunga, skolgård och vad som redan är upptaget. Bytet i koden är
-P-40. Innan det är gjort är “Skooli” fortfarande strängen i
-repot — inte namnet vi går ut med.
+P-40.
 
 ---
 
@@ -38,7 +37,7 @@ Utanför Sverige, samma mönster:
 | ChatGPT Study Mode | Plattform, inte kompis | Föräldern litar inte på den mot ett barn. |
 | SkoleElev.ai / MathAI / TARS (DK) | Skola, ämne, filmrobot | TARS är rätt *attityd* för gymnasiet. För åk 4 är det kallt. Athena-ugglan är redan Duolingo. |
 
-**Kategori vi inte får heta:** Buddy, Plugg-, Läx-, AI-lärare, Skool/School-misspelled, uggla.
+**Kategori vi inte får heta:** Buddy, Plugg-, Läx-, AI-lärare, Skool/School-misspelled, uggla, **-is**-diminutiv, eld/gnista/glöd/låga.
 
 ### 2. Nioåringen
 
@@ -48,6 +47,9 @@ låter som en kompis i en barnbok.
 Det är *därför* det är farligt. Nio älskar det. Då har vi låst
 in oss i förskolehyllan (Stjärnan, Stjärnsvenska, Dibbers
 lärvänner).
+
+Utter är ett djur. Nio gillar djur. Det är okej — så länge det
+inte är kanin, kattunge eller nalle.
 
 ### 3. Tolvåringen
 
@@ -59,26 +61,33 @@ Skooli Buddy är engelska och låter som en app mamma laddat ner.
 Pluggis är “läx-grejen”. En kompis i Telegram-listan ska heta
 som en *person eller ett djur*, inte som en tjänst.
 
+Utter går att visa. Det är ett smeknamn, inte en läxapp.
+Flick- eller pojknamn (Mira, Nora, Otto) ger könsskämt i
+sjätte klass. Ett djur gör inte det.
+
 ### 4. Föräldern (det som sägs till en annan förälder)
 
 “Vi har satt upp Stjärnis” låter som en förskoleapp.  
 “Vi har Skooli Buddy” låter som ytterligare en amerikansk AI.  
-“De skriver till Gnista när det kärvar” går att säga vid
-köksbordet utan att skämmas, och utan att lova betyg.
+“De skriver till Gnista när det kärvar” *lät* bra vid köksbordet
+tills någon hörde den andra meningen: gnistan mellan dem.  
+“De skriver till Utter när det kärvar” är ett djur i chatten.
+Ingen sexuell bi-ton. Ingen läx-stämpel.
 
 Föräldern köper. Barnet *använder*. Namnet måste överleva båda.
 
 ### 5. Tungan
 
 Svenska namn som fastnar i den här åldern är korta, förstavelse-
-betonade, två stavelser: *Bam-se, Pip-pi, Hum-la, Gnis-ta.*
+betonade, två stavelser: *Bam-se, Pip-pi, Hum-la, Ut-ter.*
 Diminutiv på **-is** (kompis, Pluggis, Stjärnis) signalerar
 låg ålder. Engelska kompositer (Homework Buddy, Zapgrade)
 signalerar appbutik.
 
-Handle utan åäö: `gnista` är sig själv. `stjarnis` tappar
+Handle utan åäö: `utter` är sig själv. `stjarnis` tappar
 stjärnan. `skooli` är redan en rysk Telegram-kanal
-(ritskola).
+(ritskola). `gnista` var sig själv — och bar idiom vi inte
+vill ha.
 
 ### 6. Tillgänglighet (grov, inte PRV-ok)
 
@@ -86,7 +95,8 @@ Inte juridiskt bindande. En halvtimme hos ombud innan tryck.
 
 | | `.se` DNS | Telegram | X | Anmärkning |
 |--|-----------|----------|---|------------|
-| **gnista** | ingen A-record | `@gnista` är ett konto | — | Miun-projekt “Gnista — teknik för nyfikna barn”. Närliggande, inte en produkt. `gnista.app` / `.nu` upptagna. |
+| **utter** | kolla före tryck | `@utter` troligen upptaget | engelska *utter* = “säga / totalt” | Svenskt djurnamn. Engelska README:er tar proper noun. |
+| gnista | ingen A-record | `@gnista` är ett konto | — | **Veto.** “Gnistan mellan dem”, “det gnistrar”. Miun-projekt. |
 | stjarnis | ingen A-record | `@stjarnis` är ett konto | [@stjarnis](https://x.com/stjarnis) är en person | Formkrock med Pluggis. Förskoleregister. |
 | skooli | `.app` / `.ai` tagna | kanal finns | — | Kanadensisk tutoring-historia + Buddy-krocken. |
 | humla | `.se` tom, `.nu/.app/.ai` tagna | username till salu | — | **Humly** är vikarie-edtech för svenska skolor. Humlan Djojj är förskola. |
@@ -94,7 +104,28 @@ Inte juridiskt bindande. En halvtimme hos ombud innan tryck.
 | pennan | `pennan.se` tagen | — | — | Bra *initiativ*. Dålig kontakt (“skriv till Pennan”). |
 
 PRV/EUIPO är inte genomsökt post för post. Det är nästa steg
-för Gnista, inte ett skäl att behålla Skooli.
+för Utter, inte ett skäl att behålla Gnista.
+
+---
+
+## Gnista — domen
+
+Intuitionen stämmer: **gnista bär sexuell och romantisk ton.**
+
+På svenska är *gnistan mellan dem*, *det gnistrar* och *tända
+gnistan* etablerad bild för dragning, inte för läxlust. Ett
+kontaktnamn ett barn visar i chattlistan får inte öppna den
+dörren. Pedagogiken — väck nyfikenhet, anta ointresse — stannar.
+Ordet i chatten får inte heta gnista.
+
+Tre krockar till som redan fanns:
+
+1. Miun-projekt “Gnista — teknik för nyfikna barn”. Närliggande.
+2. `gnista.app` / `.nu` upptagna.
+3. Eld-fältet (glöd, låga, tända, tindra) har samma bi-ton.
+
+**Gnista är veto som produkt.** Inte som intern metod-id i en
+gammal commit. Byt strängarna.
 
 ---
 
@@ -118,7 +149,9 @@ chattlistan för alla.
 
 | | Tunga | 9 år | 12 år | Förälder | Upptaget | Dom |
 |--|-------|------|-------|----------|----------|-----|
-| **Gnista** | Gnis-ta. Hårt G. | ok | ok | “en gnista när det kärvar” | Miun-projekt, inte app | **Vinnare** |
+| **Utter** | Ut-ter. | ja (djur) | visar det | “de skriver till Utter” | kolla handle | **Vinnare** |
+| Gnista | Gnis-ta. Hårt G. | ok | ok | “gnistan mellan dem” | Miun-projekt | **Veto: sexuell/romantisk idiom** |
+| Mira / Nora | två stavelser | ja | könsskämt | fint vid köksbordet | vanliga namn | Veto: könat |
 | Nästan | Näs-tan. Skämt. | ler | kan gilla | för fiffigt | fritt-ish | Reserv: slogan, inte namn |
 | Stjärnis | Stjär-nis | ja | nej | förskola | Pluggis-form + personer | Veto som produkt |
 | Humla | Hum-la | ja | ok | mjuk | Humly + Djojj | Veto |
@@ -133,20 +166,19 @@ den till copy.
 
 ```
 Projekt Pennan     — OSS-initiativet, vuxna, GitHub
-Gnista             — kontakten i Telegram/WhatsApp
+Utter              — kontakten i Telegram/WhatsApp
 valfri overlay     — Stjärnis, saga, tro… föräldern döper
 ```
 
-Barnet ska aldrig säga “Gnista Läxhjälp AI”. De ska skriva
-*Gnista*, som de skriver *Omar*. Se `docs/UX-SCENARIOS.md`.
+Barnet ska aldrig säga “Utter Läxhjälp AI”. De ska skriva
+*Utter*, som de skriver *Omar*. Se `docs/UX-SCENARIOS.md`.
 
 ---
 
 ## Inte gjort här
 
-- Byta strängar i bot, frontend, safety-spec (P-40).
 - Full PRV + EUIPO + Bolagsverket.
-- Köpa `gnista.se` / Telegram `@gnista`.
+- Köpa `utter.se` / Telegram `@utter`.
 - Barnpanel. Det här är vuxna som läst marknaden.
 
 Social recency (Reddit/X last-30) gav nästan noll på

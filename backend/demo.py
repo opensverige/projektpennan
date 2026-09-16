@@ -21,7 +21,7 @@ from preview import reply_for
 ROOT = Path(__file__).resolve().parent.parent
 FRONTEND = ROOT / "frontend"
 
-app = FastAPI(title="Gnista kärndemo", version="0.1.0")
+app = FastAPI(title="Utter kärndemo", version="0.1.0")
 
 
 class ChatRequest(BaseModel):
@@ -35,7 +35,7 @@ class PreviewTurn(BaseModel):
 
 @app.get("/api/health")
 async def health():
-    return {"status": "ok", "service": "gnista-kernel-demo", "mode": "kernel"}
+    return {"status": "ok", "service": "utter-kernel-demo", "mode": "kernel"}
 
 
 class ChildCard(BaseModel):

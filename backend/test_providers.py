@@ -75,7 +75,7 @@ def test_openai_compat_posts_chat_completions(monkeypatch):
 
     monkeypatch.setattr("providers.httpx.AsyncClient", FakeClient)
     rt = load_runtime(override_key="sk-test", override_provider="openai")
-    reply = asyncio.run(complete("Du är Gnista.", [{"role": "user", "content": "7*8"}], rt))
+    reply = asyncio.run(complete("Du är Utter.", [{"role": "user", "content": "7*8"}], rt))
     assert reply == "Vad är 7×7?"
     assert captured["url"].endswith("/chat/completions")
     assert captured["headers"]["Authorization"] == "Bearer sk-test"

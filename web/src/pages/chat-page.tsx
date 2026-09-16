@@ -22,8 +22,8 @@ export function ChatPage() {
         ? " med Grok"
         : ""
   const hello = setup?.child
-    ? `Hej ${setup.child}. Jag är Gnista${via}. Jag gissar inte att du är sugen på läxan — berätta vad som är kul, eller vad som kärvar.`
-    : "Hej. Jag är Gnista. Jag gissar inte att du är sugen på läxan."
+    ? `Hej ${setup.child}. Jag är Utter${via}. Jag gissar inte att du är sugen på läxan — berätta vad som är kul, eller vad som kärvar.`
+    : "Hej. Jag är Utter. Jag gissar inte att du är sugen på läxan."
   const [messages, setMessages] = useState<Msg[]>([
     { role: "assistant", text: hello },
   ])
@@ -48,13 +48,13 @@ export function ChatPage() {
       try {
         const key =
           typeof sessionStorage !== "undefined"
-            ? sessionStorage.getItem("gnista-key")
+            ? sessionStorage.getItem("utter-key")
             : null
         const headers: Record<string, string> = {
           "Content-Type": "application/json",
         }
-        if (key) headers["X-Gnista-Key"] = key
-        if (setup?.provider) headers["X-Gnista-Provider"] = setup.provider
+        if (key) headers["X-Utter-Key"] = key
+        if (setup?.provider) headers["X-Utter-Provider"] = setup.provider
         const response = await fetch("/api/chat", {
           method: "POST",
           headers,
@@ -129,7 +129,7 @@ export function ChatPage() {
             </div>
           ))}
           {busy ? (
-            <p className="text-sm text-muted-foreground">Gnista tänker…</p>
+            <p className="text-sm text-muted-foreground">Utter tänker…</p>
           ) : null}
           <div ref={endRef} />
         </div>

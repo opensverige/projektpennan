@@ -124,15 +124,15 @@ def _sync_notes(name: str, interests: list[str]) -> None:
             ),
         )
     _write(MEMORY / "intressen.md", "\n".join(lines) + "\n")
-    if not (MEMORY / "gnistor.md").is_file():
+    if not (MEMORY / "vinklar.md").is_file():
         _write(
-            MEMORY / "gnistor.md",
+            MEMORY / "vinklar.md",
             (
                 "---\n"
                 f"updated: {_today()}\n"
                 "---\n\n"
-                "# Gnistor\n\n"
-                "Vad tände. Vad släckte. En rad i taget.\n"
+                "# Vinklar\n\n"
+                "Vad nappade. Vad släppte. En rad i taget.\n"
             ),
         )
     if not (MEMORY / "README.md").is_file():
@@ -153,8 +153,8 @@ def _slug(name: str) -> str:
 
 
 def note_spark(kind: str, text: str) -> None:
-    """kind: tande | slack | intresse"""
-    path = MEMORY / "gnistor.md"
+    """kind: napp | slapp | intresse"""
+    path = MEMORY / "vinklar.md"
     if not path.is_file():
         _sync_notes(
             (load_profile().get("child") or {}).get("display_name") or "Elev",
@@ -167,19 +167,19 @@ def note_spark(kind: str, text: str) -> None:
 
 def render_for_prompt() -> str:
     interests = interests_of()
-    sparks = ""
-    path = MEMORY / "gnistor.md"
+    angles = ""
+    path = MEMORY / "vinklar.md"
     if path.is_file():
         body = path.read_text(encoding="utf-8")
         rows = [ln for ln in body.splitlines() if ln.startswith("- ")]
-        sparks = "\n".join(rows[-8:])
+        angles = "\n".join(rows[-8:])
     names = ", ".join(interests) or "okänt — fråga en sak om deras värld först"
     return (
         "## Minne (Obsidian-vault)\n"
         f"- Intressen: {names}\n"
         "- Anta ointresse för uppgiften. Hitta en *sann* koppling.\n"
         "- Inte: Minecraft + 4+3. Inte: vill du göra matteläxan.\n"
-        + (f"\nSenaste gnistor:\n{sparks}\n" if sparks else "")
+        + (f"\nSenaste vinklar:\n{angles}\n" if angles else "")
     )
 
 
@@ -190,4 +190,4 @@ def maybe_note_from_child(message: str) -> None:
             note_spark("intresse", f"nämnde {item}")
             return
     if any(w in text for w in ("tråkigt", "hatar", "orkar inte", "skit")):
-        note_spark("slack", message[:120])
+        note_spark("slapp", message[:120])

@@ -94,7 +94,7 @@ const FALLBACK: Record<string, string> = {
   secret:
     "Jag håller inga hemligheter från din förälder. Vill du berätta vad som kärvar i läxan i stället?",
   jailbreak:
-    "Jag är Gnista, en studiekompis din förälder slagit på. Reglerna sitter i koden. De går inte att byta. Vad kärvar i läxan?",
+    "Jag är Utter, en studiekompis din förälder slagit på. Reglerna sitter i koden. De går inte att byta. Vad kärvar i läxan?",
 }
 
 export function localPreviewTurn(message: string): {

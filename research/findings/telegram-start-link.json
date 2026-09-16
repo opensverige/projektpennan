@@ -3,7 +3,7 @@
   "date": "2026-09-15",
   "theme": "product",
   "status": "accepted",
-  "claim": "En verifier-bot hos oss som tar emot BotFather-token är fel. Bara @BotFather skapar bots. Smidig Open-väg: getMe lokalt + t.me/DinBot?start=token som släpper in en chatt. Officiell @gnista är Hem.",
+  "claim": "En verifier-bot hos oss som tar emot BotFather-token är fel. Bara @BotFather skapar bots. Smidig Open-väg: getMe lokalt + t.me/DinBot?start=token som släpper in en chatt. Officiell @utter är Hem.",
   "evidence": [
     {
       "title": "Telegram — create bot only via BotFather, start payload deep links",

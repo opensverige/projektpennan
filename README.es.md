@@ -1,10 +1,10 @@
-# Gnista
+# Utter
 
 [Svenska](README.md) · [English](README.en.md) · [Español](README.es.md) · [العربية](README.ar.md)
 
 **Un compañero de estudio para 4.º–6.º en Suecia. Quien cría posee la placa. El niño recibe preguntas, no la respuesta.**
 
-El niño escribe a **Gnista**. El repositorio y la iniciativa son **Projekt Pennan**, de [Open Sverige](https://opensverige.se). Licencia: [AGPL-3.0](LICENSE).
+El niño escribe a **Utter**. El repositorio y la iniciativa son **Projekt Pennan**, de [Open Sverige](https://opensverige.se). Licencia: [AGPL-3.0](LICENSE).
 
 Es una herramienta del hogar. La escuela no es operadora. Lgr22 es un pack opcional, no la autoridad. El apoyo extra es el valor por defecto. Sin insistir con los deberes.
 
@@ -16,7 +16,7 @@ Es una herramienta del hogar. La escuela no es operadora. Lgr22 es un pack opcio
 
 ```
 Niño:   ¿Cuánto es 7 por 8?
-Gnista: ¿Sabes cuánto es 7 × 7? Entonces damos un paso más.
+Utter: ¿Sabes cuánto es 7 × 7? Entonces damos un paso más.
 ```
 
 Nunca la respuesta primero. Ritmo que encaja. Se detiene cuando duele. Visible para el padre o la madre.
@@ -42,7 +42,7 @@ cd backend && uvicorn main:app --reload --host 127.0.0.1 --port 8080
 Sin Docker: `pip install -r backend/requirements.txt`, desde `backend/`:  
 `uvicorn main:app --reload --host 0.0.0.0 --port 8080`
 
-Telegram es opcional y es **su** bot ([@BotFather](https://t.me/BotFather)). No hay un `@gnista` oficial. Si nosotros tuviéramos el token, veríamos el chat en claro — no lo hacemos. En `main` sigue un chat-id fijo (P-02). No lo uses para otras familias todavía.
+Telegram es opcional y es **su** bot ([@BotFather](https://t.me/BotFather)). No hay un `@utter` oficial. Si nosotros tuviéramos el token, veríamos el chat en claro — no lo hacemos. En `main` sigue un chat-id fijo (P-02). No lo uses para otras familias todavía.
 
 “Hem” (BankID, contacto silencioso en WhatsApp) **no está construido**.
 

@@ -40,7 +40,7 @@ export function TestPage() {
   const [messages, setMessages] = useState<Msg[]>([
     {
       role: "assistant",
-      text: `Hej. Jag är Gnista. Tryck ett chip så ser du hur jag möter ${child}.`,
+      text: `Hej. Jag är Utter. Tryck ett chip så ser du hur jag möter ${child}.`,
     },
   ])
   const endRef = useRef<HTMLDivElement>(null)
@@ -71,7 +71,7 @@ export function TestPage() {
           <div>
             <p className="text-sm text-muted-foreground">Testmiljö — du är föräldern</p>
             <h1 className="font-heading text-3xl font-semibold tracking-tight">
-              Se hur Gnista möter {child}
+              Se hur Utter möter {child}
             </h1>
             <p className="mt-2 text-sm text-muted-foreground">
               Planen sitter i koden. Tryck ett chip, även de opassande.
