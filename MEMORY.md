@@ -50,6 +50,13 @@
 - Research: parent-owned-school-context. Öppna skolplattformen
   är beviset att de redan gör ingest själva.
 
+## 2026-09-17 — barnet är inte köparen
+- P-45 ser bra ut för föräldern. Barnet ser bara första svaret.
+- Tre jobb vi inte tar: feed (YouTube/Roblox/Snap), facit (Chattis),
+  nattkompis (My AI). Mellanstadiet har det största föräldragapet.
+- P-47: första turen måste använda intresse-dörren. Äg bytet.
+  Ingen detektor. Ingen Hem-copy som lovar att de vill skriva.
+
 ## 2026-09-17 — intag, byggt rätt
 - Föräldern äger intaget. Barnet sitter inte i en tutor-dashboard.
   Output: vault-markdown + tyst kontakt. Inte Aristoteles “special plan”.

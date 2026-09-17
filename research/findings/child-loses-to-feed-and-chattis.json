@@ -1,0 +1,54 @@
+{
+  "id": "child-loses-to-feed-and-chattis",
+  "date": "2026-09-17",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "P-45 är ritat för köparen. Barnet upplever bara första svaret. De tre jobben de redan har — döda tid (YouTube/Roblox/Snap), få facit (ChatGPT/Gemini), inte vara ensam (My AI/Character.AI) — tar vi inte. En förälder-godkänd kontakt som vägrar svar och naggar som skola förlorar tisdagen utan att vi ens märker det.",
+  "evidence": [
+    {
+      "title": "Internetstiftelsen — barn 8–19 och AI 2025",
+      "url": "https://svenskarnaochinternet.se/rapporter/barnen-och-internet-2025/barn-och-ungdomars-anvandning-av-ai-verktyg/",
+      "year": 2025,
+      "notes": "57 % av 8–19 har använt gen-AI. ChatGPT först, Snapchat My AI tvåa. Låg/mellan: största nyttan är fritid — sagor, bilder, musik, AI som kompis att skoja med, även om nätterna när vännerna sover. Högstadiet: läx-AI har dubblerats och matchar fritid. Vi säljer till mellan. Läckaget där är nattkompis + feed, inte uppsatsfusk än."
+    },
+    {
+      "title": "Internetstiftelsen 2025 — Chattis, dumma frågor, föräldragap",
+      "url": "https://svenskarnaochinternet.se/app/uploads/2025/11/internetstiftelsen-barnen-och-internet-2025-sammanfattning.pdf",
+      "year": 2025,
+      "notes": "Drygt var fjärde 8–19 har använt AI som läxhjälp; få yngre. De frågar när läraren inte är där. 'Inga frågor är dumma frågor för AI.' 'Chattis är bästa läxhjälpen ever.' Mellanstadiet: mer än dubbelt så många barn har pratat AI i skolan som föräldrar som vet. Gapet är störst där. Det är den hemliga appen."
+    },
+    {
+      "title": "Internetstiftelsen — sociala medier, mellanstadiet",
+      "url": "https://svenskarnaochinternet.se/rapporter/svenskarna-och-internet-2025/sociala-medier/",
+      "year": 2025,
+      "notes": "Mellan: YouTube ~9/10, Roblox 71 %, Snapchat drygt hälften, TikTok drygt en tredjedel. Daglig social 86 %. Det är inte en läxapp de skippar. Det är den stacken ett första svar tävlar mot."
+    },
+    {
+      "title": "Mediemyndigheten — Ungar & medier 2025",
+      "url": "https://mediemyndigheten.se/globalassets/rapporter-och-analyser/ungar--medier/mediemyndigheten-rapport-ungar-och-medier.pdf",
+      "year": 2025,
+      "notes": "9–12: ca 3 tim 40 min fritidsskärm/dag. 35 % säger att medieanvändning får dem att skippa det de ska (läxor, sysslor, läggdags) varje dag eller flera gånger i veckan. Vi slår inte den tiden. Vi får de minuter som blir över, om några."
+    },
+    {
+      "title": "Common Sense — The Dawn of the AI Era (US 13–18)",
+      "url": "https://www.commonsensemedia.org/research/the-dawn-of-the-ai-era-teens-parents-and-the-adoption-of-generative-ai-at-home-and-school",
+      "year": 2024,
+      "notes": "Inte 9–12. End state: 70 % har använt gen-AI. Av föräldrar vars tonåring använt det visste 37 %. 49 % av föräldrarna hade aldrig pratat om det. Det är högstadiebarnet efter två år av en tyst kontakt föräldern är nöjd med."
+    },
+    {
+      "title": "Common Sense — Talk, Trust, and Trade-Offs (AI companions)",
+      "url": "https://www.commonsensemedia.org/research/talk-trust-and-trade-offs-how-and-why-teens-use-ai-companions",
+      "year": 2025,
+      "notes": "US 13–17: 72 % har använt AI-kompisar. Skäl: underhållning, nyfikenhet, råd, alltid tillgänglig, icke-dömande, saker de inte säger till familjen. Det jobbet vägrar SOUL medvetet (inte hemlig vän). Rätt safety. Därför lämnar de till My AI."
+    },
+    {
+      "title": "Pew — How Teens Use and View AI (2026)",
+      "url": "https://www.pewresearch.org/internet/2026/02/24/how-teens-use-and-view-ai/",
+      "year": 2026,
+      "notes": "US 13–17: 64 % använder chatbots. 51 % av föräldrarna säger att deras tonåring gör det (13 pp gap). 54 % har använt dem till skolarbete. Samma dyad, olika verklighet."
+    }
+  ],
+  "implication": "P-47: barnets acceptanstest är första svaret, inte chipskärmen. Första turen måste använda intresse-dörren och tåla foto. Låter den som skola har P-45 misslyckats. Vi slår inte Shorts, ger inte facit, blir inte nattkompis, spanar inte efter Chattis. Äg bytet. Hem-copy får inte lova att barnet 'kommer vilja skriva'. Se docs/INTAKE.md och docs/UX-SCENARIOS.md.",
+  "backlog_refs": ["P-32", "P-45", "P-47"],
+  "confidence": "high"
+}

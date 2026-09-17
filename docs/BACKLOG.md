@@ -79,6 +79,7 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 | P-44 | **Kärndemo utan Ollama.** `scripts/demo.sh` + `backend/demo.py`. Chatten faller tillbaka till kärnan. | Kunna testa i kväll. Inte låtsas att Grok svarar. | |
 | P-45 | **Förälder-chipintervju.** 6 frågor + 1 hoppa-över, max 5 chips. Skriver `barn.md`, intressen, pedagogy overlay. Inget pretest, inga diagnos-chips. Barnet sitter inte i en dashboard. | Intresse + grov kärv + behov ändrar tutoring. Diagnos och KT-quiz gör det inte i onboardingen. | `intake-interest-first`, `intake-chip-budget`, `intake-no-diagnosis-chips`, `intake-question-list`, `parent-intake-not-child-dashboard` |
 | P-46 | **SKU-gräns: filen är export, inte checkout.** Hem inkluderar intaget. Kväll är tjänst för Open (790–1 490 kr), aldrig Gumroad för `barn.md`. Recurring Hem måste ticka efter natt ett. | Genererad pack är one-shot. Linear ger bort import. Obsidian säljer sync. | `intake-not-file` |
+| P-47 | **Barnets 30 sekunder.** Första svaret använder intresse-dörren och tål foto. Låter det som skola har P-45 misslyckats. Acceptera Shorts/Chattis. Ingen detektor, ingen nattkompis, inget läxpush. | Köparen är inte användaren. Se `docs/INTAKE.md`. | `child-loses-to-feed-and-chattis` |
 
 ## Medvetet inte i scopet
 - Skola som operatör: Unikum-SSO, klass-tenant, lärarvy, write-back.
@@ -87,6 +88,9 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 - Betyg, NP-förberedelse som facit-motor.
 - Reklam, trackers, tillväxt-hack mot barn.
 - Diagnosverktyg.
+- Slå YouTube/Roblox/Shorts på underhållning.
+- Hemlig vän / Character.AI-jobbet.
+- Detektera att barnet öppnat ChatGPT i en annan flik.
 
 ## Förslag på närmaste PR:er
 1. P-02 + P-30 + P-07 — allowlist, start-token, dashboard, `/pause`.
@@ -100,3 +104,4 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 9. P-37 — veckans lapp (då först relevant utan läcka). P-38 sen.
 10. P-45 — förälder-chipintervju efter P-41 (namn redan taget). Skriver vault-notes, inte ett barn-dashboard.
 11. P-46 — lås SKU: Open 0 / Hem / Kväll-tjänst. Ingen `.md`-butik. Se `docs/INTAKE.md`.
+12. P-47 — första svaret är barnets acceptanstest. Inte en roligare app.

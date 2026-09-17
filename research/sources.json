@@ -545,6 +545,54 @@
       "url": "https://mobbin.com/flows/0f88ecd3-ceb0-43d1-af33-6feafe56928b",
       "themes": ["product"],
       "cadence": "årlig"
+    },
+    {
+      "id": "internetstiftelsen-ai-2025",
+      "org": "Internetstiftelsen",
+      "title": "Barn och ungdomars användning av AI-verktyg 2025",
+      "url": "https://svenskarnaochinternet.se/rapporter/barnen-och-internet-2025/barn-och-ungdomars-anvandning-av-ai-verktyg/",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "internetstiftelsen-social-2025",
+      "org": "Internetstiftelsen",
+      "title": "Sociala medier — barn 8–19, 2025",
+      "url": "https://svenskarnaochinternet.se/rapporter/svenskarna-och-internet-2025/sociala-medier/",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "mediemyndigheten-ungar-2025",
+      "org": "Mediemyndigheten",
+      "title": "Ungar & medier 2025",
+      "url": "https://mediemyndigheten.se/globalassets/rapporter-och-analyser/ungar--medier/mediemyndigheten-rapport-ungar-och-medier.pdf",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "commonsense-dawn-ai",
+      "org": "Common Sense Media",
+      "title": "The Dawn of the AI Era — teens, parents, gen-AI",
+      "url": "https://www.commonsensemedia.org/research/the-dawn-of-the-ai-era-teens-parents-and-the-adoption-of-generative-ai-at-home-and-school",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "commonsense-companions",
+      "org": "Common Sense Media",
+      "title": "Talk, Trust, and Trade-Offs — why teens use AI companions",
+      "url": "https://www.commonsensemedia.org/research/talk-trust-and-trade-offs-how-and-why-teens-use-ai-companions",
+      "themes": ["product", "safety"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "pew-teens-ai-2026",
+      "org": "Pew Research Center",
+      "title": "How Teens Use and View AI",
+      "url": "https://www.pewresearch.org/internet/2026/02/24/how-teens-use-and-view-ai/",
+      "themes": ["product"],
+      "cadence": "årlig"
     }
   ]
 }

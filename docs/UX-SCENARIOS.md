@@ -36,15 +36,21 @@ chattar om du kör fast." Sen släpper de det.
 Förälderns yta är en tyst panel: igång / pausa / tid. Inte en
 scen att sätta barnet framför.
 
-### 1. Barnet kör fast — själva
+### 1. Barnet kör fast — eller inte
 
-Tisdag 19:14. Sängen eller soffan. Snapchat är öppen i bakgrunden.
-Matteboken ligger bredvid. De har redan fotat talet (det gör de
-ändå, för att visa en kompis eller spara).
+Tisdag 19:14. Sängen eller soffan. Snapchat är öppen. Matteboken
+ligger bredvid. De har redan fotat talet.
 
-De gör det de alltid gör: öppnar WhatsApp. Skooli sitter där
-som vem som helst. De trycker på tråden. Skickar bilden.
-Skriver "fattar inte".
+**Det som oftast händer:** de öppnar Shorts, Roblox, eller
+Chattis — AI:n som ger svaret och inte naggar. Föräldern tror
+att Utter ligger i listan. Barnet har redan en annan flik.
+Det är inte ett UX-fel vi kan designa bort. Det är jobbet
+vi vägrar (facit, feed, hemlig vän). Se `child-loses-to-feed-and-chattis`.
+
+**Det som händer de kvällar vi får:** de trycker på tråden som
+redan finns, skickar bilden, skriver "fattar inte". Första
+svaret måste redan känna deras värld. Annars är nästa gest
+Shorts.
 
 Det är samma motorik som [skicka en bild till en kompis](https://mobbin.com/flows/d7c12641-fbf6-4c95-ad93-e020a53bee9c):
 kamera eller rulle → caption → skicka. Inte "öppna läxappen".

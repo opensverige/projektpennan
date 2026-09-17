@@ -32,7 +32,8 @@ fynd för hand så att en människa har läst källan.
 Intag (frågor + SKU): [docs/INTAKE.md](../docs/INTAKE.md).
 Fynd: `intake-not-file`, `parent-intake-not-child-dashboard`,
 `intake-chip-budget`, `intake-interest-first`,
-`intake-no-diagnosis-chips`, `intake-question-list`.
+`intake-no-diagnosis-chips`, `intake-question-list`,
+`child-loses-to-feed-and-chattis`.
 
 ## När ska ett fynd in?
 - Ny evidens för en lärandeform vi använder eller skippar.

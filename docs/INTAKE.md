@@ -5,7 +5,8 @@
 >
 > Fynd: `intake-not-file`, `parent-intake-not-child-dashboard`,
 > `intake-chip-budget`, `intake-interest-first`,
-> `intake-no-diagnosis-chips`, `intake-question-list`.
+> `intake-no-diagnosis-chips`, `intake-question-list`,
+> `child-loses-to-feed-and-chattis`.
 > Prislogik: `docs/PRICING.md`. Startskärm: `docs/ONBOARDING.md`.
 
 Tre saker som inte får blandas:
@@ -230,3 +231,37 @@ Tomt Q6 ger samma extra-stöd som testprofilen: `korta_steg`,
 
 **Linjen:** föräldern svarar. Kort. Skriver vault. Sen en tyst
 kontakt. Barnet onboardas aldrig in i en tutor-UI.
+
+---
+
+## Barnet (P-47) — det vi skippade
+
+Chipskärmarna ser bra ut för föräldern. De ser bra ut för oss.
+Barnet ser dem aldrig. Barnet ser **första svaret** — och har
+redan tre bättre jobb:
+
+| Jobb | Vad de öppnar | Tar vi det? |
+|------|----------------|-------------|
+| Döda tid | YouTube, Roblox (71 % i mellan), Snap, Shorts | Nej. 35 % av 9–12 skippar redan läxan för skärm flera gånger i veckan. |
+| Få det gjort i kväll | ChatGPT / Gemini / “Chattis” | Nej. Vi ger inte facit. De klistrar in i en annan flik. |
+| Inte vara ensam | My AI, Character.AI, nattkompis | Nej. SOUL: inte hemlig vän. Rätt. Därför lämnar de. |
+
+Internetstiftelsen 2025: låg/mellan använder AI som kompis om
+nätterna. Mellanstadiet har det största gapet — barnen har
+pratat AI i skolan, föräldrarna har inte hört det. Det är
+appen du inte vet om.
+
+Vi vinner bara om tre saker är sanna *samma kväll*:
+
+1. De är redan fast (boken ligger framme).
+2. Det är mer friktion att öppna Chattis än att skicka bilden
+   i en tråd som redan finns.
+3. Första svaret använder dörren från Q3 och låter inte som skola.
+
+Om första svaret kunde skickats utan chipintervjun har P-45
+misslyckats. Intervjun finns för den turen, inte för att
+föräldern ska känna att de byggt en plan.
+
+**Äg bytet.** En del kvällar går till Shorts. En del till
+Chattis. Vi spanar inte. Vi naggar inte. Vi blir inte roligare
+än feeden. Hem-copy får inte lova att barnet kommer vilja skriva.
