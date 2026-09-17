@@ -249,6 +249,182 @@
       "url": "https://khanmigo.ai/parents",
       "themes": ["product", "pedagogy"],
       "cadence": "årlig"
+    },
+    {
+      "id": "aristotle-onboard",
+      "org": "Aristotle / JSV AI",
+      "title": "Onboard — personalized tutoring plan, parent vs student",
+      "url": "https://www.heyaristotle.com/go/onboard",
+      "themes": ["product"],
+      "cadence": "kvartal"
+    },
+    {
+      "id": "aristotle-pricing",
+      "org": "Aristotle / JSV AI",
+      "title": "AI tutoring plans and pricing",
+      "url": "https://www.heyaristotle.com/pricing",
+      "themes": ["product"],
+      "cadence": "kvartal"
+    },
+    {
+      "id": "aristotle-privacy",
+      "org": "Aristotle / JSV AI",
+      "title": "Privacy Policy — Parent Account vs Student Profile",
+      "url": "https://www.heyaristotle.com/privacy",
+      "themes": ["product", "privacy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "allakando-ai",
+      "org": "Allakando",
+      "title": "AI-lärare — gratis konto som elev, förälder eller lärare",
+      "url": "https://www.allakando.se/ai-larare/",
+      "themes": ["product"],
+      "cadence": "kvartal"
+    },
+    {
+      "id": "homework-buddy-parents",
+      "org": "Reko Mat i Lund AB",
+      "title": "Homework Buddy — For Parents",
+      "url": "https://homeworkbuddy.app/en/parents",
+      "themes": ["product", "privacy"],
+      "cadence": "kvartal"
+    },
+    {
+      "id": "khan-child-accounts",
+      "org": "Khan Academy",
+      "title": "Create or link child accounts to a parent account",
+      "url": "https://support.khanacademy.org/hc/en-us/articles/202262994-How-do-I-create-or-link-child-accounts-to-my-parent-account",
+      "themes": ["product", "privacy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "duolingo-privacy-children",
+      "org": "Duolingo",
+      "title": "Privacy — Child Users and Duolingo ABC parent setup",
+      "url": "https://www.duolingo.com/privacy",
+      "themes": ["product", "privacy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "walkington-interests",
+      "org": "ISLS / Walkington",
+      "title": "Personalize algebra instruction to student interests",
+      "url": "https://repository.isls.org/bitstream/1/2246/1/80-87.pdf",
+      "themes": ["pedagogy"],
+      "cadence": "vid uppföljningsstudier"
+    },
+    {
+      "id": "hidi-renninger",
+      "org": "ERIC / Hidi & Renninger",
+      "title": "Four-phase model of interest development",
+      "url": "https://eric.ed.gov/?id=EJ736298",
+      "themes": ["pedagogy"],
+      "cadence": "vid översikt"
+    },
+    {
+      "id": "dochy-prior-knowledge",
+      "org": "Review of Educational Research",
+      "title": "Prior knowledge assessment practices and outcomes",
+      "url": "https://doi.org/10.2307/1170673",
+      "themes": ["pedagogy"],
+      "cadence": "vid översikt"
+    },
+    {
+      "id": "deeptutor-nonintrusive",
+      "org": "Smart Learning Environments / Rus et al.",
+      "title": "Non-intrusive prior-knowledge assessment in dialogue ITS",
+      "url": "https://link.springer.com/article/10.1186/s40561-016-0025-3",
+      "themes": ["pedagogy"],
+      "cadence": "vid uppföljningsstudier"
+    },
+    {
+      "id": "edc-probes",
+      "org": "EDC Accessible Mathematics",
+      "title": "Diagnostic / formative assessment probes",
+      "url": "https://www2.edc.org/accessmath/resources/formative-assessment-probes.asp",
+      "themes": ["pedagogy"],
+      "cadence": "vid översikt"
+    },
+    {
+      "id": "duolingo-101",
+      "org": "Duolingo",
+      "title": "Duolingo 101 — motivations first, placement optional",
+      "url": "https://blog.duolingo.com/duolingo-101-how-to-learn-a-language-on-duolingo/",
+      "themes": ["product", "pedagogy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "duolingo-onboarding-mobbin",
+      "org": "Mobbin / Duolingo",
+      "title": "Duolingo iOS onboarding — 5-chip self-report + skippable placement",
+      "url": "https://mobbin.com/flows/ac9d2f58-868d-4fd3-a79c-9655ce6b1522",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "gdpr-art-9",
+      "org": "EU",
+      "title": "GDPR artikel 9 — särskilda kategorier, hälsa",
+      "url": "https://gdpr-info.eu/art-9-gdpr/",
+      "themes": ["privacy"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "gdpr-recital-35",
+      "org": "EU",
+      "title": "GDPR skäl 35 — hälsodata inklusive funktionshinder",
+      "url": "https://gdpr-info.eu/recitals/no-35/",
+      "themes": ["privacy"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "ico-inferred-special",
+      "org": "ICO",
+      "title": "What is special category data — inferred health",
+      "url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-is-special-category-data/",
+      "themes": ["privacy"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "cowan-four",
+      "org": "Behavioral and Brain Sciences",
+      "title": "The magical number 4 in short-term memory",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11515286/",
+      "themes": ["product"],
+      "cadence": "vid översikt"
+    },
+    {
+      "id": "iyengar-lepper",
+      "org": "Iyengar & Lepper",
+      "title": "When choice is demotivating",
+      "url": "https://faculty.washington.edu/jdb/345/345%20Articles/Iyengar%20%26%20Lepper%20(2000).pdf",
+      "themes": ["product"],
+      "cadence": "vid översikt"
+    },
+    {
+      "id": "hicks-law-ux",
+      "org": "Laws of UX",
+      "title": "Hick's Law",
+      "url": "https://lawsofux.com/hicks-law/",
+      "themes": ["product"],
+      "cadence": "vid översikt"
+    },
+    {
+      "id": "skolverket-sva",
+      "org": "Skolverket",
+      "title": "Undervisning i svenska som andraspråk",
+      "url": "https://www.skolverket.se/styrning-och-ansvar/regler-och-ansvar/ansvar-i-skolfragor/undervisning-i-svenska-som-andrasprak",
+      "themes": ["pedagogy", "curriculum"],
+      "cadence": "vid författningsändring"
+    },
+    {
+      "id": "character-ai-quick",
+      "org": "Character.AI",
+      "title": "How To: Quick Creation",
+      "url": "https://book.character.ai/character-guide/how-to-quick-creation",
+      "themes": ["product"],
+      "cadence": "årlig"
     }
   ]
 }
