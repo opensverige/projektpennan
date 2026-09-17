@@ -1,0 +1,66 @@
+{
+  "id": "parent-intake-not-child-dashboard",
+  "date": "2026-09-17",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Föräldern äger intaget. Barnet sätts inte i en tutor-dashboard. Output är vault-markdown och sen en Telegram/WhatsApp-kontakt. 2025–2026-tutorerna gör motsatsen: de frågar barnet eller sätter barnet vid datorn och slutar i plan, quiz-app eller inloggad chatt.",
+  "evidence": [
+    {
+      "title": "Aristotle onboard — Get a personalized tutoring plan",
+      "url": "https://www.heyaristotle.com/go/onboard",
+      "year": 2026,
+      "notes": "Live Sept 2026. Välkomst: tre utlovade steg (profil → plan → first session). Nästa gaffel: 'Are you a student or a parent?' / I'm a parent | I'm a student. Förälder-spåret är en diagnostikquiz (årskurs, ämne, oro, läxvana, ork, intressen, tid/vecka, barnets namn, ev. mejlinbjudan) och slutar i 'Finding X learner type' + 'Custom … plan built by our experts' + prissida + first session på whiteboard. Barnet ska sitta vid datorn för sessionen. Det är anti-mönstret: rätt ägare tidigt, fel destination."
+    },
+    {
+      "title": "Aristotle pricing — Intro 3 free / Scholar $49 / Infinite $199",
+      "url": "https://www.heyaristotle.com/pricing",
+      "year": 2026,
+      "notes": "Paywall sitter i onboardingen ('Not ready? Try three sessions free'). Output är sessioner + parent dashboard, inte en chattkontakt. Åk 6–12, röst + whiteboard."
+    },
+    {
+      "title": "Aristotle privacy — Parent Account Holder vs Student Profile, no under-13",
+      "url": "https://www.heyaristotle.com/privacy",
+      "year": 2026,
+      "notes": "Förälderkonto (namn, e-post, SSO) och Student Profile (smeknamn, årskurs, ämnen, preferenser). Samlar inte medvetet från barn under 13. Barnet är ändå en profil i deras tutor-app."
+    },
+    {
+      "title": "Khanmigo for parents — pay, enable up to 10 kids, chat history",
+      "url": "https://www.khanmigo.ai/parents",
+      "year": 2026,
+      "notes": "Vem svarar: förälder 18+, US-faktura. Under 18 kan inte köpa själva. Steg: KA-konto → betala $4/mån eller $44/år → Add a child → Settings > Khanmigo-kryss → barnet loggar in på sitt KA-konto. Barnet vid datorn: ja. Output: Khanmigo-chatt i Khan Academy + 20 föräldraverktyg (quiz generator, lesson plan). Kopiera: förälder slår på tillgång. Inte: barnets destination är en läroplans-dashboard."
+    },
+    {
+      "title": "Khan Academy — create or link child accounts (COPPA gate)",
+      "url": "https://support.khanacademy.org/hc/en-us/articles/202262994-How-do-I-create-or-link-child-accounts-to-my-parent-account",
+      "year": 2025,
+      "notes": "Under 13: förälder skapar username+lösen, blir permanent coach. Barn som startar själva måste lämna förälders e-post; kontot raderas efter 7 dagar utan godkännande. ~4–6 steg. Barnet loggar sen in på Learner Home. Gate: ja. Destination: fortfarande en app."
+    },
+    {
+      "title": "Homework Buddy — parents page + pricing",
+      "url": "https://homeworkbuddy.app/en/parents",
+      "year": 2026,
+      "notes": "Marknadsförs till föräldrar, används av eleven: skriv/fota uppgiften. Under 13: 'parental consent may be required'. Premium €3/mån via App Store-familj, 3 chattar/vecka gratis. Barnet vid telefon/dator: ja, det är produkten. Ingen förälder-ägd vault. Anti-mönster: barnet skapar/använder tutorkontot."
+    },
+    {
+      "title": "Pluggis — barnet fotar, appen skapar träning",
+      "url": "https://www.pluggis.app/",
+      "year": 2026,
+      "notes": "Copy till föräldern ('Ditt barn klarar läxorna'). Tre utlovade steg som barnet gör: fota/ladda upp → Pluggis skapar övning → öva. Mathilde och Bella är AI-tutorer i appen. Prova gratis, inget publikt pris. Barnet vid skärm: ja. Output: quiz/övning, inte kontakt."
+    },
+    {
+      "title": "Allakando AI-lärare — konto som elev, förälder eller lärare",
+      "url": "https://www.allakando.se/ai-larare/",
+      "year": 2026,
+      "notes": "Vem svarar: valfritt — 'till dig själv eller som t.ex. förälder eller lärare'. Steg: gratiskonto på sekunder → välj kurs → chatta. AI gratis (tratt till människa från 399 kr/h). Barnet vid datorn: ja. Output: webb-AI + ev. Mitt Allakando. Inte vault, inte messaging-kontakt."
+    },
+    {
+      "title": "Duolingo privacy — Child Users vs ABC parent setup",
+      "url": "https://www.duolingo.com/privacy",
+      "year": 2026,
+      "notes": "Huvudappen: barnet skapar username, förälders e-post tas vid första utloggning (notice, inte hård grind före användning). ABC: 'designed to be set up by parents' — smeknamn, ungefärlig ålder, ev. föräldra-e-post; vuxen-settings. Kopiera ABC-ägarskapet. Inte: barnet i en lektionskarta som destination, och inte den mjuka e-postgrinden efter att barnet redan kört."
+    }
+  ],
+  "implication": "P-41/P-45 är förälder-intag som skriver vault, inte en Aristoteles-quiz mot 'special plan'. P-43 är förälderns preview. P-32 är barnets enda yta: en tyst kontakt. Ingen barn-onboarding, ingen first session i en dashboard. Se jämförelsen i research-passet 2026-09-17.",
+  "backlog_refs": ["P-32", "P-41", "P-43"],
+  "confidence": "high"
+}
