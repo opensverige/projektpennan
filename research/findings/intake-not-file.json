@@ -1,0 +1,90 @@
+{
+  "id": "intake-not-file",
+  "date": "2026-09-17",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Ett genererat .md-pack är en one-shot-återvändsgränd som publik SKU. Betalt intag fungerar bara när artefakten körs i kväll eller när arbetet är mänskligt och ansvarigt. Sälj Hem (plattan blir det här barnet och stannar på) plus Kväll som tjänst för Open. Filen är kvitto och export, aldrig checkout-raden.",
+  "evidence": [
+    {
+      "title": "Accounted — Priser (Open 0 / Auto 199 / Custom)",
+      "url": "https://www.accounted.se/priser",
+      "year": 2026,
+      "notes": "Rubrik: 'Börja gratis, betala när kopplingarna ska på.' Open 0 kr, hela motorn AGPL. Auto 199 kr/mån, 30 dagar, PSD2 + AI i EU + WhatsApp-kvitton. Custom offert. Inhouse från 19 999 kr. Migrering in ingår i Open och Auto — de säljer inte en SIE-fil."
+    },
+    {
+      "title": "Linear — Pricing",
+      "url": "https://linear.app/pricing",
+      "year": 2026,
+      "notes": "Free 0, Basic 10, Business 16 USD/användare/mån (årsfaktura). Import and export är kärnrad. 'Migration & onboarding support' sitter bara på Enterprise. Intaget är CAC in i sätet, inte en zip."
+    },
+    {
+      "title": "Linear — Migration guide",
+      "url": "https://linear.app/switch/migration-guide",
+      "year": 2026,
+      "notes": "Självbetjäning: Settings → Import/Export, Jira/GitHub/Asana/Shortcut/Trello/CSV. Målet är issues som lever i Linear, inte en exporterad fil de köper."
+    },
+    {
+      "title": "Notion — Pricing",
+      "url": "https://www.notion.com/pricing",
+      "year": 2026,
+      "notes": "Free 0 / Plus 10 / Business 20 USD per member / month. Notion säljer säten och AI, inte mallar. Mallar är creator-ekonomi vid sidan av."
+    },
+    {
+      "title": "Notion Help — Sell templates on Marketplace",
+      "url": "https://www.notion.com/help/selling-on-marketplace",
+      "year": 2026,
+      "notes": "Notion tar 8 % + 0,40 USD per transaktion, 14 dagars hold, krav på support. Det är andras one-shot. Notion själv tar återkommande säten."
+    },
+    {
+      "title": "Obsidian — Pricing",
+      "url": "https://obsidian.md/pricing",
+      "year": 2026,
+      "notes": "'Free without limits.' Vaulten är gratis. Sync 4 USD/mån årsvis (5 månadsvis). Publish 8/10. Catalyst 25 USD en gång. Commercial 50 USD/år, frivillig. De säljer sync, inte .md."
+    },
+    {
+      "title": "Khanmigo — Pricing",
+      "url": "https://khanmigo.ai/pricing",
+      "year": 2026,
+      "notes": "Lärare 0. Föräldrar/elever 4 USD/mån eller 44 USD/år, USA. Innehållsbiblioteket förblir gratis. De säljer pågående tutor, inte en profilfil. För lågt WTP-tak för svensk Hem — det är nonprofit-golv."
+    },
+    {
+      "title": "Aristotle — Pricing",
+      "url": "https://www.heyaristotle.com/pricing",
+      "year": 2026,
+      "notes": "Intro: 3 gratissessioner. Scholar 49 USD/mån, 8 sessioner. Infinite 199 USD/mån, obegränsat. Sluggen /why-aristotle-costs-299 lever; listpriset på sidan är 199. De säljer sessioner som tickar, inte en onboarding-fil. Tre gratis är intaget."
+    },
+    {
+      "title": "Nabu Casa — Pricing (Home Assistant Cloud)",
+      "url": "https://www.nabucasa.com/pricing/",
+      "year": 2026,
+      "notes": "EU 7,50 EUR/mån eller 75 EUR/år inkl. moms. Motorn är gratis. De säljer fjärråtkomst och röstkoppling som måste vara på varje dag."
+    },
+    {
+      "title": "Stripe Atlas",
+      "url": "https://stripe.com/atlas",
+      "year": 2026,
+      "notes": "500 USD engångsavgift för ett Delaware-bolag som faktiskt existerar + första årets registered agent. Förnyelse 100 USD/år. One-shot fungerar när utfallet är juridiskt unikt, inte när det är markdown en LLM kan skriva om."
+    },
+    {
+      "title": "Superhuman — onboarding session",
+      "url": "https://blog.superhuman.com/the-fastest-way-to-inbox-zero-a-single-coaching-session/",
+      "year": 2026,
+      "notes": "30 min 1:1 ingår i prenumerationen (Starter 25 USD/mån årsvis / 30 månadsvis per help.superhuman.com). Intaget är inbäddat i ytan som fortsätter kosta."
+    },
+    {
+      "title": "Allakando — Pris för läxhjälp",
+      "url": "https://www.allakando.se/laxhjalp-pris/",
+      "year": 2026,
+      "notes": "Människa från 399 kr/timme, grupp från 189. AI-läraren är gratis. Svenskt tak för en Kväll-tjänst: 90 min ≈ 600 kr i deras taxa; 790–1490 är konsult, inte 'en fil'."
+    },
+    {
+      "title": "Homework Buddy — Pricing",
+      "url": "https://homeworkbuddy.app/en/pricing",
+      "year": 2026,
+      "notes": "Gratis 3 samtal/vecka. Premium 3 EUR/mån eller 18 EUR/år. Race-to-bottom för stängd läx-AI. Inte vår analog för WTP — vår analog är Accounted Auto och en Allakando-timme."
+    }
+  ],
+  "implication": "P-31 ska visa Open 0 / Hem ~149–199 / Kväll som tjänst för Open, inte tre kort plus en 'köp barn.md'. P-46: .md är export (P-33 zip) och kvitto efter Hem/Kväll. Intaget på Hem är inkluderat (Linear/Superhuman/Accounted 30 min). Sälj inte pack-generatorn. Recurring Hem måste ha en mätare som tickar efter natt ett (inference, WhatsApp, veckolapp) annars är det en uppsättningsavgift i prenumerationskläder. Se docs/INTAKE.md.",
+  "backlog_refs": ["P-31", "P-33", "P-46"],
+  "confidence": "high"
+}

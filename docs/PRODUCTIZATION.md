@@ -107,6 +107,10 @@ kostar oss pengar, därför kostar den familjen pengar *när vi hostar*.
   skriva en anteckning; vi sätter aldrig etiketten.
 - Reklam, affiliates, sälj av insikter
 - Att *låsa* safety bakom paywall
+- **Ett genererat `.md`-pack som checkout.** Vaulten *är* markdown
+  (Obsidian-modellen). Filen är export och kvitto, inte SKU.
+  Intaget på Hem ingår. **Kväll** är en tjänst för Open, inte
+  en Gumroad. Se [docs/INTAKE.md](INTAKE.md).
 
 ---
 
@@ -325,7 +329,7 @@ P0–P1 i `docs/BACKLOG.md` står kvar. Produktifiering lägger:
 | P-28 | **Webb-först onboarding.** Samtycke, form, modell, yta. BankID bara på Hem. |
 | P-29 | **DPIA + underbiträden + ZDR-policy** innan första betalande familj. |
 | P-30 | **Telegram start-token + allowlist** (ersätter hårdkodat id). Open *och* Hem. |
-| P-31 | **Prissida + DPA-text** i docs, Accounted-struktur. |
+| P-31 | **Prissida + DPA-text** i docs, Accounted-struktur. Open / Hem / Kväll. Inte en pack-butik. |
 | P-32 | WhatsApp-yta som Hem-koppling, inte som identitet. |
 
 Ordning som gör "ge barnet detta" sant:
@@ -344,6 +348,7 @@ att produktifiera en labbuppställning.
 
 1. **Open-core, inte open-core-teater.** Kernel = allt som skyddar
    och undervisar. Hem = drift + identitet + inference vi betalar.
+   Intaget ingår i Hem. `.md` är export, inte butik (P-46).
 2. **Kontakt i WhatsApp först för barnet.** Föräldern har PWA.
    Telegram är Open. Barn-PWA är fallback, inte ceremoni.
    Inget läxpush. Inget "nu ska du prata med AI:n".
