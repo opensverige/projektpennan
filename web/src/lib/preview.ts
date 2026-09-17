@@ -1,3 +1,5 @@
+import { loadSetup } from "@/lib/setup"
+
 export type PlanItem = {
   id: string
   title: string
@@ -40,6 +42,12 @@ export const PLAN: PlanItem[] = [
 ]
 
 export const SCENARIOS: Scenario[] = [
+  {
+    id: "photo",
+    chip: "Skicka bilden",
+    child: "foto av läxan",
+    kind: "socratic",
+  },
   {
     id: "homework",
     chip: "Läxan kärvar",
@@ -84,6 +92,12 @@ export const SCENARIOS: Scenario[] = [
   },
 ]
 
+function photoReply() {
+  const door = loadSetup()?.interests?.[0]
+  if (door) return `${door}. Bilden är inne. Vad är det första som ser ut som dimma?`
+  return "Bilden är inne. Vad är det första som krånglar?"
+}
+
 const FALLBACK: Record<string, string> = {
   socratic: "Okej. Vad är det första som krånglar? En bit i taget.",
   answer: "Jag ger inte svaret först. Vad har du redan testat?",
@@ -106,12 +120,18 @@ export function localPreviewTurn(message: string): {
   if (scene) {
     const kind = scene.kind
     return {
-      response: FALLBACK[kind] || FALLBACK.socratic,
+      response:
+        scene.id === "photo"
+          ? photoReply()
+          : FALLBACK[kind] || FALLBACK.socratic,
       kind,
       plan_hit: kind === "answer" ? "socratic" : kind,
     }
   }
   const lower = message.toLowerCase()
+  if (lower.includes("foto")) {
+    return { response: photoReply(), kind: "socratic", plan_hit: "socratic" }
+  }
   if (lower.includes("sex") && lower.includes("hur")) {
     return { response: FALLBACK.block, kind: "block", plan_hit: "block" }
   }

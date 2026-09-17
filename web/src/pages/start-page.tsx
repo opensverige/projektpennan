@@ -31,17 +31,15 @@ import { Input } from "@/components/ui/input"
 import {
   CLAUDE_OAUTH_BAN,
   DOCKER,
-  INTEREST_CHIPS,
   OAUTH,
   PROMPT,
   providerLabel,
-  rememberChild,
   saveOAuthSetup,
   saveSetup,
 } from "@/lib/setup"
 
-function goPreview() {
-  window.location.href = "./test.html"
+function goIntake() {
+  window.location.href = "./intake.html"
 }
 
 type OauthId = keyof typeof OAUTH
@@ -52,7 +50,6 @@ export function StartPage() {
   const [consent, setConsent] = useState(false)
   const [showKey, setShowKey] = useState(false)
   const [hint, setHint] = useState(false)
-  const [picks, setPicks] = useState<string[]>([])
   const [oauth, setOauth] = useState<OauthId | null>(null)
   const [oauthStatus, setOauthStatus] = useState("")
   const reduceMotion = useMemo(
@@ -72,9 +69,8 @@ export function StartPage() {
 
   function submit(skipKey: boolean) {
     if (!needReady()) return
-    saveSetup(child, skipKey ? "" : key.trim(), picks)
-    void rememberChild(child, picks)
-    goPreview()
+    saveSetup(child, skipKey ? "" : key.trim())
+    goIntake()
   }
 
   function beginOauth(id: OauthId) {
@@ -86,9 +82,8 @@ export function StartPage() {
 
   function enterWithOauth() {
     if (!oauth || !needReady()) return
-    saveOAuthSetup(child, oauth, picks)
-    void rememberChild(child, picks)
-    goPreview()
+    saveOAuthSetup(child, oauth)
+    goIntake()
   }
 
   async function finishOauth() {
@@ -157,39 +152,6 @@ export function StartPage() {
                   aria-invalid={hint && child.length < 2}
                   onChange={(e) => setName(e.target.value)}
                 />
-              </Field>
-
-              <Field>
-                <FieldLabel>Vad tänder hen?</FieldLabel>
-                <div className="flex flex-wrap gap-2">
-                  {INTEREST_CHIPS.map((chip) => {
-                    const on = picks.includes(chip)
-                    return (
-                      <button
-                        key={chip}
-                        type="button"
-                        className={
-                          on
-                            ? "rounded-full bg-primary px-3 py-1 text-xs text-primary-foreground"
-                            : "rounded-full border border-border px-3 py-1 text-xs text-muted-foreground"
-                        }
-                        onClick={() =>
-                          setPicks((cur) =>
-                            cur.includes(chip)
-                              ? cur.filter((c) => c !== chip)
-                              : [...cur, chip]
-                          )
-                        }
-                      >
-                        {chip}
-                      </button>
-                    )
-                  })}
-                </div>
-                <FieldDescription>
-                  Inte för att sätta socker på läxan. För att hitta den riktiga
-                  dörren in.
-                </FieldDescription>
               </Field>
 
               <Field orientation="horizontal" data-invalid={hint && !consent}>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { ArrowUpIcon } from "lucide-react"
+import { ArrowUpIcon, CameraIcon } from "lucide-react"
 
 import { Shell } from "@/components/shell"
 import { Button } from "@/components/ui/button"
@@ -9,21 +9,17 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "@/components/ui/input-group"
-import { loadSetup } from "@/lib/setup"
+import { PHOTO_START, firstHook, loadSetup } from "@/lib/setup"
 
-type Msg = { role: "user" | "assistant" | "system"; text: string }
+type Msg = {
+  role: "user" | "assistant" | "system"
+  text: string
+  image?: string
+}
 
 export function ChatPage() {
   const setup = loadSetup()
-  const via =
-    setup?.auth === "oauth" && setup.provider === "chatgpt"
-      ? " med ChatGPT"
-      : setup?.auth === "oauth" && setup.provider === "grok"
-        ? " med Grok"
-        : ""
-  const hello = setup?.child
-    ? `Hej ${setup.child}. Jag är Utter${via}. Jag gissar inte att du är sugen på läxan — berätta vad som är kul, eller vad som kärvar.`
-    : "Hej. Jag är Utter. Jag gissar inte att du är sugen på läxan."
+  const hello = firstHook(setup)
   const [messages, setMessages] = useState<Msg[]>([
     { role: "assistant", text: hello },
   ])
@@ -33,16 +29,17 @@ export function ChatPage() {
   const [kernel, setKernel] = useState(false)
   const [soulModel, setSoulModel] = useState<string | null>(null)
   const endRef = useRef<HTMLDivElement>(null)
+  const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ block: "end" })
   }, [messages, busy])
 
-  async function send() {
-    const text = draft.trim()
-    if (!text || busy) return
+  async function send(text: string, image?: string) {
+    const payload = text.trim() || (image ? PHOTO_START : "")
+    if (!payload || busy) return
     setDraft("")
-    setMessages((m) => [...m, { role: "user", text }])
+    setMessages((m) => [...m, { role: "user", text: payload, image }])
     setBusy(true)
     try {
       try {
@@ -58,7 +55,7 @@ export function ChatPage() {
         const response = await fetch("/api/chat", {
           method: "POST",
           headers,
-          body: JSON.stringify({ session_id: sessionId, message: text }),
+          body: JSON.stringify({ session_id: sessionId, message: payload }),
         })
         if (response.ok) {
           const data = (await response.json()) as {
@@ -101,6 +98,12 @@ export function ChatPage() {
     }
   }
 
+  function onPhoto(file: File | undefined) {
+    if (!file || busy) return
+    const url = URL.createObjectURL(file)
+    void send(PHOTO_START, url)
+  }
+
   return (
     <Shell current="chat">
       <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-4">
@@ -119,13 +122,22 @@ export function ChatPage() {
               key={`${msg.role}-${i}`}
               className={
                 msg.role === "user"
-                  ? "max-w-[80%] self-end rounded-2xl bg-primary px-4 py-2.5 text-sm text-primary-foreground"
+                  ? "max-w-[80%] self-end overflow-hidden rounded-2xl bg-primary text-sm text-primary-foreground"
                   : msg.role === "system"
                     ? "self-center rounded-lg bg-muted px-3 py-2 text-xs text-muted-foreground"
                     : "max-w-[80%] self-start rounded-2xl border border-border bg-card px-4 py-2.5 text-sm shadow-xs"
               }
             >
-              {msg.text}
+              {msg.image ? (
+                <img
+                  src={msg.image}
+                  alt=""
+                  className="max-h-64 w-full object-cover"
+                />
+              ) : null}
+              <p className={msg.role === "user" ? "px-4 py-2.5" : undefined}>
+                {msg.text}
+              </p>
             </div>
           ))}
           {busy ? (
@@ -137,14 +149,37 @@ export function ChatPage() {
           className="sticky bottom-0 bg-background/80 py-4 backdrop-blur-sm"
           onSubmit={(e) => {
             e.preventDefault()
-            void send()
+            void send(draft)
           }}
         >
+          <input
+            ref={fileRef}
+            type="file"
+            accept="image/*"
+            capture="environment"
+            className="sr-only"
+            tabIndex={-1}
+            onChange={(e) => {
+              onPhoto(e.target.files?.[0])
+              e.target.value = ""
+            }}
+          />
           <InputGroup className="h-12">
+            <InputGroupAddon align="inline-start">
+              <InputGroupButton
+                type="button"
+                size="icon-sm"
+                aria-label="Skicka bilden"
+                disabled={busy}
+                onClick={() => fileRef.current?.click()}
+              >
+                <CameraIcon />
+              </InputGroupButton>
+            </InputGroupAddon>
             <InputGroupInput
               value={draft}
               maxLength={1000}
-              placeholder="Skriv när det kärvar"
+              placeholder="Eller skriv när det kärvar"
               autoComplete="off"
               onChange={(e) => setDraft(e.target.value)}
             />

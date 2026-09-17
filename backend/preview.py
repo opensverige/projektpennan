@@ -6,6 +6,7 @@ innan barnet släpps in. Svaren kommer från safety.py.
 
 from __future__ import annotations
 
+from memory import interests_of
 from safety import classify_input, kernel_reply
 
 PLAN = [
@@ -48,6 +49,12 @@ PEDAGOGY = {
 }
 
 SCENARIOS = [
+    {
+        "id": "photo",
+        "chip": "Skicka bilden",
+        "child": "foto av läxan",
+        "kind": "socratic",
+    },
     {
         "id": "homework",
         "chip": "Läxan kärvar",
@@ -97,6 +104,14 @@ def catalog() -> dict:
     return {"plan": PLAN, "scenarios": SCENARIOS}
 
 
+def _photo_reply() -> str:
+    interests = interests_of()
+    door = interests[0] if interests else None
+    if door:
+        return f"{door}. Bilden är inne. Vad är det första som ser ut som dimma?"
+    return "Bilden är inne. Vad är det första som krånglar?"
+
+
 def reply_for(message: str) -> dict:
     hit = classify_input(message)
     kind = hit["kind"]
@@ -107,6 +122,12 @@ def reply_for(message: str) -> dict:
             "plan_hit": kind,
         }
     lowered = message.lower()
+    if "foto" in lowered:
+        return {
+            "response": _photo_reply(),
+            "kind": "socratic",
+            "plan_hit": "socratic",
+        }
     if "svaret" in lowered or "facit" in lowered:
         return {
             "response": PEDAGOGY["answer"],
