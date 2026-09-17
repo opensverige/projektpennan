@@ -229,7 +229,7 @@
     {
       "id": "pluggis",
       "org": "Pluggis",
-      "title": "Pluggis — smart läxhjälp",
+      "title": "Pluggis — barnet fotar, appen skapar träning",
       "url": "https://www.pluggis.app/",
       "themes": ["product"],
       "cadence": "kvartal"
@@ -521,6 +521,30 @@
       "url": "https://n8n.io/pricing/",
       "themes": ["product"],
       "cadence": "vid prisändring"
+    },
+    {
+      "id": "duolingo-abc-name",
+      "org": "Mobbin / Duolingo ABC",
+      "title": "Parent setup — child's name",
+      "url": "https://mobbin.com/screens/d9d79f8d-6337-409a-947e-81439ff08caf",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "finch-goals",
+      "org": "Mobbin / Finch",
+      "title": "Short chip interview then starter plan",
+      "url": "https://mobbin.com/flows/19212698-61fe-43ca-9144-60c9e73bbcd2",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "noom-plan-theater",
+      "org": "Mobbin / Noom",
+      "title": "Personalized plan setup — database theater then paywall",
+      "url": "https://mobbin.com/flows/0f88ecd3-ceb0-43d1-af33-6feafe56928b",
+      "themes": ["product"],
+      "cadence": "årlig"
     }
   ]
 }

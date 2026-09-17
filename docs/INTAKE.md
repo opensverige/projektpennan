@@ -1,12 +1,22 @@
-# Intag — sälj kvällen, inte filen
+# Intag — föräldern frågar, vaulten skrivs, barnet skriver
 
-> Tes som utmanas: *sälj att plattan blir det här barnet i kväll
-> (Hem), inte .md-packen.*
+> Tes: *plattan blir det här barnet i kväll — inte en
+> “special plan”, inte en `.md`-butik, inte ett barn-dashboard.*
 >
-> Fynd: `research/findings/intake-not-file.json`.
-> Prislogik: `docs/PRICING.md`.
+> Fynd: `intake-not-file`, `parent-intake-not-child-dashboard`,
+> `intake-chip-budget`, `intake-interest-first`,
+> `intake-no-diagnosis-chips`, `intake-question-list`.
+> Prislogik: `docs/PRICING.md`. Startskärm: `docs/ONBOARDING.md`.
 
-Det här är inte en wizard-spec. Det är SKU-gränsen.
+Tre saker som inte får blandas:
+
+| Steg | Vem | Vad | Inte |
+|------|-----|-----|------|
+| **P-41 start** | Förälder | Namn + nyckel, Grok-tom | Wizard |
+| **P-45 intag** | Förälder | 6 chips + 1 hoppa-över | Placement, diagnos, 20 skärmar |
+| **P-32 yta** | Barn | Tyst kontakt i chatten de redan har | First session / Learner Home |
+
+SKU-gränsen sitter under. Frågeordningen sitter efter.
 
 ## Svar på frågan
 
@@ -155,5 +165,68 @@ världsbild, egen agent och att stänga av Lgr22 är **aldrig** paywall.
 6. Export-zip är gratis på båda planer (art. 20, P-33).
 7. Inte en krona på Hem innan P-03 + P-29.
 
-Hur intaget *frågar* (chipordning) är ett annat fynd.
-Den här filen är vad intaget *får kosta*.
+Hur intaget *kostar* är ovan. Hur det *frågar* är här.
+
+---
+
+## Hur vi frågar (P-45)
+
+Namn är redan taget på P-41. Barnet ser aldrig det här.
+En fråga per skärm. Max fem synliga chips. Inget
+progress-teater, ingen “Finding learner type”.
+
+| # | Fråga | Chips (max 5) | Skriver | Varför den finns |
+|---|-------|---------------|---------|------------------|
+| 1 | Vilken årskurs? | Åk 4 · Åk 5 · Åk 6 · Annat | `barn.md` + Lgr22-pack | Register och kursplans-overlay. Inte pretest. |
+| 2 | Hur ska sidekicken prata? | Svenska · Svenska + annat hemma · Enklare svenska · Annat | `barn.md` språk | Ändrar varje tur (SVA / studiehandledning). Fråga *bruk*, inte ursprung. |
+| 3 | Vad tänder hen just nu? (max 2) | Minecraft · Djur & dino · Sport · Spel / YouTube · Rita & bygga | `intressen.md` | Walkington-dörr. SOUL: anta att läxan är tråkig. |
+| 4 | Vad kärvar oftast? | Matte · Läsa & skriva · Engelska · NO / SO · Inget särskilt | `barn.md` grov prior | Billig proxy. Inte knowledge tracing. |
+| 5 | Hur är orken efter skolan? | Pigg · Sådär · Slut · Beror på kvällen | pedagogy overlay | Väljer metod (worked / lek / korta steg). Predicerar inte betyg. |
+| 6 | Vad hjälper när det kärvar? (max 2) | Korta steg · Visa ett likadant först · En sak i taget · Pauser · Läs högt | `support_preferences` | Behov, inte etikett. Tomt = extra-stöd-default. |
+| 7 | Något vi ska veta? | **Hoppa över** (rekommenderat) · Kort anteckning | valfri not; art. 9 bara om de *skriver* en etikett | P-36-avramp. Copy: “Skriv hur hen lär sig bäst. Inte en diagnos.” |
+
+Sex obligatoriska. En hoppa-över. Duolingo-form: recommended default
+på sista skärmen, inte ett 10-minuters test.
+
+### Vault-mappning
+
+```
+Q1–2, Q4     → vault/memory/barn.md
+Q3           → vault/memory/intressen.md
+Q5–6         → vault/packs/pedagogy-overlay + support_preferences
+Q7 om etikett → vault/packs/accommodations/  (P-36, krypterat i Hem)
+```
+
+Tomt Q6 ger samma extra-stöd som testprofilen: `korta_steg`,
+`en_sak_i_taget`, `pauser`.
+
+### Slopa (bygg inte)
+
+- Barn-pretest, missuppfattningsitems, IRT, “course challenge”.
+- Diagnos-chips (ADHD, autism, dyslexi, NPF) och “ADHD-vänligt”.
+- VAK / lärstil.
+- Läxschema, “hur många minuter om dagen”, `nudge_homework`.
+- Världsbild / tro (det är P-34, senare pack).
+- Unikum, skol-login, betyg.
+- Barn-avatar, “vad vill du lära dig?”, child dashboard.
+- 20+ intresse-chips, “välj minst fem”.
+- Etnicitet / “var kommer ni ifrån?”.
+
+---
+
+## Vad vi kopierar / inte (live 2026-09)
+
+| Produkt | Kopiera | Anti-mönster |
+|---------|---------|--------------|
+| [Aristotle onboard](https://www.heyaristotle.com/go/onboard) | Föräldern *kan* tala för barnet | 12–18 quizskärmar → “learner type” → custom plan → first session. Quizzen säljer planen. |
+| [Khanmigo parents](https://www.khanmigo.ai/parents) | Föräldern betalar och slår på. Hård grind. | Destination är fortfarande Learner Home. Skola kan overridea. |
+| [Duolingo ABC](https://mobbin.com/screens/d9d79f8d-6337-409a-947e-81439ff08caf) | Föräldern fyller namn + ålder. Barn sitter inte i formuläret. | Barnet landar i en lektionskarta. |
+| [Duolingo iOS](https://mobbin.com/flows/ac9d2f58-868d-4fd3-a79c-9655ce6b1522) | Fem nivåchips. Placement är hoppa-över. Recommended: start from scratch. | 20-skärmars rutin + widget + streak. Commitment-teater. |
+| [Finch goals](https://mobbin.com/flows/19212698-61fe-43ca-9144-60c9e73bbcd2) | En fråga, korta rader, sex skärmar. | Slutar i “starter plan” som barnet ska bo i. |
+| [Noom plan](https://mobbin.com/flows/0f88ecd3-ceb0-43d1-af33-6feafe56928b) | — | “Cross-checking with user database”, countdown, paywall. Aristoteles-kusin. |
+| [Homework Buddy](https://homeworkbuddy.app/en/parents) | Läxfoto *senare*, i chatten. | Barnet skapar/använder tutorkontot. |
+| [Pluggis](https://www.pluggis.app/) | Använd barnets faktiska läxa, inte en innehållsgraf. | Föräldern backar in i en app barnet måste öppna. |
+| [Allakando AI](https://www.allakando.se/ai-larare/) | — | Vem-som-helst-signup + gratis AI som tratt till 399 kr/t. |
+
+**Linjen:** föräldern svarar. Kort. Skriver vault. Sen en tyst
+kontakt. Barnet onboardas aldrig in i en tutor-UI.

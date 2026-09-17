@@ -60,7 +60,7 @@
       "notes": "Huvudappen: barnet skapar username, förälders e-post tas vid första utloggning (notice, inte hård grind före användning). ABC: 'designed to be set up by parents' — smeknamn, ungefärlig ålder, ev. föräldra-e-post; vuxen-settings. Kopiera ABC-ägarskapet. Inte: barnet i en lektionskarta som destination, och inte den mjuka e-postgrinden efter att barnet redan kört."
     }
   ],
-  "implication": "P-41/P-45 är förälder-intag som skriver vault, inte en Aristoteles-quiz mot 'special plan'. P-43 är förälderns preview. P-32 är barnets enda yta: en tyst kontakt. Ingen barn-onboarding, ingen first session i en dashboard. Se jämförelsen i research-passet 2026-09-17.",
-  "backlog_refs": ["P-32", "P-41", "P-43"],
+  "implication": "P-41 är namn+nyckel. P-45 är 6–7 förälder-chips som skriver vault, inte en Aristoteles-quiz mot 'special plan'. P-43 är förälderns preview. P-32 är barnets enda yta: en tyst kontakt. Ingen barn-onboarding, ingen first session i en dashboard. Se docs/INTAKE.md.",
+  "backlog_refs": ["P-32", "P-41", "P-43", "P-45"],
   "confidence": "high"
 }

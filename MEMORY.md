@@ -50,6 +50,15 @@
 - Research: parent-owned-school-context. Öppna skolplattformen
   är beviset att de redan gör ingest själva.
 
+## 2026-09-17 — intag, byggt rätt
+- Föräldern äger intaget. Barnet sitter inte i en tutor-dashboard.
+  Output: vault-markdown + tyst kontakt. Inte Aristoteles “special plan”.
+- P-45: 6 chipfrågor + 1 hoppa-över, max 5 chips. Intresse först,
+  pretest aldrig. Inga diagnos-chips (art. 9).
+- P-46: sälj inte `barn.md`. Hem inkluderar intaget. Kväll är
+  90 min tjänst för Open. Filen är kvitto/export.
+- Spec: `docs/INTAKE.md`. Fynd: `intake-*`, `parent-intake-not-child-dashboard`.
+
 ## 2026-09-16 — Utter, inte Gnista
 - Kontaktnamn **Utter**. Gnista föll: “gnistan mellan dem” /
   “det gnistrar” bär sexuell och romantisk ton. Se `docs/NAME.md`.

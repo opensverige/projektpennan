@@ -29,8 +29,10 @@ python scripts/research_pipeline.py new \
 Inget nätverksanrop. Vi hämtar inte papper automatiskt — vi skriver
 fynd för hand så att en människa har läst källan.
 
-SKU-gräns för intag (fil vs Hem vs Kväll): [docs/INTAKE.md](../docs/INTAKE.md),
-fynd `intake-not-file`.
+Intag (frågor + SKU): [docs/INTAKE.md](../docs/INTAKE.md).
+Fynd: `intake-not-file`, `parent-intake-not-child-dashboard`,
+`intake-chip-budget`, `intake-interest-first`,
+`intake-no-diagnosis-chips`, `intake-question-list`.
 
 ## När ska ett fynd in?
 - Ny evidens för en lärandeform vi använder eller skippar.
