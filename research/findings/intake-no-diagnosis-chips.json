@@ -1,0 +1,54 @@
+{
+  "id": "intake-no-diagnosis-chips",
+  "date": "2026-09-17",
+  "theme": "privacy",
+  "status": "accepted",
+  "claim": "Diagnos-chips (ADHD, autism, dyslexi) får inte finnas i default-intervjun. De är hälsodata enligt art. 9 även som en tryckt etikett. Fråga behov ('vad hjälper'), inte etikett. Tomt fält ger extra-stöd-default.",
+  "evidence": [
+    {
+      "title": "GDPR Article 9 — special categories, health data prohibited by default",
+      "url": "https://gdpr-info.eu/art-9-gdpr/",
+      "year": 2016,
+      "notes": "Uppgifter om hälsa är förbjudna att behandla om inte ett 9.2-undantag finns. För en hem-app är det i praktiken 9.2(a) uttryckligt samtycke — inte 9.2(h) vård, vi är inte vårdgivare."
+    },
+    {
+      "title": "GDPR Recital 35 — health includes disability from any source",
+      "url": "https://gdpr-info.eu/recitals/no-35/",
+      "year": 2016,
+      "notes": "Hälsodata = allt som avslöjar tidigare/nuvarande/framtida fysisk eller psykisk hälsa, inklusive funktionshinder, oavsett källa. En förälder-chip 'dyslexi' är art. 9 även utan journal."
+    },
+    {
+      "title": "IMY — känsliga personuppgifter (hälsa, funktionshinder)",
+      "url": "https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/introduktion-till-gdpr/personuppgifter/kansliga-personuppgifter/",
+      "year": 2026,
+      "notes": "Hälsouppgifter omfattar sjukdom, sjukdomsrisk, sjukdomshistoria eller funktionshinder oavsett källa. IMY räknar också värderande profiler som integritetskänsliga. En 'NPF-profil' är båda."
+    },
+    {
+      "title": "ICO — inferred special category data",
+      "url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-is-special-category-data/",
+      "year": 2024,
+      "notes": "Om vi infererar hälsa eller behandlar någon annorlunda utifrån inferensen är det art. 9 oavsett hur säkra vi är. Chips märkta 'ADHD-vänligt' eller en modell som gissar diagnos från 'pauser + korta steg' skapar hälsodata. Behovschips utan etikett gör det inte."
+    },
+    {
+      "title": "Skolverket — diagnos får varken krävas eller räcka",
+      "url": "https://www.skolverket.se/styrning-och-ansvar/regler-och-ansvar/ansvar-i-skolfragor/extra-anpassningar-sarskilt-stod-och-atgardsprogram",
+      "year": 2025,
+      "notes": "Stöd styrs av behov, inte etikett. Åtgärdsprogram ska inte bära diagnos mer än nödvändigt. Samma minimering i vaulten: skriv 'korta steg', inte 'adhd'."
+    },
+    {
+      "title": "CAST UDL Guidelines",
+      "url": "https://udlguidelines.cast.org/",
+      "year": 2024,
+      "notes": "Flera sätt att förstå, svara och orka är default för alla. Behovschips finjusterar UDL, de skapar inte ett särläge."
+    },
+    {
+      "title": "IMY — personuppgifter om barn",
+      "url": "https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/introduktion-till-gdpr/personuppgifter/personuppgifter-om-barn/",
+      "year": 2025,
+      "notes": "Barns uppgifter är särskilt skyddsvärda. Under 13: vårdnadshavares samtycke. Känsliga uppgifter kräver mer. Vi ska inte gömma en diagnosmotor bakom 'för barnets bästa'."
+    }
+  ],
+  "implication": "P-45 default: fem behovschips (korta steg, visa exempel, en sak, pauser, läs högt). Ingen diagnoslista. Sista frågan är Hoppa över + valfri fritext; om föräldern själv skriver en etikett gäller P-36 (explicit, krypterat, aldrig till skola, nämn inte för barnet). Pedagogy overlay får bara support_preferences, inte labels, om inte föräldern valt att berätta.",
+  "backlog_refs": ["P-09", "P-36", "P-45"],
+  "confidence": "high"
+}

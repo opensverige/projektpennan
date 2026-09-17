@@ -1,0 +1,66 @@
+{
+  "id": "intake-chip-budget",
+  "date": "2026-09-17",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Förälder-intaget ska vara 6–7 chipfrågor med högst fem synliga alternativ per fråga. Lång placement och 20-skärmars rutin-onboarding kopierar vi inte. Pretest är hoppa-över, inte default.",
+  "evidence": [
+    {
+      "title": "Duolingo iOS onboarding — self-report level (5 chips) then skippable placement",
+      "url": "https://mobbin.com/flows/ac9d2f58-868d-4fd3-a79c-9655ce6b1522",
+      "year": 2026,
+      "notes": "Hur mycket kan du? har exakt fem nivåchips. Dagligt mål har fyra. Sen två val: start from scratch (rekommenderat) eller find my level. Placement är tillval, inte tröskeln."
+    },
+    {
+      "title": "Duolingo 101 — official: motivations first, placement optional",
+      "url": "https://blog.duolingo.com/duolingo-101-how-to-learn-a-language-on-duolingo/",
+      "year": 2024,
+      "notes": "Cindy Blanco: frågor om motivation och mål, sen välja nybörjare eller placement. Placement går inte att ångra. Deras produkt har flyttat från 10-minuters test till självskattning + Jump Here."
+    },
+    {
+      "title": "Duolingo for Schools — teachers cannot assign a placement test",
+      "url": "https://duolingoschools.zendesk.com/hc/en-us/articles/6893775140365-Can-I-assign-my-students-a-placement-test",
+      "year": 2026,
+      "notes": "Placement syns bara vid ny kurs, inte som lärar-pålagt test. Jump Here är per-enhet. Signal: tvinga inte ett diagnostiskt quiz."
+    },
+    {
+      "title": "Khanmigo for parents — age, enable tutor, no pedagogy quiz",
+      "url": "https://www.khanmigo.ai/parents",
+      "year": 2025,
+      "notes": "Föräldern skapar barnkonto (födelsedatum), slår på Khanmigo, ser chattlogg. Ingen intresse- eller missuppfattningsintervju. De litar på innehållsgrafen. Vi har ingen sådan graf — vi behöver 6 grova fält, inte 0 och inte 20."
+    },
+    {
+      "title": "Khan Academy — create/link child accounts",
+      "url": "https://support.khanacademy.org/hc/en-us/articles/202262994-How-do-I-create-child-accounts",
+      "year": 2025,
+      "notes": "Intag = födelsedatum + användarnamn. Course Challenge är ett senare, valfritt assign — inte onboarding. Samma mönster: grov profil nu, diagnostik när det finns ett konkret mål."
+    },
+    {
+      "title": "Character.AI Quick Creation — name, greeting, start chatting",
+      "url": "https://book.character.ai/character-guide/how-to-quick-creation",
+      "year": 2024,
+      "notes": "Quick path är ett kort formulär, sen chatt. Advanced är gömt. Intresse-chips i signup är feed-personalization, inte pedagogik. Lärdomen: släpp in i samtalet snabbt; finjustera sen."
+    },
+    {
+      "title": "Cowan — magical number 4 (working-memory capacity)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11515286/",
+      "year": 2001,
+      "notes": "Ren kapacitet är 3–5 chunks, inte Miller 7±2. Fem synliga chips ligger på taket. Fler ska bakom 'annat' eller nästa skärm."
+    },
+    {
+      "title": "Iyengar & Lepper — When choice is demotivating",
+      "url": "https://faculty.washington.edu/jdb/345/345%20Articles/Iyengar%20%26%20Lepper%20(2000).pdf",
+      "year": 2000,
+      "notes": "24 syltburkar vs 6: fler stannade vid 24, men 3 % köpte mot 30 % vid 6. Extensivt val sänker avslut. Intresseväggar à Bluesky (20+ chips) är fel mönster för en trött tisdag."
+    },
+    {
+      "title": "Hick's Law — Laws of UX",
+      "url": "https://lawsofux.com/hicks-law/",
+      "year": 2024,
+      "notes": "Beslutstid växer med antal och komplexitet. Bryt i små steg, highlighta rekommenderat, progressive disclosure. Duolingo gör det (recommended: start from scratch). Vi gör likadant: Hoppa över är default på sista frågan."
+    }
+  ],
+  "implication": "P-45: en fråga per skärm, max fem chips, 6 obligatoriska + 1 hoppa-över. Inget barn-dashboard. Skriver vault/memory/barn.md, intressen.md och pedagogy overlay. Namn tas redan på startskärmen (P-41) och räknas inte in i de sju.",
+  "backlog_refs": ["P-41", "P-43", "P-45"],
+  "confidence": "high"
+}
