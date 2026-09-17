@@ -50,6 +50,10 @@
 - Research: parent-owned-school-context. Öppna skolplattformen
   är beviset att de redan gör ingest själva.
 
+## 2026-09-17 — snap-gest, inte feed-loop
+- Roligare = första meningen + kamera + en takt. Inte streak,
+  inte nästa-short, inte inaktivitets-push. P-48. `steal-snap-not-feed`.
+
 ## 2026-09-17 — barnet är inte köparen
 - P-45 ser bra ut för föräldern. Barnet ser bara första svaret.
 - Tre jobb vi inte tar: feed (YouTube/Roblox/Snap), facit (Chattis),

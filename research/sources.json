@@ -593,6 +593,46 @@
       "url": "https://www.pewresearch.org/internet/2026/02/24/how-teens-use-and-view-ai/",
       "themes": ["product"],
       "cadence": "årlig"
+    },
+    {
+      "id": "snapchat-camera-home",
+      "org": "Mobbin / Snapchat",
+      "title": "iOS camera as home screen",
+      "url": "https://mobbin.com/screens/fb76f0dd-54bf-4733-8d2d-bb83411a1f18",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "ico-detrimental-children",
+      "org": "ICO",
+      "title": "Detrimental use of children's information",
+      "url": "https://ico.org.uk/for-organisations/advice-and-services/audits/data-protection-audit-framework/toolkits/age-appropriate-design/detrimental-use-of-children-s-information/",
+      "themes": ["privacy", "product"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "ico-childrens-code-faq",
+      "org": "ICO",
+      "title": "FAQs on the 15 standards of the Children's code",
+      "url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/childrens-information/childrens-code-guidance-and-resources/faqs-on-the-15-standards-of-the-children-s-code/",
+      "themes": ["privacy", "product"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "tu-bs-short-video-learning",
+      "org": "TU Braunschweig",
+      "title": "How TikTok & Co. make learning more difficult",
+      "url": "https://magazin.tu-braunschweig.de/en/pi-post/how-tiktok-co-make-learning-more-difficult/",
+      "themes": ["pedagogy"],
+      "cadence": "vid uppföljningsstudier"
+    },
+    {
+      "id": "comms-psych-short-video-memory",
+      "org": "Communications Psychology",
+      "title": "Learning via short videos impairs memory accuracy",
+      "url": "https://www.nature.com/articles/s44271-026-00476-x",
+      "themes": ["pedagogy"],
+      "cadence": "vid uppföljningsstudier"
     }
   ]
 }

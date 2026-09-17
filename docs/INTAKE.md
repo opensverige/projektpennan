@@ -265,3 +265,13 @@ föräldern ska känna att de byggt en plan.
 **Äg bytet.** En del kvällar går till Shorts. En del till
 Chattis. Vi spanar inte. Vi naggar inte. Vi blir inte roligare
 än feeden. Hem-copy får inte lova att barnet kommer vilja skriva.
+
+### Roligare som Snap — inte som Shorts (P-48)
+
+Bollen: efterlikna deras hook så det blir roligare.
+
+**Stjäl gesten.** [Kameran är Snapchats startsida](https://mobbin.com/screens/fb76f0dd-54bf-4733-8d2d-bb83411a1f18). Ett foto, [Send to](https://mobbin.com/screens/e2c9c82e-ffb6-40b8-b57b-9743ee37dd78), en takt. Första *meningen* är hooken — samma jobb som Shorts första sekund, utan nästa video. Det är redan P-12 + P-47.
+
+**Kopiera inte loopen.** Shorts hook är “nästa kan vara bättre”. Snap-streak är “missa en dag så slocknar elden”. Båda är tid-på-enheten. ICO: incentivisera inte fortsatt användning; inaktivitets-push av som default. En sämre Shorts med samvete förlorar mot den riktiga. Kortvideo som läromedia förlorar dessutom mot text på minne.
+
+Lek och saga (P-35) är *metod* när de redan skriver. Inte en vertical feed. Inte en flamman.
