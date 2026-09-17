@@ -425,6 +425,102 @@
       "url": "https://book.character.ai/character-guide/how-to-quick-creation",
       "themes": ["product"],
       "cadence": "årlig"
+    },
+    {
+      "id": "linear-pricing",
+      "org": "Linear",
+      "title": "Pricing — Free / Basic / Business / Enterprise",
+      "url": "https://linear.app/pricing",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "linear-migration",
+      "org": "Linear",
+      "title": "Migration guide — self-serve import",
+      "url": "https://linear.app/switch/migration-guide",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "notion-pricing",
+      "org": "Notion",
+      "title": "Pricing — Free / Plus / Business / Enterprise",
+      "url": "https://www.notion.com/pricing",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "notion-marketplace",
+      "org": "Notion",
+      "title": "Sell templates on Marketplace",
+      "url": "https://www.notion.com/help/selling-on-marketplace",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "obsidian-pricing",
+      "org": "Obsidian",
+      "title": "Pricing — Sync / Publish / Catalyst",
+      "url": "https://obsidian.md/pricing",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "khanmigo-pricing",
+      "org": "Khan Academy",
+      "title": "Khanmigo pricing",
+      "url": "https://khanmigo.ai/pricing",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "nabucasa-pricing",
+      "org": "Nabu Casa",
+      "title": "Home Assistant Cloud pricing",
+      "url": "https://www.nabucasa.com/pricing/",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "stripe-atlas",
+      "org": "Stripe",
+      "title": "Atlas — $500 one-time setup",
+      "url": "https://stripe.com/atlas",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "superhuman-onboarding",
+      "org": "Superhuman",
+      "title": "Onboarding session included in subscription",
+      "url": "https://blog.superhuman.com/the-fastest-way-to-inbox-zero-a-single-coaching-session/",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "allakando-pris",
+      "org": "Allakando",
+      "title": "Pris för läxhjälp",
+      "url": "https://www.allakando.se/laxhjalp-pris/",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "homework-buddy-pricing",
+      "org": "Reko Mat i Lund AB",
+      "title": "Homework Buddy pricing",
+      "url": "https://homeworkbuddy.app/en/pricing",
+      "themes": ["product"],
+      "cadence": "kvartal"
+    },
+    {
+      "id": "n8n-pricing",
+      "org": "n8n",
+      "title": "Plans and Pricing — Community vs Cloud",
+      "url": "https://n8n.io/pricing/",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
     }
   ]
 }

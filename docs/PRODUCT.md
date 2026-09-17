@@ -89,9 +89,9 @@ default + egna agenter**. Inte en låst läroplansapp. Inte Khan Academy.
   PWA bara som fallback. EU-inference.
 - **Egen drift:** er server, vår hjälp.
 
-Pedagogik och safety är aldrig paywall. Detalj:
-[docs/PRODUCTIZATION.md](PRODUCTIZATION.md),
-[docs/PRICING.md](PRICING.md).
+Pedagogik och safety är aldrig paywall. `.md`-packen är export,
+inte checkout. Detalj: [docs/PRODUCTIZATION.md](PRODUCTIZATION.md),
+[docs/PRICING.md](PRICING.md), [docs/INTAKE.md](INTAKE.md).
 
 ## Nordstjärna för v1.0
 En förälder i Sverige kan på fem minuter (Hem) eller en kväll (Open):

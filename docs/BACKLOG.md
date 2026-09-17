@@ -56,7 +56,7 @@ P-03 och P-29.
 | P-28 | **Webb-först onboarding.** En skärm: namn, klistra nyckel, samtycke. BankID bara på Hem sen. | Börjar i webben, inte Docker. Se `frontend/start.html`. | `parent-baseplate` |
 | P-29 | **DPIA + underbiträden + ZDR** innan första betalande familj. | Hosted = vi är personuppgiftsansvariga. | `gdpr-hem` |
 | P-30 | **Telegram start-token + allowlist** (dödar hårdkodat id). | Open och Hem. | `channel-sweden` |
-| P-31 | **Publik prissida + DPA-text** (Open / Hem / egen drift). | Accounted-tabell. Aldrig paywalla safety. | `accounted-open-core` |
+| P-31 | **Publik prissida + DPA-text** (Open / Hem / Kväll / egen drift). | Accounted-tabell. Aldrig paywalla safety. Inte en `.md`-butik. | `accounted-open-core`, `intake-not-file` |
 | P-32 | **WhatsApp som Hem-barn-default:** tyst kontakt, bild, röst. Inget läxpush. | Där de redan är. | `contact-not-destination` |
 | P-39 | **Telegram Mini App / räkmacka.** Fyra tryck, grupplänk, ingen BankID. Mock i `frontend/rakmacka.html`. | Där Open-ytan börjar. Inte officiell @utter. | `telegram-rakmacka-onboarding` |
 
@@ -77,7 +77,8 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 | P-42 | **Prenumerations-OAuth.** ChatGPT + Grok via device-länk (Hermes/Codex/Grok Build). Claude förbjuden. Lokal import av `~/.codex` / `~/.grok`. Inte impersonation. | Föräldern har redan betalat. Se `docs/OAUTH.md`. | `oauth-subscription` |
 | P-43 | **Förälder-testmiljö.** Plan + scenario-chips (även opassande) innan barnet släpps in. Samma safety-kärna. Igenkännbara ChatGPT/Claude/Grok-märken. | Föräldern ska känna sig säker. Se `frontend/test.html`. | `parent-preview` |
 | P-44 | **Kärndemo utan Ollama.** `scripts/demo.sh` + `backend/demo.py`. Chatten faller tillbaka till kärnan. | Kunna testa i kväll. Inte låtsas att Grok svarar. | |
-| P-45 | **Förälder-chipintervju.** 6 frågor + 1 hoppa-över, max 5 chips. Skriver `barn.md`, intressen, pedagogy overlay. Inget pretest, inga diagnos-chips. Barnet sitter inte i en dashboard. | Intresse + grov kärv + behov ändrar tutoring. Diagnos och KT-quiz gör det inte i onboardingen. | `intake-interest-first`, `intake-chip-budget`, `intake-no-diagnosis-chips`, `intake-question-list` |
+| P-45 | **Förälder-chipintervju.** 6 frågor + 1 hoppa-över, max 5 chips. Skriver `barn.md`, intressen, pedagogy overlay. Inget pretest, inga diagnos-chips. Barnet sitter inte i en dashboard. | Intresse + grov kärv + behov ändrar tutoring. Diagnos och KT-quiz gör det inte i onboardingen. | `intake-interest-first`, `intake-chip-budget`, `intake-no-diagnosis-chips`, `intake-question-list`, `parent-intake-not-child-dashboard` |
+| P-46 | **SKU-gräns: filen är export, inte checkout.** Hem inkluderar intaget. Kväll är tjänst för Open (790–1 490 kr), aldrig Gumroad för `barn.md`. Recurring Hem måste ticka efter natt ett. | Genererad pack är one-shot. Linear ger bort import. Obsidian säljer sync. | `intake-not-file` |
 
 ## Medvetet inte i scopet
 - Skola som operatör: Unikum-SSO, klass-tenant, lärarvy, write-back.
@@ -98,3 +99,4 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 8. P-35 + P-36 — metodbyte i kod + krypterade anpassningar.
 9. P-37 — veckans lapp (då först relevant utan läcka). P-38 sen.
 10. P-45 — förälder-chipintervju efter P-41 (namn redan taget). Skriver vault-notes, inte ett barn-dashboard.
+11. P-46 — lås SKU: Open 0 / Hem / Kväll-tjänst. Ingen `.md`-butik. Se `docs/INTAKE.md`.
