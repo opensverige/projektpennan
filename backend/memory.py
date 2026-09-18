@@ -19,16 +19,38 @@ PROFILE = VAULT / "config" / "child-profile.json"
 
 INTEREST_CHIPS = (
     "Minecraft",
-    "Fotboll",
-    "Hästar",
-    "Rymden",
-    "Djur",
-    "Rita",
-    "Musik",
-    "Lego",
-    "YouTube",
-    "Simning",
+    "Djur & dino",
+    "Sport",
+    "Spel / YouTube",
+    "Rita & bygga",
 )
+
+HELP_CHIPS = (
+    "Korta steg",
+    "Visa ett likadant först",
+    "En sak i taget",
+    "Pauser",
+    "Läs högt",
+)
+
+HELP_TO_PREF = {
+    "Korta steg": "korta_steg",
+    "Visa ett likadant först": "visa_exempel",
+    "En sak i taget": "en_sak_i_taget",
+    "Pauser": "pauser",
+    "Läs högt": "las_hogt",
+}
+
+DEFAULT_PREFS = ["korta_steg", "en_sak_i_taget", "pauser"]
+
+ENERGY_METHOD = {
+    "Pigg": "sokrates, korta turer",
+    "Sådär": "små steg, en sak i taget",
+    "Slut": "visa ett likadant först, korta steg, pauser",
+    "Beror på kvällen": "byt metod när det kärvar. Inget läxgnäll",
+}
+
+GRADE_TO_INT = {"Åk 4": 4, "Åk 5": 5, "Åk 6": 6}
 
 
 def _today() -> str:
@@ -59,33 +81,103 @@ def interests_of(profile: dict | None = None) -> list[str]:
     return out
 
 
-def remember_child(name: str, interests: list[str] | None = None) -> dict:
+def _uniq(items: list[str] | None, cap: int | None = None) -> list[str]:
+    clean: list[str] = []
+    for item in items or []:
+        word = str(item).strip()[:40]
+        if word and word not in clean:
+            clean.append(word)
+        if cap is not None and len(clean) >= cap:
+            break
+    return clean
+
+
+def remember_child(
+    name: str,
+    interests: list[str] | None = None,
+    *,
+    grade: str | None = None,
+    language: str | None = None,
+    struggle: str | None = None,
+    energy: str | None = None,
+    helps: list[str] | None = None,
+    note: str | None = None,
+) -> dict:
     """Uppdatera barnkort + Obsidian-sidor. Numeriskt, inget efternamn."""
     first = (name or "").strip().split()[0][:40]
     if len(first) < 2:
         raise ValueError("Namnet är för kort.")
-    clean = []
-    for item in interests or []:
-        word = str(item).strip()[:40]
-        if word and word not in clean:
-            clean.append(word)
+    clean = _uniq(interests, cap=2)
+    help_chips = _uniq(helps, cap=2)
+    prefs = [HELP_TO_PREF[h] for h in help_chips if h in HELP_TO_PREF]
+    if not prefs:
+        prefs = list(DEFAULT_PREFS)
+
     data = load_profile()
     child = data.setdefault("child", {})
     child["display_name"] = first
     if clean:
         child["interests"] = clean
+    if grade:
+        child["grade_chip"] = grade[:40]
+        child["grade"] = GRADE_TO_INT.get(grade)
+    if language:
+        child["language"] = language[:40]
+    if struggle:
+        child["struggle"] = struggle[:40]
+    if energy:
+        child["energy"] = energy[:40]
+    child["support_preferences"] = prefs
+    child["help_chips"] = help_chips
+
+    raw_note = (note or "").strip()[:400]
+    acc = child.setdefault("accommodations", {})
+    if raw_note:
+        acc["parent_authored"] = True
+        acc["notes"] = raw_note
+        acc["tell_child_the_label"] = False
+        acc.setdefault("labels", [])
+    elif "parent_authored" not in acc:
+        acc["parent_authored"] = False
+        acc["notes"] = ""
+        acc["labels"] = []
+        acc["tell_child_the_label"] = False
+
     data["updated_at"] = datetime.now(timezone.utc).isoformat()
     PROFILE.parent.mkdir(parents=True, exist_ok=True)
     PROFILE.write_text(
         json.dumps(data, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
-    _sync_notes(first, interests_of(data))
-    return {"name": first, "interests": interests_of(data)}
+    _sync_notes(first, interests_of(data), child)
+    _write_pedagogy_overlay(child)
+    return {
+        "name": first,
+        "interests": interests_of(data),
+        "grade": child.get("grade_chip"),
+        "language": child.get("language"),
+        "struggle": child.get("struggle"),
+        "energy": child.get("energy"),
+        "helps": help_chips,
+        "support_preferences": prefs,
+    }
 
 
-def _sync_notes(name: str, interests: list[str]) -> None:
+def _sync_notes(name: str, interests: list[str], child: dict | None = None) -> None:
+    child = child or {}
     chips = ", ".join(f"[[{i}]]" for i in interests) or "okänt än"
+    extras = []
+    if child.get("grade_chip"):
+        extras.append(f"Årskurs: {child['grade_chip']}")
+    if child.get("language"):
+        extras.append(f"Språk: {child['language']}")
+    if child.get("struggle"):
+        extras.append(f"Kärvar: {child['struggle']}")
+    if child.get("energy"):
+        extras.append(f"Ork: {child['energy']}")
+    if child.get("help_chips"):
+        extras.append(f"Hjälper: {', '.join(child['help_chips'])}")
+    extra_block = ("\n".join(extras) + "\n\n") if extras else ""
     _write(
         MEMORY / "barn.md",
         (
@@ -94,9 +186,11 @@ def _sync_notes(name: str, interests: list[str]) -> None:
             f"updated: {_today()}\n"
             "---\n\n"
             f"# {name}\n\n"
+            f"{extra_block}"
             f"Intressen: {chips}\n\n"
             "Antag att hen inte är intresserad av uppgiften. "
             "Hitta den riktiga dörren in i *hens* värld.\n"
+            "Första svaret: en takt. Använd dörren. Inte skola.\n"
         ),
     )
     lines = [
@@ -146,6 +240,27 @@ def _sync_notes(name: str, interests: list[str]) -> None:
         )
 
 
+def _write_pedagogy_overlay(child: dict) -> None:
+    energy = child.get("energy") or "Beror på kvällen"
+    method = ENERGY_METHOD.get(energy, ENERGY_METHOD["Beror på kvällen"])
+    helps = child.get("help_chips") or []
+    help_line = ", ".join(helps) if helps else "korta steg, en sak i taget, pauser"
+    packs = VAULT / "packs" / "pedagogy"
+    _write(
+        packs / "OVERLAY.md",
+        (
+            "---\n"
+            f"updated: {_today()}\n"
+            "nudge_homework: false\n"
+            "---\n\n"
+            "# Pedagogy overlay\n\n"
+            f"Ork: {energy}. Metod: {method}.\n"
+            f"När det kärvar: {help_line}.\n"
+            "Inget läxgnäll. Ingen streak. Ingen push.\n"
+        ),
+    )
+
+
 def _slug(name: str) -> str:
     text = re.sub(r"[^\w\s-]", "", name, flags=re.UNICODE).strip().lower()
     text = re.sub(r"[\s_]+", "-", text)
@@ -166,7 +281,9 @@ def note_spark(kind: str, text: str) -> None:
 
 
 def render_for_prompt() -> str:
-    interests = interests_of()
+    profile = load_profile()
+    child = profile.get("child") or {}
+    interests = interests_of(profile)
     angles = ""
     path = MEMORY / "vinklar.md"
     if path.is_file():
@@ -174,10 +291,28 @@ def render_for_prompt() -> str:
         rows = [ln for ln in body.splitlines() if ln.startswith("- ")]
         angles = "\n".join(rows[-8:])
     names = ", ".join(interests) or "okänt — fråga en sak om deras värld först"
+    door = interests[0] if interests else None
+    first = (
+        f"Första svaret: en takt mot {door}. Inte skola. Foto av läxan är en giltig start."
+        if door
+        else "Första svaret: en takt. Foto av läxan är en giltig start."
+    )
+    extras = []
+    if child.get("grade_chip"):
+        extras.append(f"- Årskurs: {child['grade_chip']}")
+    if child.get("language"):
+        extras.append(f"- Språkbruk: {child['language']}")
+    if child.get("struggle"):
+        extras.append(f"- Kärvar oftast: {child['struggle']}")
+    if child.get("energy"):
+        extras.append(f"- Ork: {child['energy']}")
+    extra = ("\n".join(extras) + "\n") if extras else ""
     return (
         "## Minne (Obsidian-vault)\n"
         f"- Intressen: {names}\n"
+        f"{extra}"
         "- Anta ointresse för uppgiften. Hitta en *sann* koppling.\n"
+        f"- {first}\n"
         "- Inte: Minecraft + 4+3. Inte: vill du göra matteläxan.\n"
         + (f"\nSenaste vinklar:\n{angles}\n" if angles else "")
     )

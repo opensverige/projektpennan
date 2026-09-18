@@ -18,6 +18,7 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, "index.html"),
         start: path.resolve(__dirname, "start.html"),
+        intake: path.resolve(__dirname, "intake.html"),
         test: path.resolve(__dirname, "test.html"),
         guardian: path.resolve(__dirname, "guardian.html"),
         land: path.resolve(__dirname, "land.html"),

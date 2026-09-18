@@ -20,7 +20,7 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group"
 import { PLAN, SCENARIOS, previewTurn } from "@/lib/preview"
-import { loadSetup } from "@/lib/setup"
+import { firstHook, loadSetup } from "@/lib/setup"
 import { bindTelegram, telegramStatus, type TelegramStatus } from "@/lib/telegram"
 import { cn } from "@/lib/utils"
 
@@ -40,7 +40,7 @@ export function TestPage() {
   const [messages, setMessages] = useState<Msg[]>([
     {
       role: "assistant",
-      text: `Hej. Jag är Utter. Tryck ett chip så ser du hur jag möter ${child}.`,
+      text: firstHook(setup),
     },
   ])
   const endRef = useRef<HTMLDivElement>(null)

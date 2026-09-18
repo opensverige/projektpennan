@@ -41,6 +41,12 @@ async def health():
 class ChildCard(BaseModel):
     name: str
     interests: list[str] = []
+    grade: str | None = None
+    language: str | None = None
+    struggle: str | None = None
+    energy: str | None = None
+    helps: list[str] = []
+    note: str = ""
 
 
 @app.get("/api/child")
@@ -51,6 +57,11 @@ async def child_get():
     return {
         "name": child.get("display_name"),
         "interests": interests_of(),
+        "grade": child.get("grade_chip"),
+        "language": child.get("language"),
+        "struggle": child.get("struggle"),
+        "energy": child.get("energy"),
+        "helps": child.get("help_chips") or [],
         "chips": list(INTEREST_CHIPS),
     }
 
@@ -58,7 +69,16 @@ async def child_get():
 @app.post("/api/child")
 async def child_save(req: ChildCard):
     try:
-        return remember_child(req.name, req.interests)
+        return remember_child(
+            req.name,
+            req.interests,
+            grade=req.grade,
+            language=req.language,
+            struggle=req.struggle,
+            energy=req.energy,
+            helps=req.helps,
+            note=req.note,
+        )
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 

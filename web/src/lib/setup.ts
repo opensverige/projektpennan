@@ -18,13 +18,38 @@ const LABELS: Record<string, string> = {
 
 export const INTEREST_CHIPS = [
   "Minecraft",
-  "Fotboll",
-  "Hästar",
-  "Rymden",
-  "Djur",
-  "Rita",
-  "Musik",
-  "Lego",
+  "Djur & dino",
+  "Sport",
+  "Spel / YouTube",
+  "Rita & bygga",
+] as const
+
+export const GRADE_CHIPS = ["Åk 4", "Åk 5", "Åk 6", "Annat"] as const
+export const LANGUAGE_CHIPS = [
+  "Svenska",
+  "Svenska + annat hemma",
+  "Enklare svenska",
+  "Annat",
+] as const
+export const STRUGGLE_CHIPS = [
+  "Matte",
+  "Läsa & skriva",
+  "Engelska",
+  "NO / SO",
+  "Inget särskilt",
+] as const
+export const ENERGY_CHIPS = [
+  "Pigg",
+  "Sådär",
+  "Slut",
+  "Beror på kvällen",
+] as const
+export const HELP_CHIPS = [
+  "Korta steg",
+  "Visa ett likadant först",
+  "En sak i taget",
+  "Pauser",
+  "Läs högt",
 ] as const
 
 export type Setup = {
@@ -34,6 +59,12 @@ export type Setup = {
   consent: boolean
   auth?: "key" | "oauth" | "local"
   interests?: string[]
+  grade?: string
+  language?: string
+  struggle?: string
+  energy?: string
+  helps?: string[]
+  note?: string
 }
 
 export const OAUTH = {
@@ -114,14 +145,59 @@ export function saveOAuthSetup(
   sessionStorage.removeItem("utter-key")
 }
 
+export function patchSetup(partial: Partial<Setup>) {
+  const cur = loadSetup()
+  if (!cur) return
+  sessionStorage.setItem(
+    "utter-setup",
+    JSON.stringify({ ...cur, ...partial } satisfies Setup)
+  )
+}
+
 export async function rememberChild(child: string, interests: string[]) {
+  return rememberIntake({ name: child, interests })
+}
+
+export async function rememberIntake(body: {
+  name: string
+  interests?: string[]
+  grade?: string
+  language?: string
+  struggle?: string
+  energy?: string
+  helps?: string[]
+  note?: string
+}) {
   try {
     await fetch("/api/child", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: child, interests }),
+      body: JSON.stringify(body),
     })
   } catch {
     /* backend sover — sessionStorage räcker för kvällen */
   }
+}
+
+const DOOR_HOOK: Record<string, (name: string) => string> = {
+  Minecraft: (name) =>
+    `${name}. Redstone och bråk är samma grej. Skicka bilden.`,
+  "Djur & dino": (name) =>
+    `${name}. Skicka bilden. Vi tar den som ett djur som rör sig.`,
+  Sport: (name) => `${name}. Skicka bilden. Vi tar den som en match.`,
+  "Spel / YouTube": (name) =>
+    `${name}. Skicka bilden. Vi tar den som ett clip.`,
+  "Rita & bygga": (name) =>
+    `${name}. Skicka bilden. Vi tar den som en ritning.`,
+}
+
+export const PHOTO_START = "foto av läxan"
+
+export function firstHook(setup: Setup | null): string {
+  const name = setup?.child
+  const door = setup?.interests?.[0]
+  if (!name) return "Skicka bilden om det kärvar."
+  if (door && DOOR_HOOK[door]) return DOOR_HOOK[door](name)
+  if (door) return `${name}. ${door}. Skicka bilden.`
+  return `${name}. Skicka bilden om det kärvar.`
 }
