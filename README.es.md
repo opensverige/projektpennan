@@ -8,6 +8,8 @@ El niño escribe a **Utter**. El repositorio y la iniciativa son **Projekt Penna
 
 Es una herramienta del hogar. La escuela no es operadora. Lgr22 es un pack opcional, no la autoridad. El apoyo extra es el valor por defecto. Sin insistir con los deberes.
 
+Quien cría la enciende y responde seis chips. El niño no ve ese formulario. La primera frase usa la puerta del intake. La cámara es un comienzo válido.
+
 **La verdad del producto está en sueco:** [README.md](README.md). Este archivo es la puerta corta. No mantenemos cuatro manuales completos.
 
 ---
@@ -15,13 +17,13 @@ Es una herramienta del hogar. La escuela no es operadora. Lgr22 es un pack opcio
 ## Lo que recibe el niño
 
 ```
-Niño:   ¿Cuánto es 7 por 8?
-Utter: ¿Sabes cuánto es 7 × 7? Entonces damos un paso más.
+Niño:   foto av läxan
+Utter: Alma. Redstone y las fracciones son lo mismo. ¿Qué hay de niebla en la foto?
 ```
 
-Nunca la respuesta primero. Ritmo que encaja. Se detiene cuando duele. Visible para el padre o la madre.
+Nunca la respuesta primero. Ritmo que encaja. Se detiene cuando duele. Visible para el padre o la madre. No es un panel del niño. No es un bucle tipo Shorts.
 
-Nosotros damos la **placa**: seguridad, consentimiento, vault, packs, registro.  
+Nosotros damos la **placa**: seguridad, consentimiento, vault, packs, registro.
 Ellos enchufan un modelo frontier (ChatGPT, Grok, clave de Claude) o un motor open-source capaz (Groq, vLLM). Ollama es el último recurso, no el producto.
 
 ---
@@ -36,11 +38,8 @@ export OPENAI_API_KEY=sk-...
 cd backend && uvicorn main:app --reload --host 127.0.0.1 --port 8080
 ```
 
-[http://localhost:8080](http://localhost:8080) — chat del niño.  
-[http://localhost:8080/guardian.html](http://localhost:8080/guardian.html) — registro fino.
-
-Sin Docker: `pip install -r backend/requirements.txt`, desde `backend/`:  
-`uvicorn main:app --reload --host 0.0.0.0 --port 8080`
+[http://127.0.0.1:8080/start.html](http://127.0.0.1:8080/start.html) — nombre, clave, consentimiento.
+Luego seis chips + saltar. Luego la vista previa. Luego el chat: primera frase + cámara.
 
 Telegram es opcional y es **su** bot ([@BotFather](https://t.me/BotFather)). No hay un `@utter` oficial. Si nosotros tuviéramos el token, veríamos el chat en claro — no lo hacemos. En `main` sigue un chat-id fijo (P-02). No lo uses para otras familias todavía.
 
@@ -57,7 +56,7 @@ El código decide. El modelo enseña.
 - Sin secretos frente a quien cría.
 - Un jailbreak no cambia las reglas. No viven en el prompt.
 
-Si lo alojan ellos (**Open**), no vemos los chats.  
+Si lo alojan ellos (**Open**), no vemos los chats.
 Si lo alojamos nosotros (**Hem**), sí — primero un DPIA. La seguridad no se cobra.
 
 Producto, inventario y backlog: [README.md](README.md).
