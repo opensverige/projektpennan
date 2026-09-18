@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path
 
+from memory import maybe_note_from_child, render_for_prompt
 from providers import complete, load_runtime, ping, ready
 from safety import check_output_safety, classify_input, kernel_reply
 
@@ -57,7 +58,8 @@ def build_system_prompt(profile: dict | None = None, policies: dict | None = Non
         f"- Läxgnäll: {'ja' if pedagogy.get('nudge_homework') else 'nej'}\n"
         "\n## Just den här turen\n"
         "Svara på det barnet skrev. BRIS 116 111 bara vid kris, aldrig i matte.\n"
-        "Max två korta meningar och en fråga. Svenska. Inget facit först.\n"
+        "Första drag: en sann koppling till hens värld, inte 7×7. Svenska. Inget facit.\n"
+        f"\n{render_for_prompt()}\n"
     )
 
 
@@ -78,6 +80,7 @@ async def turn(
             "kind": hit["kind"],
             "model": None,
         }
+    maybe_note_from_child(text)
     if not ready(runtime) or not await ping(runtime):
         return {
             "response": (

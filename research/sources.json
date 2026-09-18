@@ -229,7 +229,7 @@
     {
       "id": "pluggis",
       "org": "Pluggis",
-      "title": "Pluggis — smart läxhjälp",
+      "title": "Pluggis — barnet fotar, appen skapar träning",
       "url": "https://www.pluggis.app/",
       "themes": ["product"],
       "cadence": "kvartal"
@@ -249,6 +249,390 @@
       "url": "https://khanmigo.ai/parents",
       "themes": ["product", "pedagogy"],
       "cadence": "årlig"
+    },
+    {
+      "id": "aristotle-onboard",
+      "org": "Aristotle / JSV AI",
+      "title": "Onboard — personalized tutoring plan, parent vs student",
+      "url": "https://www.heyaristotle.com/go/onboard",
+      "themes": ["product"],
+      "cadence": "kvartal"
+    },
+    {
+      "id": "aristotle-pricing",
+      "org": "Aristotle / JSV AI",
+      "title": "AI tutoring plans and pricing",
+      "url": "https://www.heyaristotle.com/pricing",
+      "themes": ["product"],
+      "cadence": "kvartal"
+    },
+    {
+      "id": "aristotle-privacy",
+      "org": "Aristotle / JSV AI",
+      "title": "Privacy Policy — Parent Account vs Student Profile",
+      "url": "https://www.heyaristotle.com/privacy",
+      "themes": ["product", "privacy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "allakando-ai",
+      "org": "Allakando",
+      "title": "AI-lärare — gratis konto som elev, förälder eller lärare",
+      "url": "https://www.allakando.se/ai-larare/",
+      "themes": ["product"],
+      "cadence": "kvartal"
+    },
+    {
+      "id": "homework-buddy-parents",
+      "org": "Reko Mat i Lund AB",
+      "title": "Homework Buddy — For Parents",
+      "url": "https://homeworkbuddy.app/en/parents",
+      "themes": ["product", "privacy"],
+      "cadence": "kvartal"
+    },
+    {
+      "id": "khan-child-accounts",
+      "org": "Khan Academy",
+      "title": "Create or link child accounts to a parent account",
+      "url": "https://support.khanacademy.org/hc/en-us/articles/202262994-How-do-I-create-or-link-child-accounts-to-my-parent-account",
+      "themes": ["product", "privacy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "duolingo-privacy-children",
+      "org": "Duolingo",
+      "title": "Privacy — Child Users and Duolingo ABC parent setup",
+      "url": "https://www.duolingo.com/privacy",
+      "themes": ["product", "privacy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "walkington-interests",
+      "org": "ISLS / Walkington",
+      "title": "Personalize algebra instruction to student interests",
+      "url": "https://repository.isls.org/bitstream/1/2246/1/80-87.pdf",
+      "themes": ["pedagogy"],
+      "cadence": "vid uppföljningsstudier"
+    },
+    {
+      "id": "hidi-renninger",
+      "org": "ERIC / Hidi & Renninger",
+      "title": "Four-phase model of interest development",
+      "url": "https://eric.ed.gov/?id=EJ736298",
+      "themes": ["pedagogy"],
+      "cadence": "vid översikt"
+    },
+    {
+      "id": "dochy-prior-knowledge",
+      "org": "Review of Educational Research",
+      "title": "Prior knowledge assessment practices and outcomes",
+      "url": "https://doi.org/10.2307/1170673",
+      "themes": ["pedagogy"],
+      "cadence": "vid översikt"
+    },
+    {
+      "id": "deeptutor-nonintrusive",
+      "org": "Smart Learning Environments / Rus et al.",
+      "title": "Non-intrusive prior-knowledge assessment in dialogue ITS",
+      "url": "https://link.springer.com/article/10.1186/s40561-016-0025-3",
+      "themes": ["pedagogy"],
+      "cadence": "vid uppföljningsstudier"
+    },
+    {
+      "id": "edc-probes",
+      "org": "EDC Accessible Mathematics",
+      "title": "Diagnostic / formative assessment probes",
+      "url": "https://www2.edc.org/accessmath/resources/formative-assessment-probes.asp",
+      "themes": ["pedagogy"],
+      "cadence": "vid översikt"
+    },
+    {
+      "id": "duolingo-101",
+      "org": "Duolingo",
+      "title": "Duolingo 101 — motivations first, placement optional",
+      "url": "https://blog.duolingo.com/duolingo-101-how-to-learn-a-language-on-duolingo/",
+      "themes": ["product", "pedagogy"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "duolingo-onboarding-mobbin",
+      "org": "Mobbin / Duolingo",
+      "title": "Duolingo iOS onboarding — 5-chip self-report + skippable placement",
+      "url": "https://mobbin.com/flows/ac9d2f58-868d-4fd3-a79c-9655ce6b1522",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "gdpr-art-9",
+      "org": "EU",
+      "title": "GDPR artikel 9 — särskilda kategorier, hälsa",
+      "url": "https://gdpr-info.eu/art-9-gdpr/",
+      "themes": ["privacy"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "gdpr-recital-35",
+      "org": "EU",
+      "title": "GDPR skäl 35 — hälsodata inklusive funktionshinder",
+      "url": "https://gdpr-info.eu/recitals/no-35/",
+      "themes": ["privacy"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "ico-inferred-special",
+      "org": "ICO",
+      "title": "What is special category data — inferred health",
+      "url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-is-special-category-data/",
+      "themes": ["privacy"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "cowan-four",
+      "org": "Behavioral and Brain Sciences",
+      "title": "The magical number 4 in short-term memory",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11515286/",
+      "themes": ["product"],
+      "cadence": "vid översikt"
+    },
+    {
+      "id": "iyengar-lepper",
+      "org": "Iyengar & Lepper",
+      "title": "When choice is demotivating",
+      "url": "https://faculty.washington.edu/jdb/345/345%20Articles/Iyengar%20%26%20Lepper%20(2000).pdf",
+      "themes": ["product"],
+      "cadence": "vid översikt"
+    },
+    {
+      "id": "hicks-law-ux",
+      "org": "Laws of UX",
+      "title": "Hick's Law",
+      "url": "https://lawsofux.com/hicks-law/",
+      "themes": ["product"],
+      "cadence": "vid översikt"
+    },
+    {
+      "id": "skolverket-sva",
+      "org": "Skolverket",
+      "title": "Undervisning i svenska som andraspråk",
+      "url": "https://www.skolverket.se/styrning-och-ansvar/regler-och-ansvar/ansvar-i-skolfragor/undervisning-i-svenska-som-andrasprak",
+      "themes": ["pedagogy", "curriculum"],
+      "cadence": "vid författningsändring"
+    },
+    {
+      "id": "character-ai-quick",
+      "org": "Character.AI",
+      "title": "How To: Quick Creation",
+      "url": "https://book.character.ai/character-guide/how-to-quick-creation",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "linear-pricing",
+      "org": "Linear",
+      "title": "Pricing — Free / Basic / Business / Enterprise",
+      "url": "https://linear.app/pricing",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "linear-migration",
+      "org": "Linear",
+      "title": "Migration guide — self-serve import",
+      "url": "https://linear.app/switch/migration-guide",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "notion-pricing",
+      "org": "Notion",
+      "title": "Pricing — Free / Plus / Business / Enterprise",
+      "url": "https://www.notion.com/pricing",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "notion-marketplace",
+      "org": "Notion",
+      "title": "Sell templates on Marketplace",
+      "url": "https://www.notion.com/help/selling-on-marketplace",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "obsidian-pricing",
+      "org": "Obsidian",
+      "title": "Pricing — Sync / Publish / Catalyst",
+      "url": "https://obsidian.md/pricing",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "khanmigo-pricing",
+      "org": "Khan Academy",
+      "title": "Khanmigo pricing",
+      "url": "https://khanmigo.ai/pricing",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "nabucasa-pricing",
+      "org": "Nabu Casa",
+      "title": "Home Assistant Cloud pricing",
+      "url": "https://www.nabucasa.com/pricing/",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "stripe-atlas",
+      "org": "Stripe",
+      "title": "Atlas — $500 one-time setup",
+      "url": "https://stripe.com/atlas",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "superhuman-onboarding",
+      "org": "Superhuman",
+      "title": "Onboarding session included in subscription",
+      "url": "https://blog.superhuman.com/the-fastest-way-to-inbox-zero-a-single-coaching-session/",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "allakando-pris",
+      "org": "Allakando",
+      "title": "Pris för läxhjälp",
+      "url": "https://www.allakando.se/laxhjalp-pris/",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "homework-buddy-pricing",
+      "org": "Reko Mat i Lund AB",
+      "title": "Homework Buddy pricing",
+      "url": "https://homeworkbuddy.app/en/pricing",
+      "themes": ["product"],
+      "cadence": "kvartal"
+    },
+    {
+      "id": "n8n-pricing",
+      "org": "n8n",
+      "title": "Plans and Pricing — Community vs Cloud",
+      "url": "https://n8n.io/pricing/",
+      "themes": ["product"],
+      "cadence": "vid prisändring"
+    },
+    {
+      "id": "duolingo-abc-name",
+      "org": "Mobbin / Duolingo ABC",
+      "title": "Parent setup — child's name",
+      "url": "https://mobbin.com/screens/d9d79f8d-6337-409a-947e-81439ff08caf",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "finch-goals",
+      "org": "Mobbin / Finch",
+      "title": "Short chip interview then starter plan",
+      "url": "https://mobbin.com/flows/19212698-61fe-43ca-9144-60c9e73bbcd2",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "noom-plan-theater",
+      "org": "Mobbin / Noom",
+      "title": "Personalized plan setup — database theater then paywall",
+      "url": "https://mobbin.com/flows/0f88ecd3-ceb0-43d1-af33-6feafe56928b",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "internetstiftelsen-ai-2025",
+      "org": "Internetstiftelsen",
+      "title": "Barn och ungdomars användning av AI-verktyg 2025",
+      "url": "https://svenskarnaochinternet.se/rapporter/barnen-och-internet-2025/barn-och-ungdomars-anvandning-av-ai-verktyg/",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "internetstiftelsen-social-2025",
+      "org": "Internetstiftelsen",
+      "title": "Sociala medier — barn 8–19, 2025",
+      "url": "https://svenskarnaochinternet.se/rapporter/svenskarna-och-internet-2025/sociala-medier/",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "mediemyndigheten-ungar-2025",
+      "org": "Mediemyndigheten",
+      "title": "Ungar & medier 2025",
+      "url": "https://mediemyndigheten.se/globalassets/rapporter-och-analyser/ungar--medier/mediemyndigheten-rapport-ungar-och-medier.pdf",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "commonsense-dawn-ai",
+      "org": "Common Sense Media",
+      "title": "The Dawn of the AI Era — teens, parents, gen-AI",
+      "url": "https://www.commonsensemedia.org/research/the-dawn-of-the-ai-era-teens-parents-and-the-adoption-of-generative-ai-at-home-and-school",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "commonsense-companions",
+      "org": "Common Sense Media",
+      "title": "Talk, Trust, and Trade-Offs — why teens use AI companions",
+      "url": "https://www.commonsensemedia.org/research/talk-trust-and-trade-offs-how-and-why-teens-use-ai-companions",
+      "themes": ["product", "safety"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "pew-teens-ai-2026",
+      "org": "Pew Research Center",
+      "title": "How Teens Use and View AI",
+      "url": "https://www.pewresearch.org/internet/2026/02/24/how-teens-use-and-view-ai/",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "snapchat-camera-home",
+      "org": "Mobbin / Snapchat",
+      "title": "iOS camera as home screen",
+      "url": "https://mobbin.com/screens/fb76f0dd-54bf-4733-8d2d-bb83411a1f18",
+      "themes": ["product"],
+      "cadence": "årlig"
+    },
+    {
+      "id": "ico-detrimental-children",
+      "org": "ICO",
+      "title": "Detrimental use of children's information",
+      "url": "https://ico.org.uk/for-organisations/advice-and-services/audits/data-protection-audit-framework/toolkits/age-appropriate-design/detrimental-use-of-children-s-information/",
+      "themes": ["privacy", "product"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "ico-childrens-code-faq",
+      "org": "ICO",
+      "title": "FAQs on the 15 standards of the Children's code",
+      "url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/childrens-information/childrens-code-guidance-and-resources/faqs-on-the-15-standards-of-the-children-s-code/",
+      "themes": ["privacy", "product"],
+      "cadence": "vid vägledning"
+    },
+    {
+      "id": "tu-bs-short-video-learning",
+      "org": "TU Braunschweig",
+      "title": "How TikTok & Co. make learning more difficult",
+      "url": "https://magazin.tu-braunschweig.de/en/pi-post/how-tiktok-co-make-learning-more-difficult/",
+      "themes": ["pedagogy"],
+      "cadence": "vid uppföljningsstudier"
+    },
+    {
+      "id": "comms-psych-short-video-memory",
+      "org": "Communications Psychology",
+      "title": "Learning via short videos impairs memory accuracy",
+      "url": "https://www.nature.com/articles/s44271-026-00476-x",
+      "themes": ["pedagogy"],
+      "cadence": "vid uppföljningsstudier"
     }
   ]
 }

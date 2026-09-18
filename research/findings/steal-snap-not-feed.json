@@ -1,0 +1,48 @@
+{
+  "id": "steal-snap-not-feed",
+  "date": "2026-09-17",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Stjäl snapets gest: kamera, en takt, i listan de redan öppnar. Första meningen är hooken. Kopiera inte feedens loop: streak, nästa-kan-vara-bättre, inaktivitets-push. En sämre Shorts med samvete förlorar mot den riktiga feeden och mot ICO:s barnkod.",
+  "evidence": [
+    {
+      "title": "Snapchat iOS — kameran är startsidan",
+      "url": "https://mobbin.com/screens/fb76f0dd-54bf-4733-8d2d-bb83411a1f18",
+      "year": 2026,
+      "notes": "Öppna appen = kamera, en stor avtryckare, Chat/Stories/Spotlight under. Gesten är fota och skicka, inte 'starta en lektion'. Det är det vi redan vill ha för läxbilden. Inte flamman, inte Spotlight."
+    },
+    {
+      "title": "Snapchat — Send to efter ett foto",
+      "url": "https://mobbin.com/screens/e2c9c82e-ffb6-40b8-b57b-9743ee37dd78",
+      "year": 2026,
+      "notes": "Ett foto, en gul Send to. En takt. Det är hooken som barn redan kan. En vertical feed av matteshorts är en annan produkt."
+    },
+    {
+      "title": "ICO — detrimental use of children's information",
+      "url": "https://ico.org.uk/for-organisations/advice-and-services/audits/data-protection-audit-framework/toolkits/age-appropriate-design/detrimental-use-of-children-s-information/",
+      "year": 2024,
+      "notes": "Använd inte barndata för att incentivisera fortsatt användning. Gör det lätt att sluta utan att känna sig missgynnad. Begränsa push som drar tillbaka, särskilt nattetid. Streak/eld är just det incentivet."
+    },
+    {
+      "title": "ICO Children's code FAQ — re-engagement notifications off by default",
+      "url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/childrens-information/childrens-code-guidance-and-resources/faqs-on-the-15-standards-of-the-children-s-code/",
+      "year": 2024,
+      "notes": "Push som uppmanar ett barn att komma tillbaka efter inaktivitet ska vara av som default. 'Dags för matte' och streak-varning är den klassen. Tjänstenotiser som inte profileras är en annan sak — vi har inga till barnet."
+    },
+    {
+      "title": "Otto / TU Braunschweig — short videos worse than text for learning",
+      "url": "https://magazin.tu-braunschweig.de/en/pi-post/how-tiktok-co-make-learning-more-difficult/",
+      "year": 2025,
+      "notes": "Samma innehåll: kortvideo förlorade mot text på kunskapsquiz. Tre minuters underhållnings-shorts före lektionen sänkte rationellt tänkande. Formatet fångar uppmärksamhet. Det är inte kunskapsöverföring."
+    },
+    {
+      "title": "Communications Psychology — short videos impair memory accuracy",
+      "url": "https://www.nature.com/articles/s44271-026-00476-x",
+      "year": 2026,
+      "notes": "Social media-stilade kortvideor: lägre minnesprecision, högre glömska vs längre video. Snabb växling stör sustained attention. De skriver själva: inte ett bevis mot pedagogisk kortfilm *i en struktur*. Det är ett bevis mot att *bli* en feed."
+    }
+  ],
+  "implication": "P-48: första meningen är hooken (intresse-dörr, en takt, tål foto). Ingen streak, ingen 'nästa short', ingen inaktivitets-push till barnet. Lek/saga (P-35) är metod när de redan skriver — inte en feed. Se docs/INTAKE.md. Backlogens 'tillväxt-hack mot barn' täcker loopen.",
+  "backlog_refs": ["P-12", "P-32", "P-35", "P-47", "P-48"],
+  "confidence": "high"
+}

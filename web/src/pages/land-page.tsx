@@ -18,7 +18,7 @@ export function LandPage() {
     <div className="land">
       <main>
         <section className="land-block">
-          <h1>Gnista</h1>
+          <h1>Utter</h1>
           <p className="land-lead">
             En studiekompis. Frågor, inte facit.{" "}
             <DrawablyHighlight fill="#f0c94d">

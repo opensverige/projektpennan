@@ -12,7 +12,7 @@ def test_health_is_kernel_demo():
     res = client.get("/api/health")
     assert res.status_code == 200
     body = res.json()
-    assert body["service"] == "gnista-kernel-demo"
+    assert body["service"] == "utter-kernel-demo"
     assert body["mode"] == "kernel"
 
 

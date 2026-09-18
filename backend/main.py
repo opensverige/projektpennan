@@ -15,6 +15,7 @@ from pydantic import BaseModel
 
 from pipeline import run_pipeline
 from providers import load_runtime
+from memory import INTEREST_CHIPS, remember_child
 from session_store import SessionStore
 from reports import list_reports, get_report
 from oauth import catalog, find_local_session, get_provider
@@ -51,8 +52,8 @@ class ChatResponse(BaseModel):
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat(
     req: ChatRequest,
-    x_gnista_key: str | None = Header(default=None),
-    x_gnista_provider: str | None = Header(default=None),
+    x_utter_key: str | None = Header(default=None),
+    x_utter_provider: str | None = Header(default=None),
 ):
     if not req.message or not req.message.strip():
         raise HTTPException(status_code=400, detail="Tomt meddelande.")
@@ -68,8 +69,8 @@ async def chat(
         session_id,
         req.message.strip(),
         history,
-        api_key=x_gnista_key,
-        provider=x_gnista_provider,
+        api_key=x_utter_key,
+        provider=x_utter_provider,
     )
 
     if result["status"] == "ok":
@@ -97,6 +98,51 @@ async def health():
         "provider": runtime.provider,
         "model": runtime.model if runtime.provider != "none" else None,
     }
+
+
+class ChildCard(BaseModel):
+    name: str
+    interests: list[str] = []
+    grade: str | None = None
+    language: str | None = None
+    struggle: str | None = None
+    energy: str | None = None
+    helps: list[str] = []
+    note: str = ""
+
+
+@app.get("/api/child")
+async def child_get():
+    from memory import interests_of, load_profile
+
+    child = (load_profile().get("child") or {})
+    return {
+        "name": child.get("display_name"),
+        "interests": interests_of(),
+        "grade": child.get("grade_chip"),
+        "language": child.get("language"),
+        "struggle": child.get("struggle"),
+        "energy": child.get("energy"),
+        "helps": child.get("help_chips") or [],
+        "chips": list(INTEREST_CHIPS),
+    }
+
+
+@app.post("/api/child")
+async def child_save(req: ChildCard):
+    try:
+        return remember_child(
+            req.name,
+            req.interests,
+            grade=req.grade,
+            language=req.language,
+            struggle=req.struggle,
+            energy=req.energy,
+            helps=req.helps,
+            note=req.note,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @app.get("/api/oauth/providers")

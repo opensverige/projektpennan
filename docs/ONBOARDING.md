@@ -58,9 +58,13 @@ Källan lever i `web/`. Bygg: `cd web && npm run build` → `frontend/`.
 OAuth är primärt för ChatGPT och Grok (device-länk, som Hermes).
 Claude har logotyp men ingen inloggning — bara nyckel. Se `docs/OAUTH.md`.
 
-Efter starten: `test.html`. Föräldern ser planen och trycker chips
-(Gorgias-mönster: se hur agenten svarar). Opassande, kris, hemlighet
-och jailbreak går mot samma kärna som chatten. Sen släpps barnet in.
+Efter starten: **P-45 chipintervju** (6 frågor + hoppa-över),
+inte en till tom yta och inte Aristoteles 18-skärmars plan.
+Skriver `barn.md` / `intressen.md` / overlay. Se `docs/INTAKE.md`.
+
+Sen: `test.html` (P-43). Föräldern ser hur Utter möter *det här*
+barnet. Opassande, kris, hemlighet och jailbreak går mot samma
+kärna. Sen släpps kontakten in — inte barnet i en dashboard.
 
 Telegram: inte en verifier-bot hos oss. BotFather + token lokalt +
 `t.me/DinBot?start=…`. Se `docs/INSTALL.md`.

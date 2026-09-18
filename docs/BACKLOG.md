@@ -22,7 +22,7 @@ kunna bli ett GitHub-issue. Research-id pekar på `research/findings/`.
 |----|-----|--------|----------|
 | P-08 | **Föräldrapanel som styr**, inte bara tittar. Samtycke, paus, tid, bilder, stödläge, export, radera. Lösenord + rate-limit. | Sorin/Tutur/Latio vinner på kontroll. Vi ska vinna på öppen kontroll. | `parent-controls` |
 | P-09 | **Stödlägen i profil:** sokratisk / små_steg / kviss / läs_stöd. Föräldern sätter. Koden väljer SKILL-förmåga. | Extra stöd är vårt jobb, inte en prompt-rad. | `udl-extra-stod`, `literacy-split` |
-| P-10 | **Persisterat minne (lokalt):** var vi slutade, vad som funkade, vad som kärvade. Inga diagnoser. Föräldern kan nolla. | Roadmap v0.4. Utan minne är varje kväll dag ett. | `socratic-ai` |
+| P-10 | **Persisterat minne (lokalt).** `vault/memory/` som Obsidian-notes. Intressen + vinklar. Inte diagnoser. Föräldern kan nolla. | Utan minne är varje kväll 4+3. | `socratic-ai` |
 | P-11 | **Lgr22 åk 4–6** i `config/lgr22/` + spegling till vault för RAG. CLI: validate, add, diff mot källa. | 13 poster räcker inte för en studiekompis. | `lgr22-coverage` |
 | P-12 | **Bild på läxan** (opt-in). Ingen ansiktslagring. Pedagogiska bilder ut. | Roadmap v0.3. Tutur vinner på kamera. | `parent-controls` |
 | P-13 | **Telegram-grupp:** förälder spectator, barnet pratar, boten svarar bara barnet. | Roadmap v0.2. Insyn i realtid utan att störa. | `parent-controls` |
@@ -56,9 +56,9 @@ P-03 och P-29.
 | P-28 | **Webb-först onboarding.** En skärm: namn, klistra nyckel, samtycke. BankID bara på Hem sen. | Börjar i webben, inte Docker. Se `frontend/start.html`. | `parent-baseplate` |
 | P-29 | **DPIA + underbiträden + ZDR** innan första betalande familj. | Hosted = vi är personuppgiftsansvariga. | `gdpr-hem` |
 | P-30 | **Telegram start-token + allowlist** (dödar hårdkodat id). | Open och Hem. | `channel-sweden` |
-| P-31 | **Publik prissida + DPA-text** (Open / Hem / egen drift). | Accounted-tabell. Aldrig paywalla safety. | `accounted-open-core` |
+| P-31 | **Publik prissida + DPA-text** (Open / Hem / Kväll / egen drift). | Accounted-tabell. Aldrig paywalla safety. Inte en `.md`-butik. | `accounted-open-core`, `intake-not-file` |
 | P-32 | **WhatsApp som Hem-barn-default:** tyst kontakt, bild, röst. Inget läxpush. | Där de redan är. | `contact-not-destination` |
-| P-39 | **Telegram Mini App / räkmacka.** Fyra tryck, grupplänk, ingen BankID. Mock i `frontend/rakmacka.html`. | Där Open-ytan börjar. Inte officiell @gnista. | `telegram-rakmacka-onboarding` |
+| P-39 | **Telegram Mini App / räkmacka.** Fyra tryck, grupplänk, ingen BankID. Mock i `frontend/rakmacka.html`. | Där Open-ytan börjar. Inte officiell @utter. | `telegram-rakmacka-onboarding` |
 
 ## P4 — förälderns kernel (packs, inte överhet)
 
@@ -72,11 +72,15 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 | P-36 | **Förälder-skrivna anpassningar.** Valfritt fält för diagnos/preferenser. Tyst anpassning. Krypterat i Hem. Aldrig till skola. Tomt = extra-stöd-default. | Vi sätter inte diagnos. Vi lyssnar när hemmet berättar. Art. 9. | `parent-authored-accommodations` |
 | P-37 | **Skolkontext-pack.** Föräldern skriver veckans teman eller släpper in ICS/export. Minimering + TTL 7–14 dagar. Relevans i chatten, inget läxlarm. | Sidekicken ska veta vad som är uppe, utan att suga i sig Unikum. | `parent-owned-school-context` |
 | P-38 | **Förälder-hostad connector.** De kör den hemma med sitt BankID/lösen. Skriver minimerad `context.json` till vault. Hem får aldrig skol-credentials eller live-API. | Byggarföräldrar gör det redan. Vi standardiserar formatet, inte inloggningen. | `parent-owned-school-context` |
-| P-40 | **Byt arbetsnamn → Gnista.** Kontakt i chatt, bot, frontend, safety-spec. Projekt Pennan stannar. Stjärnis bara som valfritt pack. | Skooli Buddy krockar med Homework Buddy / Studybuddy. Se `docs/NAME.md`. | `product-name` |
+| P-40 | **Kontaktnamn Utter i UI/bot.** Gnista föll på sexuell/romantisk idiom. Projekt Pennan stannar. Stjärnis bara som valfritt pack. | Skooli Buddy krockar med Homework Buddy / Studybuddy. Se `docs/NAME.md`. | `product-name` |
 | P-41 | **Förälder-start: en skärm.** Namn + klistra nyckel. Grok-tom, inte wizard. Av-ramp för päron. | Föräldern är inte developer. Se `docs/ONBOARDING.md`. | `parent-baseplate` |
 | P-42 | **Prenumerations-OAuth.** ChatGPT + Grok via device-länk (Hermes/Codex/Grok Build). Claude förbjuden. Lokal import av `~/.codex` / `~/.grok`. Inte impersonation. | Föräldern har redan betalat. Se `docs/OAUTH.md`. | `oauth-subscription` |
 | P-43 | **Förälder-testmiljö.** Plan + scenario-chips (även opassande) innan barnet släpps in. Samma safety-kärna. Igenkännbara ChatGPT/Claude/Grok-märken. | Föräldern ska känna sig säker. Se `frontend/test.html`. | `parent-preview` |
 | P-44 | **Kärndemo utan Ollama.** `scripts/demo.sh` + `backend/demo.py`. Chatten faller tillbaka till kärnan. | Kunna testa i kväll. Inte låtsas att Grok svarar. | |
+| P-45 | **Förälder-chipintervju.** 6 frågor + 1 hoppa-över, max 5 chips. Skriver `barn.md`, intressen, pedagogy overlay. Inget pretest, inga diagnos-chips. Barnet sitter inte i en dashboard. | Intresse + grov kärv + behov ändrar tutoring. Diagnos och KT-quiz gör det inte i onboardingen. | `intake-interest-first`, `intake-chip-budget`, `intake-no-diagnosis-chips`, `intake-question-list`, `parent-intake-not-child-dashboard` |
+| P-46 | **SKU-gräns: filen är export, inte checkout.** Hem inkluderar intaget. Kväll är tjänst för Open (790–1 490 kr), aldrig Gumroad för `barn.md`. Recurring Hem måste ticka efter natt ett. | Genererad pack är one-shot. Linear ger bort import. Obsidian säljer sync. | `intake-not-file` |
+| P-47 | **Barnets 30 sekunder.** Första svaret använder intresse-dörren och tål foto. Låter det som skola har P-45 misslyckats. Acceptera Shorts/Chattis. Ingen detektor, ingen nattkompis, inget läxpush. | Köparen är inte användaren. Se `docs/INTAKE.md`. | `child-loses-to-feed-and-chattis` |
+| P-48 | **Snap-gest, inte feed-loop.** Första meningen är hooken. Kamera/foto, en takt. Inga streaks, ingen nästa-short, ingen inaktivitets-push. | Roligare = kort som ett snap. Inte “nästa kan vara bättre”. | `steal-snap-not-feed` |
 
 ## Medvetet inte i scopet
 - Skola som operatör: Unikum-SSO, klass-tenant, lärarvy, write-back.
@@ -85,6 +89,10 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 - Betyg, NP-förberedelse som facit-motor.
 - Reklam, trackers, tillväxt-hack mot barn.
 - Diagnosverktyg.
+- Slå YouTube/Roblox/Shorts på underhållning.
+- Streaks, läx-eld, inaktivitets-push till barnet.
+- Hemlig vän / Character.AI-jobbet.
+- Detektera att barnet öppnat ChatGPT i en annan flik.
 
 ## Förslag på närmaste PR:er
 1. P-02 + P-30 + P-07 — allowlist, start-token, dashboard, `/pause`.
@@ -96,3 +104,6 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 7. P-33 + P-34 — pack-laddare och världsbild (då först kernel-känsla).
 8. P-35 + P-36 — metodbyte i kod + krypterade anpassningar.
 9. P-37 — veckans lapp (då först relevant utan läcka). P-38 sen.
+10. P-45 — förälder-chipintervju efter P-41 (namn redan taget). Skriver vault-notes, inte ett barn-dashboard.
+11. P-46 — lås SKU: Open 0 / Hem / Kväll-tjänst. Ingen `.md`-butik. Se `docs/INTAKE.md`.
+12. P-47 — första svaret är barnets acceptanstest. Inte en roligare app.

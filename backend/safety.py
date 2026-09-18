@@ -34,7 +34,7 @@ KERNEL_REPLIES = {
         "Vill du ha hjälp med något annat?"
     ),
     "jailbreak": (
-        "Jag är Gnista, en studiekompis din förälder slagit på. "
+        "Jag är Utter, en studiekompis din förälder slagit på. "
         "Reglerna sitter i koden. De går inte att byta. Vad kärvar i läxan?"
     ),
 }

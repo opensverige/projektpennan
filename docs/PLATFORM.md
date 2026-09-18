@@ -1,12 +1,13 @@
 # Plattformen — kernel föräldern äger
 
-Kontaktnamn: **Gnista**. Initiativ: Projekt Pennan.
+Kontaktnamn: **Utter**. Initiativ: Projekt Pennan.
 Skooli Buddy är gammalt arbetsnamn. Se `docs/NAME.md`.
 
 > Föräldern styr sidekicken. Inte läroplanen. Inte skolan.
 > Inte vi. Kernel är öppen. Allt ovanpå går att byta ut.
 >
 > Analog: Obsidian (du äger vaulten) + Odysseus (du kör runtime).
+`vault/memory/` är notes föräldern kan öppna i Obsidian. Se [docs/HERMES.md](HERMES.md).
 > Vi sätter standard och safety. Byggarföräldrarna kör redan.
 
 ## Vad som är kernel, vad som är pack
@@ -47,7 +48,7 @@ API:er när staden inte levererar — och att datan kan stanna på
 Vi är inte ännu en app de ska byta till. Vi är **standarden de
 kan släppa in sina grejer i**: samma pack-format, samma
 safety-kärna, samma export. Som en kernel. Som en vault.
-Namnet i chatten är Gnista. Metaforen är basplatta + utbytbar
+Namnet i chatten är Utter. Metaforen är basplatta + utbytbar
 hjärna, inte en butik. Se `docs/BASEPLATE.md`.
 
 De som inte bygger själva får samma kernel färdigslagen (Hem).

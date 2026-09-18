@@ -31,7 +31,7 @@ export async function bindTelegram(token: string): Promise<TelegramStatus & { de
     return data
   } catch {
     return {
-      detail: "Backend sover. Klistra token när Gnista körs hemma, inte till en främmande bot.",
+      detail: "Backend sover. Klistra token när Utter körs hemma, inte till en främmande bot.",
     }
   }
 }

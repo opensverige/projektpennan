@@ -1,14 +1,10 @@
-# Gnista
+# Utter
 
 [Svenska](README.md) · [English](README.en.md) · [Español](README.es.md) · [العربية](README.ar.md)
 
 **En studiekompis för åk 4–6. Föräldern äger plattan. Barnet får frågor, inte facit.**
 
-Kontaktnamnet — det barnet skriver till — är **Gnista**.  
-Repot och initiativet heter **Projekt Pennan**, under [Open Sverige](https://opensverige.se).  
-Licens: [AGPL-3.0](LICENSE).
-
-`Skooli Buddy` och `Stjärnis` är inte produktnamn. Det första krockar med Homework Buddy / Studybuddy. Det andra låser in oss hos niorna och stöter bort tolvåringar.
+Barnet skriver till **Utter**. Repot och initiativet heter **Projekt Pennan**, under [Open Sverige](https://opensverige.se). Licens: [AGPL-3.0](LICENSE).
 
 ---
 
@@ -23,11 +19,13 @@ När läxan kärvar ska barnet kunna fråga en kompis som:
 5. syns för föräldern.
 
 ```
-Barn:   Vad är 7 gånger 8?
-Gnista: Vet du vad 7 × 7 är? Då tar vi ett steg till.
+Barn:   foto av läxan
+Utter: Alma. Redstone och bråk är samma grej. Vad är dimma på bilden?
 ```
 
-Vi ger **basplattan**: safety, samtycke, vault, pack-format, logg.  
+Föräldern slår på den och svarar sex chips. Barnet ser aldrig formuläret. Första meningen använder dörren från intaget. Kameran är en giltig start. Inte en belöning ovanpå läxan. Inte en feed.
+
+Vi ger **basplattan**: safety, samtycke, vault, pack-format, logg.
 Föräldern jackar in en **frontier-modell** (ChatGPT, Grok, Claude-nyckel) eller en **smart open-source-motor** (Groq, vLLM, LM Studio). Ollama är en sista utväg, inte produkten. Plattan består när hjärnan byts.
 
 Lgr22 är ett *valfritt pack*, inte överhet. Världsbild, tro och egna agenter är förälderns. Extra stöd är default. Inget läxgnäll.
@@ -43,14 +41,13 @@ Vi bygger **inte** för rektorer, kommuner, Unikum eller klasslistor. Skolan få
 | En facit-app | Frågor, små steg, saga, lek |
 | Skolans system | Ett hemverktyg |
 | En låst lärare | En kernel + packs föräldern byter |
-| En barn-app med QR | En kontakt i en chatt de redan har |
+| Ett barn-dashboard | Föräldern fyller i. Barnet skickar bilden. |
+| En `.md`-butik | Vaulten är export. Jobbet är kvällen. |
 | Prompt-regler | Regler i kod. Barnet kan inte stänga av dem. |
 
 ---
 
 ## Testa i kväll
-
-Onboarding börjar på webben när den ytan är på plats. Det som **finns på `main` i kväll** är Open: lokal chatt eller Telegram.
 
 ### 1. Webb + er modell (default)
 
@@ -62,15 +59,19 @@ export OPENAI_API_KEY=sk-...    # eller XAI_ / ANTHROPIC_ / GROQ_
 cd backend && uvicorn main:app --reload --host 127.0.0.1 --port 8080
 ```
 
-[http://127.0.0.1:8080/start.html](http://127.0.0.1:8080/start.html) — namn, nyckel, sätt igång.  
+[http://127.0.0.1:8080/start.html](http://127.0.0.1:8080/start.html) — namn, nyckel, samtycke.
+Sen sex chips + hoppa-över. Skriver `barn.md`, intressen, overlay.
+Sen testet: se hur Utter möter *det här* barnet.
+Sen chatten: första meningen + kamera.
+
 [http://127.0.0.1:8080/land.html](http://127.0.0.1:8080/land.html) — skiss av hemsidan.
 
-Smart OSS utan OpenAI: `GROQ_API_KEY` eller `OPENAI_BASE_URL` mot vLLM / LM Studio.  
-Ollama bara om ni sätter `GNISTA_USE_OLLAMA=1` — inte default.
+Smart OSS utan OpenAI: `GROQ_API_KEY` eller `OPENAI_BASE_URL` mot vLLM / LM Studio.
+Ollama bara om ni sätter `UTTER_USE_OLLAMA=1` — inte default.
 
 ### 2. Telegram (valfritt, egen bot)
 
-Ingen officiell `@gnista`. Föräldern skapar boten hos [@BotFather](https://t.me/BotFather). Tokenen stannar hos dem. Om *vi* tar emot tokenen ser vi chatten i klartext — det gör vi inte.
+Ingen officiell `@utter`. Föräldern skapar boten hos [@BotFather](https://t.me/BotFather). Tokenen stannar hos dem. Om *vi* tar emot tokenen ser vi chatten i klartext — det gör vi inte.
 
 ```bash
 pip install -r requirements.txt
@@ -78,9 +79,9 @@ cp .env.example .env   # TELEGRAM_BOT_TOKEN, ev. GEMINI_API_KEY
 python -m skooli_buddy.bot
 ```
 
-Start-länk + allowlist, ingen officiell `@gnista`. Tokenen stannar i er vault.
+Start-länk + allowlist. Tokenen stannar i er vault.
 
-Hem — BankID, tyst WhatsApp-kontakt, fem minuter — är monumentet. **Inte byggt.** Se [docs/INSTALL.md](docs/INSTALL.md).
+Hem — BankID, tyst WhatsApp-kontakt, fem minuter — är monumentet. **Inte byggt.** Se [docs/INSTALL.md](docs/INSTALL.md). Hur intaget frågar: [docs/INTAKE.md](docs/INTAKE.md).
 
 ---
 
@@ -99,11 +100,11 @@ Hem — BankID, tyst WhatsApp-kontakt, fem minuter — är monumentet. **Inte by
   └─────────────────────────┘
 ```
 
-**Open:** de hostar. Vi ser inte deras chatter.  
+**Open:** de hostar. Vi ser inte deras chatter.
 **Hem:** vi hostar. Då ser vi dem, Telegram/WhatsApp ser dem, och vi behöver DPIA innan första familjen betalar. Safety får aldrig bli paywall.
 
-Hur man sätter upp och byter väg: [docs/INSTALL.md](docs/INSTALL.md).  
-Vad som är kernel vs pack: [docs/PLATFORM.md](docs/PLATFORM.md).  
+Hur man sätter upp och byter väg: [docs/INSTALL.md](docs/INSTALL.md).
+Vad som är kernel vs pack: [docs/PLATFORM.md](docs/PLATFORM.md).
 Open / Hem / egen drift: [docs/PRODUCTIZATION.md](docs/PRODUCTIZATION.md).
 
 ---
@@ -119,7 +120,7 @@ Koden validerar. Modellen undervisar.
 - Numeriskt id, inte namn eller skol-id. `/revoke` raderar.
 - Diagnos bara om *föräldern* skrivit den. Tomt = extra-stöd-default.
 
-Spec: [SKOOLI_BUDDY_SAFETY_SPEC.md](SKOOLI_BUDDY_SAFETY_SPEC.md).  
+Spec: [SKOOLI_BUDDY_SAFETY_SPEC.md](SKOOLI_BUDDY_SAFETY_SPEC.md).
 Tutorregler: `agents/tutor/SOUL.md` + `SKILL.md` + `RULES.md`.
 
 Samtycke krävs innan barnet chattar (GDPR art. 8, under 13). På Telegram-ytan i dag: `/consent`, återkalla med `/revoke`.
@@ -134,13 +135,13 @@ Två halva produkter, samma mål. **En kärna är P-01.**
 |---|-------------|-----------------|
 | Kod | `backend/` · `frontend/` · `vault/` | `skooli_buddy/` · `dashboard/` |
 | Modell i kväll | ChatGPT / Grok / Claude-nyckel / Groq / openai-compat | Gemini (opt-in) |
-| UI | HTML på `:8080` | Telegram + Streamlit |
-| Status | Pipeline + safety in/ut + BYO-adapter | Live-testad mot barn, 12 tester |
+| UI | start → intag → test → chatt på `:8080` | Telegram + Streamlit |
+| Status | Förälder-chips skriver vault. Första svaret använder dörren. Foto är giltig start. | Live-testad mot barn, 12 tester |
 
 P-26 är kopplad: nyckeln i starten eller i miljön anropar FastAPI-chatten. Safety körs före och efter, oavsett modell. En kärna på båda ytorna är fortfarande P-01.
 
-Vad som faktiskt är byggt: [docs/INVENTORY.md](docs/INVENTORY.md).  
-Vad som återstår: [docs/BACKLOG.md](docs/BACKLOG.md).  
+Vad som faktiskt är byggt: [docs/INVENTORY.md](docs/INVENTORY.md).
+Vad som återstår: [docs/BACKLOG.md](docs/BACKLOG.md).
 Vision: [docs/PRODUCT.md](docs/PRODUCT.md).
 
 ---
@@ -151,12 +152,12 @@ Vision: [docs/PRODUCT.md](docs/PRODUCT.md).
 |---------|-------------|
 | `agents/tutor/` | Persona och pedagogik |
 | `backend/` | FastAPI, pipeline, safety, vault |
-| `frontend/` | Lokal chatt + föräldravy |
+| `web/` → `frontend/` | Start, intag, test, chatt, föräldravy |
 | `vault/` | Barnkort, policies, logg, packs — strukturen rörs inte |
 | `skooli_buddy/` | Telegram-yta |
 | `config/lgr22/` | Kursplansposter som pack |
 | `research/` | Fynd. Utan källa får de inte styra backlogen |
-| `docs/` | Produkt, platta, install, inventory |
+| `docs/` | Produkt, platta, intag, install, inventory |
 
 Testprofilen “Test-Elev” får ligga kvar. Riktiga barnprofiler committas aldrig.
 

@@ -39,8 +39,8 @@
 - Docs: PLATFORM.md. Pack-skelett i `vault/packs/`. Tutorregler v3.
 - Backlog P-33–P-36. Research: parent-sovereignty-kernel,
   pedagogy-beyond-socratic, parent-authored-accommodations.
-- Namnet är låst som rekommendation: kontakt **Gnista**, initiativ Projekt Pennan. Se `docs/NAME.md`. Skooli Buddy fasas (P-40).
-- Plattan: vi ger safety/vault/ytor. Föräldern jackar in modell (ChatGPT m.fl.). Onboarding är Grok-tom, ritad i shadcn (`web/`): `frontend/start.html` är login1-kort + klistra-nyckel + Aurora. ChatGPT/Grok kan OAuth:as (Hermes/device). Claude inte. Efter starten: `test.html` — plan + chips så föräldern ser hur Gnista möter barnet. Se `docs/OAUTH.md`.
+- Namnet är låst som rekommendation: kontakt **Utter**, initiativ Projekt Pennan. Se `docs/NAME.md`. Skooli Buddy fasas (P-40).
+- Plattan: vi ger safety/vault/ytor. Föräldern jackar in modell (ChatGPT m.fl.). Onboarding är Grok-tom, ritad i shadcn (`web/`): `frontend/start.html` är login1-kort + klistra-nyckel + Aurora. ChatGPT/Grok kan OAuth:as (Hermes/device). Claude inte. Efter starten: `test.html` — plan + chips så föräldern ser hur Utter möter barnet. Se `docs/OAUTH.md`.
 
 ## 2026-09-15 — byggarföräldrar + skolkontext
 - Analog: Obsidian-vault + Odysseus-runtime. Vi standardiserar
@@ -49,6 +49,32 @@
   Connector hos dem, lösen aldrig till Hem. P-37, P-38.
 - Research: parent-owned-school-context. Öppna skolplattformen
   är beviset att de redan gör ingest själva.
+
+## 2026-09-17 — snap-gest, inte feed-loop
+- Roligare = första meningen + kamera + en takt. Inte streak,
+  inte nästa-short, inte inaktivitets-push. P-48. `steal-snap-not-feed`.
+
+## 2026-09-17 — barnet är inte köparen
+- P-45 ser bra ut för föräldern. Barnet ser bara första svaret.
+- Tre jobb vi inte tar: feed (YouTube/Roblox/Snap), facit (Chattis),
+  nattkompis (My AI). Mellanstadiet har det största föräldragapet.
+- P-47: första turen måste använda intresse-dörren. Äg bytet.
+  Ingen detektor. Ingen Hem-copy som lovar att de vill skriva.
+
+## 2026-09-17 — intag, byggt rätt
+- Föräldern äger intaget. Barnet sitter inte i en tutor-dashboard.
+  Output: vault-markdown + tyst kontakt. Inte Aristoteles “special plan”.
+- P-45: 6 chipfrågor + 1 hoppa-över, max 5 chips. Intresse först,
+  pretest aldrig. Inga diagnos-chips (art. 9).
+- P-46: sälj inte `barn.md`. Hem inkluderar intaget. Kväll är
+  90 min tjänst för Open. Filen är kvitto/export.
+- Spec: `docs/INTAKE.md`. Fynd: `intake-*`, `parent-intake-not-child-dashboard`.
+
+## 2026-09-16 — Utter, inte Gnista
+- Kontaktnamn **Utter**. Gnista föll: “gnistan mellan dem” /
+  “det gnistrar” bär sexuell och romantisk ton. Se `docs/NAME.md`.
+- Projekt Pennan stannar som initiativ. Stjärnis bara pack.
+- Minne: `vault/memory/vinklar.md`, inte gnistor.
 
 ## 2026-09-15 — install vs monument
 - Hem-onboarding är ritad, inte kod. `docs/INSTALL.md` håller

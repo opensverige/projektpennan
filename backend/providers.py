@@ -1,7 +1,7 @@
 """BYO-modell. Frontier eller smart OSS. Ollama bara om föräldern valt det.
 
 Nyckeln ligger i miljön, i runtime.json:s env-namn, eller i
-X-Gnista-Key från den lokala starten. Den loggas inte.
+X-Utter-Key från den lokala starten. Den loggas inte.
 """
 
 from __future__ import annotations

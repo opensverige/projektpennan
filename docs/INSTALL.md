@@ -1,6 +1,6 @@
 # Installera — webben först, sen den väg ni vill
 
-Kontaktnamn: Gnista. Vi ger **basplattan**. Ni formar den och
+Kontaktnamn: Utter. Vi ger **basplattan**. Ni formar den och
 jackar in den modell ni vill. Monument: [docs/BASEPLATE.md](BASEPLATE.md).
 
 Onboarding **börjar på webben**, en skärm.
@@ -18,7 +18,7 @@ Barnet har ingen onboarding.
 
 | Väg | Kommando / gest | Modell i kväll | Ärligt läge |
 |-----|-----------------|----------------|-------------|
-| A. Webb + Docker + Ollama | `GNISTA_USE_OLLAMA=1 docker compose up --build` | lokal, sista utväg | Byggt, inte default |
+| A. Webb + Docker + Ollama | `UTTER_USE_OLLAMA=1 docker compose up --build` | lokal, sista utväg | Byggt, inte default |
 | B. Webb + egen modell | nyckel i starten eller env | ChatGPT / Grok / Claude / Groq / vLLM | **Byggt (P-26)** |
 | C. Bara filer | start.html → ladda ner config | — | Plattan, ingen chatt än |
 | D. Telegram | `python -m skooli_buddy.bot` | Gemini, hårdkodat | Byggt som kommandon |
@@ -67,7 +67,7 @@ Nyckeln i starten skickas bara till er lokala `/api/chat`
 
 ## D. Telegram — deras bot, vår start-länk
 
-Ingen officiell @gnista-bot. Ingen verifier-bot som tar emot token
+Ingen officiell @utter-bot. Ingen verifier-bot som tar emot token
 (då sitter *vi* på nyckeln). Bara @BotFather kan skapa en bot.
 
 1. På `test.html`: Öppna @BotFather → `/newbot` → klistra token.

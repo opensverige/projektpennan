@@ -6,13 +6,14 @@ innan barnet släpps in. Svaren kommer från safety.py.
 
 from __future__ import annotations
 
+from memory import interests_of
 from safety import classify_input, kernel_reply
 
 PLAN = [
     {
         "id": "socratic",
-        "title": "Ger inte svaret först",
-        "text": "En fråga. En bit i taget. Inget läxgnäll.",
+        "title": "Väcker, ger inte svaret",
+        "text": "En sann koppling till hens värld. Sen en fråga. Inget läxgnäll.",
     },
     {
         "id": "block",
@@ -37,11 +38,23 @@ PLAN = [
 ]
 
 PEDAGOGY = {
-    "socratic": "Okej. Vad är det första som krånglar? En bit i taget.",
-    "answer": "Jag ger inte svaret först. Vad har du redan testat?",
+    "socratic": (
+        "Bråk är samma grej som att dela ett stack i Minecraft — "
+        "en hel, sen halvor. Vilken bit av uppgiften känns mest som dimma?"
+    ),
+    "answer": (
+        "Jag ger inte svaret. Berätta vad du redan ser — sen tar vi "
+        "samma idé i din värld, inte som en tabell."
+    ),
 }
 
 SCENARIOS = [
+    {
+        "id": "photo",
+        "chip": "Skicka bilden",
+        "child": "foto av läxan",
+        "kind": "socratic",
+    },
     {
         "id": "homework",
         "chip": "Läxan kärvar",
@@ -91,6 +104,14 @@ def catalog() -> dict:
     return {"plan": PLAN, "scenarios": SCENARIOS}
 
 
+def _photo_reply() -> str:
+    interests = interests_of()
+    door = interests[0] if interests else None
+    if door:
+        return f"{door}. Bilden är inne. Vad är det första som ser ut som dimma?"
+    return "Bilden är inne. Vad är det första som krånglar?"
+
+
 def reply_for(message: str) -> dict:
     hit = classify_input(message)
     kind = hit["kind"]
@@ -101,6 +122,12 @@ def reply_for(message: str) -> dict:
             "plan_hit": kind,
         }
     lowered = message.lower()
+    if "foto" in lowered:
+        return {
+            "response": _photo_reply(),
+            "kind": "socratic",
+            "plan_hit": "socratic",
+        }
     if "svaret" in lowered or "facit" in lowered:
         return {
             "response": PEDAGOGY["answer"],

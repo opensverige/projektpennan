@@ -1,0 +1,277 @@
+# Intag — föräldern frågar, vaulten skrivs, barnet skriver
+
+> Tes: *plattan blir det här barnet i kväll — inte en
+> “special plan”, inte en `.md`-butik, inte ett barn-dashboard.*
+>
+> Fynd: `intake-not-file`, `parent-intake-not-child-dashboard`,
+> `intake-chip-budget`, `intake-interest-first`,
+> `intake-no-diagnosis-chips`, `intake-question-list`,
+> `child-loses-to-feed-and-chattis`.
+> Prislogik: `docs/PRICING.md`. Startskärm: `docs/ONBOARDING.md`.
+
+Tre saker som inte får blandas:
+
+| Steg | Vem | Vad | Inte |
+|------|-----|-----|------|
+| **P-41 start** | Förälder | Namn + nyckel, Grok-tom | Wizard |
+| **P-45 intag** | Förälder | 6 chips + 1 hoppa-över | Placement, diagnos, 20 skärmar |
+| **P-32 yta** | Barn | Tyst kontakt i chatten de redan har | First session / Learner Home |
+
+SKU-gränsen sitter under. Frågeordningen sitter efter.
+
+## Svar på frågan
+
+**Ett genererat .md-pack som publik checkout-rad är en
+one-shot-återvändsgränd.** Inte för att markdown är värdelös —
+vaulten *är* markdown, som Obsidian — utan för att filen är
+biprodukten av ett jobb, inte jobbet.
+
+Jobbet: *plattan blir det här barnet och stannar på.*
+
+Hem är rätt volym-SKU. Den är ofullständig om vi låtsas att
+intaget inte finns, och den är farlig om recurring-avgiften
+bara är natt ett utsmetad över tolv fakturor.
+
+---
+
+## Analogerna, från prissidor (2026-09)
+
+| Analog | Vad de säljer | Vad de *inte* säljer | Lärdom |
+|--------|----------------|----------------------|--------|
+| [Accounted /priser](https://www.accounted.se/priser) | Open 0 kr (hela AGPL-motorn). Auto **199 kr/mån**, 30 dagar: PSD2, AI i EU, WhatsApp-kvitton, Skatteverket. Custom offert. Inhouse från **19 999 kr**. | En SIE-fil. "Migrering in" ingår i Open *och* Auto. | Betala när *kopplingarna* ska på. Intaget är inkluderat. |
+| [Linear /pricing](https://linear.app/pricing) + [migration](https://linear.app/switch/migration-guide) | Free 0 / Basic 10 / Business 16 USD/säte/mån. Import/export är kärnrad. | Zippen. "Migration & onboarding support" bara på **Enterprise**. | Självbetjäningsimport är CAC. Människa som sätter upp är enterprise. |
+| [Notion /pricing](https://www.notion.com/pricing) + [Marketplace](https://www.notion.com/help/selling-on-marketplace) | Free 0 / Plus 10 / Business 20 USD/säte/mån. AI på Business. | Mallar. Creators säljer mallar; Notion tar 8 % + 0,40 USD och kräver support. | Plattformen säljer säten. Fil-SKU:n är *andras* one-shot. |
+| [Obsidian /pricing](https://obsidian.md/pricing) | Vault **gratis**. Sync 4 USD/mån årsvis (5 månadsvis). Publish 8/10. Catalyst 25 USD en gång. | Anteckningsfilerna. | Sälj sync, inte vaulten. .md är det de *ger bort*. |
+| [Khanmigo /pricing](https://khanmigo.ai/pricing) | Lärare 0. Familj/elev **4 USD/mån eller 44 USD/år**, USA. | En barnprofil-fil. Innehållsbiblioteket förblir gratis. | Pågående tutor på en gratis motor. Nonprofit-golv, inte vårt WTP-tak. |
+| [Aristotle /pricing](https://www.heyaristotle.com/pricing) | Intro: 3 gratissessioner. Scholar **49 USD/mån** (8 sessioner). Infinite **199 USD/mån** obegränsat. | En onboarding-fil. Sluggen `/why-aristotle-costs-299` lever; **listpriset är 199**. | De säljer en mätare som tickar (sessioner). Intaget är tre gratis. |
+| [Nabu Casa](https://www.nabucasa.com/pricing/) | EU **7,50 EUR/mån** eller 75 EUR/år. | Home Assistant-installen. | Öppen motor, betald *daglig* koppling (fjärr + röst). |
+| [n8n /pricing](https://n8n.io/pricing/) | Community 0 (self-host). Cloud Starter **20 EUR/mån** årsvis. | Workflow-JSON som produkt. | Samma split: kör själv gratis, betala för drift. |
+| [Stripe Atlas](https://stripe.com/atlas) | **500 USD** engångs + ~100 USD/år registered agent. | En bolagsmall att fylla i själv. | One-shot *fungerar* när utfallet är juridiskt unikt. |
+| [Superhuman onboarding](https://blog.superhuman.com/the-fastest-way-to-inbox-zero-a-single-coaching-session/) | Starter **25 USD/mån** årsvis / 30 månadsvis. 30 min 1:1 **ingår**. | En "inbox.md". | Vit handske inbäddad i ytan som fortsätter kosta. |
+| [Allakando](https://www.allakando.se/laxhjalp-pris/) | Människa från **399 kr/t**. Grupp från 189. AI-lärare **gratis**. | En studieplan-fil. | Svenskt tak. En Kväll är timmar, inte 49 kr för zip. |
+| [Homework Buddy](https://homeworkbuddy.app/en/pricing) | Gratis 3 samtal/vecka. Premium **3 EUR/mån** eller 18 EUR/år. | OSS, förälder-ägd kernel. | Race-to-bottom. Inte vår analog för pris. |
+
+---
+
+## När betalt intag fungerar
+
+1. **Artefakten körs.** Linear-issues lever i Linear. Superhumans inbox
+   är uppsatt *i* Superhuman. Accounted har flyttat verifikaten.
+   Stripe Atlas har ett org.nr. Ingen av dem mailar en fil och går.
+2. **Något tickar efter natt ett.** PSD2-transaktioner, Sync mellan
+   enheter, sessioner (Aristotle), inference vi betalar, WhatsApp-yta,
+   veckolapp med TTL (P-37). Prenumerationen betalar *det*, inte
+   profilen.
+3. **Arbetet är mänskligt och ansvarigt.** Enterprise-migration,
+   Superhuman-coach, Accounted Inhouse, Allakando-timme. Köparen
+   köper omdöme, inte tokens.
+4. **Utfallet är svårt att göra själv *och* unikt.** Atlas 500 USD:
+   Delaware + EIN + 83(b). En barn.md som en LLM skriver om på
+   trettio sekunder är inte det.
+5. **Upprepning.** Syskon, nytt läsår, ny ork, ny `THIS_WEEK.md`.
+   Intaget dör inte efter första zippen.
+6. **Köparen kan inte bedöma kvalitet förrän det lever.** "I kväll"
+   är verifieringen. Filen går inte att prova.
+
+## När det faller
+
+1. **Statisk, kopierbar, regenererbar fil.** Notion-mallar 12–49 USD,
+   Gumroad-promptar, character cards. AGPL + `vault/packs/`-mallar
+   betyder att de redan *har* generatorn.
+2. **Samma repo kan skriva packen.** Att ta betalt för output från
+   en öppen mall är teater. Föräldern (eller ChatGPT) fyller
+   `barn.md` själva.
+3. **Inget jobb efter nedladdning.** One-shot NPS: de fick zipt,
+   de försvann. Chargebacks äter marginalen (Notion håller 14 dagar
+   just därför).
+4. **Barndata i en fil utan controller-relation.** Art. 9 om
+   anpassningar. Vi blir behandlare utan tenant, eller föräldern
+   klistrar in packen i ChatGPT och kringgår plattan.
+5. **Fel jobb.** Föräldern vill att tisdag kväll ska fungera, inte
+   äga en markdown. "Pack" låter innehåll. Jobbet är omsorg + drift.
+6. **Kannibalerar Hem.** Betalad fil → varför prenumerera?
+7. **Hem som bara är uppsättning.** Om månad 2–12 inte har en
+   mätare (inference, kontakt, veckolapp, människa) har vi sålt
+   en engångsavgift i prenumerationskläder. Det är den fällan
+   Accounted *undviker* genom att ta betalt för kopplingar som
+   eldar varje dag.
+
+---
+
+## Utmaning av "bara Hem i kväll"
+
+Slogans är rätt om *jobbet*. Den är fel som *enda* betalda SKU.
+
+**1. Hem är inte byggt.** DPIA, BankID, WhatsApp Business, tenant
+(P-29, P-32). Att sälja en prenumeration vi inte kan leverera är
+värre än att sälja en fil. En **Kväll** (90 min människa + körande
+lokal vault) kan säljas till byggarföräldrar *nu*, utan att vi
+blir personuppgiftsansvariga.
+
+**2. Recurring måste överleva natt ett.** Accounted Auto fungerar
+för att banken spottar rader varje dag. Ett barnkort är nästan
+statiskt efter vecka ett. Hem *måste* sälja det som tickar:
+EU-inference vi betalar, tyst kontakt, paus, veckosammanfattning,
+levande `THIS_WEEK.md`. Annars är 199 kr/mån en uppsättningsavgift.
+
+**3. Hög WTP är människa, inte zip.** Aristotle Infinite 199 USD/mån
+(tidigare kommunicerat 299). Allakando 399 kr/t. En förälder som
+redan köper läxhjälp betalar hellre 1 190 kr för en kväll som
+lämnar en *körande* Open-install än 49 kr för `barn.md`.
+Khanmigo 4 USD och Homework Buddy 3 EUR är golv för stängd
+innehålls-AI, inte tak för oss.
+
+**4. Linear, inte Notion-creator.** Linear ger bort importen så att
+sätet börjar kosta. Notion *själv* säljer inte mallar — creators
+gör det, och det är en läckande hink. Kopiera Linear in i Hem.
+Kopiera inte Gumroad.
+
+**5. Filen är ändå helig — som export.** Obsidian tar inte betalt
+för vaulten. GDPR art. 20 kräver portabilitet. P-33:s zip är
+*kvitto och exit*, inte SKU. Att kalla filen värdelös vore att
+svika Open. Att sätta den i checkout vore att svika Hem.
+
+**6. Intag utan drift är tjänst, inte produkt.** Superhuman
+bäddar in 30 min i prenumerationen. Accounted bokar 30 min för
+att *flytta in i Auto*. Stripe Atlas tar 500 USD för att ett
+bolag ska *finnas*. Vi tar betalt för Kväll bara när Hem inte
+är vägen (Open / pre-DPIA). Vi tar inte betalt två gånger.
+
+---
+
+## Rekommenderad SKU-tabell
+
+Svensk AGPL-barn-tutor. Safety, samtycke, BRIS, Sokratisk default,
+världsbild, egen agent och att stänga av Lgr22 är **aldrig** paywall.
+
+| SKU | Pris | Vem | De köper | De köper *inte* | Analog |
+|-----|------|-----|----------|-----------------|--------|
+| **Open** | **0 kr** | Tech-förälder, granskare | Hela kernel, pack-*format*, tomma mallar, Docker, BYO, community | Vår inference, BankID-som-controller, WhatsApp vi driftar, människa | Accounted Open. Obsidian vault. n8n Community. |
+| **Hem** | **149–199 kr/mån**, 30 dagar | Vanlig familj | Plattan blir *det här* barnet **i kväll och stannar på**: tenant, BankID, EU-ZDR vi betalar, tyst WhatsApp-kontakt, förälder-PWA, paus, veckolapp, människa. Intaget ingår. | Pedagogiken. Skyddet. `.md` som produkt. | Accounted Auto 199. Superhuman (onboard ingår). Nabu Casa. Aristotle Scholar/Infinite som *mätar*-referens, inte pris. |
+| **Kväll** | **0 på Hem.** **790–1 490 kr** engång för Open | Byggare som vägrar hostat, eller intäkt *före* DPIA | 90 min människa: chipintervju (P-45), vault skriven, Docker/Telegram igång, zip som **kvitto** | `barn.md` i en butik. Prenumeration vi inte kan hålla. | Superhuman 30 min *inbäddad*. Linear Enterprise = människa. Allakando-timmar. Atlas bara om utfallet är unikt — här är utfallet *körning*, inte fil. |
+| **Syskon** | **+49–79 kr/mån** på Hem | Andra barnet i samma hushåll | Andra *körande* plattan | Rabatterad fil | Khanmigo 4 USD täcker många barn — för billigt för vår kostnad. En tenant till. |
+| **Egen drift** | Offert. Inhouse-känsla från **~20 000 kr** | Familjekluster / org som self-hostar | Vi hjälper dem hosta. Samma kernel. | Skolavtal, klass-tenant | Accounted Custom / Inhouse 19 999. |
+
+### Regler som låser SKU:erna
+
+1. Checkout-raden får aldrig heta "barn.md" eller "profilpack".
+2. Generatorn stannar i git. Tomma mallar i `vault/packs/` är Open.
+3. Hem-intag = inkluderad labor (Linear-import, Accounted 30 min,
+   Superhuman-coach).
+4. Kväll faktureras som **tjänst**, inte digital download. Ingen
+   automatisk zip-butik. Ingen Gumroad.
+5. Hem måste ha minst en tickande kostnad vi faktiskt bär
+   (inference och/eller WhatsApp och/eller människa). Annars
+   sänk priset till en setup-avgift och sluta kalla det månad.
+6. Export-zip är gratis på båda planer (art. 20, P-33).
+7. Inte en krona på Hem innan P-03 + P-29.
+
+Hur intaget *kostar* är ovan. Hur det *frågar* är här.
+
+---
+
+## Hur vi frågar (P-45)
+
+Namn är redan taget på P-41. Barnet ser aldrig det här.
+En fråga per skärm. Max fem synliga chips. Inget
+progress-teater, ingen “Finding learner type”.
+
+| # | Fråga | Chips (max 5) | Skriver | Varför den finns |
+|---|-------|---------------|---------|------------------|
+| 1 | Vilken årskurs? | Åk 4 · Åk 5 · Åk 6 · Annat | `barn.md` + Lgr22-pack | Register och kursplans-overlay. Inte pretest. |
+| 2 | Hur ska sidekicken prata? | Svenska · Svenska + annat hemma · Enklare svenska · Annat | `barn.md` språk | Ändrar varje tur (SVA / studiehandledning). Fråga *bruk*, inte ursprung. |
+| 3 | Vad tänder hen just nu? (max 2) | Minecraft · Djur & dino · Sport · Spel / YouTube · Rita & bygga | `intressen.md` | Walkington-dörr. SOUL: anta att läxan är tråkig. |
+| 4 | Vad kärvar oftast? | Matte · Läsa & skriva · Engelska · NO / SO · Inget särskilt | `barn.md` grov prior | Billig proxy. Inte knowledge tracing. |
+| 5 | Hur är orken efter skolan? | Pigg · Sådär · Slut · Beror på kvällen | pedagogy overlay | Väljer metod (worked / lek / korta steg). Predicerar inte betyg. |
+| 6 | Vad hjälper när det kärvar? (max 2) | Korta steg · Visa ett likadant först · En sak i taget · Pauser · Läs högt | `support_preferences` | Behov, inte etikett. Tomt = extra-stöd-default. |
+| 7 | Något vi ska veta? | **Hoppa över** (rekommenderat) · Kort anteckning | valfri not; art. 9 bara om de *skriver* en etikett | P-36-avramp. Copy: “Skriv hur hen lär sig bäst. Inte en diagnos.” |
+
+Sex obligatoriska. En hoppa-över. Duolingo-form: recommended default
+på sista skärmen, inte ett 10-minuters test.
+
+### Vault-mappning
+
+```
+Q1–2, Q4     → vault/memory/barn.md
+Q3           → vault/memory/intressen.md
+Q5–6         → vault/packs/pedagogy-overlay + support_preferences
+Q7 om etikett → vault/packs/accommodations/  (P-36, krypterat i Hem)
+```
+
+Tomt Q6 ger samma extra-stöd som testprofilen: `korta_steg`,
+`en_sak_i_taget`, `pauser`.
+
+### Slopa (bygg inte)
+
+- Barn-pretest, missuppfattningsitems, IRT, “course challenge”.
+- Diagnos-chips (ADHD, autism, dyslexi, NPF) och “ADHD-vänligt”.
+- VAK / lärstil.
+- Läxschema, “hur många minuter om dagen”, `nudge_homework`.
+- Världsbild / tro (det är P-34, senare pack).
+- Unikum, skol-login, betyg.
+- Barn-avatar, “vad vill du lära dig?”, child dashboard.
+- 20+ intresse-chips, “välj minst fem”.
+- Etnicitet / “var kommer ni ifrån?”.
+
+---
+
+## Vad vi kopierar / inte (live 2026-09)
+
+| Produkt | Kopiera | Anti-mönster |
+|---------|---------|--------------|
+| [Aristotle onboard](https://www.heyaristotle.com/go/onboard) | Föräldern *kan* tala för barnet | 12–18 quizskärmar → “learner type” → custom plan → first session. Quizzen säljer planen. |
+| [Khanmigo parents](https://www.khanmigo.ai/parents) | Föräldern betalar och slår på. Hård grind. | Destination är fortfarande Learner Home. Skola kan overridea. |
+| [Duolingo ABC](https://mobbin.com/screens/d9d79f8d-6337-409a-947e-81439ff08caf) | Föräldern fyller namn + ålder. Barn sitter inte i formuläret. | Barnet landar i en lektionskarta. |
+| [Duolingo iOS](https://mobbin.com/flows/ac9d2f58-868d-4fd3-a79c-9655ce6b1522) | Fem nivåchips. Placement är hoppa-över. Recommended: start from scratch. | 20-skärmars rutin + widget + streak. Commitment-teater. |
+| [Finch goals](https://mobbin.com/flows/19212698-61fe-43ca-9144-60c9e73bbcd2) | En fråga, korta rader, sex skärmar. | Slutar i “starter plan” som barnet ska bo i. |
+| [Noom plan](https://mobbin.com/flows/0f88ecd3-ceb0-43d1-af33-6feafe56928b) | — | “Cross-checking with user database”, countdown, paywall. Aristoteles-kusin. |
+| [Homework Buddy](https://homeworkbuddy.app/en/parents) | Läxfoto *senare*, i chatten. | Barnet skapar/använder tutorkontot. |
+| [Pluggis](https://www.pluggis.app/) | Använd barnets faktiska läxa, inte en innehållsgraf. | Föräldern backar in i en app barnet måste öppna. |
+| [Allakando AI](https://www.allakando.se/ai-larare/) | — | Vem-som-helst-signup + gratis AI som tratt till 399 kr/t. |
+
+**Linjen:** föräldern svarar. Kort. Skriver vault. Sen en tyst
+kontakt. Barnet onboardas aldrig in i en tutor-UI.
+
+---
+
+## Barnet (P-47) — det vi skippade
+
+Chipskärmarna ser bra ut för föräldern. De ser bra ut för oss.
+Barnet ser dem aldrig. Barnet ser **första svaret** — och har
+redan tre bättre jobb:
+
+| Jobb | Vad de öppnar | Tar vi det? |
+|------|----------------|-------------|
+| Döda tid | YouTube, Roblox (71 % i mellan), Snap, Shorts | Nej. 35 % av 9–12 skippar redan läxan för skärm flera gånger i veckan. |
+| Få det gjort i kväll | ChatGPT / Gemini / “Chattis” | Nej. Vi ger inte facit. De klistrar in i en annan flik. |
+| Inte vara ensam | My AI, Character.AI, nattkompis | Nej. SOUL: inte hemlig vän. Rätt. Därför lämnar de. |
+
+Internetstiftelsen 2025: låg/mellan använder AI som kompis om
+nätterna. Mellanstadiet har det största gapet — barnen har
+pratat AI i skolan, föräldrarna har inte hört det. Det är
+appen du inte vet om.
+
+Vi vinner bara om tre saker är sanna *samma kväll*:
+
+1. De är redan fast (boken ligger framme).
+2. Det är mer friktion att öppna Chattis än att skicka bilden
+   i en tråd som redan finns.
+3. Första svaret använder dörren från Q3 och låter inte som skola.
+
+Om första svaret kunde skickats utan chipintervjun har P-45
+misslyckats. Intervjun finns för den turen, inte för att
+föräldern ska känna att de byggt en plan.
+
+**Äg bytet.** En del kvällar går till Shorts. En del till
+Chattis. Vi spanar inte. Vi naggar inte. Vi blir inte roligare
+än feeden. Hem-copy får inte lova att barnet kommer vilja skriva.
+
+### Roligare som Snap — inte som Shorts (P-48)
+
+Bollen: efterlikna deras hook så det blir roligare.
+
+**Stjäl gesten.** [Kameran är Snapchats startsida](https://mobbin.com/screens/fb76f0dd-54bf-4733-8d2d-bb83411a1f18). Ett foto, [Send to](https://mobbin.com/screens/e2c9c82e-ffb6-40b8-b57b-9743ee37dd78), en takt. Första *meningen* är hooken — samma jobb som Shorts första sekund, utan nästa video. Det är redan P-12 + P-47.
+
+**Kopiera inte loopen.** Shorts hook är “nästa kan vara bättre”. Snap-streak är “missa en dag så slocknar elden”. Båda är tid-på-enheten. ICO: incentivisera inte fortsatt användning; inaktivitets-push av som default. En sämre Shorts med samvete förlorar mot den riktiga. Kortvideo som läromedia förlorar dessutom mot text på minne.
+
+Lek och saga (P-35) är *metod* när de redan skriver. Inte en vertical feed. Inte en flamman.

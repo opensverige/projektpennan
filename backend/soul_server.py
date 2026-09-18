@@ -18,7 +18,7 @@ from soul import turn
 
 from demo import FRONTEND
 
-app = FastAPI(title="Gnista SOUL", version="0.2.0")
+app = FastAPI(title="Utter SOUL", version="0.2.0")
 
 _sessions: dict[str, list[dict]] = {}
 
@@ -38,7 +38,7 @@ async def health():
     live = await ping(runtime)
     return {
         "status": "ok" if live else "degraded",
-        "service": "gnista-soul",
+        "service": "utter-soul",
         "mode": "soul",
         "model": runtime.label() if ready(runtime) else None,
         "provider": runtime.provider,
@@ -60,8 +60,8 @@ async def preview_turn(req: PreviewTurn):
 @app.post("/api/chat")
 async def chat(
     req: ChatRequest,
-    x_gnista_key: str | None = Header(default=None),
-    x_gnista_provider: str | None = Header(default=None),
+    x_utter_key: str | None = Header(default=None),
+    x_utter_provider: str | None = Header(default=None),
 ):
     if not req.message or not req.message.strip():
         raise HTTPException(status_code=400, detail="Tomt meddelande.")
@@ -70,8 +70,8 @@ async def chat(
     result = await turn(
         req.message,
         history,
-        api_key=x_gnista_key,
-        provider=x_gnista_provider,
+        api_key=x_utter_key,
+        provider=x_utter_provider,
     )
     if result["status"] == "ok":
         history.append({"role": "user", "content": req.message.strip()})

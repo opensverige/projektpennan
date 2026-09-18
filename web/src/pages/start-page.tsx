@@ -38,8 +38,8 @@ import {
   saveSetup,
 } from "@/lib/setup"
 
-function goPreview() {
-  window.location.href = "./test.html"
+function goIntake() {
+  window.location.href = "./intake.html"
 }
 
 type OauthId = keyof typeof OAUTH
@@ -70,7 +70,7 @@ export function StartPage() {
   function submit(skipKey: boolean) {
     if (!needReady()) return
     saveSetup(child, skipKey ? "" : key.trim())
-    goPreview()
+    goIntake()
   }
 
   function beginOauth(id: OauthId) {
@@ -83,7 +83,7 @@ export function StartPage() {
   function enterWithOauth() {
     if (!oauth || !needReady()) return
     saveOAuthSetup(child, oauth)
-    goPreview()
+    goIntake()
   }
 
   async function finishOauth() {
@@ -129,7 +129,7 @@ export function StartPage() {
           <div className="text-center">
             <p className="text-sm text-muted-foreground">Föräldern slår på den</p>
             <h1 className="font-heading text-3xl font-semibold tracking-tight">
-              Gnista
+              Utter
             </h1>
           </div>
 

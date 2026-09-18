@@ -1,0 +1,54 @@
+{
+  "id": "intake-interest-first",
+  "date": "2026-09-17",
+  "theme": "pedagogy",
+  "status": "accepted",
+  "claim": "För en ointresserad 9–12-åring ska förälder-intaget samla intressen och grov ämneskärv först. Kunskapsspårning och missuppfattningsprober hör i chatten när läxan ligger framme — inte som pretest i onboardingen.",
+  "evidence": [
+    {
+      "title": "Walkington — personalize algebra to student interests (JEP / ICLS)",
+      "url": "https://repository.isls.org/bitstream/1/2246/1/80-87.pdf",
+      "year": 2013,
+      "notes": "RCT i Cognitive Tutor Algebra (N=145). Story-problem matchade mot 9 fritidsintressen gav snabbare och mer korrekta lösningar, särskilt för dem som kärvade, plus transfer när personaliseringen togs bort. Intresse ändrar alltså *ingången*, inte bara stämningen."
+    },
+    {
+      "title": "Hidi & Renninger — Four-Phase Model of Interest Development",
+      "url": "https://eric.ed.gov/?id=EJ736298",
+      "year": 2006,
+      "notes": "Intresse börjar som triggered situational interest. Ett pretest på ett hatat ämne triggar inte det. Första jobbet är att väcka en dörr in i barnets värld — samma antagande som SOUL.md."
+    },
+    {
+      "title": "Dochy, Segers & Buehl — prior knowledge review",
+      "url": "https://doi.org/10.2307/1170673",
+      "year": 1999,
+      "notes": "Prior knowledge har positiva effekter i ~92 % av studierna, men bara när mätningen är giltig. Förälderns 'matte kärvar' är grov och användbar. Ett chip-quiz om bråk är inte giltig kunskapsspårning."
+    },
+    {
+      "title": "Rus et al. — non-intrusive prior-knowledge assessment in DeepTutor",
+      "url": "https://link.springer.com/article/10.1186/s40561-016-0025-3",
+      "year": 2016,
+      "notes": "Dialogdrag predicerar pretest-poäng (r≈0,95 i bästa modell). Slutsatsen i pappret: låt eleven få undervisning utan explicit test. Kunskapsspårning kan startas från första läxvändan."
+    },
+    {
+      "title": "EDC — Diagnostic probes (3–6 items, 10–15 min, selected + written explanation)",
+      "url": "https://www2.edc.org/accessmath/resources/formative-assessment-probes.asp",
+      "year": 2016,
+      "notes": "En riktig missuppfattningsprob kräver barnets svar och förklaring. Föräldern kan inte svara den. Lämna prober till sessionen när bilden/läxan finns."
+    },
+    {
+      "title": "Clement et al. — ZPDES + learner choice in ITS",
+      "url": "https://arxiv.org/html/2402.01669",
+      "year": 2024,
+      "notes": "Val som är *ortogonala* mot svårighet (tema, objekt) höjer motivation utan att förstöra ZPD. Intresse-chips först, svårighet sen i chatten."
+    },
+    {
+      "title": "Tapalova et al. — path from topic interest to ITS learning gains",
+      "url": "https://doi.org/10.1016/j.learninstruc.2023.101799",
+      "year": 2023,
+      "notes": "Ämnesintresse → njutning → engagement → prestation → learning gains. Utility och self-efficacy predicerade inte njutning. För ett ointresserat barn är dörren intresse, inte ett till test."
+    }
+  ],
+  "implication": "Chipintervjun (P-45) frågar intressen och 'vad kärvar' före allt som luktar prov. Inga bråk/stavning-items. Knowledge tracing och TUTOR_RETRIEVE körs i pipeline när läxan är känd. Default i SOUL står kvar: anta ointresse.",
+  "backlog_refs": ["P-10", "P-35", "P-45"],
+  "confidence": "high"
+}

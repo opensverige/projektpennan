@@ -1,0 +1,54 @@
+{
+  "id": "intake-question-list",
+  "date": "2026-09-17",
+  "theme": "product",
+  "status": "accepted",
+  "claim": "Sju förälder-frågor räcker för att skriva barn.md, intressen och pedagogy overlay: årskurs, språk, intresse, ämneskärv, ork, vad som hjälper, valfri anteckning. Namn är redan taget. Diagnos, pretest, läxschema och lärstilar slopas.",
+  "evidence": [
+    {
+      "title": "Hailikari / Dochy line — prior knowledge r≈.57 with later achievement",
+      "url": "https://doi.org/10.5539/hes.v16n2p143",
+      "year": 2025,
+      "notes": "MASEM: prior knowledge starkast mot achievement (r=.573), motivation därefter (r=.377). Förälderns ämneskärv är den billiga grova proxyn. Fin kunskapsspårning kräver barnets svar."
+    },
+    {
+      "title": "Skolverket — svenska som andraspråk utgår från andraspråksbehov",
+      "url": "https://www.skolverket.se/styrning-och-ansvar/regler-och-ansvar/ansvar-i-skolfragor/undervisning-i-svenska-som-andrasprak",
+      "year": 2025,
+      "notes": "SVA är likvärdigt, inte lättare. Om hemmet är tvåspråkigt ändrar det varje tur (translanguaging, enklare svenska, inte 'prata barnsligt'). Språk-frågan är hög hävstång."
+    },
+    {
+      "title": "Skolverket — studiehandledning på modersmålet",
+      "url": "https://www.skolverket.se/download/18.16e41e37187062e13ae998/1680596832468/pdf11363.pdf",
+      "year": 2023,
+      "notes": "Modersmål som redskap före/under/efter ämnesarbete. En chip 'svenska + annat hemma' slår på den overlayen utan att samla etnicitet (art. 9-risk om vi frågar ursprung)."
+    },
+    {
+      "title": "Colorín Colorado — use home language to activate prior knowledge",
+      "url": "https://www.colorincolorado.org/article/10-tips-using-students-home-languages-support-instruction",
+      "year": 2024,
+      "notes": "Hemspråk aktiverar bakgrundskunskap. Fråga språkbruk, inte 'vilket ursprung'."
+    },
+    {
+      "title": "Feng et al. — MathSpring affective ITS RCT, ages 10–12",
+      "url": "https://doi.org/10.1111/jcal.70106",
+      "year": 2025,
+      "notes": "Affektiv tutor gav ingen ITT-effekt på 2003 elever 10–12; hög användning korrelerade med bättre resultat. Ork-frågan styr metod (korta steg / lek) — den ska inte låtsas predicera betyg."
+    },
+    {
+      "title": "SPSM — skilj avkodning från kunskapsinhämtning",
+      "url": "https://spsm.se/stod-och-rad/undervisning/lasa-och-skriva/analysera-och-stod-las--och-skrivutveckling/",
+      "year": 2025,
+      "notes": "Chipet 'läs högt' slår på TUTOR_LITERACY utan att säga dyslexi. Diagnosordet slopas."
+    },
+    {
+      "title": "Walkington interest survey was 9 topics — too many for one chip row",
+      "url": "https://www.smu.edu/-/media/site/simmons/research/rme/docs/cw/icls_submission_2012_final.pdf",
+      "year": 2012,
+      "notes": "Forskningen använde 9 ämnen (sport, musik, film…). Vi kapar till 5 synliga + vaulten kan få fler via 'annat' senare. En grov dörr slår nästan lika som en lång lista."
+    }
+  ],
+  "implication": "P-45 frågeordning: (1) årskurs 4/5/6/annat → Lgr22-pack. (2) språk: svenska / svenska+annat / enklare svenska / annat → barn.md. (3) intresse, max 2 av 5 → intressen.md. (4) vad kärvar: matte / läsa-skriva / engelska / NO-SO / inget särskilt → grov prior. (5) ork: pigg / sådär / slut / beror på → pedagogy overlay. (6) vad hjälper, max 2 av 5 behovschips → support_preferences. (7) hoppa över eller fritext, ingen diagnoslista. Slopa: pretest, missuppfattningsitems, ADHD-chips, VAK-lärstil, läxschema/nudge, världsbild (P-34-pack), Unikum, barn-avatar.",
+  "backlog_refs": ["P-09", "P-10", "P-35", "P-36", "P-45"],
+  "confidence": "high"
+}

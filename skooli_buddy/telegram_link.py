@@ -21,11 +21,11 @@ TOKEN_FILE = VAULT / "config" / "telegram-bot-token.txt"
 
 
 def _state_path() -> Path:
-    return Path(os.getenv("GNISTA_TELEGRAM_STATE", STATE_FILE))
+    return Path(os.getenv("UTTER_TELEGRAM_STATE", STATE_FILE))
 
 
 def _token_path() -> Path:
-    return Path(os.getenv("GNISTA_TELEGRAM_TOKEN_FILE", TOKEN_FILE))
+    return Path(os.getenv("UTTER_TELEGRAM_TOKEN_FILE", TOKEN_FILE))
 
 
 def load_state() -> dict:

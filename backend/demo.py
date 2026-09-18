@@ -13,6 +13,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
+from memory import INTEREST_CHIPS, remember_child
 from oauth import catalog, find_local_session, get_provider
 from preview import catalog as preview_catalog
 from preview import reply_for
@@ -20,7 +21,7 @@ from preview import reply_for
 ROOT = Path(__file__).resolve().parent.parent
 FRONTEND = ROOT / "frontend"
 
-app = FastAPI(title="Gnista kärndemo", version="0.1.0")
+app = FastAPI(title="Utter kärndemo", version="0.1.0")
 
 
 class ChatRequest(BaseModel):
@@ -34,7 +35,52 @@ class PreviewTurn(BaseModel):
 
 @app.get("/api/health")
 async def health():
-    return {"status": "ok", "service": "gnista-kernel-demo", "mode": "kernel"}
+    return {"status": "ok", "service": "utter-kernel-demo", "mode": "kernel"}
+
+
+class ChildCard(BaseModel):
+    name: str
+    interests: list[str] = []
+    grade: str | None = None
+    language: str | None = None
+    struggle: str | None = None
+    energy: str | None = None
+    helps: list[str] = []
+    note: str = ""
+
+
+@app.get("/api/child")
+async def child_get():
+    from memory import interests_of, load_profile
+
+    child = (load_profile().get("child") or {})
+    return {
+        "name": child.get("display_name"),
+        "interests": interests_of(),
+        "grade": child.get("grade_chip"),
+        "language": child.get("language"),
+        "struggle": child.get("struggle"),
+        "energy": child.get("energy"),
+        "helps": child.get("help_chips") or [],
+        "chips": list(INTEREST_CHIPS),
+    }
+
+
+@app.post("/api/child")
+async def child_save(req: ChildCard):
+    try:
+        return remember_child(
+            req.name,
+            req.interests,
+            grade=req.grade,
+            language=req.language,
+            struggle=req.struggle,
+            energy=req.energy,
+            helps=req.helps,
+            note=req.note,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @app.get("/api/oauth/providers")

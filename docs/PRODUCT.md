@@ -1,7 +1,7 @@
 # Produktvision — Skooli Buddy
 
 > En sidekick i barnets ficka. Spakarna hemma. Aldrig skolans system.
-> Kontaktnamn: Gnista. Initiativ: Projekt Pennan.
+> Kontaktnamn: Utter. Initiativ: Projekt Pennan.
 > Kernel föräldern äger — inte en låst app. Se `docs/NAME.md`.
 
 ## Vem vi bygger för
@@ -67,7 +67,7 @@ ett pack hos oss, inte överhet.
 
 | | Svenska + valfri kursplan | Aldrig facit | Förälder styr | Lokal / OSS | Messaging |
 |---|---------------------------|--------------|---------------|-------------|-----------|
-| **Gnista** | Lgr22 som pack | ja | ja (mål) | ja | kontakt i chatt |
+| **Utter** | Lgr22 som pack | ja | ja (mål) | ja | kontakt i chatt |
 | Homework Buddy | Lgr22 inbakat | delvis | nej | nej | app |
 | Pluggis | skolans material | ja | nej | nej | app |
 | Allakando AI-lärare | svensk skola | delvis | nej | nej | webb |
@@ -89,9 +89,9 @@ default + egna agenter**. Inte en låst läroplansapp. Inte Khan Academy.
   PWA bara som fallback. EU-inference.
 - **Egen drift:** er server, vår hjälp.
 
-Pedagogik och safety är aldrig paywall. Detalj:
-[docs/PRODUCTIZATION.md](PRODUCTIZATION.md),
-[docs/PRICING.md](PRICING.md).
+Pedagogik och safety är aldrig paywall. `.md`-packen är export,
+inte checkout. Detalj: [docs/PRODUCTIZATION.md](PRODUCTIZATION.md),
+[docs/PRICING.md](PRICING.md), [docs/INTAKE.md](INTAKE.md).
 
 ## Nordstjärna för v1.0
 En förälder i Sverige kan på fem minuter (Hem) eller en kväll (Open):
