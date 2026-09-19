@@ -16,6 +16,9 @@ vault/parent-reports/*
 !vault/parent-reports/.gitkeep
 vault/config/telegram.json
 vault/config/telegram-bot-token.txt
+vault/config/audit-secret.txt
+vault/session-store.db
+vault/session-store.db-*
 .venv/
 .pytest_cache/
 web/node_modules/

@@ -1,0 +1,17 @@
+{
+  "name": "Utter",
+  "install": "bash .cursor/install.sh",
+  "terminals": [
+    {
+      "name": "backend",
+      "description": "FastAPI + static frontend on http://localhost:8080. Start at /start.html.",
+      "command": "source .venv/bin/activate && cd backend && uvicorn main:app --host 0.0.0.0 --port 8080"
+    }
+  ],
+  "ports": [
+    {
+      "name": "backend",
+      "port": 8080
+    }
+  ]
+}
