@@ -17,6 +17,7 @@ vault/parent-reports/*
 vault/config/telegram.json
 vault/config/telegram-bot-token.txt
 vault/config/audit-secret.txt
+vault/config/oauth-session.json
 vault/session-store.db
 vault/session-store.db-*
 .venv/

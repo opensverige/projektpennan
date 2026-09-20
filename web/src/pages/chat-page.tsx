@@ -55,7 +55,11 @@ export function ChatPage() {
         const response = await fetch("/api/chat", {
           method: "POST",
           headers,
-          body: JSON.stringify({ session_id: sessionId, message: payload }),
+          body: JSON.stringify({
+            session_id: sessionId,
+            message: payload,
+            image: image && image.startsWith("data:") ? image : undefined,
+          }),
         })
         if (response.ok) {
           const data = (await response.json()) as {
@@ -100,8 +104,26 @@ export function ChatPage() {
 
   function onPhoto(file: File | undefined) {
     if (!file || busy) return
-    const url = URL.createObjectURL(file)
-    void send(PHOTO_START, url)
+    if (file.size > 350_000) {
+      setMessages((m) => [
+        ...m,
+        {
+          role: "system",
+          text: "Bilden är för stor. Ta en närmare, bara läxan.",
+        },
+      ])
+      return
+    }
+    const preview = URL.createObjectURL(file)
+    const reader = new FileReader()
+    reader.onload = () => {
+      const data = typeof reader.result === "string" ? reader.result : ""
+      void send(PHOTO_START, data || preview)
+    }
+    reader.onerror = () => {
+      void send(PHOTO_START, preview)
+    }
+    reader.readAsDataURL(file)
   }
 
   return (

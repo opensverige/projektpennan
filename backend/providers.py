@@ -131,6 +131,10 @@ def load_runtime(
     key = (override_key or "").strip() or (
         os.getenv(key_env, "").strip() if key_env else ""
     )
+    if not key and provider in ("chatgpt", "openai", "grok", "xai"):
+        from oauth import load_imported_token
+
+        key = load_imported_token(provider) or ""
     if provider == "anthropic":
         key = key or os.getenv("ANTHROPIC_API_KEY", "").strip()
         model = (
@@ -174,6 +178,8 @@ async def complete(
     system_prompt: str,
     history: list[dict],
     runtime: Runtime | None = None,
+    image: str | None = None,
+    image_mime: str | None = None,
 ) -> str:
     rt = runtime or load_runtime()
     if not ready(rt):
@@ -182,14 +188,46 @@ async def complete(
             "eller peka OPENAI_BASE_URL mot en lokal motor."
         )
     if rt.provider == "ollama":
-        return await _ollama(rt, system_prompt, history)
+        return await _ollama(rt, system_prompt, history, image)
     if rt.provider == "anthropic":
-        return await _anthropic(rt, system_prompt, history)
-    return await _openai_compat(rt, system_prompt, history)
+        return await _anthropic(rt, system_prompt, history, image, image_mime)
+    return await _openai_compat(rt, system_prompt, history, image, image_mime)
 
 
-async def _openai_compat(rt: Runtime, system_prompt: str, history: list[dict]) -> str:
-    messages = [{"role": "system", "content": system_prompt}, *history]
+def _last_user_index(history: list[dict]) -> int | None:
+    for i in range(len(history) - 1, -1, -1):
+        if history[i].get("role") == "user":
+            return i
+    return None
+
+
+async def _openai_compat(
+    rt: Runtime,
+    system_prompt: str,
+    history: list[dict],
+    image: str | None = None,
+    image_mime: str | None = None,
+) -> str:
+    messages = [{"role": "system", "content": system_prompt}]
+    last_user = _last_user_index(history) if image else None
+    mime = image_mime or "image/jpeg"
+    for i, item in enumerate(history):
+        if image and i == last_user:
+            text = item.get("content") or "foto av läxan"
+            messages.append(
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": text},
+                        {
+                            "type": "image_url",
+                            "image_url": {"url": f"data:{mime};base64,{image}"},
+                        },
+                    ],
+                }
+            )
+        else:
+            messages.append(item)
     headers = {"Content-Type": "application/json"}
     if rt.api_key and rt.api_key != "local":
         headers["Authorization"] = f"Bearer {rt.api_key}"
@@ -211,13 +249,39 @@ async def _openai_compat(rt: Runtime, system_prompt: str, history: list[dict]) -
     ).strip()
 
 
-async def _anthropic(rt: Runtime, system_prompt: str, history: list[dict]) -> str:
+async def _anthropic(
+    rt: Runtime,
+    system_prompt: str,
+    history: list[dict],
+    image: str | None = None,
+    image_mime: str | None = None,
+) -> str:
     converted = []
-    for item in history:
+    last_user = _last_user_index(history) if image else None
+    mime = image_mime or "image/jpeg"
+    for i, item in enumerate(history):
         role = item.get("role")
         if role not in ("user", "assistant"):
             continue
-        converted.append({"role": role, "content": item.get("content") or ""})
+        if image and i == last_user:
+            converted.append(
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": item.get("content") or "foto av läxan"},
+                        {
+                            "type": "image",
+                            "source": {
+                                "type": "base64",
+                                "media_type": mime,
+                                "data": image,
+                            },
+                        },
+                    ],
+                }
+            )
+        else:
+            converted.append({"role": role, "content": item.get("content") or ""})
     async with httpx.AsyncClient(timeout=120.0) as client:
         response = await client.post(
             f"{rt.base_url}/v1/messages",
@@ -240,8 +304,25 @@ async def _anthropic(rt: Runtime, system_prompt: str, history: list[dict]) -> st
     return text.strip()
 
 
-async def _ollama(rt: Runtime, system_prompt: str, history: list[dict]) -> str:
-    messages = [{"role": "system", "content": system_prompt}, *history]
+async def _ollama(
+    rt: Runtime,
+    system_prompt: str,
+    history: list[dict],
+    image: str | None = None,
+) -> str:
+    messages = [{"role": "system", "content": system_prompt}]
+    last_user = _last_user_index(history) if image else None
+    for i, item in enumerate(history):
+        if image and i == last_user:
+            messages.append(
+                {
+                    "role": "user",
+                    "content": item.get("content") or "foto av läxan",
+                    "images": [image],
+                }
+            )
+        else:
+            messages.append(item)
     async with httpx.AsyncClient(timeout=120.0) as client:
         response = await client.post(
             f"{rt.base_url}/api/chat",

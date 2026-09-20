@@ -6,6 +6,7 @@ Texter och regler enligt SKOOLI_BUDDY_SAFETY_SPEC.md.
 import os
 import sys
 from datetime import datetime, timezone, timedelta
+from io import BytesIO
 
 from telegram import Update
 from telegram.constants import ChatAction
@@ -19,7 +20,7 @@ from telegram.ext import (
 from dotenv import load_dotenv
 
 from .consent import has_consent, record_consent, revoke_consent
-from .core import get_response, reset_chat
+from .core import get_response_async, reset_chat
 from .logger import log_turn, delete_logs_for_chat
 from .telegram_link import bot_token, can_start, claim_start, is_allowed
 
@@ -54,7 +55,7 @@ MSG_DAY_LIMIT        = "Vi har haft en riktigt bra dag! 🎉 Nu stänger jag fö
 
 # ── DEL 3: Samtyckestexter (kopierade ordagrant) ─────────────────────────────
 CONSENT_REQUEST_MSG = (
-    "Hej! Jag är Skooli Buddy — en studiekompis! 📚\n\n"
+    "Hej! Jag är Utter — en studiekompis! 📚\n\n"
     "Innan vi kan börja behöver din förälder eller\n"
     "vårdnadshavare godkänna.\n\n"
     "👨‍👩‍👧 Förälder: Skriv /consent [lösenord]\n\n"
@@ -63,7 +64,7 @@ CONSENT_REQUEST_MSG = (
 
 CONSENT_GRANTED_MSG = (
     "✅ Samtycke registrerat.\n\n"
-    "Ditt barn kan nu chatta med Skooli Buddy.\n\n"
+    "Ditt barn kan nu chatta med Utter.\n\n"
     "Vad vi sparar:\n"
     "• Anonymiserade konversationsloggar (inget namn, ingen\n"
     "  persondata)\n"
@@ -80,19 +81,19 @@ CONSENT_GRANTED_MSG = (
 
 CONSENT_REVOKED_MSG = (
     "Samtycke återkallat. All data raderad. ✅\n"
-    "Skooli Buddy svarar inte längre i denna chatt.\n"
+    "Utter svarar inte längre i denna chatt.\n"
     "Skriv /consent [lösenord] om du vill börja om."
 )
 
 WELCOME_MSG = (
-    "Hej! Jag är Skooli Buddy — din studiekompis! 🎒\n\n"
+    "Hej! Jag är Utter — din studiekompis! 🎒\n\n"
     "Jag hjälper dig att tänka och lära dig saker — fast inte genom att ge dig svaren. "
     "Tillsammans utforskar vi! Vad vill du lära dig idag?"
 )
 
 HELP_MSG = (
     "*Kommandon:*\n"
-    "/start — Starta Skooli Buddy\n"
+    "/start — Starta Utter\n"
     "/reset — Börja om konversationen\n"
     "/help — Visa den här hjälptexten\n"
     "/revoke — Återkalla samtycke och radera data *(förälder)*\n"
@@ -233,6 +234,50 @@ async def handle_voice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     )
 
 
+async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Foto av läxan. Processas, lagras inte."""
+    chat_id = update.effective_chat.id
+    if not _gate(chat_id):
+        return
+    if not has_consent(chat_id):
+        await update.message.reply_text(MSG_NO_CONSENT)
+        return
+    limit_msg = _check_and_increment(chat_id)
+    if limit_msg:
+        await update.message.reply_text(limit_msg)
+        return
+    photos = update.message.photo or []
+    if not photos:
+        await update.message.reply_text(ERROR_IMAGE_ANALYSIS)
+        return
+    chosen = photos[-1]
+    for photo in photos:
+        size = photo.file_size or 0
+        if 0 < size <= 350_000:
+            chosen = photo
+    try:
+        file = await context.bot.get_file(chosen.file_id)
+        buf = BytesIO()
+        await file.download_to_memory(buf)
+        blob = buf.getvalue()
+    except Exception:
+        await update.message.reply_text(ERROR_IMAGE_ANALYSIS)
+        return
+    caption = (update.message.caption or "").strip() or "foto av läxan"
+    turn = _next_turn(chat_id)
+    session_msgs = _session_counts.get(chat_id, 0)
+    await context.bot.send_chat_action(chat_id=chat_id, action=ChatAction.TYPING)
+    bot_reply = await get_response_async(chat_id, caption, image=blob)
+    log_turn(
+        chat_id=chat_id,
+        user_msg=caption,
+        bot_reply=bot_reply,
+        turn=turn,
+        session_messages=session_msgs,
+    )
+    await update.message.reply_text(bot_reply)
+
+
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Hanterar vanliga textmeddelanden."""
     chat_id = update.effective_chat.id
@@ -255,7 +300,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 
     await context.bot.send_chat_action(chat_id=chat_id, action=ChatAction.TYPING)
 
-    bot_reply = get_response(chat_id, user_text)
+    bot_reply = await get_response_async(chat_id, user_text)
 
     # Logga enligt DEL 5-format
     log_turn(
@@ -289,9 +334,10 @@ def main() -> None:
     app.add_handler(CommandHandler("reset", cmd_reset))
     app.add_handler(CommandHandler("help", cmd_help))
     app.add_handler(MessageHandler(filters.VOICE, handle_voice))
+    app.add_handler(MessageHandler(filters.PHOTO, handle_photo))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
-    print("Skooli Buddy startar... tryck Ctrl+C för att stoppa.")
+    print("Utter startar... tryck Ctrl+C för att stoppa.")
     app.run_polling()
 
 

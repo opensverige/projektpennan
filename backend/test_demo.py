@@ -48,3 +48,11 @@ def test_chat_crisis_is_bris_without_question():
 def test_empty_chat_is_rejected():
     res = client.post("/api/chat", json={"message": "   "})
     assert res.status_code == 400
+
+
+def test_photo_only_is_accepted_as_homework():
+    res = client.post("/api/chat", json={"message": "", "image": "data:image/jpeg;base64,xxxx"})
+    assert res.status_code == 200
+    body = res.json()
+    assert body["status"] == "ok"
+    assert body["response"] == reply_for("foto av läxan")["response"]
