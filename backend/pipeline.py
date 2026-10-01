@@ -9,7 +9,6 @@ import json
 import hashlib
 import hmac
 import os
-import secrets
 from datetime import datetime, timezone
 from pathlib import Path
 from safety import (
@@ -116,20 +115,32 @@ def log_conversation_turn(session_id: str, role: str, content: str, metadata: di
         f.write(line)
 
 
+def _write_restricted(path: Path, text: str) -> None:
+    """Skriv vault-fil som bara ägaren kan läsa. Samma 0600 som oauth-session."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+    with os.fdopen(fd, "w", encoding="utf-8") as handle:
+        handle.write(text)
+    try:
+        os.chmod(path, 0o600)
+    except OSError:
+        pass
+
+
 def get_audit_secret() -> str:
     global _AUDIT_SECRET
     if _AUDIT_SECRET:
         return _AUDIT_SECRET
-    secret_file = VAULT_PATH / "config" / "audit-secret.txt"
-    secret_file.parent.mkdir(parents=True, exist_ok=True)
-    if not secret_file.exists():
-        secret_file.write_text(secrets.token_hex(32), encoding="utf-8")
-    secret = secret_file.read_text(encoding="utf-8").strip()
-    if not secret:
-        secret = secrets.token_hex(32)
-        secret_file.write_text(secret, encoding="utf-8")
-    _AUDIT_SECRET = secret
-    return secret
+    path = VAULT_PATH / "config" / "audit-secret.txt"
+    if path.is_file():
+        existing = path.read_text(encoding="utf-8").strip()
+        if existing:
+            _AUDIT_SECRET = existing
+            return existing
+    key = os.urandom(32).hex()
+    _write_restricted(path, key)
+    _AUDIT_SECRET = key
+    return key
 
 
 def log_audit(session_id: str, action: str, details: str):
