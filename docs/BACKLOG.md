@@ -8,7 +8,7 @@ kunna bli ett GitHub-issue. Research-id pekar på `research/findings/`.
 
 | ID | Vad | Varför | Research |
 |----|-----|--------|----------|
-| P-01 | **En kärna, två ytor.** SOUL/SKILL/RULES + safety + logg + profil som enda sanning. `core.py` slutar äga en egen prompt. | Dubbel stack + motstridig AI-identitet. | `inventory-dual-stack` |
+| P-01 | ~~**En kärna, två ytor.**~~ `core.py` anropar `run_pipeline` + `safety.py`. Telegram och webb samma kedja. | Dubbel stack är död. WhatsApp (P-19) saknas. | `inventory-dual-stack` |
 | P-02 | **Ta bort hårdkodat `ALLOWED_CHAT_ID`.** Allowlist via start-länk / env. Tom = vägra starta. | Privat id läckte. Andra kunde inte köra. Se `skooli_buddy/telegram_link.py`. | |
 | P-03 | **Safety i kod på båda ytorna.** Svenska+engelska mönster, kris → BRIS-svar utan LLM, jailbreak-filter. | Prompt räcker inte. `safety.py` är engelska-only. | `safety-code-not-prompt` |
 | P-04 | **CI:** pytest, `research_pipeline.py validate`, `curriculum_cli.py validate`. `pytest` i requirements. | OSS utan grön pipeline är teater. | |
@@ -24,7 +24,7 @@ kunna bli ett GitHub-issue. Research-id pekar på `research/findings/`.
 | P-09 | **Stödlägen i profil:** sokratisk / små_steg / kviss / läs_stöd. Föräldern sätter. Koden väljer SKILL-förmåga. | Extra stöd är vårt jobb, inte en prompt-rad. | `udl-extra-stod`, `literacy-split` |
 | P-10 | **Persisterat minne (lokalt).** `vault/memory/` som Obsidian-notes. Intressen + vinklar. Inte diagnoser. Föräldern kan nolla. | Utan minne är varje kväll 4+3. | `socratic-ai` |
 | P-11 | **Lgr22 åk 4–6** i `config/lgr22/` + spegling till vault för RAG. CLI: validate, add, diff mot källa. | 13 poster räcker inte för en studiekompis. | `lgr22-coverage` |
-| P-12 | **Bild på läxan** (opt-in). Ingen ansiktslagring. Pedagogiska bilder ut. | Roadmap v0.3. Tutur vinner på kamera. | `parent-controls` |
+| P-12 | ~~**Bild på läxan** (opt-in).~~ Foto in i pipelinen, dörr mot bilden, ingen byte-logg. Pedagogiska bilder ut saknas. | Kamera är snap-gest. Inte feed. | `parent-controls` |
 | P-13 | **Telegram-grupp:** förälder spectator, barnet pratar, boten svarar bara barnet. | Roadmap v0.2. Insyn i realtid utan att störa. | `parent-controls` |
 | P-14 | **Kris + extra stöd-personor i CI** (Leo, Nour, "orkar inte", lång text). Deterministiska tester där det går, Gemini-eval nattetid. | Ett barntest är anekdot. | `socratic-ai`, `literacy-split` |
 | P-15 | **Lokal modell som förstaval.** Ollama-adapter bakom samma `get_response`. Gemini bakom flagga. | Integritet + OSS-trovärdighet. Gemini-ToS ändras. | `gdpr-hem` |
@@ -74,7 +74,7 @@ Se `docs/PLATFORM.md`. Arbetsnamn. Lgr22 är pack. Safety är kernel.
 | P-38 | **Förälder-hostad connector.** De kör den hemma med sitt BankID/lösen. Skriver minimerad `context.json` till vault. Hem får aldrig skol-credentials eller live-API. | Byggarföräldrar gör det redan. Vi standardiserar formatet, inte inloggningen. | `parent-owned-school-context` |
 | P-40 | **Kontaktnamn Utter i UI/bot.** Gnista föll på sexuell/romantisk idiom. Projekt Pennan stannar. Stjärnis bara som valfritt pack. | Skooli Buddy krockar med Homework Buddy / Studybuddy. Se `docs/NAME.md`. | `product-name` |
 | P-41 | **Förälder-start: en skärm.** Namn + klistra nyckel. Grok-tom, inte wizard. Av-ramp för päron. | Föräldern är inte developer. Se `docs/ONBOARDING.md`. | `parent-baseplate` |
-| P-42 | **Prenumerations-OAuth.** ChatGPT + Grok via device-länk (Hermes/Codex/Grok Build). Claude förbjuden. Lokal import av `~/.codex` / `~/.grok`. Inte impersonation. | Föräldern har redan betalat. Se `docs/OAUTH.md`. | `oauth-subscription` |
+| P-42 | ~~**Prenumerations-OAuth.**~~ Import skriver token och chatten använder den. Claude förbjuden. Inte impersonation. Refresh/expiry saknas. | Föräldern har redan betalat. Se `docs/OAUTH.md`. | `oauth-subscription` |
 | P-43 | **Förälder-testmiljö.** Plan + scenario-chips (även opassande) innan barnet släpps in. Samma safety-kärna. Igenkännbara ChatGPT/Claude/Grok-märken. | Föräldern ska känna sig säker. Se `frontend/test.html`. | `parent-preview` |
 | P-44 | **Kärndemo utan Ollama.** `scripts/demo.sh` + `backend/demo.py`. Chatten faller tillbaka till kärnan. | Kunna testa i kväll. Inte låtsas att Grok svarar. | |
 | P-45 | **Förälder-chipintervju.** 6 frågor + 1 hoppa-över, max 5 chips. Skriver `barn.md`, intressen, pedagogy overlay. Inget pretest, inga diagnos-chips. Barnet sitter inte i en dashboard. | Intresse + grov kärv + behov ändrar tutoring. Diagnos och KT-quiz gör det inte i onboardingen. | `intake-interest-first`, `intake-chip-budget`, `intake-no-diagnosis-chips`, `intake-question-list`, `parent-intake-not-child-dashboard` |

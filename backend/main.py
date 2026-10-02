@@ -18,7 +18,7 @@ from providers import load_runtime
 from memory import INTEREST_CHIPS, remember_child
 from session_store import SessionStore
 from reports import list_reports, get_report
-from oauth import catalog, find_local_session, get_provider
+from oauth import catalog, get_provider, import_session
 from preview import catalog as preview_catalog
 from preview import reply_for
 
@@ -39,7 +39,8 @@ session_store = SessionStore(SESSION_DB_PATH)
 
 class ChatRequest(BaseModel):
     session_id: str | None = None
-    message: str
+    message: str = ""
+    image: str | None = None
 
 
 class ChatResponse(BaseModel):
@@ -55,10 +56,11 @@ async def chat(
     x_utter_key: str | None = Header(default=None),
     x_utter_provider: str | None = Header(default=None),
 ):
-    if not req.message or not req.message.strip():
+    text = (req.message or "").strip() or ("foto av läxan" if req.image else "")
+    if not text:
         raise HTTPException(status_code=400, detail="Tomt meddelande.")
 
-    if len(req.message) > 1000:
+    if len(text) > 1000:
         raise HTTPException(status_code=400, detail="Meddelandet är för långt (max 1000 tecken).")
 
     session_id = req.session_id or str(uuid.uuid4())
@@ -67,14 +69,15 @@ async def chat(
 
     result = await run_pipeline(
         session_id,
-        req.message.strip(),
+        text,
         history,
         api_key=x_utter_key,
         provider=x_utter_provider,
+        image=req.image,
     )
 
     if result["status"] == "ok":
-        history.append({"role": "user", "content": req.message.strip()})
+        history.append({"role": "user", "content": text})
         history.append({"role": "assistant", "content": result["response"]})
         if len(history) > 40:
             history[:] = history[-40:]
@@ -158,7 +161,7 @@ async def oauth_import(provider: str):
         raise HTTPException(status_code=404, detail="Okänd leverantör.")
     if not spec.get("allowed"):
         raise HTTPException(status_code=403, detail=spec["reason"])
-    result = find_local_session(provider)
+    result = import_session(provider)
     if not result.get("ok"):
         raise HTTPException(status_code=404, detail=result["reason"])
     return result

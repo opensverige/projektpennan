@@ -9,7 +9,6 @@ import json
 import hashlib
 import hmac
 import os
-import secrets
 from datetime import datetime, timezone
 from pathlib import Path
 from safety import (
@@ -21,9 +20,9 @@ from safety import (
 from rag import search_curriculum
 from providers import complete, load_runtime
 from memory import maybe_note_from_child, render_for_prompt
+import base64
 
 VAULT_PATH = Path(os.getenv("VAULT_PATH", "/app/vault"))
-AUDIT_SECRET_FILE = VAULT_PATH / "config" / "audit-secret.txt"
 _AUDIT_SECRET: str | None = None
 
 
@@ -116,19 +115,32 @@ def log_conversation_turn(session_id: str, role: str, content: str, metadata: di
         f.write(line)
 
 
+def _write_restricted(path: Path, text: str) -> None:
+    """Skriv vault-fil som bara ägaren kan läsa. Samma 0600 som oauth-session."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+    with os.fdopen(fd, "w", encoding="utf-8") as handle:
+        handle.write(text)
+    try:
+        os.chmod(path, 0o600)
+    except OSError:
+        pass
+
+
 def get_audit_secret() -> str:
     global _AUDIT_SECRET
     if _AUDIT_SECRET:
         return _AUDIT_SECRET
-    AUDIT_SECRET_FILE.parent.mkdir(parents=True, exist_ok=True)
-    if not AUDIT_SECRET_FILE.exists():
-        AUDIT_SECRET_FILE.write_text(secrets.token_hex(32), encoding="utf-8")
-    secret = AUDIT_SECRET_FILE.read_text(encoding="utf-8").strip()
-    if not secret:
-        secret = secrets.token_hex(32)
-        AUDIT_SECRET_FILE.write_text(secret, encoding="utf-8")
-    _AUDIT_SECRET = secret
-    return secret
+    path = VAULT_PATH / "config" / "audit-secret.txt"
+    if path.is_file():
+        existing = path.read_text(encoding="utf-8").strip()
+        if existing:
+            _AUDIT_SECRET = existing
+            return existing
+    key = os.urandom(32).hex()
+    _write_restricted(path, key)
+    _AUDIT_SECRET = key
+    return key
 
 
 def log_audit(session_id: str, action: str, details: str):
@@ -170,12 +182,42 @@ def log_audit(session_id: str, action: str, details: str):
         f.write(line)
 
 
+_MAX_IMAGE = 350_000
+
+
+def parse_image(raw: str | None) -> tuple[str, str] | None:
+    """Returnera (b64, mime). Spara aldrig bytes. Ingen ansiktslagring."""
+    if not raw or not raw.strip():
+        return None
+    data = raw.strip()
+    mime = "image/jpeg"
+    if data.startswith("data:"):
+        header, _, rest = data.partition(",")
+        data = rest
+        if "png" in header:
+            mime = "image/png"
+        elif "webp" in header:
+            mime = "image/webp"
+        elif "gif" in header:
+            mime = "image/gif"
+    try:
+        blob = base64.b64decode(data, validate=False)
+    except (ValueError, TypeError) as exc:
+        raise ValueError("bilden gick inte att läsa") from exc
+    if len(blob) < 32:
+        raise ValueError("bilden är tom")
+    if len(blob) > _MAX_IMAGE:
+        raise ValueError("bilden är för stor")
+    return data, mime
+
+
 async def run_pipeline(
     session_id: str,
     user_message: str,
     history: list[dict],
     api_key: str | None = None,
     provider: str | None = None,
+    image: str | None = None,
 ) -> dict:
     """
     Hela pipelinen. Ett meddelande in, ett resultat ut.
@@ -247,9 +289,30 @@ async def run_pipeline(
         conversation.append({"role": "system", "content": f"[Kursplan]\n{rag_context}"})
     conversation.append({"role": "user", "content": user_message})
 
+    photo = None
+    photo_mime = None
+    try:
+        parsed = parse_image(image)
+    except ValueError:
+        return {
+            "status": "error",
+            "response": "Jag kunde inte läsa bilden. Ta en ny, närmare läxan.",
+            "processing_chain": chain,
+            "model": None,
+        }
+    if parsed:
+        photo, photo_mime = parsed
+        system_prompt += (
+            "\n\nBarnet skickade ett foto av läxan. Använd intresse-dörren "
+            "mot det som syns. Kommentera inte ansikten. Spara inte bilden."
+        )
+        chain["steps"].append({"step": "photo", "status": "ok"})
+
     runtime = load_runtime(override_key=api_key, override_provider=provider)
     try:
-        llm_response = await complete(system_prompt, conversation, runtime)
+        llm_response = await complete(
+            system_prompt, conversation, runtime, image=photo, image_mime=photo_mime
+        )
         chain["steps"].append({"step": "llm", "status": "ok", "model": runtime.label()})
     except Exception as e:
         log_audit(session_id, "LLM_ERROR", type(e).__name__)
@@ -275,7 +338,13 @@ async def run_pipeline(
                 {"role": "user", "content": "[SYSTEM] Ditt svar bröt mot säkerhetsreglerna. Formulera om ditt svar."}
             ]
             try:
-                llm_response = await complete(system_prompt, retry_msg, runtime)
+                llm_response = await complete(
+                    system_prompt,
+                    retry_msg,
+                    runtime,
+                    image=photo,
+                    image_mime=photo_mime,
+                )
                 output_check = check_output_safety(llm_response, policies)
             except Exception:
                 break

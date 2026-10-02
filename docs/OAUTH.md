@@ -33,8 +33,11 @@ importera den lokala sessionen (`~/.codex/auth.json`,
 5. Ingen session än? Stanna. Tryck igen, eller Fortsätt ändå.
 6. Claude? Klistra nyckel. Ingen OAuth-knapp.
 
-## Inte gjort
+## Vad importen gör
 
-P-26: inloggningen anropar inte FastAPI-chatten än. Importen
-säger bara om en lokal session *finns*. Tokens lämnar inte
-webbläsaren som JSON i svaret.
+`POST /api/oauth/import/{provider}` läser token från den lokala
+filen, skriver `vault/config/oauth-session.json` (0600) och
+svarar `{ok, provider, source, ready}` — aldrig token.
+`providers.load_runtime` använder den om föräldern valt
+ChatGPT/Grok och ingen `sk-` finns. Samma nyckel går till
+webben och Telegram via `run_pipeline`.

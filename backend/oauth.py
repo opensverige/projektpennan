@@ -11,7 +11,23 @@ Ingen knapp. Nyckel eller API.
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+VAULT = Path(os.getenv("VAULT_PATH", ROOT / "vault"))
+
+
+def _session_path() -> Path:
+    return VAULT / "config" / "oauth-session.json"
+
+# chatgpt-filen och openai-anropet är samma prenumeration.
+_PROVIDER_ALIASES = {
+    "chatgpt": frozenset({"chatgpt", "openai"}),
+    "openai": frozenset({"chatgpt", "openai"}),
+    "grok": frozenset({"grok", "xai"}),
+    "xai": frozenset({"grok", "xai"}),
+}
 
 PROVIDERS = {
     "chatgpt": {
@@ -137,3 +153,113 @@ def find_local_session(provider: str, home: Path | None = None) -> dict:
         "ok": False,
         "reason": "Ingen lokal inloggning hittades än. Öppna länken, logga in, tryck igen.",
     }
+
+
+def _token_from_payload(
+    payload: object,
+    keys: tuple[str, ...],
+    aliases: frozenset[str] | None = None,
+    under: bool = False,
+) -> str | None:
+    if not isinstance(payload, dict):
+        return None
+    if aliases is None or under:
+        for key in keys:
+            value = payload.get(key)
+            if isinstance(value, str) and value.strip():
+                return value.strip()
+        tokens = payload.get("tokens")
+        if isinstance(tokens, dict):
+            for key in keys:
+                value = tokens.get(key)
+                if isinstance(value, str) and value.strip():
+                    return value.strip()
+    if aliases is None:
+        return None
+    for name, value in payload.items():
+        next_under = under or str(name).lower() in aliases
+        if isinstance(value, dict):
+            found = _token_from_payload(value, keys, aliases, next_under)
+            if found:
+                return found
+        if isinstance(value, list):
+            for item in value:
+                found = _token_from_payload(item, keys, aliases, next_under)
+                if found:
+                    return found
+    return None
+
+
+def _read_token(provider: str, home: Path | None = None) -> tuple[str, str] | None:
+    spec = get_provider(provider)
+    if not spec.get("allowed"):
+        return None
+    keys = spec["token_keys"]
+    aliases = HERMES_ALIASES.get(provider, frozenset())
+    for raw in spec["import_files"]:
+        path = _expand(raw, home)
+        if not path.is_file():
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        hermes_file = ".hermes/" in raw or raw.endswith(".hermes")
+        token = (
+            _token_from_payload(data, keys, aliases)
+            if hermes_file
+            else _token_from_payload(data, keys)
+        )
+        if token:
+            return token, raw
+    return None
+
+
+def import_session(provider: str, home: Path | None = None) -> dict:
+    """Spara token i vault. Svaret till webben innehåller aldrig token."""
+    found = find_local_session(provider, home=home)
+    if not found.get("ok"):
+        return found
+    pair = _read_token(provider, home=home)
+    if not pair:
+        return {
+            "ok": False,
+            "reason": "Inloggningen syns men token gick inte att läsa.",
+        }
+    token, source = pair
+    path = _session_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(
+            {"provider": provider, "access_token": token, "source": source},
+            ensure_ascii=False,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    try:
+        path.chmod(0o600)
+    except OSError:
+        pass
+    return {
+        "ok": True,
+        "provider": provider,
+        "source": source,
+        "ready": True,
+    }
+
+
+def load_imported_token(provider: str | None) -> str | None:
+    path = _session_path()
+    if not provider or not path.is_file():
+        return None
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    stored = str(data.get("provider") or "")
+    aliases = _PROVIDER_ALIASES.get(provider, frozenset({provider}))
+    if stored not in aliases:
+        return None
+    token = data.get("access_token")
+    return token.strip() if isinstance(token, str) and token.strip() else None

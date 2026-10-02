@@ -1,6 +1,6 @@
 import json
 
-from oauth import catalog, find_local_session, get_provider
+from oauth import catalog, find_local_session, get_provider, import_session, load_imported_token
 
 
 def test_chatgpt_and_grok_allowed_claude_forbidden():
@@ -48,6 +48,23 @@ def test_import_never_returns_tokens(tmp_path):
     assert "secret-token" not in blob
     assert "refresh-secret" not in blob
     assert set(result) <= {"ok", "provider", "source"}
+
+
+def test_import_writes_token_but_hides_it(tmp_path, monkeypatch):
+    monkeypatch.setattr("oauth.VAULT", tmp_path)
+    codex = tmp_path / ".codex"
+    codex.mkdir()
+    (codex / "auth.json").write_text(
+        json.dumps({"access_token": "secret-token-xyz", "refresh_token": "r"}),
+        encoding="utf-8",
+    )
+    saved = import_session("chatgpt", home=tmp_path)
+    assert saved["ok"] is True
+    assert saved["ready"] is True
+    assert "secret-token" not in json.dumps(saved)
+    assert load_imported_token("chatgpt") == "secret-token-xyz"
+    assert load_imported_token("openai") == "secret-token-xyz"
+    assert load_imported_token("grok") is None
 
 
 def test_hermes_grok_does_not_count_as_chatgpt(tmp_path):

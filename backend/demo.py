@@ -14,7 +14,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from memory import INTEREST_CHIPS, remember_child
-from oauth import catalog, find_local_session, get_provider
+from oauth import catalog, get_provider, import_session
 from preview import catalog as preview_catalog
 from preview import reply_for
 
@@ -26,7 +26,8 @@ app = FastAPI(title="Utter kärndemo", version="0.1.0")
 
 class ChatRequest(BaseModel):
     session_id: str | None = None
-    message: str
+    message: str = ""
+    image: str | None = None
 
 
 class PreviewTurn(BaseModel):
@@ -96,7 +97,7 @@ async def oauth_import(provider: str):
         raise HTTPException(status_code=404, detail="Okänd leverantör.")
     if not spec.get("allowed"):
         raise HTTPException(status_code=403, detail=spec["reason"])
-    result = find_local_session(provider)
+    result = import_session(provider)
     if not result.get("ok"):
         raise HTTPException(status_code=404, detail=result["reason"])
     return result
@@ -116,9 +117,10 @@ async def preview_turn(req: PreviewTurn):
 
 @app.post("/api/chat")
 async def chat(req: ChatRequest):
-    if not req.message or not req.message.strip():
+    text = (req.message or "").strip() or ("foto av läxan" if req.image else "")
+    if not text:
         raise HTTPException(status_code=400, detail="Tomt meddelande.")
-    result = reply_for(req.message.strip())
+    result = reply_for(text)
     status = "ok" if result["kind"] in {"socratic", "answer"} else "blocked_input"
     return {
         "session_id": req.session_id or str(uuid4()),
